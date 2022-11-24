@@ -46,6 +46,9 @@ $router->get('/admin/posts', 'App\Controllers\Admin\PostController@index');
 $router->get('/admin/script', 'App\Controllers\Admin\ScriptController@index');
 $router->get('/admin/script/create', 'App\Controllers\Admin\ScriptController@create');
 $router->post('/admin/script/create', 'App\Controllers\Admin\ScriptController@createScript');
+$router->post('/admin/script/delete/:id', 'App\Controllers\Admin\ScriptController@destroy');
+$router->get('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@edit');
+$router->post('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@update');
 
 
 

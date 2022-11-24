@@ -1,6 +1,6 @@
 <?php 
 
-var_dump(count($params['scripts']));
+// var_dump(count($params['scripts']));
 echo "<a href='script/create'>Créer un scénario</a>";
 
 if (count($params['scripts']) == 0) {

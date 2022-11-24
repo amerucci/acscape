@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="duration">Durée</label>
-            <input type="time" class="form-control" name="duration" id="duration">
+            <input type="time" class="form-control" name="duration" id="duration" min="00:10" max="01:00" value="01:00">
         </div>
         <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
         <button type="submit" class="btn btn-primary">Créer</button>

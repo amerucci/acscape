@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Script;
-use App\models\User;
 use App\Controllers\Controller;
 
 class ScriptController extends Controller {
@@ -29,20 +28,40 @@ class ScriptController extends Controller {
 
         $script = new Script($this->getDB());
        
-        // $result = $script->create([
-        //     'title' => $_POST['title'],
-        //     'difficulty' => $_POST['difficulty'],
-        //     'description' => $_POST['description'],
-        //     'winner_msg' => $_POST['winner_msg'],
-        //     'lost_msg' => $_POST['lost_msg'],
-        //     'picture' => $_POST['picture'],
-        //     'duration' => $_POST['duration'],
-        //     'user_id' => $_SESSION['auth']->$user->id
-        // ]);
+        $result = $script->create([
+            'title' => $_POST['title'],
+            'difficulty' => $_POST['difficulty'],
+            'description' => $_POST['description'],
+            'winner_msg' => $_POST['winner_msg'],
+            'lost_msg' => $_POST['lost_msg'],
+            'picture' => $_FILES['picture']['name'],
+            'duration' => $_POST['duration'],
+            'user_id' => $_POST['user_id'],
+        ]);
 
-        $result = $script->create($_POST);
+        
+        // $result = $script->create($_POST);
 
         if ($result) {
+            if (!empty($_FILES['picture']['name'])) {
+                $picture = $_FILES['picture']['name'];
+                $picturePath = $_FILES['picture']['tmp_name'];
+                $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
+                $pictureName = pathinfo($picture, PATHINFO_FILENAME);
+                $pictureName = $pictureName . "." . $pictureExtension;
+                $pictureDestination = '../assets/pictures/' . $pictureName;
+                $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
+                $pictureSize = $_FILES['picture']['size'];
+                if (in_array($pictureExtension, $pictureExtensionAllowed)) {
+                    if ($pictureSize < 1000000) {
+                        move_uploaded_file($picturePath, $pictureDestination);
+                    } else {
+                        echo "Votre fichier est trop volumineux";
+                    }
+                } else {
+                    echo "Votre fichier n'est pas une image";
+                }
+            }
             return header('Location: /acscape/admin/script');
         }
     }
@@ -53,10 +72,10 @@ class ScriptController extends Controller {
 
         $script = (new Script($this->getDB()))->findById($id);
 
-        return $this->view('admin.script.form', compact('script'));
+        return $this->view('admin.script.edit', compact('script'));
     }
 
-    public function update(int $id)
+    public function update($id)
     {
         $this->isAdmin();
 
@@ -65,8 +84,10 @@ class ScriptController extends Controller {
         $result = $script->update($id, $_POST);
 
         if ($result) {
-            return header('Location: /admin/scripts');
+            return header('Location: /acscape/admin/script');
         }
+
     }
+
 
 }
