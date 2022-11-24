@@ -8,3 +8,6 @@
     }, 2000);
 </script>
 <?php endif ?>
+
+<h6>Gérer vos scénario :</h6>
+<a href="script">ici</a>

@@ -12,18 +12,18 @@ class ScriptController extends Controller {
         $this->isAdmin();
 
         $scripts = (new Script($this->getDB()))->all();
-        
         return $this->view('admin.script.index', compact('scripts'));
+        // return $this->view('admin.script.index');
     }
 
     public function create()
     {
         $this->isAdmin();
 
-        return $this->view('admin.script.form');
+        return $this->view('admin.script.create');
     }
 
-    public function createPost()
+    public function createScript()
     {
         $this->isAdmin();
 

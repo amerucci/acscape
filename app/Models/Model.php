@@ -17,7 +17,7 @@ abstract class Model {
 
     public function all()
     {
-        return $this->query("SELECT * FROM {$this->table} ORDER BY created_at DESC");
+        return $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
     }
 
     public function findById(int $id): Model
