@@ -44,7 +44,7 @@ class ScriptController extends Controller {
         $result = $script->create($_POST);
 
         if ($result) {
-            return header('Location: script');
+            return header('Location: /acscape/admin/script');
         }
     }
 
