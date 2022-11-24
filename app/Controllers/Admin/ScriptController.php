@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Script;
+use App\models\User;
 use App\Controllers\Controller;
 
 class ScriptController extends Controller {
@@ -19,7 +20,7 @@ class ScriptController extends Controller {
     public function create()
     {
         $this->isAdmin();
-
+    
         return $this->view('admin.script.create');
     }
 
@@ -28,11 +29,22 @@ class ScriptController extends Controller {
         $this->isAdmin();
 
         $script = new Script($this->getDB());
+       
+        // $result = $script->create([
+        //     'title' => $_POST['title'],
+        //     'difficulty' => $_POST['difficulty'],
+        //     'description' => $_POST['description'],
+        //     'winner_msg' => $_POST['winner_msg'],
+        //     'lost_msg' => $_POST['lost_msg'],
+        //     'picture' => $_POST['picture'],
+        //     'duration' => $_POST['duration'],
+        //     'user_id' => $_SESSION['auth']->$user->id
+        // ]);
 
         $result = $script->create($_POST);
 
         if ($result) {
-            return header('Location: /admin/scripts');
+            return header('Location: script');
         }
     }
 
