@@ -14,7 +14,6 @@ class ScriptController extends Controller {
 
         $scripts = (new Script($this->getDB()))->all();
         return $this->view('admin.script.index', compact('scripts'));
-        // return $this->view('admin.script.index');
     }
 
     public function create()

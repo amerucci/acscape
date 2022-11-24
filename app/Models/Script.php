@@ -11,4 +11,9 @@ class Script extends Model {
         return $this->query("SELECT * FROM {$this->table} WHERE title = ?", [$title], true);
     }
 
+    public function getExcerpt(): string
+    {
+        return substr($this->description, 0, 50) . '...';
+    }
+
 }

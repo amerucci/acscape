@@ -20,7 +20,7 @@ if (count($params['scripts']) == 0) {
         echo "<tr>";
         echo "<td>" . $script->title . "</td>";
         echo "<td>" . $script->difficulty . "</td>";
-        echo "<td>" . $script->description . "</td>";
+        echo "<td>" . $script->getExcerpt() . "</td>";
         echo "<td>";
         echo "<a href='script/edit/" . $script->id . "' class='btn btn-primary'>Modifier</a>";
         echo "<a href='script/delete/" . $script->id . "' class='btn btn-danger'>Supprimer</a>";
