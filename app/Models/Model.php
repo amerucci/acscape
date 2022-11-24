@@ -15,7 +15,7 @@ abstract class Model {
         $this->db = $db;
     }
 
-    public function all(): array
+    public function all()
     {
         return $this->query("SELECT * FROM {$this->table} ORDER BY created_at DESC");
     }

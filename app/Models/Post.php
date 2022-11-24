@@ -15,14 +15,14 @@ class Post extends Model {
 
     public function getExcerpt(): string
     {
-        return substr($this->content, 0, 200) . '...';
+        return substr($this->desc, 0, 200) . '...';
     }
 
     public function getButton(): string
     {
         return <<<HTML
         <a href="/posts/$this->id" class="btn btn-primary">Lire l'article</a>
-        HTML;
+HTML;
     }
 
     public function getTags()

@@ -11,7 +11,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/oop">ACEscape</a>
+        <a class="navbar-brand" href="/acscape">ACEscape</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,14 +20,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/oop">Accueil</a>
+                    <a class="nav-link" href="/acscape">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Les derniers jeux</a>
+                    <a class="nav-link" href="/acscape/posts">Les derniers jeux</a>
                 </li>
                 <?php if (isset($_SESSION['auth'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/oop/admin/posts">Administration</a>
+                    <a class="nav-link" href="/acscape/admin/posts">Administration</a>
                 </li>
                 <?php endif; ?>
 
@@ -36,7 +36,7 @@
                 <!-- <a href="login">se connecter</a> -->
                 <?php if (isset($_SESSION['auth'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/oop/logout">Se déconnecter</a>
+                    <a class="nav-link" href="/acscape/logout">Se déconnecter</a>
                 </li>
                 <?php else : ?>
                 <li class="nav-item">

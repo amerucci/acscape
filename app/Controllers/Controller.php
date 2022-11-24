@@ -36,7 +36,7 @@ abstract class Controller {
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
             return true;
         } else {
-            return header('Location: /login');
+            return header('Location: /acscape/login?caca=1');
         }
     }
 

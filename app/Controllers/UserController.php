@@ -15,6 +15,8 @@ class UserController extends Controller {
     public function loginPost()
     {
 
+        
+
         $validator = new Validator($_POST);
         $errors = $validator->validate([
             'username' => ['required', 'min:3'],
@@ -23,15 +25,15 @@ class UserController extends Controller {
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            header('Location: login');
             exit;
         }
 
         $user = (new User($this->getDB()))->getByUsername($_POST['username']);
 
         if (password_verify($_POST['password'], $user->password)) {
-            $_SESSION['auth'] = (int) $user->admin;
-            return header('Location: /oop/admin/posts?success=true');
+            $_SESSION['auth'] = (int) $user->role;
+            return header('Location: admin/posts?success=true');
         } else {
             return header('Location: login?error=error');
         }
@@ -41,7 +43,7 @@ class UserController extends Controller {
     {
         session_destroy();
 
-        return header('Location: /oop');
+        return header('Location: /acscape');
     }
 
     public function register()
