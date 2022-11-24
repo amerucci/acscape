@@ -22,7 +22,7 @@ class Post extends Model {
     {
         return <<<HTML
         <a href="/posts/$this->id" class="btn btn-primary">Lire l'article</a>
-HTML;
+        HTML;
     }
 
     public function getTags()

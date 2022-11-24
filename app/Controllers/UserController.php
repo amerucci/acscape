@@ -15,8 +15,6 @@ class UserController extends Controller {
     public function loginPost()
     {
 
-        
-
         $validator = new Validator($_POST);
         $errors = $validator->validate([
             'username' => ['required', 'min:3'],
