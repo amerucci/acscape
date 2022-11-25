@@ -1,3 +1,5 @@
+<?php $title = "Creation des scripts"; ?>
+
 <form action="create" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="name">Nom du scénario</label>

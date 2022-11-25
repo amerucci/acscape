@@ -1,3 +1,4 @@
+<?php $title = "création de salles"; ?>
 <h1>Création d'une salle</h1>
 
 <form action="create" method="POST" enctype="multipart/form-data">

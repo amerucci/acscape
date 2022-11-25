@@ -93,7 +93,7 @@ class RoomController extends Controller {
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                 $pictureName = $pictureName . "." . $pictureExtension;
-                $pictureDestination = '../assets/pictures/' . $pictureName;
+                $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
                 $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $pictureSize = $_FILES['picture']['size'];
                 if (in_array($pictureExtension, $pictureExtensionAllowed)) {
@@ -106,7 +106,7 @@ class RoomController extends Controller {
                     echo "Votre fichier n'est pas une image";
                 }
             }
-            // return $this->redirect('admin.room.index');
+            return header('Location: /acscape/admin/room');
         }
     }
 

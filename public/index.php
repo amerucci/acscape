@@ -29,18 +29,12 @@ $router->get('/register', 'App\Controllers\UserController@register');
 $router->post('/register', 'App\Controllers\UserController@registerPost');
 
 
-
 // **********************************************************************************************************
 // admin route
 // **********************************************************************************************************
 
 // admin accueil
 $router->get('/admin/posts', 'App\Controllers\Admin\PostController@index');
-// $router->get('/admin/posts/create', 'App\Controllers\Admin\PostController@create');
-// $router->post('/admin/posts/create', 'App\Controllers\Admin\PostController@createPost');
-// $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\PostController@destroy');
-// $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@edit');
-// $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@update');
 
 // gestion des scripts
 $router->get('/admin/script', 'App\Controllers\Admin\ScriptController@index');
@@ -58,6 +52,13 @@ $router->post('/admin/room/delete/:id', 'App\Controllers\Admin\RoomController@de
 $router->get('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@edit');
 $router->post('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@update');
 
+// gestion des furnitures
+$router->get('/admin/furniture', 'App\Controllers\Admin\FurnitureController@index');
+$router->get('/admin/furniture/create', 'App\Controllers\Admin\FurnitureController@create');
+$router->post('/admin/furniture/create', 'App\Controllers\Admin\FurnitureController@createFurniture');
+$router->post('/admin/furniture/delete/:id', 'App\Controllers\Admin\FurnitureController@destroy');
+$router->get('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@edit');
+$router->post('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@update');
 
 
 

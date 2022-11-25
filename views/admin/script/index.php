@@ -1,3 +1,5 @@
+<?php $title = "Administration des scénarios"; ?>
+
 <?php 
 
 // var_dump(count($params['scripts']));

@@ -1,4 +1,6 @@
-<?php $script = $params['script'] ?>
+<?php
+$title = "modifier le scénario " . $params['script']->title;
+ $script = $params['script'] ?>
 
 <h1>Modifier un script</h1>
 

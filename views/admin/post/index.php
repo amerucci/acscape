@@ -1,3 +1,4 @@
+<?php $title = "Administration des jeux"; ?>
 <h1>Administration des Jeux</h1>
 
 <?php if(isset($_GET['success'])): ?>
