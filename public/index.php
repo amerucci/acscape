@@ -50,6 +50,15 @@ $router->post('/admin/script/delete/:id', 'App\Controllers\Admin\ScriptControlle
 $router->get('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@edit');
 $router->post('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@update');
 
+// gestion des rooms
+$router->get('/admin/room', 'App\Controllers\Admin\RoomController@index');
+$router->get('/admin/room/create', 'App\Controllers\Admin\RoomController@create');
+$router->post('/admin/room/create', 'App\Controllers\Admin\RoomController@createRoom');
+$router->post('/admin/room/delete/:id', 'App\Controllers\Admin\RoomController@destroy');
+$router->get('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@edit');
+$router->post('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@update');
+
+
 
 
 

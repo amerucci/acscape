@@ -39,9 +39,6 @@ class ScriptController extends Controller {
             'user_id' => $_POST['user_id'],
         ]);
 
-        
-        // $result = $script->create($_POST);
-
         if ($result) {
             if (!empty($_FILES['picture']['name'])) {
                 $picture = $_FILES['picture']['name'];
@@ -49,7 +46,7 @@ class ScriptController extends Controller {
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                 $pictureName = $pictureName . "." . $pictureExtension;
-                $pictureDestination = '../assets/pictures/' . $pictureName;
+                $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
                 $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $pictureSize = $_FILES['picture']['size'];
                 if (in_array($pictureExtension, $pictureExtensionAllowed)) {

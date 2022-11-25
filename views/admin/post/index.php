@@ -11,3 +11,6 @@
 
 <h6>Gérer vos scénario :</h6>
 <a href="script">ici</a>
+
+<h6>Gérer vos salles :</h6>
+<a href="room">ici</a>
