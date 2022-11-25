@@ -40,7 +40,6 @@
 </form>
 
 <script>
-    // add a new clue with the button addClue  and a name for the new clue (clue2, clue3, ...) and max 3 clues  and move the button addClue after the last clue without jquery
     let i = 1;
     document.getElementById('addClue').addEventListener('click', function () {
         if (i < 3) {
