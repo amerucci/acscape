@@ -14,6 +14,14 @@ class FurnitureController extends Controller {
             $furnitures = (new Furniture($this->getDB()))->all();
             return $this->view('admin.furniture.index', compact('furnitures'));
         }
+
+        public function show(int $id)
+        {
+            $this->isAdmin();
+    
+            $furniture = (new Furniture($this->getDB()))->findById($id);
+            return $this->view('admin.furniture.show', compact('furniture'));
+        }
     
         public function create()
         {

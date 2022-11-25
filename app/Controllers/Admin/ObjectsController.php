@@ -14,6 +14,14 @@ class ObjectsController extends Controller {
                 $objects = (new Objects($this->getDB()))->all();
                 return $this->view('admin.objects.index', compact('objects'));
             }
+
+            public function show($id)
+            {
+                $this->isAdmin();
+        
+                $object = (new Objects($this->getDB()))->findById($id);
+                return $this->view('admin.objects.show', compact('object'));
+            }
         
             public function create()
             {

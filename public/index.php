@@ -18,8 +18,6 @@ $router = new Router($_GET['url']);
 // public route
 $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/posts', 'App\Controllers\BlogController@index');
-$router->get('/posts/:id', 'App\Controllers\BlogController@show');
-$router->get('/tags/:id', 'App\Controllers\BlogController@tag');
 
 // user login, register, logout route
 $router->get('/login', 'App\Controllers\UserController@login');
@@ -43,6 +41,7 @@ $router->post('/admin/script/create', 'App\Controllers\Admin\ScriptController@cr
 $router->post('/admin/script/delete/:id', 'App\Controllers\Admin\ScriptController@destroy');
 $router->get('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@edit');
 $router->post('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@update');
+$router->get('/admin/script/show/:id', 'App\Controllers\Admin\ScriptController@show');
 
 // gestion des rooms
 $router->get('/admin/room', 'App\Controllers\Admin\RoomController@index');
@@ -51,6 +50,7 @@ $router->post('/admin/room/create', 'App\Controllers\Admin\RoomController@create
 $router->post('/admin/room/delete/:id', 'App\Controllers\Admin\RoomController@destroy');
 $router->get('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@edit');
 $router->post('/admin/room/edit/:id', 'App\Controllers\Admin\RoomController@update');
+$router->get('/admin/room/show/:id', 'App\Controllers\Admin\RoomController@show');
 
 // gestion des furnitures
 $router->get('/admin/furniture', 'App\Controllers\Admin\FurnitureController@index');
@@ -59,6 +59,7 @@ $router->post('/admin/furniture/create', 'App\Controllers\Admin\FurnitureControl
 $router->post('/admin/furniture/delete/:id', 'App\Controllers\Admin\FurnitureController@destroy');
 $router->get('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@edit');
 $router->post('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@update');
+$router->get('/admin/furniture/show/:id', 'App\Controllers\Admin\FurnitureController@show');
 
 // gestion des objets
 $router->get('/admin/objects', 'App\Controllers\Admin\ObjectsController@index');
@@ -67,6 +68,7 @@ $router->post('/admin/objects/create', 'App\Controllers\Admin\ObjectsController@
 $router->post('/admin/objects/delete/:id', 'App\Controllers\Admin\ObjectsController@destroy');
 $router->get('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@edit');
 $router->post('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@update');
+$router->get('/admin/objects/show/:id', 'App\Controllers\Admin\ObjectsController@show');
 
 
 

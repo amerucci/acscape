@@ -15,6 +15,13 @@ class RoomController extends Controller {
         return $this->view('admin.room.index', compact('rooms'));
     }
 
+    public function show(int $id)
+    {
+        $this->isAdmin();
+
+        $room = (new Room($this->getDB()))->findById($id);
+        return $this->view('admin.room.show', compact('room'));
+    }
     public function create()
     {
         $this->isAdmin();
