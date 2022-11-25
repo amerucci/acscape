@@ -27,3 +27,4 @@ $title = "Modifier la salle {$room->title}";
         <input type="text" name="user_id" id="user_id" class="form-control" value="<?= $room->user_id ?>">
     </div>
     <button type="submit" class="btn btn-primary">Editer</button>
+</form>

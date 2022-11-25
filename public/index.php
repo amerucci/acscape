@@ -60,6 +60,13 @@ $router->post('/admin/furniture/delete/:id', 'App\Controllers\Admin\FurnitureCon
 $router->get('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@edit');
 $router->post('/admin/furniture/edit/:id', 'App\Controllers\Admin\FurnitureController@update');
 
+// gestion des objets
+$router->get('/admin/objects', 'App\Controllers\Admin\ObjectsController@index');
+$router->get('/admin/objects/create', 'App\Controllers\Admin\ObjectsController@create');
+$router->post('/admin/objects/create', 'App\Controllers\Admin\ObjectsController@createObject');
+$router->post('/admin/objects/delete/:id', 'App\Controllers\Admin\ObjectsController@destroy');
+$router->get('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@edit');
+$router->post('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@update');
 
 
 

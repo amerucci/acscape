@@ -10,8 +10,22 @@
 </script>
 <?php endif ?>
 
-<h6>Gérer vos scénario :</h6>
-<a href="script">ici</a>
+<div class="d-flex">
+    <h6>Gérer vos scénario :</h6>
+    <a class="mx-2" href="script">ici</a>
+</div>
 
-<h6>Gérer vos salles :</h6>
-<a href="room">ici</a>
+<div class="d-flex">
+    <h6>Gérer vos salles :</h6>
+    <a class="mx-2" href="room">ici</a>
+</div>
+
+<div class="d-flex">
+    <h6>Gérer vos meubles :</h6>
+    <a class="mx-2" href="furniture">ici</a>
+</div>
+
+<div class="d-flex">
+    <h6>Gérer vos objets :</h6>
+    <a class="mx-2" href="objects">ici</a>
+</div>

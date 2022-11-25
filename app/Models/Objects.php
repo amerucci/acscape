@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-class Furniture extends Model {
+class Objects extends Model {
 
-    protected $table = 'furnitures';
+    protected $table = 'objects';
 
-    public function getByTitle(string $title): Furniture
+    public function getByTitle(string $title): Object
     {
         return $this->query("SELECT * FROM {$this->table} WHERE title = ?", [$title], true);
     }
