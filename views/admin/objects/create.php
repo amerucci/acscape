@@ -17,3 +17,4 @@
     </div>
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
     <button type="submit" class="btn btn-primary">Créer</button>
+</form>
