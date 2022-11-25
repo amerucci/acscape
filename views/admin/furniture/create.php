@@ -24,6 +24,7 @@
         <textarea name="clue" id="clue" class="form-control"></textarea>
         <!-- button for a new clue -->
         <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+        <p class="max"></p>
     </div>
 
 
@@ -50,6 +51,10 @@
             newClue.setAttribute('class', 'form-control mt-2');
             document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
                 'addClue'));
+        }
+        if (i === 3) {
+            document.getElementById('addClue').setAttribute('disabled', 'disabled');
+            document.querySelector('.max').innerHTML = 'Vous avez atteint le nombre maximum d\'indices';
         }
     });
 </script>

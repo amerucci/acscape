@@ -1,3 +1,4 @@
+<?= $title = "S'enregistrer"; ?>
 <?php if (isset($_SESSION['errors'])): ?>
 
 <?php foreach($_SESSION['errors'] as $errorsArray): ?>

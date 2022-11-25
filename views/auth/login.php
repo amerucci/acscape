@@ -1,3 +1,4 @@
+<?= $title = "Se connecter"; ?>
 <?php if (isset($_SESSION['errors'])): ?>
 
 <?php foreach($_SESSION['errors'] as $errorsArray): ?>
