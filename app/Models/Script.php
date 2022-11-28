@@ -16,4 +16,5 @@ class Script extends Model {
         return substr($this->description, 0, 50) . '...';
     }
 
+   
 }

@@ -11,11 +11,17 @@
 <?php endif ?>
 
 <div class="d-flex">
-    <h6>Gérer vos scénario :</h6>
+    <h6>Gérer vos jeux :</h6>
     <a class="mx-2" href="script">ici</a>
 </div>
 
+<!-- créer un scénario -->
 <div class="d-flex">
+    <h6>Créer un scénario :</h6>
+    <a class="mx-2" href="script/create">ici</a>
+</div>
+
+<!-- <div class="d-flex">
     <h6>Gérer vos salles :</h6>
     <a class="mx-2" href="room">ici</a>
 </div>
@@ -28,4 +34,4 @@
 <div class="d-flex">
     <h6>Gérer vos objets :</h6>
     <a class="mx-2" href="objects">ici</a>
-</div>
+</div> -->

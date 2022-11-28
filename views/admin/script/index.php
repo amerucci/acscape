@@ -8,29 +8,21 @@ echo "<a href='script/create'>Créer un scénario</a>";
 if (count($params['scripts']) == 0) {
     echo "<p>vous n'avez pas encore de scénario</p>";
 } else {
-    echo "<table class='table table-striped'>";
-    echo "<thead>";
-    echo "<tr>";
-    echo "<th scope='col'>Nom</th>";
-    echo "<th scope='col'>Difficulté</th>";
-    echo "<th scope='col'>description</th>";
-    echo "<th scope='col'>Actions</th>";
-    echo "</tr>";
-    echo "</thead>";
-    echo "<tbody>";
+//    présenter sous forme de cards
+echo "<div class='d-flex gap-2'>";
     foreach ($params['scripts'] as $script) {
-        echo "<tr>";
-        echo "<td>" . $script->title . "</td>";
-        echo "<td>" . $script->difficulty . "</td>";
-        echo "<td>" . $script->getExcerpt() . "</td>";
-        echo "<td>";
-        echo "<a href='script/edit/" . $script->id . "' class='btn btn-primary'>Modifier</a>";
+        echo "<div class='card' style='width: 18rem;'>";
+        echo "<img src='../assets/pictures/scripts/" . $script->picture . "' class='card-img-top' alt='...'>";
+        echo "<div class='card-body'>";
+        echo "<h5 class='card-title'>" . $script->title . "</h5>";
+        echo "<p class='card-text'>" . $script->description . "</p>";
+        echo "<a href='script/edit/" . $script->id . "' class='btn btn-primary'>Paramètre du scénario</a>";
+        echo "<a href='game' class='btn btn-primary'>création du jeu</a>";
         echo "<a href='script/delete/" . $script->id . "' class='btn btn-danger'>Supprimer</a>";
-        echo "</td>";
-        echo "</tr>";
+        echo "</div>";
+        echo "</div>";
     }
-    echo "</tbody>";
-    echo "</table>";
+    echo "</div>";
 }
 
-// var_dump($params['scripts']);
+var_dump($_SESSION);

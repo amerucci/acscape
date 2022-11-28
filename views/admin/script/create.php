@@ -1,4 +1,5 @@
 <?php $title = "Creation des scripts"; ?>
+<?php unset($_SESSION['script_id']); ?>
 
 <form action="create" method="POST" enctype="multipart/form-data">
     <div class="form-group">

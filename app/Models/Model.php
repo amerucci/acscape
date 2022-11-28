@@ -20,6 +20,11 @@ abstract class Model {
         return $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
     }
 
+    public function allById($id)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     public function findById(int $id): Model
     {
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
@@ -135,6 +140,11 @@ abstract class Model {
                 return false;
             }
         }
+    }
+
+    public function lastInsertId()
+    {
+        return $this->db->getPDO()->lastInsertId();
     }
 
 }

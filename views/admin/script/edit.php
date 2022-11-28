@@ -48,3 +48,5 @@ $title = "modifier le scénario " . $params['script']->title;
         <input type="hidden" name="id" value="<?= $script->id ?>">
         <button type="submit" class="btn btn-primary">Modifier</button>
 </form>
+
+<?php $_SESSION['script_id'] = $script->id ?>

@@ -40,7 +40,7 @@ class RoomController extends Controller {
             'picture' => $_FILES['picture']['name'],
             'padlock' => $_POST['padlock'],
             'user_id' => $_POST['user_id'],
-            'picture' => $_FILES['picture']['name'],
+            'script_id' => $_POST['script_id'],
 
         ]);
 

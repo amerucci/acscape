@@ -70,6 +70,8 @@ $router->get('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController
 $router->post('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@update');
 $router->get('/admin/objects/show/:id', 'App\Controllers\Admin\ObjectsController@show');
 
+// le gamecontroller
+$router->get('/admin/game', 'App\Controllers\Admin\GameController@index');  // affiche la page de création des paramètres du jeu
 
 
 
