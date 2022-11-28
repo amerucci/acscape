@@ -102,13 +102,18 @@ abstract class Model {
 
     public function uploadFile($file, $folder)
     {
+
         $target_dir = "public/pictures/{$folder}/";
         $target_file = $target_dir . basename($file["name"]);
+        // if the file is a empty string, we don't upload it
+        if ($file["name"] === "") {
+            return "caca";
+        }
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if image file is a actual image or fake image
-        if (isset($_POST["submit"])) {
+        if (isset($_POST["picture"])) {
             $check = getimagesize($file["tmp_name"]);
             if ($check !== false) {
                 $uploadOk = 1;

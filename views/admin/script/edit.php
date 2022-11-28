@@ -35,10 +35,13 @@ $title = "modifier le scénario " . $params['script']->title;
             <textarea class="form-control" name="lost_msg" id="content" rows="3"
                 required><?= $script->lost_msg ?></textarea>
         </div>
+
         <div class="form-group">
             <label for="picture">Image</label>
+            <input type="hidden" name="picture" value="<?= $script->picture ?>">
             <input type="file" class="form-control-file" name="picture" id="picture">
         </div>
+
         <div class="form-group">
             <label for="duration">Durée</label>
             <input type="time" class="form-control" name="duration" id="duration" min="00:10" max="01:00"
