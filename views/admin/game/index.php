@@ -52,4 +52,6 @@ $objects = $params['objects'];
     <?php endforeach; ?>
 </div>
 
-<!-- <?php unset($_SESSION['room_id']); ?> -->
+<?php unset($_SESSION['room_id']); ?>
+
+<?php var_dump($_SESSION); ?>

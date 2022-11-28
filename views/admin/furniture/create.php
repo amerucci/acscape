@@ -17,17 +17,15 @@
     </div>
     <div class="form-group">
         <label for="action">Action</label>
-        <textarea name="action" id="action" class="form-control"></textarea>
+        <input type="text" name="action" id="action" class="form-control">
     </div>
     <div class="form-group">
         <label for="clue">Indice</label>
-        <textarea name="clue" id="clue" class="form-control"></textarea>
+        <input type="text" name="clue" id="clue" class="form-control">
         <!-- button for a new clue -->
         <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
         <p class="max"></p>
     </div>
-
-
     <div class="form-group">
         <label for="padlock">Verrouillé</label>
         <select name="padlock" id="padlock" class="form-control">
@@ -47,7 +45,8 @@
     document.getElementById('addClue').addEventListener('click', function () {
         if (i < 3) {
             i++;
-            let newClue = document.createElement('textarea');
+            let newClue = document.createElement('input');
+            newClue.setAttribute('type', 'text');
             newClue.setAttribute('name', 'clue' + i);
             newClue.setAttribute('id', 'clue' + i);
             newClue.setAttribute('class', 'form-control mt-2');
@@ -56,7 +55,7 @@
         }
         if (i === 3) {
             document.getElementById('addClue').setAttribute('disabled', 'disabled');
-            document.querySelector('.max').innerHTML = 'Vous avez atteint le nombre maximum d\'indices';
+            document.getElementById('addClue').style.cursor = 'not-allowed';
         }
     });
 </script>
