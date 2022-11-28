@@ -126,4 +126,18 @@ class FurnitureController extends Controller {
             }
 
         }
+
+        public function destroy(int $id)
+        {
+            $this->isAdmin();
+    
+            $furniture = new Furniture($this->getDB());
+            $result = $furniture->destroy($id);
+    
+            if ($result) {
+                return header('Location: /acscape/admin/game');
+            }
+        }
+
+
 }

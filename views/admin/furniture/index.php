@@ -18,3 +18,5 @@ if (count($params['furnitures']) == 0) {
         echo "</div>";
     }
 }
+
+?>

@@ -100,7 +100,7 @@ class ScriptController extends Controller {
         ]);
 
         if ($result) {
-            if (!empty($_FILES['picture']['name'])) {
+            if (!empty($_FILES['picture']['name']) && $_FILES['picture']['name'] != "") {
                 $picture = $_FILES['picture']['name'];
                 $picturePath = $_FILES['picture']['tmp_name'];
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
@@ -122,6 +122,19 @@ class ScriptController extends Controller {
             return header('Location: /acscape/admin/game');
         }
 
+    }
+
+    public function destroy(int $id)
+    {
+        $this->isAdmin();
+
+        $script = new Script($this->getDB());
+
+        $result = $script->destroy($id);
+
+        if ($result) {
+            return header('Location: /acscape/admin/game');
+        }
     }
 
 

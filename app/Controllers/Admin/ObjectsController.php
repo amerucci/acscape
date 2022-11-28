@@ -113,4 +113,15 @@ class ObjectsController extends Controller {
                 }
 
             }
+
+            public function destroy($id)
+            {
+                $this->isAdmin();
+        
+                $object = new Objects($this->getDB());
+                $result = $object->destroy($id);
+                if ($result) {
+                    return header('Location: /acscape/admin/game');
+                }
+            }
 }

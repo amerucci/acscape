@@ -116,7 +116,21 @@ class RoomController extends Controller {
                 } else {
                     echo "Votre fichier n'est pas une image";
                 }
+            } else {
+                $picture = $_POST['picture'];
             }
+            return header('Location: /acscape/admin/game');
+        }
+    }
+
+    public function destroy(int $id)
+    {
+        $this->isAdmin();
+
+        $room = new Room($this->getDB());
+        $result = $room->destroy($id);
+
+        if ($result) {
             return header('Location: /acscape/admin/game');
         }
     }

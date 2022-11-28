@@ -20,22 +20,6 @@ $objects = $params['objects'];
     <?php endforeach; ?>
 </div>
 
-
-<!-- <h1>Meubles</h1>
-<a href="furniture/create">Créer un meuble</a>
-<div class="d-flex">
-    <?php foreach ($furnitures as $furniture) : ?>
-    <div class="card col-2 mx-2">
-        <div class="card-body">
-            <h5 class="card-title"><?= $furniture->title ?></h5>
-            <p class="card-text"><?= $furniture->description ?></p>
-            <a href="furniture/edit/<?= $furniture->id ?>" class="btn btn-primary">Editer</a>
-            <a href="furniture/delete/<?= $furniture->id ?>" class="btn btn-danger">Supprimer</a>
-        </div>
-    </div>
-    <?php endforeach; ?>
-</div> -->
-
 <h1>Objets</h1>
 <a href="objects/create">Créer un objet</a>
 <div class="d-flex">
@@ -46,7 +30,10 @@ $objects = $params['objects'];
                 "><?= $object->title ?></h5>
             <p class="card-text"><?= $object->description ?></p>
             <a href="objects/edit/<?= $object->id ?>" class="btn btn-primary">Editer</a>
-            <a href="objects/delete/<?= $object->id ?>" class="btn btn-danger">Supprimer</a>
+            <form action="objects/delete/<?= $object->id ?>" method="post">
+                <input type="hidden" name="id" value="<?= $object->id ?>">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
         </div>
     </div>
     <?php endforeach; ?>
