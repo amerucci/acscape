@@ -16,6 +16,10 @@ class Room extends Model {
         return substr($this->description, 0, 50) . '...';
     }
 
+    public function getByRoomId(int $roomId): Room
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE room_id = ?", [$roomId], true);
+    }
     
 
 }

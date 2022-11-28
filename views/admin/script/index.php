@@ -25,3 +25,4 @@ echo "<div class='d-flex gap-2'>";
 }
 
 var_dump($_SESSION);
+unset($_SESSION['script_id']);

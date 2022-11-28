@@ -17,7 +17,6 @@ $router = new Router($_GET['url']);
 
 // public route
 $router->get('/', 'App\Controllers\BlogController@welcome');
-$router->get('/posts', 'App\Controllers\BlogController@index');
 
 // user login, register, logout route
 $router->get('/login', 'App\Controllers\UserController@login');
@@ -70,7 +69,7 @@ $router->get('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController
 $router->post('/admin/objects/edit/:id', 'App\Controllers\Admin\ObjectsController@update');
 $router->get('/admin/objects/show/:id', 'App\Controllers\Admin\ObjectsController@show');
 
-// le gamecontroller
+// le gamecontroller admin
 $router->get('/admin/game', 'App\Controllers\Admin\GameController@index');  // affiche la page de création des paramètres du jeu
 
 

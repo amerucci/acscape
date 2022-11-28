@@ -21,7 +21,7 @@ $objects = $params['objects'];
 </div>
 
 
-<h1>Meubles</h1>
+<!-- <h1>Meubles</h1>
 <a href="furniture/create">Créer un meuble</a>
 <div class="d-flex">
     <?php foreach ($furnitures as $furniture) : ?>
@@ -34,7 +34,7 @@ $objects = $params['objects'];
         </div>
     </div>
     <?php endforeach; ?>
-</div>
+</div> -->
 
 <h1>Objets</h1>
 <a href="objects/create">Créer un objet</a>
@@ -51,3 +51,5 @@ $objects = $params['objects'];
     </div>
     <?php endforeach; ?>
 </div>
+
+<!-- <?php unset($_SESSION['room_id']); ?> -->

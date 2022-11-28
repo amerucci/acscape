@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Room;
+use App\Models\Furniture;
 use App\Controllers\Controller;
 
 class RoomController extends Controller {
@@ -77,7 +78,10 @@ class RoomController extends Controller {
         $this->isAdmin();
 
         $room = (new Room($this->getDB()))->findById($id);
-        return $this->view('admin.room.edit', compact('room'));
+        $furnitures = (new Furniture($this->getDB()))->all();
+
+        return $this->view('admin.room.edit', compact('room', 'furnitures'));
+      
     }
 
     public function update(int $id)

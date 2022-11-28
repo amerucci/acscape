@@ -22,9 +22,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/acscape">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/acscape/posts">Les derniers jeux</a>
-                </li>
                 <?php if (isset($_SESSION['auth'])): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/acscape/admin/posts">Administration</a>

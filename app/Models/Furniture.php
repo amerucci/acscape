@@ -16,5 +16,10 @@ class Furniture extends Model {
         return substr($this->description, 0, 50) . '...';
     }
 
+    public function getByFurnitureId(int $furnitureId): Furniture
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE furniture_id = ?", [$furnitureId], true);
+    }
+
     
 }
