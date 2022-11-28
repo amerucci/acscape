@@ -39,8 +39,8 @@ $title = "modifier le scénario " . $params['script']->title;
         <div class="form-group">
             <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
             <input type="hidden" name="picture" id="picture" value="<?= $script->picture ?>">
-            <!-- <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
-                height="100px" id="picturePreview"> -->
+            <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
+                height="100px" id="picturePreview">
             <img id="picturePreviewTemp">
 
         </div>
@@ -80,6 +80,8 @@ $title = "modifier le scénario " . $params['script']->title;
         picture.onchange = evt => {
             const [file] = picture.files
             if (file) {
+                let picturePreview = document.getElementById('picturePreview');
+                picturePreview.remove();
                 picturePreviewTemp.src = URL.createObjectURL(file)
             }
         }
