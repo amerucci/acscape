@@ -22,9 +22,7 @@ $title = "Modifier la salle {$room->title}";
         <label for="padlock">Code</label>
         <input type="text" name="padlock" id="padlock" class="form-control" value="<?= $room->padlock ?>">
     </div>
-    <div class="form-group">
-        <label for="user_id">Id de l'utilisateur</label>
-        <input type="text" name="user_id" id="user_id" class="form-control" value="<?= $room->user_id ?>">
-    </div>
+    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+    <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <button type="submit" class="btn btn-primary">Editer</button>
 </form>

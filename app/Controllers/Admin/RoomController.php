@@ -64,7 +64,7 @@ class RoomController extends Controller {
                     echo "Votre fichier n'est pas une image";
                 }
             }
-            return header('Location: /acscape/admin/room');
+            return header('Location: /acscape/admin/game');
         }
 
 
@@ -113,7 +113,7 @@ class RoomController extends Controller {
                     echo "Votre fichier n'est pas une image";
                 }
             }
-            return header('Location: /acscape/admin/room');
+            return header('Location: /acscape/admin/game');
         }
     }
 

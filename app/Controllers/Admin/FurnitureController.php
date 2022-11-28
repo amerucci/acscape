@@ -41,8 +41,11 @@ class FurnitureController extends Controller {
                 'description' => $_POST['description'],
                 'action' => $_POST['action'],
                 'clue' => $_POST['clue'],
+                'clue2' => $_POST['clue2'],
+                'clue3' => $_POST['clue3'],
                 'padlock' => $_POST['padlock'],
                 'user_id' => $_POST['user_id'],
+                'script_id' => $_POST['script_id'],
     
             ]);
     
@@ -66,7 +69,7 @@ class FurnitureController extends Controller {
                         echo "Votre fichier n'est pas une image";
                     }
                 }
-                return header('Location: /acscape/admin/furniture');
+                return header('Location: /acscape/admin/game');
             }
         }
     
@@ -89,8 +92,11 @@ class FurnitureController extends Controller {
                 'description' => $_POST['description'],
                 'action' => $_POST['action'],
                 'clue' => $_POST['clue'],
+                'clue2' => $_POST['clue2'],
+                'clue3' => $_POST['clue3'],
                 'padlock' => $_POST['padlock'],
                 'user_id' => $_POST['user_id'],
+                'script_id' => $_POST['script_id'],
             ]);
 
             if ($result) {
@@ -114,7 +120,7 @@ class FurnitureController extends Controller {
                         echo "Votre fichier n'est pas une image";
                     }
                 }
-                return header('Location: /acscape/admin/furniture');
+                return header('Location: /acscape/admin/game');
             }
 
         }

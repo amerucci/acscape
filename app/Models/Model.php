@@ -20,10 +20,10 @@ abstract class Model {
         return $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
     }
 
-    public function allById($id)
+    public function allByScriptId($id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
-    }
+        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id ORDER BY id DESC");
+ }
 
     public function findById(int $id): Model
     {

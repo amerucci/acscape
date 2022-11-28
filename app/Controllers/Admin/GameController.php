@@ -12,14 +12,17 @@ class GameController extends Controller {
         public function index()
         {
             $this->isAdmin();            
-        //   $_SESSION['script_id'] = $script->id;
-            $room = new Room( $this->getDB());
-            $rooms = $room->allById($_SESSION['script_id']);
-            $furniture = new Furniture( $this->getDB());
-            $furnitures = $furniture->allById($_SESSION['script_id']);
-            $object = new Objects( $this->getDB());
-            $objects = $object->allById($_SESSION['script_id']);
-            $this->view('admin.game.index', compact('rooms', 'furnitures', 'objects'));
+            if (isset($_SESSION['script_id'])) {
+                $room = new Room( $this->getDB());
+                $rooms = $room->allByScriptId($_SESSION['script_id']);
+                $furniture = new Furniture( $this->getDB());
+                $furnitures = $furniture->allByScriptId($_SESSION['script_id']);
+                $object = new Objects( $this->getDB());
+                $objects = $object->allByScriptId($_SESSION['script_id']);
+                $this->view('admin.game.index', compact('rooms', 'furnitures', 'objects'));            
+            } else {
+                return header('Location: /acscape');
+            }        
         }
 
 

@@ -19,5 +19,6 @@ $title = "Modifier l'objet {$object->title}";
         <input type="file" name="picture" id="picture" class="form-control">
     </div>
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+    <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <button type="submit" class="btn btn-primary">Editer</button>
 </form>

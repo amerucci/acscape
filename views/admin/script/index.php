@@ -17,7 +17,6 @@ echo "<div class='d-flex gap-2'>";
         echo "<h5 class='card-title'>" . $script->title . "</h5>";
         echo "<p class='card-text'>" . $script->description . "</p>";
         echo "<a href='script/edit/" . $script->id . "' class='btn btn-primary'>Paramètre du scénario</a>";
-        echo "<a href='game' class='btn btn-primary'>création du jeu</a>";
         echo "<a href='script/delete/" . $script->id . "' class='btn btn-danger'>Supprimer</a>";
         echo "</div>";
         echo "</div>";

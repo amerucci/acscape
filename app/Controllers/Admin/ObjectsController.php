@@ -40,6 +40,7 @@ class ObjectsController extends Controller {
                     'description' => $_POST['description'],
                     'picture' => $_FILES['picture']['name'],
                     'user_id' => $_POST['user_id'],
+                    'script_id' => $_POST['script_id'],
     
                 ]);
     
@@ -63,7 +64,7 @@ class ObjectsController extends Controller {
                             echo "Votre fichier n'est pas une image";
                         }
                     }
-                    return header('Location: /acscape/admin/objects');
+                    return header('Location: /acscape/admin/game');
                 }
             }
         
@@ -85,6 +86,7 @@ class ObjectsController extends Controller {
                     'description' => $_POST['description'],
                     'picture' => $_FILES['picture']['name'],
                     'user_id' => $_POST['user_id'],
+                    'script_id' => $_POST['script_id'],
                 ]);
 
                 if ($result) {
@@ -107,7 +109,7 @@ class ObjectsController extends Controller {
                             echo "Votre fichier n'est pas une image";
                         }
                     }
-                    return header('Location: /acscape/admin/objects');
+                    return header('Location: /acscape/admin/game');
                 }
 
             }

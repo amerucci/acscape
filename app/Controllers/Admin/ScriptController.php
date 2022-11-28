@@ -69,7 +69,7 @@ class ScriptController extends Controller {
                 }
             }
             $_SESSION['script_id'] = $script->lastInsertId();
-            return header('Location: /acscape/admin/script');
+            return header('Location: /acscape/admin/game');
         }
     }
 
@@ -119,7 +119,7 @@ class ScriptController extends Controller {
                     echo "Votre fichier n'est pas une image";
                 }
             }
-            return header('Location: /acscape/admin/script');
+            return header('Location: /acscape/admin/game');
         }
 
     }
