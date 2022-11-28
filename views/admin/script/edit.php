@@ -4,7 +4,7 @@ $title = "modifier le scénario " . $params['script']->title;
 
 <h1>Modifier un script</h1>
 
-<form action=<?= $script->id,'upload' ?> method="POST" enctype="multipart/form-data">
+<form action=<?= $script->id,'upload' ?> method="POST" enctype="multipart/form-data" runat="server">
 
 
     <div class="form-group">
@@ -37,9 +37,12 @@ $title = "modifier le scénario " . $params['script']->title;
         </div>
 
         <div class="form-group">
-            <label for="picture">Image</label>
-            <input type="hidden" name="picture" value="<?= $script->picture ?>">
-            <input type="file" class="form-control-file" name="picture" id="picture">
+            <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+            <input type="hidden" name="picture" id="picture" value="<?= $script->picture ?>">
+            <!-- <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
+                height="100px" id="picturePreview"> -->
+            <img id="picturePreviewTemp">
+
         </div>
 
         <div class="form-group">
@@ -53,3 +56,33 @@ $title = "modifier le scénario " . $params['script']->title;
 </form>
 <a href='/acscape/admin/game' class='btn btn-primary'>création du jeu</a>
 <?php $_SESSION['script_id'] = $script->id ?>
+
+
+<script>
+    let addPicture = document.getElementById('addPicture');
+    let picture = document.getElementById('picture');
+    let i = 0;
+    addPicture.addEventListener('click', function () {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'picture';
+        input.id = 'picture';
+        input.classList.add('form-control');
+        input.classList.add('mt-3');
+        input.required = true;
+        picture.replaceWith(input);
+        picture = input;
+        i++;
+        if (i > 1) {
+            addPicture.style.disabled = true;
+        }
+
+        picture.onchange = evt => {
+            const [file] = picture.files
+            if (file) {
+                picturePreviewTemp.src = URL.createObjectURL(file)
+            }
+        }
+
+    });
+</script>
