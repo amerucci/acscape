@@ -5,7 +5,7 @@
 <form action="create" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Titre</label>
-        <input type="text" name="title" id="title" class="form-control">
+        <input type="text" name="title" id="title" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="picture">Image</label>
@@ -13,11 +13,11 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" class="form-control"></textarea>
+        <textarea name="description" id="description" class="form-control" required></textarea>
     </div>
     <div class="form-group">
         <label for="action">Action</label>
-        <input type="text" name="action" id="action" class="form-control">
+        <input type="text" name="action" id="action" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="clue">Indice</label>
@@ -33,6 +33,18 @@
             <option value="no">Non</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="object">Objet</label>
+        <select name="object_id" id="object" class="form-control">
+            <option value="0">Aucun</option>
+            <?php foreach ($params['objects'] as $object) : ?>
+            <?php if ($object->user_id == $_SESSION['user_id']) : ?>
+            <option value="<?= $object->id ?>"><?= $object->title ?></option>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
     <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
@@ -59,5 +71,3 @@
         }
     });
 </script>
-
-<?php var_dump($_SESSION);

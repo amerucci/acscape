@@ -79,7 +79,7 @@ $title = "Modification du meuble"; ?>
 
 
 
-<h2 class="mt-5">Vos objets liés à ce meuble</h2>
+<h2 class="mt-5">objet lié à ce meuble</h2>
 <div class="d-flex mx-2">
     <?php foreach ($params['object'] as $object) : ?>
     <?php if ($furniture->object_id == $object->id) : ?>
@@ -122,7 +122,7 @@ $title = "Modification du meuble"; ?>
 
     let addPicture = document.getElementById('addPicture');
     let picture = document.getElementById('picture');
-    let i = 0;
+    let j = 0;
     addPicture.addEventListener('click', function () {
         let input = document.createElement('input');
         input.type = 'file';
@@ -133,8 +133,8 @@ $title = "Modification du meuble"; ?>
         input.required = true;
         picture.replaceWith(input);
         picture = input;
-        i++;
-        if (i > 1) {
+        j++;
+        if (j > 1) {
             addPicture.style.disabled = true;
         }
 
