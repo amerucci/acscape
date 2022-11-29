@@ -59,6 +59,7 @@ class UserController extends Controller {
                 'username' => ['required', 'min:3'],
                 'email' => ['required', 'email'],
                 'password' => ['required', 'min:6']
+                
             ]);
     
             if ($errors) {
@@ -71,7 +72,7 @@ class UserController extends Controller {
             $user->create([
                 'username' => $_POST['username'],
                 'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
-                'admin' => 1,
+                'role' => 1,
                 'email' => $_POST['email']
             ]);
     

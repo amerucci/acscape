@@ -2,7 +2,7 @@
 $title = "modifier le scénario " . $params['script']->title;
  $script = $params['script'] ?>
 
-<h1>Modifier un script</h1>
+<h1>Modifier un scénario</h1>
 
 <form action=<?= $script->id,'upload' ?> method="POST" enctype="multipart/form-data" runat="server">
 
