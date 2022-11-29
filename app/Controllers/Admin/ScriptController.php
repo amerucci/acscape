@@ -43,7 +43,7 @@ class ScriptController extends Controller {
             'description' => $_POST['description'],
             'winner_msg' => $_POST['winner_msg'],
             'lost_msg' => $_POST['lost_msg'],
-            'picture' => $_FILES['picture']['name'],
+            'picture' => time().'_'.$_FILES['picture']['name'],
             'duration' => $_POST['duration'],
             'user_id' => $_POST['user_id'],
         ]);
@@ -57,8 +57,8 @@ class ScriptController extends Controller {
                         $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                         if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
                         $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                        // $pictureName = $pictureName . '_' . time() . '.' . $pictureExtension;
-                        $pictureName = $pictureName . "." . $pictureExtension;
+                        $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
+                        // $pictureName = $pictureName . "." . $pictureExtension;
                         $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
                         $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                         $pictureSize = $_FILES['picture']['size'];
@@ -105,7 +105,7 @@ class ScriptController extends Controller {
             'description' => $_POST['description'],
             'winner_msg' => $_POST['winner_msg'],
             'lost_msg' => $_POST['lost_msg'],
-            'picture' => isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : $_POST['picture'],
+            'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
             'duration' => $_POST['duration'],
             'user_id' => $_POST['user_id'],
         ]);
@@ -117,8 +117,8 @@ class ScriptController extends Controller {
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                 if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                // $pictureName = $pictureName . '_' . time() . '.' . $pictureExtension;
-                $pictureName = $pictureName . "." . $pictureExtension;
+                $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
+                // $pictureName = $pictureName . "." . $pictureExtension;
                 $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
                 $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $pictureSize = $_FILES['picture']['size'];
