@@ -81,7 +81,9 @@ $title = "modifier le scénario " . $params['script']->title;
             if (file) {
                 let picturePreview = document.getElementById('picturePreview');
                 picturePreview.remove();
-                picturePreviewTemp.src = URL.createObjectURL(file)
+                picturePreviewTemp.src = URL.createObjectURL(file);
+                picturePreviewTemp.width = 100;
+                picturePreviewTemp.height = 100;
             }
         }
 

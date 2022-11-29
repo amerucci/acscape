@@ -30,6 +30,8 @@
         <div class="form-group">
             <label for="picture">Image</label>
             <input type="file" class="form-control-file" name="picture" id="picture">
+            <img src="" alt="" id="picturePreview">
+            <img src="" alt="" id="picturePreviewTemp">
         </div>
         <div class="form-group">
             <label for="duration">Durée</label>
@@ -38,3 +40,16 @@
         <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
         <button type="submit" class="btn btn-primary">Créer</button>
 </form>
+
+<script>
+    picture.onchange = evt => {
+        const [file] = picture.files
+        if (file) {
+            let picturePreview = document.getElementById('picturePreview');
+            picturePreview.remove();
+            picturePreviewTemp.src = URL.createObjectURL(file)
+            picturePreviewTemp.width = 100;
+            picturePreviewTemp.height = 100;
+        }
+    }
+</script>

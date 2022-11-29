@@ -7,12 +7,12 @@ $title = "Modifier l'objet {$object->title}";
 <form action="/acscape/admin/objects/edit/<?= $object->id ?>" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Titre</label>
-        <input type="text" name="title" id="title" class="form-control" value="<?= $object->title ?>">
+        <input type="text" name="title" id="title" class="form-control" value="<?= $object->title ?>" required>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"
-            class="form-control"><?= $object->description ?></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" class="form-control"
+            required><?= $object->description ?></textarea>
     </div>
     <div class="form-group">
         <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
@@ -50,7 +50,9 @@ $title = "Modifier l'objet {$object->title}";
             if (file) {
                 let picturePreview = document.getElementById('picturePreview');
                 picturePreview.remove();
-                picturePreviewTemp.src = URL.createObjectURL(file)
+                picturePreviewTemp.src = URL.createObjectURL(file);
+                picturePreviewTemp.width = 100;
+                picturePreviewTemp.height = 100;
             }
         }
     });

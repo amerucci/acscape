@@ -7,17 +7,13 @@ $title = "Modifier la salle {$room->title}";
 <form action="/acscape/admin/room/edit/<?= $room->id ?>" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Titre</label>
-        <input type="text" name="title" id="title" class="form-control" value="<?= $room->title ?>">
+        <input type="text" name="title" id="title" class="form-control" value="<?= $room->title ?>" required>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"
-            class="form-control"><?= $room->description ?></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" class="form-control"
+            required><?= $room->description ?></textarea>
     </div>
-    <!-- <div class="form-group">
-        <label for="picture">Image</label>
-        <input type="file" name="picture" id="picture" class="form-control">
-    </div> -->
     <div class="form-group">
         <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
         <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
@@ -88,7 +84,9 @@ $title = "Modifier la salle {$room->title}";
             if (file) {
                 let picturePreview = document.getElementById('picturePreview');
                 picturePreview.remove();
-                picturePreviewTemp.src = URL.createObjectURL(file)
+                picturePreviewTemp.src = URL.createObjectURL(file);
+                picturePreviewTemp.width = 100;
+                picturePreviewTemp.height = 100;
             }
         }
 

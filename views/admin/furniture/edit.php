@@ -6,7 +6,7 @@ $title = "Modification du meuble"; ?>
 <form action="/acscape/admin/furniture/edit/<?= $furniture->id ?>" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Titre</label>
-        <input type="text" class="form-control" id="title" name="title" value="<?= $furniture->title ?>">
+        <input type="text" class="form-control" id="title" name="title" value="<?= $furniture->title ?>" required>
     </div>
     <div class="form-group">
         <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
@@ -17,8 +17,8 @@ $title = "Modification du meuble"; ?>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="description"
-            rows="3"><?= $furniture->description ?></textarea>
+        <textarea class="form-control" id="description" name="description" rows="3"
+            required><?= $furniture->description ?></textarea>
     </div>
     <div class="form-group">
         <label for="action">Action</label>
