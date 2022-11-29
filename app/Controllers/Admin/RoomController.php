@@ -26,8 +26,8 @@ class RoomController extends Controller {
     public function create()
     {
         $this->isAdmin();
-    
-        return $this->view('admin.room.create');
+        $rooms = (new Room($this->getDB()))->all();    
+        return $this->view('admin.room.create', compact('rooms'));
     }
 
     public function createRoom()
@@ -40,6 +40,7 @@ class RoomController extends Controller {
             'description' => $_POST['description'],
             'picture' => time().'_'.$_FILES['picture']['name'],
             'padlock' => $_POST['padlock'],
+            'start' => $_POST['start'],
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
 
@@ -94,7 +95,10 @@ class RoomController extends Controller {
             'description' => $_POST['description'],
             'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
             'padlock' => $_POST['padlock'],
+            'start' => $_POST['start'],
             'user_id' => $_POST['user_id'],
+            'script_id' => $_POST['script_id'],
+
         ]);
 
         if ($result) {

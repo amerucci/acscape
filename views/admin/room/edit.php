@@ -27,9 +27,17 @@ $title = "Modifier la salle {$room->title}";
             <option value="no" <?= $room->padlock == 'no' ? 'selected' : '' ?>>Non</option>
             <option value="yes" <?= $room->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
         </select>
-        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-        <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
-        <button type="submit" class="btn btn-primary my-1">Editer</button>
+    </div>
+    <div class="form-group">
+        <label for="start">Salle de départ</label>
+        <select name="start" id="start" class="form-control">
+            <option value="0" <?= $room->start == 0 ? 'selected' : '' ?>>Non</option>
+            <option value="1" <?= $room->start == 1 ? 'selected' : '' ?>>Oui</option>
+        </select>
+    </div>
+    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+    <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
+    <button type="submit" class="btn btn-primary my-1">Editer</button>
 </form>
 
 <?php $_SESSION['room_id'] = $params['room']->id; ?>

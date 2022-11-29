@@ -23,6 +23,13 @@
             <option value="yes">Oui</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="start">Salle de départ <small><i>vous devez avoir au moins une salle de départ</small></i></label>
+        <select name="start" id="start" class="form-control">
+            <option value="0">Non</option>
+            <option value="1">Oui</option>
+        </select>
+    </div>
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
     <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <button type="submit" class="btn btn-primary">Créer</button>

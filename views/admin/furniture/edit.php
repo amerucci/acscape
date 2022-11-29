@@ -139,6 +139,7 @@ $title = "Modification du meuble"; ?>
             addPicture.style.disabled = true;
         }
 
+
         picture.onchange = evt => {
             const [file] = picture.files
             if (file) {
