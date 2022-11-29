@@ -1,3 +1,5 @@
+<?php $title = 'ACScape'; ?>
+
 <h1>Homepage</h1>
 
 <p>Ouais le problème c'est qu'on a passé quatre semaines à construire un barrage, ça fait un peu mal au cul de le
