@@ -14,9 +14,16 @@ $title = "Modifier la salle {$room->title}";
         <textarea name="description" id="description" cols="30" rows="10"
             class="form-control"><?= $room->description ?></textarea>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="picture">Image</label>
         <input type="file" name="picture" id="picture" class="form-control">
+    </div> -->
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+        <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
+        <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
+            height="100px" id="picturePreview">
+        <img id="picturePreviewTemp">
     </div>
     <div class="form-group">
         <label for="padlock">Serrure</label>
@@ -55,3 +62,35 @@ $title = "Modifier la salle {$room->title}";
         <?php endforeach; ?>
     </div>
 </div>
+
+
+<script>
+    let addPicture = document.getElementById('addPicture');
+    let picture = document.getElementById('picture');
+    let i = 0;
+    addPicture.addEventListener('click', function () {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'picture';
+        input.id = 'picture';
+        input.classList.add('form-control');
+        input.classList.add('mt-3');
+        input.required = true;
+        picture.replaceWith(input);
+        picture = input;
+        i++;
+        if (i > 1) {
+            addPicture.style.disabled = true;
+        }
+
+        picture.onchange = evt => {
+            const [file] = picture.files
+            if (file) {
+                let picturePreview = document.getElementById('picturePreview');
+                picturePreview.remove();
+                picturePreviewTemp.src = URL.createObjectURL(file)
+            }
+        }
+
+    });
+</script>

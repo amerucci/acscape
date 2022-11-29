@@ -42,7 +42,6 @@ $title = "modifier le scénario " . $params['script']->title;
             <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
                 height="100px" id="picturePreview">
             <img id="picturePreviewTemp">
-
         </div>
 
         <div class="form-group">

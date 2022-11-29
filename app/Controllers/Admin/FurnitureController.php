@@ -3,7 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Furniture;
+use App\Models\Objects;
 use App\Controllers\Controller;
+
 
 class FurnitureController extends Controller {
     
@@ -47,6 +49,7 @@ class FurnitureController extends Controller {
                 'user_id' => $_POST['user_id'],
                 'script_id' => $_POST['script_id'],
                 'room_id' => $_POST['room_id'],
+                'object' => $_POST['object_id'],
     
             ]);
     
@@ -79,7 +82,8 @@ class FurnitureController extends Controller {
             $this->isAdmin();
     
             $furniture = (new Furniture($this->getDB()))->findById($id);
-            return $this->view('admin.furniture.edit', compact('furniture'));
+            $object = (new Objects($this->getDB()))->all();
+            return $this->view('admin.furniture.edit', compact('furniture', 'object'));
         }
     
         public function update(int $id)
@@ -99,6 +103,7 @@ class FurnitureController extends Controller {
                 'user_id' => $_POST['user_id'],
                 'script_id' => $_POST['script_id'],
                 'room_id' => $_POST['room_id'],
+                'object_id' => $_POST['object_id'],
             ]);
 
             if ($result) {

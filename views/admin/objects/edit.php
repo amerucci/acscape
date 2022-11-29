@@ -15,10 +15,43 @@ $title = "Modifier l'objet {$object->title}";
             class="form-control"><?= $object->description ?></textarea>
     </div>
     <div class="form-group">
-        <label for="picture">Image</label>
-        <input type="file" name="picture" id="picture" class="form-control">
+        <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+        <input type="hidden" name="picture" id="picture" value="<?= $object->picture ?>">
+        <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" alt="image de l'object" width="100px"
+            height="100px" id="picturePreview">
+        <img id="picturePreviewTemp">
     </div>
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
     <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <button type="submit" class="btn btn-primary">Editer</button>
 </form>
+
+<script>
+    let addPicture = document.getElementById('addPicture');
+    let picture = document.getElementById('picture');
+    let i = 0;
+    addPicture.addEventListener('click', function () {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'picture';
+        input.id = 'picture';
+        input.classList.add('form-control');
+        input.classList.add('mt-3');
+        input.required = true;
+        picture.replaceWith(input);
+        picture = input;
+        i++;
+        if (i > 1) {
+            addPicture.style.disabled = true;
+        }
+
+        picture.onchange = evt => {
+            const [file] = picture.files
+            if (file) {
+                let picturePreview = document.getElementById('picturePreview');
+                picturePreview.remove();
+                picturePreviewTemp.src = URL.createObjectURL(file)
+            }
+        }
+    });
+</script>

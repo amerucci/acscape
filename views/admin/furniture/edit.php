@@ -9,8 +9,11 @@ $title = "Modification du meuble"; ?>
         <input type="text" class="form-control" id="title" name="title" value="<?= $furniture->title ?>">
     </div>
     <div class="form-group">
-        <label for="picture">Image</label>
-        <input type="file" class="form-control-file" id="picture" name="picture">
+        <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+        <input type="hidden" name="picture" id="picture" value="<?= $furniture->picture ?>">
+        <img src="/acscape/assets/pictures/furnitures/<?= $furniture->picture ?>" alt="image du script" width="100px"
+            height="100px" id="picturePreview">
+        <img id="picturePreviewTemp">
     </div>
     <div class="form-group">
         <label for="description">Description</label>
@@ -52,6 +55,22 @@ $title = "Modification du meuble"; ?>
             <option value="yes" <?= $furniture->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
         </select>
     </div>
+
+    <!-- liste des objets -->
+
+    <div class="form-group">
+        <label for="object">Objet</label>
+        <select name="object_id" id="object" class="form-control">
+            <option value="0">Aucun</option>
+            <?php foreach ($params['object'] as $object) : ?>
+            <?php if ($object->user_id == $_SESSION['user_id'] && $object->script_id == $_SESSION['script_id']) : ?>
+            <option value="<?= $object->id ?>" <?= $furniture->object_id == $object->id ? 'selected' : '' ?>>
+                <?= $object->title ?></option>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
     <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
@@ -76,4 +95,35 @@ $title = "Modification du meuble"; ?>
             document.getElementById('addClue').style.cursor = 'not-allowed';
         }
     });
+
+    let addPicture = document.getElementById('addPicture');
+    let picture = document.getElementById('picture');
+    let i = 0;
+    addPicture.addEventListener('click', function () {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'picture';
+        input.id = 'picture';
+        input.classList.add('form-control');
+        input.classList.add('mt-3');
+        input.required = true;
+        picture.replaceWith(input);
+        picture = input;
+        i++;
+        if (i > 1) {
+            addPicture.style.disabled = true;
+        }
+
+        picture.onchange = evt => {
+            const [file] = picture.files
+            if (file) {
+                let picturePreview = document.getElementById('picturePreview');
+                picturePreview.remove();
+                picturePreviewTemp.src = URL.createObjectURL(file)
+            }
+        }
+
+    });
 </script>
+
+<?= var_dump($_SESSION) ?>
