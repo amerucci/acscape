@@ -1,4 +1,4 @@
-<?= $title = "Se connecter"; ?>
+<!-- <?= $title = "Se connecter"; ?> -->
 <?php if (isset($_SESSION['errors'])): ?>
 
 <?php foreach($_SESSION['errors'] as $errorsArray): ?>
@@ -24,6 +24,8 @@
 
 
 <div class='login_register'>
+    <div class="greyBack"></div>
+
     <h1>Se connecter</h1>
 
     <form action="login" method="POST">
