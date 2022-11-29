@@ -38,7 +38,7 @@ class RoomController extends Controller {
         $result = $room->create([
             'title' => $_POST['title'],
             'description' => $_POST['description'],
-            'picture' => $_FILES['picture']['name'],
+            'picture' => time().'_'.$_FILES['picture']['name'],
             'padlock' => $_POST['padlock'],
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
@@ -51,7 +51,7 @@ class RoomController extends Controller {
                 $picturePath = $_FILES['picture']['tmp_name'];
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                $pictureName = $pictureName . "." . $pictureExtension;
+                $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                 $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
                 $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $pictureSize = $_FILES['picture']['size'];
@@ -92,7 +92,7 @@ class RoomController extends Controller {
         $result = $room->update($id, [
             'title' => $_POST['title'],
             'description' => $_POST['description'],
-            'picture' => $_FILES['picture']['name'],
+            'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
             'padlock' => $_POST['padlock'],
             'user_id' => $_POST['user_id'],
         ]);
@@ -103,7 +103,7 @@ class RoomController extends Controller {
                 $picturePath = $_FILES['picture']['tmp_name'];
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                $pictureName = $pictureName . "." . $pictureExtension;
+                $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                 $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
                 $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                 $pictureSize = $_FILES['picture']['size'];

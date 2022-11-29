@@ -38,7 +38,7 @@ class ObjectsController extends Controller {
                 $result = $object->create([
                     'title' => $_POST['title'],
                     'description' => $_POST['description'],
-                    'picture' => $_FILES['picture']['name'],
+                    'picture' => time().'_'.$_FILES['picture']['name'],
                     'user_id' => $_POST['user_id'],
                     'script_id' => $_POST['script_id'],
     
@@ -50,7 +50,7 @@ class ObjectsController extends Controller {
                         $picturePath = $_FILES['picture']['tmp_name'];
                         $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                         $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                        $pictureName = $pictureName . "." . $pictureExtension;
+                        $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                         $pictureDestination = '../assets/pictures/objects/' . $pictureName;
                         $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                         $pictureSize = $_FILES['picture']['size'];
@@ -84,7 +84,7 @@ class ObjectsController extends Controller {
                 $result = $object->update($id, [
                     'title' => $_POST['title'],
                     'description' => $_POST['description'],
-                    'picture' => $_FILES['picture']['name'],
+                    'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
                     'user_id' => $_POST['user_id'],
                     'script_id' => $_POST['script_id'],
                 ]);
@@ -95,7 +95,7 @@ class ObjectsController extends Controller {
                         $picturePath = $_FILES['picture']['tmp_name'];
                         $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                         $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                        $pictureName = $pictureName . "." . $pictureExtension;
+                        $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                         $pictureDestination = '../assets/pictures/objects/' . $pictureName;
                         $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                         $pictureSize = $_FILES['picture']['size'];

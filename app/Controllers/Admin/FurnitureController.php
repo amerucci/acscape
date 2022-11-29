@@ -37,7 +37,7 @@ class FurnitureController extends Controller {
             $furniture = new Furniture($this->getDB());
             $result = $furniture->create([
                 'title' => $_POST['title'],
-                'picture' => $_FILES['picture']['name'],
+                'picture' => time().'_'.$_FILES['picture']['name'],
                 'description' => $_POST['description'],
                 'action' => $_POST['action'],
                 'clue' => $_POST['clue'],
@@ -56,7 +56,7 @@ class FurnitureController extends Controller {
                     $picturePath = $_FILES['picture']['tmp_name'];
                     $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                     $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                    $pictureName = $pictureName . "." . $pictureExtension;
+                    $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                     $pictureDestination = '../assets/pictures/furnitures/' . $pictureName;
                     $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                     $pictureSize = $_FILES['picture']['size'];
@@ -89,7 +89,7 @@ class FurnitureController extends Controller {
             $furniture = new Furniture($this->getDB());
             $result = $furniture->update($id, [
                 'title' => $_POST['title'],
-                'picture' => $_FILES['picture']['name'],
+                'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
                 'description' => $_POST['description'],
                 'action' => $_POST['action'],
                 'clue' => $_POST['clue'],
@@ -108,7 +108,7 @@ class FurnitureController extends Controller {
                     $picturePath = $_FILES['picture']['tmp_name'];
                     $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
                     $pictureName = pathinfo($picture, PATHINFO_FILENAME);
-                    $pictureName = $pictureName . "." . $pictureExtension;
+                    $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                     $pictureDestination = '../assets/pictures/furnitures/' . $pictureName;
                     $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                     $pictureSize = $_FILES['picture']['size'];

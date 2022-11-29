@@ -58,7 +58,6 @@ class ScriptController extends Controller {
                         if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
                         $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                         $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
-                        // $pictureName = $pictureName . "." . $pictureExtension;
                         $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
                         $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
                         $pictureSize = $_FILES['picture']['size'];
