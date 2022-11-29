@@ -80,6 +80,7 @@ $title = "Modification du meuble"; ?>
 
 
 <h2 class="mt-5">objet lié à ce meuble</h2>
+<a href="/acscape/admin/objects/create" class="btn btn-primary">Créer un objet</a>
 <div class="d-flex mx-2">
     <?php foreach ($params['object'] as $object) : ?>
     <?php if ($furniture->object_id == $object->id) : ?>
@@ -98,7 +99,7 @@ $title = "Modification du meuble"; ?>
     <?php endforeach; ?>
 </div>
 
-
+<?php var_dump($_SESSION); ?>
 
 
 

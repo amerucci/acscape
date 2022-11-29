@@ -1,8 +1,6 @@
 <?php $title = "Administration des objets"; ?>
 <a href="create">Créer un objet</a>
 
-
-
 <?php if (count($params['objects']) == 0) : ?>
 <p>vous n'avez pas encore d'objet</p>
 <?php else : ?>

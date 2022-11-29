@@ -19,3 +19,5 @@
     <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
     <button type="submit" class="btn btn-primary">Créer</button>
 </form>
+
+<?= var_dump($_SESSION); ?>
