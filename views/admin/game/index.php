@@ -28,8 +28,7 @@ $objects = $params['objects'];
     <?php foreach ($objects as $object) : ?>
     <div class="card col-2 mx-2">
         <div class="card-body">
-            <h5 class="card-title
-                "><?= $object->title ?></h5>
+            <h5 class="card-title"><?= $object->title ?></h5>
             <p class="card-text"><?= $object->description ?></p>
             <a href="objects/edit/<?= $object->id ?>" class="btn btn-primary">Editer</a>
             <form action="objects/delete/<?= $object->id ?>" method="post">

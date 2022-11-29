@@ -56,8 +56,6 @@ $title = "Modification du meuble"; ?>
         </select>
     </div>
 
-    <!-- liste des objets -->
-
     <div class="form-group">
         <label for="object">Objet</label>
         <select name="object_id" id="object" class="form-control">
@@ -77,6 +75,32 @@ $title = "Modification du meuble"; ?>
 
     <button type="submit" class="btn btn-primary">Modifier</button>
 </form>
+
+
+
+
+<h2 class="mt-5">Vos objets liés à ce meuble</h2>
+<div class="d-flex mx-2">
+    <?php foreach ($params['object'] as $object) : ?>
+    <?php if ($furniture->object_id == $object->id) : ?>
+    <div class="card" style="width: 18rem;">
+        <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><?= $object->title ?></h5>
+            <p class="card-text"><?= $object->description ?></p>
+            <a href="/acscape/admin/objects/edit/<?= $object->id ?>" class="btn btn-primary">Modifier</a>
+            <form action="/acscape/admin/objects/destroy/<?= $object->id ?>" method="post">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+
+
+
+
 
 <script>
     let i = 1;
@@ -125,5 +149,3 @@ $title = "Modification du meuble"; ?>
 
     });
 </script>
-
-<?= var_dump($_SESSION) ?>
