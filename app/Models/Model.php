@@ -105,10 +105,6 @@ abstract class Model {
 
         $target_dir = "public/pictures/{$folder}/";
         $target_file = $target_dir . basename($file["name"]);
-        // if the file is a empty string, we don't upload it
-        if ($file["name"] === "") {
-            return "caca";
-        }
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 

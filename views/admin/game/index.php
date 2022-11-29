@@ -5,6 +5,8 @@ $furnitures = $params['furnitures'];
 $objects = $params['objects'];
 ?>
 
+
+
 <h1>Pièce</h1>
 <a href="room/create">Créer une salle</a>
 <div class="d-flex">

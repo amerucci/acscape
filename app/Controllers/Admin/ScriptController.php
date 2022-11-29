@@ -49,8 +49,33 @@ class ScriptController extends Controller {
         ]);
 
         if ($result) {
-            if ($result->hasFile('picture') && $result->isValid() && $result->isImage())  {
-                $result->uploadFile('picture', 'scripts');
+            {
+                if ($result) {
+                    if (!empty($_FILES['picture']['name']))  {
+                        $picture = $_FILES['picture']['name'];
+                        $picturePath = $_FILES['picture']['tmp_name'];
+                        $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
+                        if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
+                        $pictureName = pathinfo($picture, PATHINFO_FILENAME);
+                        // $pictureName = $pictureName . '_' . time() . '.' . $pictureExtension;
+                        $pictureName = $pictureName . "." . $pictureExtension;
+                        $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
+                        $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
+                        $pictureSize = $_FILES['picture']['size'];
+                    }
+                        if (in_array($pictureExtension, $pictureExtensionAllowed)) {
+                            if ($pictureSize < 1000000) {
+                                move_uploaded_file($picturePath, $pictureDestination);
+                            } else {
+                                echo "Votre fichier est trop volumineux";
+                            }
+                        } else {
+                            echo "Votre fichier n'est pas une image";
+                        }
+                    }
+                    return header('Location: /acscape/admin/game');
+                }
+        
             }
            
             
