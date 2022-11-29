@@ -35,6 +35,10 @@
         <?= $content ?>
     </div>
 
+    <footer>
+
+    </footer>
+
 </body>
 
 </html>
