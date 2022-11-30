@@ -44,7 +44,8 @@
         onglet_register.classList.remove('onglet_login_register_item_active');
         if (onglet_login.classList.contains('onglet_login_register_item_active')) {
             formLogin.action = 'login';
-            formLogin.style.padding = "8% 2%";
+            formLogin.style.padding = "8% 8%";
+            btn_login_register[0].style.marginTop = "15px"
             btn_login_register[0].innerHTML = 'Se connecter';
             titleLogin[0].innerHTML = 'se connecter<span>&#x25CF;</span>';
             if (document.querySelectorAll('.user-box').length > 2) {
@@ -61,7 +62,8 @@
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
             btn_login_register[0].innerHTML = 'S\'inscrire';
             titleLogin[0].innerHTML = 's\'inscrire<span>&#x25CF;</span>';
-            formLogin.style.padding = "4% 2%";
+            formLogin.style.padding = "4% 8%";
+            btn_login_register[0].style.marginTop = "0px"
             if (document.querySelectorAll('.user-box').length > 2) {
                 document.querySelectorAll('.user-box')[3].remove();
             }
