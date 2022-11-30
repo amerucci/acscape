@@ -35,12 +35,14 @@
     const onglet_login = document.getElementById('onglet_login');
     const onglet_register = document.getElementById('onglet_register');
     const formLogin = document.getElementById('formLogin');
+    const btn_login_register = document.getElementsByClassName('btn_login_register');
 
     onglet_login.addEventListener('click', function () {
         onglet_login.classList.add('onglet_login_register_item_active');
         onglet_register.classList.remove('onglet_login_register_item_active');
         if (onglet_login.classList.contains('onglet_login_register_item_active')) {
             formLogin.action = 'login';
+            btn_login_register[0].innerHTML = 'Se connecter';
             if (document.querySelectorAll('.user-box').length > 2) {
                 document.querySelectorAll('.user-box')[1].remove();
             }
@@ -53,6 +55,7 @@
         onglet_login.classList.remove('onglet_login_register_item_active');
         formLogin.action = 'register';
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
+            btn_login_register[0].innerHTML = 'S\'inscrire';
             if (document.querySelectorAll('.user-box').length > 2) {
                 document.querySelectorAll('.user-box')[3].remove();
             }
