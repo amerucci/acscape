@@ -43,7 +43,7 @@
 .login-box form {
     position: relative;
     height: 100%;
-    padding: 5%;
+    padding: 8% 2%;
 }
 
 .login-box {
@@ -70,7 +70,14 @@
     border-bottom: 1px solid rgba(64, 64, 64, 1);
     outline: none;
     background: transparent;
+    cursor: pointer;
 }
+
+/* focus */
+.login-box .user-box input:focus {
+    cursor: inherit;
+}
+
 
 .login-box .user-box label {
     position: absolute;

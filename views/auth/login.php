@@ -15,7 +15,7 @@
             <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
         </div>
 
-        <form action="login" method="POST" id="formLogin">
+        <form action="login" method="POST" id="formLogin" autocomplete="off">
             <div class="user-box">
                 <input type="text" name="username" id="username" required="">
                 <label>Nom d'utilisateur</label>
@@ -36,13 +36,17 @@
     const onglet_register = document.getElementById('onglet_register');
     const formLogin = document.getElementById('formLogin');
     const btn_login_register = document.getElementsByClassName('btn_login_register');
+    const titleLogin = document.getElementsByClassName('titleLogin');
+
 
     onglet_login.addEventListener('click', function () {
         onglet_login.classList.add('onglet_login_register_item_active');
         onglet_register.classList.remove('onglet_login_register_item_active');
         if (onglet_login.classList.contains('onglet_login_register_item_active')) {
             formLogin.action = 'login';
+            formLogin.style.padding = "8% 2%";
             btn_login_register[0].innerHTML = 'Se connecter';
+            titleLogin[0].innerHTML = 'se connecter<span>&#x25CF;</span>';
             if (document.querySelectorAll('.user-box').length > 2) {
                 document.querySelectorAll('.user-box')[1].remove();
             }
@@ -56,6 +60,8 @@
         formLogin.action = 'register';
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
             btn_login_register[0].innerHTML = 'S\'inscrire';
+            titleLogin[0].innerHTML = 's\'inscrire<span>&#x25CF;</span>';
+            formLogin.style.padding = "4% 2%";
             if (document.querySelectorAll('.user-box').length > 2) {
                 document.querySelectorAll('.user-box')[3].remove();
             }
