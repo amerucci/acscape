@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
+    <!-- si l'url contient admin ajouter le ficher css app.css -->
+    <?php if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false): ?>
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.css' ?>">
+    <?php endif ?>
     <title>Document</title>
 </head>
 
@@ -35,8 +42,17 @@
         <?= $content ?>
     </div>
 
-    <footer>
-
+    <footer class="container-fluid">
+        <div class="footer_acs">
+            <img src="assets\front\footer\logo_transparency.svg" alt="">
+            <div class="copyright">
+                <p>Copyright © 2022 ACSCAPE</p>
+                <span>|</span>
+                <p>Tous droits reservés</p>
+                <span>|</span>
+                <p>Mentions légales</p>
+            </div>
+        </div>
     </footer>
 
 </body>

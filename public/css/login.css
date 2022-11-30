@@ -1,106 +1,151 @@
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-}
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-.navbar {
-    height: 80px;
-    background-color: rgba(27, 27, 27, 0.55);
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-.navbar a {
-    color: rgba(119, 119, 119, 1);
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.navList {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3%;
-}
-
-.navLog li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 150px;
-    padding: 0 10px;
-    gap: 10px;
-    background-color: rgba(211, 30, 68, 1);
-    border-radius: 20px;
-    font-size: 11px;
-    margin-right: 25px;
-}
-
-.navLog a {
-    color: rgba(255, 255, 255, 1);
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3%;
-    width: 150px;
-}
-
-.navbar>div:nth-child(2) {
-    width: 75%;
-}
-
-logoNav {
-    width: 15%;
+.background_login_register {
+    background-color: rgba(27, 27, 27, 1);
     height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
-/* 
-.container {
-    max-width: 1320px;
-    width: 100%;
-    margin: 0 auto;
-} */
-
-.login_register {
-    /* background: rgba(64, 64, 64, 1); */
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* position: absolute; */
-    /* top: 0; */
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background-color: rgba(27, 27, 27, 0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.greyBack {
-    background-color: rgba(64, 64, 64, 1);
-    width: 100%;
-    height: 100vh;
+.imageHeaderTop {
     position: absolute;
     top: 0;
-    z-index: -1;
+    width: 100%;
 }
+
+.imageHeaderTop_img {
+    width: 100%;
+    min-height: 471px;
+    height: auto;
+}
+
+.login_register {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60%;
+    flex-direction: column;
+    padding-top: 8%;
+    font-family: 'montserrat', sans-serif;
+    color: rgba(108, 108, 108, 1);
+}
+
+.titleLogin {
+    color: white;
+    font-size: 71px;
+}
+
+.titleLogin span {
+    color: rgba(211, 30, 68, 1);
+    font-size: 30px;
+}
+
+/* **** login box ***** */
+.login-box form {
+    position: relative;
+    height: 100%;
+    padding: 5%;
+}
+
+.login-box {
+    width: 730px;
+    height: 368px;
+    /* padding: 40px; */
+    background: rgba(36, 36, 36, 1);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(184, 184, 184);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(64, 64, 64, 1);
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgba(108, 108, 108, 1);
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+}
+
+.btn_login_register {
+    position: absolute;
+    right: 5%;
+    height: 57px;
+    width: 130px;
+    background-color: rgba(211, 30, 68, 1);
+    outline: none;
+    color: white;
+    border: 2px solid #D31E44;
+    border-radius: 32px;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.onglet_login_register {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(51, 51, 51, 1);
+    font-family: 'montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 13.712px;
+    line-height: 56px;
+}
+
+#onglet_login {
+    width: 25%;
+    height: 100%;
+    /* background-color: rgba(32, 32, 32, 1); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.onglet_login_register_item_active {
+    width: 25%;
+    height: 100%;
+    background-color: rgba(32, 32, 32, 1);
+    color: white;
+}
+
+#onglet_register {
+    width: 25%;
+    height: 100%;
+    /* background-color: rgba(25, 25, 25, 1); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/****************/

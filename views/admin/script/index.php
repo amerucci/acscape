@@ -24,3 +24,4 @@ $scripts = $params['scripts']; ?>
     </div>
     <?php endif; ?>
     <?php endforeach; ?>
+</div>

@@ -1,43 +1,66 @@
-<!-- <?= $title = "Se connecter"; ?> -->
-<?php if (isset($_SESSION['errors'])): ?>
-
-<?php foreach($_SESSION['errors'] as $errorsArray): ?>
-<?php foreach($errorsArray as $errors): ?>
-<div class="alert alert-danger">
-    <?php foreach($errors as $error): ?>
-    <li><?= $error ?></li>
-    <?php endforeach ?>
+<div class="background_login_register"></div>
+<div class="imageHeaderTop">
+    <img class='imageHeaderTop_img' src="assets/front/login/login_register_top2.png" alt="">
 </div>
-<?php endforeach ?>
-<?php endforeach ?>
-
-<?php endif ?>
-
-<?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
-<div class="alert alert-danger">
-    <li>Le mot de passe ou le pseudo est incorrect</li>
-</div>
-<?php endif ?>
-
-<?php session_destroy(); ?>
-
-
 
 <div class='login_register'>
-    <div class="greyBack"></div>
 
-    <h1>Se connecter</h1>
+    <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
 
-    <form action="login" method="POST">
-        <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" class="form-control" name="username" id="username">
+    <div class="login-box">
+
+        <div class="onglet_login_register">
+            <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
+            </div>
+            <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
         </div>
-        <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" class="form-control" name="password" id="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
-        <a href="register">S'enregistrer</a>
-    </form>
+
+        <form action="login" method="POST" id="formLogin">
+            <div class="user-box">
+                <input type="text" name="username" id="username" required="">
+                <label>Nom d'utilisateur</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="">
+                <label>Mot de passe</label>
+            </div>
+            <button type="submit" class="btn_login_register">Se connecter</button>
+        </form>
+
+    </div>
 </div>
+
+
+<script>
+    const onglet_login = document.getElementById('onglet_login');
+    const onglet_register = document.getElementById('onglet_register');
+    const formLogin = document.getElementById('formLogin');
+
+    onglet_login.addEventListener('click', function () {
+        onglet_login.classList.add('onglet_login_register_item_active');
+        onglet_register.classList.remove('onglet_login_register_item_active');
+        if (onglet_login.classList.contains('onglet_login_register_item_active')) {
+            formLogin.action = 'login';
+            if (document.querySelectorAll('.user-box').length > 2) {
+                document.querySelectorAll('.user-box')[1].remove();
+            }
+        }
+
+    });
+
+    onglet_register.addEventListener('click', function () {
+        onglet_register.classList.add('onglet_login_register_item_active');
+        onglet_login.classList.remove('onglet_login_register_item_active');
+        formLogin.action = 'register';
+        if (onglet_register.classList.contains('onglet_login_register_item_active')) {
+            if (document.querySelectorAll('.user-box').length > 2) {
+                document.querySelectorAll('.user-box')[3].remove();
+            }
+            const inputEmail = document.createElement('div');
+            inputEmail.classList.add('user-box');
+            inputEmail.innerHTML = `<input type="email" name="email" required="">
+                <label>Adresse mail</label>`;
+            formLogin.insertBefore(inputEmail, formLogin.childNodes[2]);
+        }
+    });
+</script>
