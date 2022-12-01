@@ -112,7 +112,7 @@
             <div class="circle_rules d-flex justify-content-center align-items-center gap-5">
                 <div class="card d-flex justify-content-center align-items-center flex-column">
                     <img src="assets/front/icons/circle_padlock.svg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="card-body d-flex  align-items-center flex-column">
                         <h5 class="card-title">Vous êtes Enfermé</h5>
                         <p class="card-text">Une escape room remplie d'objets utiles et parfois sans intérêt.
                             Saurez-vous trouver les solutions pour vous échapper?</p>
@@ -120,14 +120,14 @@
                 </div>
                 <div class="card d-flex justify-content-center align-items-center flex-column">
                     <img src="assets/front/icons/circle_clock.svg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="card-body d-flex  align-items-center flex-column">
                         <h5 class="card-title">L'horloge Tourne...</h5>
                         <p class="card-text">Pourrez-vous résoude les énigmes qui vous font face en 60 minutes ?</p>
                     </div>
                 </div>
                 <div class="card d-flex justify-content-center align-items-center flex-column">
                     <img src="assets/front/icons/circle_heart.svg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="card-body d-flex align-items-center flex-column">
                         <h5 class="card-title">Ressentez L'ambiance</h5>
                         <p class="card-text">Des énigmes conçues avec une atmosphère amusante et une attention
                             particulière aux détails.</p>

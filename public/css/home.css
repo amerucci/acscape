@@ -243,6 +243,11 @@
     color: #717171;
 }
 
+div.card:nth-child(3)>div:nth-child(2)>h5:nth-child(1) {
+    width: 286px;
+}
+
+
 /* ********************* */
 .who_play {
     background-image: url(../../assets/front/home/for_who.png);
