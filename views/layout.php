@@ -44,33 +44,33 @@
             </ul>
         </div>
     </nav> -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid m-0 p-0 back_nav">
-            <div class="logoNav">
-                <img src="assets\front\nav\logo.svg" alt="">
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">nos escape games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">contact</a>
-                    </li>
-                </ul>
-                <ul class="navLog">
-                    <li>
-                        <a alt="" href="login"><img src="assets\front\nav\user-avatar.svg"> SE CONNECTER</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="container-fluid gx-0 back_dark">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid m-0 p-0 back_nav">
+                <div class="logoNav">
+                    <img src="assets\front\nav\logo.svg" alt="">
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">nos escape games</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">contact</a>
+                        </li>
+                    </ul>
+                    <ul class="navLog">
+                        <li>
+                            <a alt="" href="login"><img src="assets\front\nav\user-avatar.svg"> SE CONNECTER</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <?= $content ?>
     </div>
 

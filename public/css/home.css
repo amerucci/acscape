@@ -241,12 +241,12 @@ body {
 .rules_home {
     background-color: rgba(34, 34, 34, 1);
     width: 100%;
-    height: 100vh;
+    height: 84vh;
 }
 
-.rules_home_content {
+/* .rules_home_content {
     transform: translateY(-13%);
-}
+} */
 
 
 .title_rules h2 {
