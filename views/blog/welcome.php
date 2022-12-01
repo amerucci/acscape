@@ -19,7 +19,7 @@
     </div>
 
 
-    <div class="home_content d-flex justify-content-center align-items-center flex-column gap-5 mt-5 pt-5 ">
+    <div class="home_content d-flex justify-content-center align-items-center flex-column gap-5 ">
 
         <div class="title_home_content d-flex justify-content-center align-items-center flex-column gap-4">
             <span class="mini_line"></span>
@@ -94,7 +94,8 @@
 
             <!-- ********************* -->
 
-            <a class="discover_all_game px-3 my-5" href="#">Découvrir Tous Nos Escape Games</a>
+            <a class="discover_all_game px-3 my-5 d-flex justify-content-center align-items-center" href="#">Découvrir
+                Tous Nos Escape Games</a>
 
         </div>
     </div>
@@ -109,7 +110,7 @@
                 <h2>Comment ça Marche ?</h2>
             </div>
 
-            <div class="circle_rules d-flex justify-content-center align-items-center gap-5">
+            <div class="circle_rules d-flex justify-content-center align-items-center">
                 <div class="card d-flex justify-content-center align-items-center flex-column">
                     <img src="assets/front/icons/circle_padlock.svg" class="card-img-top" alt="...">
                     <div class="card-body d-flex  align-items-center flex-column">

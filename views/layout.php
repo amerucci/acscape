@@ -45,7 +45,7 @@
         </div>
     </nav> -->
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container-fluid m-0 p-0 back_nav">
             <div class="logoNav">
                 <img src="assets\front\nav\logo.svg" alt="">
             </div>

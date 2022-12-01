@@ -1,13 +1,17 @@
 .navbar {
     height: 80px;
-    background-color: rgba(27, 27, 27, 0.55);
+    /* background-color: rgba(27, 27, 27, 0.55); */
     display: flex;
     align-items: center;
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
     top: 0;
     z-index: 1;
     padding: 0;
+}
+
+.back_nav {
+    background-color: rgba(27, 27, 27, 0.55);
 }
 
 .navbar a {
