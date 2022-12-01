@@ -22,9 +22,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 82vh;
     flex-direction: column;
-    padding-top: 8%;
+    min-height: 74vh;
+    padding-top: 2%;
+    padding-top: 2%;
     font-family: 'montserrat', sans-serif;
     color: rgba(108, 108, 108, 1);
 }
