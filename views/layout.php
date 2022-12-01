@@ -53,11 +53,11 @@
         <div class="footer_acs">
             <img src="assets\front\footer\logo_transparency.svg" alt="">
             <div class="copyright">
-                <p>Copyright © 2022 ACSCAPE</p>
+                <p class='m-0'>Copyright © 2022 ACSCAPE</p>
                 <span>|</span>
-                <p>Tous droits reservés</p>
+                <p class='m-0'>Tous droits reservés</p>
                 <span>|</span>
-                <p>Mentions légales</p>
+                <p class='m-0'>Mentions légales</p>
             </div>
         </div>
     </footer>

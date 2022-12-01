@@ -1,3 +1,7 @@
+.container-fluid {
+    background-color: #1B1B1B;
+}
+
 .hook_container {
     width: 100%;
     transform: translateY(-3%);
@@ -98,8 +102,8 @@
 
 .content_game {
     background-color: rgba(36, 36, 36, 1);
-    height: 517px;
-    width: 356x;
+    height: 53.318824809575624vh;
+    width: 383px;
     padding: 4%;
 }
 
@@ -242,10 +246,12 @@
 /* ********************* */
 .who_play {
     background-image: url(../../assets/front/home/for_who.png);
-    height: 90vh;
-    width: 100%;
+    min-height: 82vh;
+    min-width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+    background-color: #222222;
 }
 
 .rotate_who_play_game {
@@ -289,60 +295,4 @@
     color: white;
 }
 
-@media all and (max-width: 768px) {
-    .title_home_content h2 {
-        font-size: 30px;
-        line-height: 35px;
-    }
-
-    .title_game h3 {
-        font-size: 20px;
-        line-height: 20px;
-    }
-
-    .description_game p {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .button_game a {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .time_game p {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .discover_all_game {
-        font-size: 12px;
-    }
-
-    .title_rules h2 {
-        font-size: 30px;
-        line-height: 35px;
-    }
-
-    .card h5 {
-        font-size: 20px;
-        line-height: 20px;
-    }
-
-    .card p {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .rotate_who_play_game p {
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    .first_detail p,
-    .second_detail p,
-    .third_detail p {
-        font-size: 12px;
-        line-height: 20px;
-    }
-}
+@media all and (max-width: 768px) {}
