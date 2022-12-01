@@ -57,6 +57,41 @@ body {
     position: relative;
 }
 
+.little_red_circle>span:nth-child(1) {
+    animation: pulsation 2s infinite;
+}
+
+.little_red_circle>span:nth-child(2) {
+    animation: pulsation 2s infinite;
+    animation-delay: 0.2s;
+}
+
+.little_red_circle>span:nth-child(3) {
+    animation: pulsation 2s infinite;
+    animation-delay: 0.4s;
+}
+
+@keyframes pulsation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+
+
 .hook>div.line_text>.line {
     width: 100px;
     height: 2px;
