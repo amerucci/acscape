@@ -1,0 +1,59 @@
+.hook_container {
+    width: 100%;
+    transform: translateY(-3%);
+}
+
+.homeTop_img {
+    background-image: url(../../assets/front/home/homeTop.png);
+    height: auto;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+}
+
+.hook {
+    position: absolute;
+    top: 41%;
+    left: 10%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: white;
+}
+
+.hook h1 {
+    font-size: 120px;
+    line-height: 120px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 120px;
+    font-family: 'Montserrat';
+}
+
+.hook>h1>span {
+    color: #D31E44;
+    font-size: 3rem;
+}
+
+.hook p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 120px;
+    text-transform: uppercase;
+    letter-spacing: 12px;
+}
+
+.little_red_circle {
+    position: relative;
+}
+
+.hook>div.line_text>.line {
+    width: 100px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 1);
+    display: block;
+    margin-bottom: 3%;
+}
