@@ -19,7 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
+    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -31,7 +31,7 @@
         </div>
         <div>
             <ul class="navList">
-                <li><a href="">Accueil</a></li>
+                <li><a href="">accueil</a></li>
                 <li><a href="">nos escape games</a></li>
                 <li><a href="">contact</a></li>
             </ul>
@@ -49,7 +49,7 @@
         <?= $content ?>
     </div>
 
-    <footer class="container-fluid">
+    <footer class="container-fluid gx-0">
         <div class="footer_acs">
             <img src="assets\front\footer\logo_transparency.svg" alt="">
             <div class="copyright">
@@ -63,5 +63,6 @@
     </footer>
 
 </body>
+
 
 </html>
