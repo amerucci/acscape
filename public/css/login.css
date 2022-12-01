@@ -69,13 +69,14 @@
     margin-bottom: 30px;
     border: none;
     border-bottom: 1px solid rgba(64, 64, 64, 1);
-    outline: none;
-    background: transparent;
+    outline: none !important;
+    background: transparent !important;
     cursor: pointer;
 }
 
 .login-box .user-box input:focus {
     cursor: inherit;
+    background: transparent !important;
 }
 
 .login-box .user-box label {

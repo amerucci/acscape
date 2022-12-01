@@ -1,3 +1,26 @@
+<?= $title = "Se connecter"; ?>
+<?php if (isset($_SESSION['errors'])): ?>
+
+<?php foreach($_SESSION['errors'] as $errorsArray): ?>
+<?php foreach($errorsArray as $errors): ?>
+<div class="alert alert-danger">
+    <?php foreach($errors as $error): ?>
+    <li><?= $error ?></li>
+    <?php endforeach ?>
+</div>
+<?php endforeach ?>
+<?php endforeach ?>
+
+<?php endif ?>
+
+<?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
+<div class="alert alert-danger">
+    <li>Le mot de passe ou le pseudo est incorrect</li>
+</div>
+<?php endif ?>
+
+<?php session_destroy(); ?>
+
 <div class="background_login_register"></div>
 <div class="imageHeaderTop">
     <img class='imageHeaderTop_img' src="assets/front/login/login_register_top2.png" alt="">
@@ -17,11 +40,11 @@
 
         <form action="login" method="POST" id="formLogin" autocomplete="off">
             <div class="user-box">
-                <input type="text" name="username" id="username" required="">
+                <input type="text" name="username" id="username" required="" autocomplete="off" class="no-autofill-bkg">
                 <label>Nom d'utilisateur</label>
             </div>
             <div class="user-box">
-                <input type="password" name="password" required="">
+                <input type="password" name="password" required="" autocomplete="off">
                 <label>Mot de passe</label>
             </div>
             <button type="submit" class="btn_login_register">Se connecter</button>
@@ -29,6 +52,9 @@
 
     </div>
 </div>
+
+<!-- https://learn.microsoft.com/en-us/answers/questions/974921/edge-bug-autocomplete34off34-still-displays-previo.html -->
+<!-- https://www-anoopcnair-com.translate.goog/disable-enable-edge-browser-autofill-inputs/?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr -->
 
 
 <script>

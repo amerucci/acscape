@@ -14,3 +14,38 @@ ul {
 a {
     text-decoration: none;
 }
+
+/* input:autofill {
+    border: 3px solid darkorange;
+}
+
+input:-webkit-autofill {
+    border: 3px solid darkorange;
+} */
+
+input:-internal-autofill-selected {
+    appearance: transparent !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: transparent !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #00000000 !important;
+}
+
+input {
+    background: transparent;
+}
+
+input.no-autofill-bkg:-webkit-autofill {
+    -webkit-background-clip: text;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+}

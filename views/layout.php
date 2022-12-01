@@ -25,26 +25,6 @@
 
 <body>
 
-    <!-- <nav class="navbar">
-        <div class="logoNav">
-            <img src="assets\front\nav\logo.svg" alt="">
-        </div>
-        <div>
-            <ul class="navList">
-                <li><a href="">accueil</a></li>
-                <li><a href="">nos escape games</a></li>
-                <li><a href="">contact</a></li>
-            </ul>
-        </div>
-        <div>
-            <ul class="navLog">
-                <li>
-                    <a alt="" href="login"><img src="assets\front\nav\user-avatar.svg"> SE CONNECTER</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
-
     <div class="container-fluid gx-0 back_dark">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid m-0 p-0 back_nav">
@@ -72,20 +52,20 @@
             </div>
         </nav>
         <?= $content ?>
+        <footer class="container-fluid gx-0">
+            <div class="footer_acs">
+                <img src="assets\front\footer\logo_transparency.svg" alt="">
+                <div class="copyright">
+                    <p class='m-0'>Copyright © 2022 ACSCAPE</p>
+                    <span>|</span>
+                    <p class='m-0'>Tous droits reservés</p>
+                    <span>|</span>
+                    <p class='m-0'>Mentions légales</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <footer class="container-fluid gx-0">
-        <div class="footer_acs">
-            <img src="assets\front\footer\logo_transparency.svg" alt="">
-            <div class="copyright">
-                <p class='m-0'>Copyright © 2022 ACSCAPE</p>
-                <span>|</span>
-                <p class='m-0'>Tous droits reservés</p>
-                <span>|</span>
-                <p class='m-0'>Mentions légales</p>
-            </div>
-        </div>
-    </footer>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

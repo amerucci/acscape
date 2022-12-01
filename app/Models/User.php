@@ -8,7 +8,12 @@ class User extends Model {
 
     public function getByUsername(string $username): User
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
+
+        if ($this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true)) {
+            return $this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true);
+        } else {
+            return header('Location: login?error=error');
+        }
     }
 
     public function getByUserId(int $id): User
