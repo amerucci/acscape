@@ -1,23 +1,4 @@
 <?= $title = "Se connecter"; ?>
-<?php if (isset($_SESSION['errors'])): ?>
-
-<?php foreach($_SESSION['errors'] as $errorsArray): ?>
-<?php foreach($errorsArray as $errors): ?>
-<div class="alert alert-danger">
-    <?php foreach($errors as $error): ?>
-    <li><?= $error ?></li>
-    <?php endforeach ?>
-</div>
-<?php endforeach ?>
-<?php endforeach ?>
-
-<?php endif ?>
-
-<?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
-<div class="alert alert-danger">
-    <li>Le mot de passe ou le pseudo est incorrect</li>
-</div>
-<?php endif ?>
 
 <?php session_destroy(); ?>
 
@@ -49,6 +30,12 @@
             </div>
             <button type="submit" class="btn_login_register">Se connecter</button>
         </form>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
+        <div class="alert alert-danger">
+            <li>Le mot de passe ou le pseudo est incorrect</li>
+        </div>
+        <?php endif ?>
 
     </div>
 </div>
@@ -100,4 +87,12 @@
             formLogin.insertBefore(inputEmail, formLogin.childNodes[2]);
         }
     });
+
+    setTimeout(function () {
+        const alerteDanger = document.querySelectorAll('.alert-danger');
+        for (let i = 0; i < alerteDanger.length; i++) {
+            alerteDanger[i].remove();
+            window.history.replaceState({}, document.title, "/" + "acscape/login");
+        }
+    }, 3000);
 </script>
