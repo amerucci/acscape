@@ -30,6 +30,7 @@
     width: 100%;
     z-index: 1;
     bottom: 9%;
+    overflow: hidden;
 }
 
 .all_games {
