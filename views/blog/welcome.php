@@ -11,7 +11,9 @@
                 <!-- <p><span class="line"></span>voir nos escapes games</p> -->
                 <div class="line_text d-flex align-items-center gap-5">
                     <span class="line"></span>
-                    <p>voir nos escapes games</p>
+                    <a href="/acscape/index">
+                        voir nos escapes games
+                    </a>
                 </div>
 
             </div>
