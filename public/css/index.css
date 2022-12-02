@@ -5,6 +5,18 @@
     background-position: center;
     height: 64vh;
     width: 100%;
+    position: relative;
+    top: -4%;
+    z-index: -1;
+}
+
+.index_top::before {
+    content: url(../../assets/front/home/flou.png);
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    bottom: -33%;
+    overflow: hidden;
 }
 
 .index_top h1 {
@@ -24,14 +36,7 @@
     font-size: 2rem;
 }
 
-.index_top::before {
-    content: url(../../assets/front/home/flou.png);
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    bottom: 9%;
-    overflow: hidden;
-}
+
 
 .all_games {
     min-height: 110vh;

@@ -20,7 +20,8 @@ class BlogController extends Controller {
         return $this->view('blog.index');
     }
 
-    public function show(int $id)
+    // public function show(int $id)
+    public function show()
     {
         // $post = new Post($this->getDB());
         // $post = $post->findById($id);

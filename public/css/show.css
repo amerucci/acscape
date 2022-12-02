@@ -1,0 +1,87 @@
+.show_img_top {
+    background-image: url("../../assets/front/show/background_show-top.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    height: 80vh;
+    width: 100%;
+}
+
+.show_img_top>h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 86px;
+    color: white;
+}
+
+.content_one_game {
+    width: 80%;
+    height: 80vh;
+}
+
+.description_one_game p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgba(113, 113, 113, 1);
+    width: 84%;
+}
+
+.duration_one_game,
+.difficulty_one_game {
+    text-align: end;
+}
+
+.duration_one_game {
+    transform: translate(14%, 0%);
+}
+
+
+.duration_one_game p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgba(113, 113, 113, 1);
+    height: 30px;
+}
+
+.duration_one_game>p:nth-child(2) {
+    color: white;
+}
+
+.difficulty_one_game p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgba(113, 113, 113, 1);
+    text-transform: uppercase;
+}
+
+.difficulty_one_game>p:nth-child(6) {
+    color: white;
+}
+
+
+.play_now>a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 57px;
+    width: 227px;
+    padding: 0 10px;
+    gap: 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    font-size: 11px;
+    margin-right: 25px;
+    color: white;
+    font-family: 'montserrat';
+}
