@@ -61,6 +61,14 @@
 
 }
 
+.link_game {
+    position: absolute;
+    height: 316px;
+    width: 500px;
+    top: -178px;
+}
+
+
 
 .game>img {
     width: 100%;

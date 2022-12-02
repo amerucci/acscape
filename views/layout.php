@@ -50,6 +50,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">contact</a>
                     </li>
+                    <li>
+                        <?php if ($_SESSION) : ?>
+                        <a class="nav-link" href="/acscape/admin/posts">créer votre jeu</a>
+                        <?php endif; ?>
+                    </li>
                 </ul>
                 <ul class="navLog">
                     <li>

@@ -7,6 +7,7 @@
 
     <div class="all_games d-flex justify-content-center align-items-center gap-5 ">
         <div class="d-flex justify-content-center align-items-center gap-5 flex-column">
+
             <div class="game">
                 <img src="assets\front\index\figure.jpg" alt="">
                 <div class="card_game_content">
@@ -26,6 +27,7 @@
                             <p class="m-0">60</p>
                         </div>
                     </div>
+                    <a class="link_game" href="/acscape/show"></a>
                 </div>
 
             </div>
