@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'home.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,10 +41,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">accueil</a>
+                        <a class="nav-link" href="/acscape">accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">nos escape games</a>
+                        <a class="nav-link" href="/acscape/index">nos escape games</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">contact</a>
@@ -78,7 +79,6 @@
     </nav>
 
     <div class="container-fluid gx-0 back_dark">
-
         <?= $content ?>
     </div>
     <footer class="container-fluid gx-0">

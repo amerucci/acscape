@@ -14,18 +14,18 @@ class BlogController extends Controller {
 
     public function index()
     {
-        $post = new Post($this->getDB());
-        $posts = $post->all();
-
-        return $this->view('blog.index', compact('posts'));
+        // $post = new Post($this->getDB());
+        // $posts = $post->all();
+        // return $this->view('blog.index', compact('posts'));
+        return $this->view('blog.index');
     }
 
     public function show(int $id)
     {
-        $post = new Post($this->getDB());
-        $post = $post->findById($id);
-
-        return $this->view('blog.show', compact('post'));
+        // $post = new Post($this->getDB());
+        // $post = $post->findById($id);
+        // return $this->view('blog.show', compact('post'));
+        return $this->view('blog.show');
     }
 
     public function tag(int $id)

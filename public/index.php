@@ -17,6 +17,8 @@ $router = new Router($_GET['url']);
 
 // public route
 $router->get('/', 'App\Controllers\BlogController@welcome');
+$router->get('/index', 'App\Controllers\BlogController@index');
+$router->get('/show', 'App\Controllers\BlogController@show');
 
 // user login, register, logout route
 $router->get('/login', 'App\Controllers\UserController@login');

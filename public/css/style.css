@@ -1,32 +1,9 @@
 body {
-    /* margin: 0;
-    padding: 0;
-    margin-bottom: 60px; */
-    /* display: flex;
-    flex-direction: column;
-    min-height: 100vh; */
-}
-
-/* html {
-    position: relative;
-    min-height: 100%;
-} */
-
-
-/* footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-} */
-
-body {
     margin: 0;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
-
-
 
 ul {
     list-style: none;
