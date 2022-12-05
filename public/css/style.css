@@ -6,6 +6,10 @@ body {
     background-color: #1B1B1B;
 }
 
+.dnone {
+    display: none !important;
+}
+
 ul {
     list-style: none;
 }

@@ -32,7 +32,7 @@
                     <p class="m-0">MINUTES</p>
                 </div>
                 <div class="play_now">
-                    <a href="#">JOUER MAINTENANT</a>
+                    <a href="/acscape/ingame">JOUER MAINTENANT</a>
                 </div>
             </div>
         </div>

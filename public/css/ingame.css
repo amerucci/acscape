@@ -3,7 +3,6 @@
     font-style: normal;
     font-weight: 700;
     font-size: 42px;
-    line-height: 86px;
 }
 
 .the_rooms,
@@ -27,12 +26,18 @@
 }
 
 .close {
-    /* disable style button */
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
 
+}
+
+.modal-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
 }
 
 #countdown {
@@ -41,4 +46,89 @@
     font-weight: 700;
     font-size: 42px;
     transform: translate(0%, 8%);
+}
+
+.endgame_lose,
+.endgame_win {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 842px;
+    height: 317px;
+}
+
+.endgame_title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    color: #1B1B1B;
+}
+
+.endgame_text {
+    width: 55%;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #717171;
+}
+
+.endgame_buttons>a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    color: white;
+    outline: none;
+    border: none;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* in modal*/
+
+.furnitures {
+    position: relative;
+}
+
+.frisk_content {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    color: white;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+.rooms_list,
+.furniture_desc {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #717171;
+
 }

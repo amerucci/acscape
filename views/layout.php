@@ -159,9 +159,11 @@
         document.querySelector('.navbar').style.color = "white";
         document.querySelector('.navLog').style.marginRight = "5%";
         document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
-        document.querySelector('body').style.backgroundSize = "cover";
+        // document.querySelector('body').style.backgroundSize = "cover";
+        document.querySelector('body').style.backgroundSize = "contain";
         document.querySelector('body').style.backgroundRepeat = "no-repeat";
         document.querySelector('body').style.backgroundPosition = "center";
+        document.querySelector('.footer_acs').style.background = "transparent";
     }
 
 
@@ -169,6 +171,7 @@
 
     // 60 minutes, implémenter la variable de temps depuis la bdd. Penser à changer la valeur time en number.
     let countdown = 60 * 60;
+    // let countdown = 10;
 
     function updateCountdown() {
         countdown--;
@@ -180,10 +183,14 @@
         minutes = minutes.toString().padStart(2, "0");
         seconds = seconds.toString().padStart(2, "0");
 
-        // if not null let countdownElement = document.getElementById("countdown")
-
         if (countdownElement = document.getElementById("countdown") != null) {
             countdownElement = document.getElementById("countdown");
+
+            if (countdown < 0) {
+                const endgame_lose = document.querySelector('.endgame_lose');
+                endgame_lose.classList.remove('dnone');
+                return;
+            }
         }
 
         countdownElement.innerHTML = minutes + ":" + seconds;

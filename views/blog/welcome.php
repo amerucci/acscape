@@ -59,7 +59,7 @@
                             l’entreprise...</p>
                     </div>
                     <div class="button_game mt-5 pt-3">
-                        <a class='d-flex justify-content-center align-items-center' href="#">Jouer</a>
+                        <a class='d-flex justify-content-center align-items-center' href="/acscape/show">Jouer</a>
                     </div>
                 </div>
                 <div class="img_game my-auto">

@@ -157,10 +157,10 @@
 .home_content::before {
     content: url(../../assets/front/home/flou.png);
     position: absolute;
-    top: -16%;
+    top: -12%;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 18%;
     z-index: 0;
 }
 
