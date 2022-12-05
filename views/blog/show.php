@@ -20,11 +20,11 @@
             </div>
             <div class="caracteristique_one_game d-flex align-items-center flex-column justify-content-center gap-5">
                 <div class="difficulty_one_game">
-                    <iconify-icon icon="uil:padlock"></iconify-icon>
-                    <iconify-icon icon="uil:padlock"></iconify-icon>
-                    <iconify-icon icon="uil:padlock"></iconify-icon>
-                    <iconify-icon icon="uil:padlock"></iconify-icon>
-                    <iconify-icon icon="uil:padlock"></iconify-icon>
+                    <iconify-icon icon="ri:lock-line"></iconify-icon>
+                    <iconify-icon icon="ri:lock-line"></iconify-icon>
+                    <iconify-icon icon="ri:lock-line"></iconify-icon>
+                    <iconify-icon icon="ri:lock-line"></iconify-icon>
+                    <iconify-icon icon="ri:lock-line"></iconify-icon>
                     <p>difficulté</p>
                 </div>
                 <div class="duration_one_game">

@@ -16,11 +16,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -39,11 +39,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -60,11 +60,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -83,11 +83,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -104,11 +104,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -125,11 +125,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -148,11 +148,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -169,11 +169,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
@@ -190,11 +190,11 @@
                     </div>
                     <div class="parameters_game d-flex  align-items-center">
                         <div class="diffuclty">
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
-                            <iconify-icon icon="uil:padlock"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
+                            <iconify-icon icon="ri:lock-line"></iconify-icon>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">

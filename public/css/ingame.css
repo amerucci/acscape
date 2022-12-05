@@ -1,0 +1,36 @@
+.in_game_nav {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 86px;
+}
+
+.the_rooms,
+.inventories,
+.frisk {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.tools {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.close {
+    /* disable style button */
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+}

@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    background-color: #1B1B1B;
 }
 
 ul {
@@ -38,4 +39,20 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
     -webkit-transition-delay: 9999s;
+}
+
+@media all and (max-width: 1024px) {
+    .container-fluid {
+        display: none;
+    }
+
+    body::after {
+        content: "Ce site n'est pas optimisé pour les petits écrans";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: white;
+    }
 }

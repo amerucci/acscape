@@ -27,6 +27,10 @@ $router->get('/logout', 'App\Controllers\UserController@logout');
 $router->get('/register', 'App\Controllers\UserController@register');
 $router->post('/register', 'App\Controllers\UserController@registerPost');
 
+// in game route
+$router->get('/ingame', 'App\Controllers\InGameController@index');
+$router->get('/ingame/show', 'App\Controllers\InGameController@show');
+
 
 // **********************************************************************************************************
 // admin route

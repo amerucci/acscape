@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'home.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'show.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +29,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid m-0 p-0 back_nav">
             <div class="logoNav">
-                <a href="index.php"><svg width="215" height="80" viewBox="0 0 215 80" fill="none"
+                <a href="/acscape"><svg width="215" height="80" viewBox="0 0 215 80" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="215" height="80" fill="#D31E44" />
                         <path
@@ -40,7 +41,17 @@
                     </svg></a>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <?php
+            if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) {
+                // echo '<li class="nav-item">'.$game->title.'</li>';
+                echo '<li class="nav-item in_game_nav"> Le développeur perdu</li>';
+            } else { ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/acscape">accueil</a>
                     </li>
@@ -55,9 +66,14 @@
                         <a class="nav-link" href="/acscape/admin/posts">créer votre jeu</a>
                         <?php endif; ?>
                     </li>
+                    <?php } ?>
                 </ul>
+
                 <ul class="navLog">
                     <li>
+                        <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+                        <p>compteur 60</p>
+                        <?php else : ?>
                         <?php if (!$_SESSION): ?>
                         <a alt="" href="login">
                             <?php else : ?>
@@ -78,8 +94,15 @@
                                 SE CONNECTER
                                 <?php endif ?>
                             </a>
+                            <?php endif ?>
                     </li>
                 </ul>
+
+
+
+
+
+
             </div>
         </div>
     </nav>
@@ -123,6 +146,21 @@
         document.querySelector('.navbar').style.position = "absolute";
     } else {
         document.querySelector('.navbar').style.position = "relative";
+    }
+
+    if (window.location.href.includes("admin")) {
+        document.querySelector('body').style.background = "white";
+    } else {
+        document.querySelector('body').style.background = "#1B1B1B";
+    }
+
+    if (window.location.href.includes("ingame")) {
+        document.querySelector('.navbar').style.color = "white";
+        document.querySelector('.navLog').style.marginRight = "5%";
+        document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
+        document.querySelector('body').style.backgroundSize = "cover";
+        document.querySelector('body').style.backgroundRepeat = "no-repeat";
+        document.querySelector('body').style.backgroundPosition = "center";
     }
 </script>
 

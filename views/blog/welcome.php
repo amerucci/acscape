@@ -32,9 +32,15 @@
             <div class="first_game d-flex">
                 <div class="content_game col-5">
 
-                    <div class="diffuclty">
-                        <iconify-icon icon="uil:padlock"></iconify-icon>
+
+                    <div class="difficulty my-2">
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
                     </div>
+
 
                     <div class="title_game">
                         <h3>Le Développeur Perdu</h3>
@@ -68,9 +74,15 @@
                 </div>
                 <div class="content_game col-5">
 
-                    <div class="diffuclty">
-                        <iconify-icon icon="uil:padlock"></iconify-icon>
+
+                    <div class="difficulty my-2">
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
+                        <iconify-icon icon="ri:lock-line"></iconify-icon>
                     </div>
+
 
                     <div class="title_game">
                         <h3>Le Développeur Perdu</h3>
@@ -82,7 +94,8 @@
                     </div>
 
                     <div class="description_game">
-                        <p>Vous êtes un développeur en herbe et vous avez été recruté par une entreprise de renom. Vous
+                        <p>Vous êtes un développeur en herbe et vous avez été recruté par une entreprise de renom.
+                            Vous
                             avez
                             été
                             embauché pour développer un jeu vidéo. Mais voilà, vous êtes bloqué dans les locaux de
