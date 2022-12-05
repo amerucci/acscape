@@ -159,8 +159,13 @@
         document.querySelector('.navbar').style.color = "white";
         document.querySelector('.navLog').style.marginRight = "5%";
         document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
+        if (screen.width < 1440) {
+            document.querySelector('body').style.backgroundSize = "contain";
+        } else {
+            document.querySelector('body').style.backgroundSize = "cover";
+        }
         // document.querySelector('body').style.backgroundSize = "cover";
-        document.querySelector('body').style.backgroundSize = "contain";
+        // document.querySelector('body').style.backgroundSize = "contain";
         document.querySelector('body').style.backgroundRepeat = "no-repeat";
         document.querySelector('body').style.backgroundPosition = "center";
         document.querySelector('.footer_acs').style.background = "transparent";

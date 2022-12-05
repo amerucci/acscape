@@ -129,10 +129,14 @@
                     </span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body d-flex justify-content-center align-items-center flex-column">
                 <p class="m-0 furniture_desc">Ce téléphone est étrange, mais j'ai du mal à voir ce que c'est, peut-être
                     devrais-je essayer
-                    d'appuyer sur cette touche.</p>
+                    d'appuyer sur cette touche.
+                </p>
+
+                <p class="furniture_desc_action my-5">Appuyer</p>
+
             </div>
         </div>
     </div>
