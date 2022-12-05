@@ -27,7 +27,8 @@
                 <h5 class="modal-title mx-auto" id="roomsModalLabel">Les salles disponibles</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;"></iconify-icon>
+                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                        </iconify-icon>
                     </span>
                 </button>
             </div>
@@ -47,7 +48,8 @@
                 <h5 class="modal-title mx-auto" id="friskModalLabel">Fouiller</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;"></iconify-icon>
+                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                        </iconify-icon>
                     </span>
                 </button>
             </div>
@@ -67,7 +69,8 @@
                 <h5 class="modal-title mx-auto" id="inventoriesModalLabel">Votre inventaire</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;"></iconify-icon>
+                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                        </iconify-icon>
                     </span>
                 </button>
             </div>

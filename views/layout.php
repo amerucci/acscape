@@ -72,7 +72,7 @@
                 <ul class="navLog">
                     <li>
                         <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                        <p>compteur 60</p>
+                        <p class="m-0 d-flex justify-content-center align-items-center" id='countdown'></p>
                         <?php else : ?>
                         <?php if (!$_SESSION): ?>
                         <a alt="" href="login">
@@ -141,6 +141,7 @@
 </script>
 
 <script>
+    // style en fonction de l'URL
     if (window.location.href == "http://localhost/acscape/" || window.location.href ==
         "http://localhost/acscape/index" || window.location.href == "http://localhost/acscape/show") {
         document.querySelector('.navbar').style.position = "absolute";
@@ -162,6 +163,33 @@
         document.querySelector('body').style.backgroundRepeat = "no-repeat";
         document.querySelector('body').style.backgroundPosition = "center";
     }
+
+
+    // compteur de temps de la partie
+
+    // 60 minutes, implémenter la variable de temps depuis la bdd. Penser à changer la valeur time en number.
+    let countdown = 60 * 60;
+
+    function updateCountdown() {
+        countdown--;
+
+        let minutes = Math.floor(countdown / 60);
+        let seconds = countdown % 60;
+
+        // Formater les minutes et les secondes avec des zéros au début (pour obtenir un format 00:00)
+        minutes = minutes.toString().padStart(2, "0");
+        seconds = seconds.toString().padStart(2, "0");
+
+        // if not null let countdownElement = document.getElementById("countdown")
+
+        if (countdownElement = document.getElementById("countdown") != null) {
+            countdownElement = document.getElementById("countdown");
+        }
+
+        countdownElement.innerHTML = minutes + ":" + seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
 </script>
 
 </html>
