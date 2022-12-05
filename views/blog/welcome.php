@@ -23,7 +23,7 @@
 
     <div class="home_content d-flex justify-content-center align-items-center flex-column gap-5 ">
 
-        <div class="title_home_content d-flex justify-content-center align-items-center flex-column gap-4">
+        <div class="title_home_content d-flex justify-content-center align-items-center flex-column gap-4 mt-5">
             <span class="mini_line"></span>
             <h2>Nos Escape Games</h2>
         </div>
