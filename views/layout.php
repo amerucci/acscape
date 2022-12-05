@@ -117,5 +117,13 @@
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
 
+<script>
+    if (window.location.href == "http://localhost/acscape/" || window.location.href ==
+        "http://localhost/acscape/index" || window.location.href == "http://localhost/acscape/show") {
+        document.querySelector('.navbar').style.position = "absolute";
+    } else {
+        document.querySelector('.navbar').style.position = "relative";
+    }
+</script>
 
 </html>
