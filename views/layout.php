@@ -64,8 +64,20 @@
                     </li>
                     <li>
                         <?php if ($_SESSION) : ?>
-                        <a class="nav-link" href="/acscape/admin/posts">créer votre jeu</a>
-                        <?php endif; ?>
+                        <!-- <a class="nav-link" href="/acscape/admin/posts">créer votre jeu</a> -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Création de jeu
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/acscape/admin/posts">Créer</a></li>
+                            <li><a class="dropdown-item" href="/acscape/admin/script">Liste de vos jeux</a></li>
+                        </ul>
+                    </li>
+
+                    <?php endif; ?>
                     </li>
                     <?php } ?>
                 </ul>
@@ -150,11 +162,9 @@
         document.querySelector('.navbar').style.position = "relative";
     }
 
-    // if (window.location.href.includes("admin")) {
-    //     document.querySelector('body').style.background = "white";
-    // } else {
-    //     document.querySelector('body').style.background = "#1B1B1B";
-    // }
+    if (window.location.href.includes("admin")) {
+        document.querySelector('footer').style.display = "none";
+    }
 
     if (window.location.href.includes("ingame")) {
         document.querySelector('.navbar').style.color = "white";

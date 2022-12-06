@@ -3,6 +3,10 @@
     font-family: 'montserrat', sans-serif;
 }
 
+label {
+    padding-bottom: 1%;
+}
+
 .script_create_home,
 .game_admnistration {
     background-color: rgba(51, 51, 51, 1);
@@ -41,8 +45,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 150px;
+    height: 50px;
+    width: 200px;
     padding: 0 10px;
     background-color: rgba(211, 30, 68, 1);
     border-radius: 32px;
@@ -53,6 +57,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
+    text-transform: uppercase;
 }
 
 .create_game_script:hover,
@@ -63,6 +68,7 @@
 
 .card_script {
     background-color: rgba(51, 51, 51, 1);
+    border-radius: 5px;
 }
 
 .form_duration {
@@ -70,14 +76,16 @@
     height: 120px;
     background-color: rgba(51, 51, 51, 1);
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_win,
 .form_lose {
     width: 50%;
-    height: 150px;
+    height: 230px;
     background-color: rgba(51, 51, 51, 1);
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_picture {
@@ -85,24 +93,28 @@
     height: 200px;
     background-color: rgba(51, 51, 51, 1);
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_difficulty {
     background-color: rgba(51, 51, 51, 1);
     height: 120px;
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_name {
     background-color: rgba(51, 51, 51, 1);
     height: 100px;
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_desc {
     background-color: rgba(51, 51, 51, 1);
     height: 200px;
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_padlock,
@@ -111,6 +123,7 @@
     height: 100px;
     padding: 1%;
     width: 300px;
+    border-radius: 5px;
 }
 
 .form_action {
@@ -118,12 +131,14 @@
     height: 100px;
     padding: 1%;
     width: 300px;
+    border-radius: 5px;
 }
 
 .form_clue {
     background-color: rgba(51, 51, 51, 1);
     height: 300px;
     padding: 1%;
+    border-radius: 5px;
 }
 
 .form_object {
@@ -131,6 +146,7 @@
     height: 100px;
     padding: 1%;
     width: 35%;
+    border-radius: 5px;
 }
 
 #clue,
@@ -143,4 +159,10 @@
 .card_objects {
     background-color: rgba(51, 51, 51, 1);
     font-family: 'montserrat', sans-serif;
+    border-radius: 5px;
+}
+
+.card_script_container {
+    height: 50%;
+    width: 20%;
 }

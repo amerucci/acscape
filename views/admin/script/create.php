@@ -8,8 +8,9 @@
     </div>
 
 
-    <div class="d-flex justify-content-center align-items-center gap-1 flex-column my-4">
-        <form action="create" method="POST" enctype="multipart/form-data" runat="server">
+
+    <div class="d-flex justify-content-center align-items-center gap-1 flex-column my-4 w-100">
+        <form action="create" method="POST" enctype="multipart/form-data" runat="server" class="w-75">
             <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_name">
                 <label for="name">Nom du scénario</label>
                 <input type="text" class="form-control" name="title" id="title" required>
@@ -17,16 +18,16 @@
             <div
                 class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 my-3 form_desc">
                 <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="6" required></textarea>
+                <textarea class="form-control" name="description" id="description" rows="9" required></textarea>
             </div>
             <div class="d-flex justify-content-center align-items-center gap-5 my-5">
                 <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
                     <label for=" content">Message de victoire</label>
-                    <textarea class="form-control" name="winner_msg" id="content" rows="3" required></textarea>
+                    <textarea class="form-control" name="winner_msg" id="content" rows="6" required></textarea>
                 </div>
                 <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_lose">
                     <label for="content">Message de défaite</label>
-                    <textarea class="form-control" name="lost_msg" id="content" rows="3" required></textarea>
+                    <textarea class="form-control" name="lost_msg" id="content" rows="6" required></textarea>
                 </div>
             </div>
             <div
