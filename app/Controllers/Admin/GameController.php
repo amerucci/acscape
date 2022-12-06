@@ -23,7 +23,14 @@ class GameController extends Controller {
             } else {
                 return header('Location: /acscape');
             }        
+
         }
+            
+
+
+
+
+
 
 
 }
