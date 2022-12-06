@@ -31,7 +31,7 @@ $scripts = $params['scripts']; ?>
     <div class="d-flex flex-wrap w-100 my-3">
         <?php foreach ($scripts as $script) : ?>
         <?php if ($script->user_id == $_SESSION['user_id']): ?>
-        <div class="card mx-2 my-2 d-flex ">
+        <div class="card my-2 d-flex mx-1 ">
             <div class="card-body card_script d-flex justify-content-center align-items-center flex-column">
                 <img src="../assets/pictures/scripts/<?= $script->picture ?>" alt="<?= $script->title ?>"
                     class="card-img-top">

@@ -38,10 +38,9 @@
             </div>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
-            <button type="submit" class="btn btn-primary my-1 w-100">Editer</button>
+            <button type="submit" class="btn btn-primary my-1 w-100">Créer</button>
         </form>
 
-        <?php var_dump($_SESSION['script_id']); ?>
 
 
         <script>

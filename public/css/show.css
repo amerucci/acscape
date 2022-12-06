@@ -44,7 +44,10 @@
 .difficulty_one_game {
     text-align: end;
     transform: translate(30%);
+    color: white;
 }
+
+
 
 .duration_one_game {
     transform: translate(50%, 0%);

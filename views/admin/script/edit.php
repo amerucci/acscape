@@ -4,8 +4,8 @@ $title = "modifier le scénario " . $params['script']->title;
 
 <div class="container admin_container my-5">
     <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
-        <h1 class="">Modifier un scénario</h1>
-        <a href='/acscape/admin/game' class='btn btn-primary create_game_script'>création du jeu</a>
+        <a href='/acscape/admin/game' class='btn btn-primary create_game_script my-3'>création du jeu</a>
+        <h1 class="modif_script">Modifier le scénario</h1>
     </div>
 
     <div class="d-flex justify-content-center align-items-center gap-1 flex-column my-4">
@@ -15,56 +15,61 @@ $title = "modifier le scénario " . $params['script']->title;
                 <label for="name">Nom du scénario</label>
                 <input type="text" class="form-control" name="title" id="title" value="<?= $script->title ?>" required>
             </div>
-            <div
-                class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 my-3 form_desc">
-                <label for="description">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="6"
-                    required><?= $script->description ?></textarea>
-            </div>
-            <div class="d-flex justify-content-center align-items-center gap-5 my-5">
-                <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
-                    <label for=" content">Message de victoire</label>
-                    <textarea class="form-control" name="winner_msg" id="content" rows="3"
-                        required><?= $script->winner_msg ?></textarea>
-                </div>
-                <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_lose">
-                    <label for="content">Message de défaite</label>
-                    <textarea class="form-control" name="lost_msg" id="content" rows="3"
-                        required><?= $script->lost_msg ?></textarea>
-                </div>
-            </div>
-            <div
-                class="form-group d-flex justify-content-center align-items-center flex-column gap-1 my-5 form_picture w-100">
-                <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
-                <input type="hidden" name="picture" id="picture" value="<?= $script->picture ?>">
-                <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
-                    height="100px" id="picturePreview">
-                <img id="picturePreviewTemp">
-            </div>
-            <div class="d-flex gap-5">
+            <div class="edit_plus dnone">
                 <div
-                    class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-50 form_difficulty">
-                    <label class="d-flex justify-content-center align-items-center gap-1" for="difficulty">Difficulté
-                        <iconify-icon icon="ri:lock-line"></iconify-icon> </label>
-                    <select class="form-control" name="difficulty" id="difficulty">
-                        <option value="1" <?= $script->difficulty == 1 ? 'selected' : '' ?>>Très Facile</option>
-                        <option value="2" <?= $script->difficulty == 2 ? 'selected' : '' ?>>Facile</option>
-                        <option value="3" <?= $script->difficulty == 3 ? 'selected' : '' ?>>Moyen</option>
-                        <option value="4" <?= $script->difficulty == 4 ? 'selected' : '' ?>>Difficile</option>
-                        <option value="5" <?= $script->difficulty == 5 ? 'selected' : '' ?>>Très Difficile</option>
-                    </select>
+                    class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 my-3 form_desc">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description" rows="6"
+                        required><?= $script->description ?></textarea>
+                </div>
+                <div class="d-flex justify-content-center align-items-center gap-5 my-5">
+                    <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
+                        <label for=" content">Message de victoire</label>
+                        <textarea class="form-control" name="winner_msg" id="content" rows="3"
+                            required><?= $script->winner_msg ?></textarea>
+                    </div>
+                    <div
+                        class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_lose">
+                        <label for="content">Message de défaite</label>
+                        <textarea class="form-control" name="lost_msg" id="content" rows="3"
+                            required><?= $script->lost_msg ?></textarea>
+                    </div>
                 </div>
                 <div
-                    class="form-group form_duration d-flex justify-content-center align-items-center flex-column gap-2">
-                    <label class="d-flex justify-content-center align-items-center gap-1" for="duration">Durée en
-                        minutes <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;">
-                        </iconify-icon></label>
-                    <input type="time" class="form-control" name="duration" id="duration" min="00:10" max="01:00"
-                        value="<?= $script->duration ?>">
+                    class="form-group d-flex justify-content-center align-items-center flex-column gap-1 my-5 form_picture w-100">
+                    <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+                    <input type="hidden" name="picture" id="picture" value="<?= $script->picture ?>">
+                    <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script"
+                        width="100px" height="100px" id="picturePreview">
+                    <img id="picturePreviewTemp">
+                </div>
+                <div class="d-flex gap-5">
+                    <div
+                        class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-50 form_difficulty">
+                        <label class="d-flex justify-content-center align-items-center gap-1"
+                            for="difficulty">Difficulté
+                            <iconify-icon icon="ri:lock-line"></iconify-icon> </label>
+                        <select class="form-control" name="difficulty" id="difficulty">
+                            <option value="1" <?= $script->difficulty == 1 ? 'selected' : '' ?>>Très Facile</option>
+                            <option value="2" <?= $script->difficulty == 2 ? 'selected' : '' ?>>Facile</option>
+                            <option value="3" <?= $script->difficulty == 3 ? 'selected' : '' ?>>Moyen</option>
+                            <option value="4" <?= $script->difficulty == 4 ? 'selected' : '' ?>>Difficile</option>
+                            <option value="5" <?= $script->difficulty == 5 ? 'selected' : '' ?>>Très Difficile</option>
+                        </select>
+                    </div>
+                    <div
+                        class="form-group form_duration d-flex justify-content-center align-items-center flex-column gap-2">
+                        <label class="d-flex justify-content-center align-items-center gap-1" for="duration">Durée en
+                            minutes <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;">
+                            </iconify-icon></label>
+                        <input type="time" class="form-control" name="duration" id="duration" min="00:10" max="01:00"
+                            value="<?= $script->duration ?>">
+                    </div>
                 </div>
             </div>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="id" value="<?= $script->id ?>">
+            <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres</p>
             <button type="submit" class="btn btn-primary my-4 w-100">Modifier</button>
         </form>
     </div>
@@ -102,6 +107,14 @@ $title = "modifier le scénario " . $params['script']->title;
             }
         }
 
+    });
+
+    const edit_plus = document.querySelector('.edit_plus');
+    const editPlus = document.querySelector('.editPlus');
+
+    editPlus.addEventListener('click', function () {
+        edit_plus.classList.remove('dnone');
+        editPlus.classList.add('dnone');
     });
 </script>
 

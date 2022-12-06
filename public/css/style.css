@@ -18,6 +18,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none !important;
+}
+
 input:-internal-autofill-selected {
     appearance: transparent !important;
     background-image: none !important;
