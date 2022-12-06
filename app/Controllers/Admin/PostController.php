@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Script;
 use App\Models\Tag;
 
 class PostController extends Controller {
@@ -13,8 +14,10 @@ class PostController extends Controller {
         $this->isAdmin();
 
         // $posts = (new Post($this->getDB()))->all();
+        $scripts = (new Script($this->getDB()))->all();
 
-        return $this->view('admin.post.index');
+
+        return $this->view('admin.post.index', compact('scripts'));
 
     }
 
