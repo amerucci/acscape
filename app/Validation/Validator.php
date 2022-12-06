@@ -49,7 +49,7 @@ class Validator {
         $limit = (int) $matches[0][0];
 
         if (strlen($value) < $limit) {
-            $this->errors[$name][] = "{$name} doit comprendre un minimum de {$limit} caractères";
+            $this->errors[$name][] = " Le {$name} doit comprendre un minimum de {$limit} caractères";
         }
     }
 

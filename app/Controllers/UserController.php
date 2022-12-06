@@ -67,7 +67,7 @@ class UserController extends Controller {
     
             if ($errors) {
                 $_SESSION['errors'][] = $errors;
-                header('Location: register');
+                header('Location: login');
                 exit;
             }
     

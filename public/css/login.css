@@ -97,6 +97,11 @@
     font-size: 12px;
 }
 
+.focus_on:focus {
+    position: absolute;
+}
+
+
 .btn_login_register {
     position: absolute;
     right: 5%;
@@ -162,4 +167,6 @@
 
 .alert-danger {
     --bs-alert-bg: transparent;
+    color: #D31E44;
+    font-weight: bold;
 }

@@ -1,6 +1,11 @@
 <?= $title = "Se connecter"; ?>
 
+
+
+
+
 <?php session_destroy(); ?>
+
 
 <div class="background_login_register"></div>
 <div class="imageHeaderTop">
@@ -12,6 +17,26 @@
     <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
 
     <div class="login-box">
+
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
+        <div class="alert alert-danger">
+            <li>Le mot de passe ou le pseudo est incorrect</li>
+        </div>
+        <?php endif ?>
+
+        <?php if (isset($_SESSION['errors'])): ?>
+
+        <?php foreach($_SESSION['errors'] as $errorsArray): ?>
+        <?php foreach($errorsArray as $errors): ?>
+        <div class="alert alert-danger">
+            <?php foreach($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach ?>
+        </div>
+        <?php endforeach ?>
+        <?php endforeach ?>
+
+        <?php endif ?>
 
         <div class="onglet_login_register">
             <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
@@ -30,12 +55,6 @@
             </div>
             <button type="submit" class="btn_login_register">Se connecter</button>
         </form>
-
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
-        <div class="alert alert-danger">
-            <li>Le mot de passe ou le pseudo est incorrect</li>
-        </div>
-        <?php endif ?>
 
     </div>
 </div>
@@ -82,8 +101,8 @@
             }
             const inputEmail = document.createElement('div');
             inputEmail.classList.add('user-box');
-            inputEmail.innerHTML = `<input type="email" name="email" required="">
-                <label>Adresse mail</label>`;
+            inputEmail.innerHTML = `<input type="text" name="email" id="email" required="">
+                <label class="focus_on">Adresse mail</label>`;
             formLogin.insertBefore(inputEmail, formLogin.childNodes[2]);
         }
     });
@@ -94,5 +113,5 @@
             alerteDanger[i].remove();
             window.history.replaceState({}, document.title, "/" + "acscape/login");
         }
-    }, 3000);
+    }, 2000);
 </script>
