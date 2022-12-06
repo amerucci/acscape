@@ -4,14 +4,14 @@
 $scripts = $params['scripts']; ?>
 
 
-<div class="container">
-    <a href='script/create'>Créer un scénario</a>
+<div class="container admin_container">
+    <a class="create_script my-5" href='script/create'>Créer un scénario</a>
 
     <div class="d-flex flex-wrap">
         <?php foreach ($scripts as $script) : ?>
         <?php if ($script->user_id == $_SESSION['user_id']): ?>
         <div class="card col-2 mx-2">
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-center align-items-center flex-column gap-1 card_script">
                 <img src="../assets/pictures/scripts/<?= $script->picture ?>" alt="<?= $script->title ?>"
                     class="card-img-top">
                 <h5 class="card-title"><?= $script->title ?></h5>

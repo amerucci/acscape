@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container admin_container">
     <h1><?= $params['post']->title ?? 'Créer un nouvel article' ?></h1>
 
     <form action="<?= isset($params['post']) ? "/admin/posts/edit/{$params['post']->id}" : "/admin/posts/create" ?>"

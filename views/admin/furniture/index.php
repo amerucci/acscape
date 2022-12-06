@@ -1,5 +1,5 @@
 <?php $title = "Administration des meubles"; ?>
-<div class="container">
+<div class="container admin_container">
     <a href="furniture/create">Créer un meuble</a>
 
 

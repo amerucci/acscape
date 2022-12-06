@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'show.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'admin.css' ?>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -149,11 +150,11 @@
         document.querySelector('.navbar').style.position = "relative";
     }
 
-    if (window.location.href.includes("admin")) {
-        document.querySelector('body').style.background = "white";
-    } else {
-        document.querySelector('body').style.background = "#1B1B1B";
-    }
+    // if (window.location.href.includes("admin")) {
+    //     document.querySelector('body').style.background = "white";
+    // } else {
+    //     document.querySelector('body').style.background = "#1B1B1B";
+    // }
 
     if (window.location.href.includes("ingame")) {
         document.querySelector('.navbar').style.color = "white";

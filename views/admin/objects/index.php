@@ -1,5 +1,5 @@
 <?php $title = "Administration des objets"; ?>
-<div class="container">
+<div class="container admin_container">
     <a href="create">Créer un objet</a>
 
     <?php if (count($params['objects']) == 0) : ?>
