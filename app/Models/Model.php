@@ -25,6 +25,7 @@ abstract class Model {
         return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id ORDER BY id DESC");
     }
 
+
     public function allByRoomId(int $id)
     {
         return $this->query("SELECT * FROM {$this->table} WHERE room_id = $id ORDER BY id DESC");
@@ -152,6 +153,8 @@ abstract class Model {
     {
         return $this->db->getPDO()->lastInsertId();
     }
+
+   
 
 
 }

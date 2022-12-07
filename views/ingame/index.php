@@ -11,11 +11,11 @@
         <p class="m-0 frisk_modal">fouiller</p>
     </div>
 
-    <div class="inventories d-flex justify-content-center align-items-center gap-2" data-toggle=" modal"
+    <!-- <div class="inventories d-flex justify-content-center align-items-center gap-2" data-toggle=" modal"
         data-target="#inventoriesModal">
         <iconify-icon icon="ph:suitcase-simple-bold"></iconify-icon>
         <p class="m-0 inventories_modal">votre inventaire</p>
-    </div>
+    </div> -->
 </div>
 
 <!-- Modal rooms-->
@@ -36,22 +36,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="m-0 rooms_list  ">
-                    vous n'avez pas encore découvert d'autres salles.
-                </p>
-
-                <div id="rooms">
-                    <?php 
-                        $rooms = $params['room'];
-
-                        foreach ($rooms as $room) {
-                            if ($room->script_id == 54) {
-                                echo '<div class="room d-flex justify-content-center align-items-center gap-2" data-toggle="modal" data-target="#roomModal">
-                                        <p class="m-0 room_modal">' . $room->title . '</p>
-                                    </div>';
-                            }
-                        }
-                        ?>
+                <div class="m-0 rooms_list  ">
+                    <!-- injection en js des salles -->
                 </div>
 
             </div>
@@ -87,7 +73,7 @@
                         data-toggle="modal" data-target="#furnitureModal">
                         <img src="assets/front/ingame/furnitures.png" alt="">
                         <div class="frisk_content">
-                            <p class="frisk_title m-0 furniture_modal">ouvrir</p>
+                            <p class="frisk_title m-0 furniture_modal w-100 text-center">Ouvrir</p>
                         </div>
                     </div>
                     <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
@@ -112,7 +98,7 @@
 </div>
 
 <!-- Modal inventories -->
-<div class="modal fade modal-lg" id="inventoriesModal" tabindex="-1" role="dialog"
+<!-- <div class="modal fade modal-lg" id="inventoriesModal" tabindex="-1" role="dialog"
     aria-labelledby="inventoriesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -130,7 +116,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- Modal furniture -->
@@ -186,24 +172,27 @@
 </div>
 
 
-<!-- <?php 
-$rooms = $params['room'];
+<?php 
+$rooms = $params['json'];
 
-foreach ($rooms as $room) {
-    // var_dump($room->script_id);
-    if ($room->script_id == 54) {
-        var_dump($room->script_id);
-    }
-}
+// // envoyer les données de la room récupérable en javascript
+echo '<script>const rooms = ' . $rooms . '</script>';
 
 
-?> -->
+// foreach ($rooms as $room) {
+//     // var_dump($room->script_id);
+//     if ($room->script_id == 54) {
+//     }
+// }
+
+
+?>
 
 
 <script>
     const the_rooms = document.querySelector('.the_rooms');
     const frisk = document.querySelector('.frisk');
-    const inventories = document.querySelector('.inventories');
+    // const inventories = document.querySelector('.inventories');
     const furniture_modal = document.querySelector('.furniture_modal');
     the_rooms.addEventListener('click', function () {
         document.querySelector('#roomsModal').classList.add('show');
@@ -214,10 +203,10 @@ foreach ($rooms as $room) {
         document.querySelector('#friskModal').style.display = 'block';
         document.querySelector('#friskModal').style.opacity = '1';
     });
-    inventories.addEventListener('click', function () {
-        document.querySelector('#inventoriesModal').classList.add('show');
-        document.querySelector('#inventoriesModal').style.display = 'block';
-    });
+    // inventories.addEventListener('click', function () {
+    //     document.querySelector('#inventoriesModal').classList.add('show');
+    //     document.querySelector('#inventoriesModal').style.display = 'block';
+    // });
     furniture_modal.addEventListener('click', function () {
         document.querySelector('#furnitureModal').classList.add('show');
         document.querySelector('#furnitureModal').style.display = 'block';
@@ -233,11 +222,50 @@ foreach ($rooms as $room) {
             document.querySelector('#roomsModal').style.display = 'none';
             document.querySelector('#friskModal').classList.remove('show');
             document.querySelector('#friskModal').style.display = 'none';
-            document.querySelector('#inventoriesModal').classList.remove('show');
-            document.querySelector('#inventoriesModal').style.display = 'none';
+            // document.querySelector('#inventoriesModal').classList.remove('show');
+            // document.querySelector('#inventoriesModal').style.display = 'none';
             document.querySelector('#furnitureModal').classList.remove('show');
             document.querySelector('#furnitureModal').style.display = 'none';
 
         });
     });
+
+
+    const roomsList = document.querySelector('.rooms_list');
+
+
+    let li
+    // boucle for pour naviguer dans le json $rooms
+    for (let i = 0; i < rooms['room'].length; i++) {
+
+        li = document.createElement('li');
+        li.classList.add('rooms_list_item', `nb-${i}`);
+
+        li.innerHTML = rooms['room'][i]['title'];
+        roomsList.appendChild(li);
+        if (rooms['room'][i]['padlock'] == "yes") {
+            roomsList.appendChild(li).style.color = 'red';
+        }
+        if (rooms['room'][i]['padlock'] == "no") {
+            roomsList.appendChild(li).style.color = 'black';
+        }
+    }
+
+
+
+
+    const roomsArray = [];
+    for (let i = 3; i <= 10; i++) {
+        roomsArray.push(roomsList.childNodes[i]);
+    }
+    roomsArray[1].addEventListener('click', function () {
+        rooms['room'][1]['padlock'] = "no";
+        roomsArray[1].style.color = 'black';
+    });
+
+
+
+    // const rooms1 = roomsList.childNodes[3];
+    // const rooms2 = roomsList.childNodes[4];
+    // const rooms3 = roomsList.childNodes[5];
 </script>

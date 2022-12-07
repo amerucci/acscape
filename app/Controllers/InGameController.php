@@ -3,15 +3,23 @@
 namespace App\Controllers;
 
 use App\models\room;
+use App\models\furniture;
 
 class InGameController extends Controller {
 
     public function index()
     {
         $room = new Room($this->getDB());
-        $room = $room->all();
+        $room = $room->allByScriptId(54);
+        $furniture = new Furniture($this->getDB());
+        $furniture = $furniture->allByRoomId(54);
 
-        return $this->view('ingame.index', compact('room'));
+        $data =  [
+            'room' => $room,
+            'furniture' => $furniture];
+        $json = json_encode($data);
+
+        return $this->view('ingame.index', compact('room', 'json'));
     }
 
     public function show()
