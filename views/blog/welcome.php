@@ -109,7 +109,8 @@
 
             <!-- ********************* -->
 
-            <a class="discover_all_game px-3 my-5 d-flex justify-content-center align-items-center" href="#">Découvrir
+            <a class="discover_all_game px-3 my-5 d-flex justify-content-center align-items-center"
+                href="/acscape/index">Découvrir
                 Tous Nos Escape Games</a>
 
         </div>
