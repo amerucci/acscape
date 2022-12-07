@@ -50,14 +50,14 @@ $title = "Modifier la salle {$room->title}";
 
 
         <p>---------------------------</p>
-
-        <div>
+        <h3 class="m-0">Liste des meubles</h3>
+        <div class="d-flex justify-content-center align-items-center flex-column">
             <a href="/acscape/admin/furniture/create" class="btn btn-primary my-2">Ajouter un meuble</a>
             <div class="d-flex">
                 <?php foreach ($params['furnitures'] as $furniture) : ?>
                 <?php if ($furniture->room_id == $_SESSION['room_id']) : ?>
-                <div class="card mx-2">
-                    <div class="card-body">
+                <div class="card mx-2 card_furniture">
+                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?= $furniture->description ?></p>
                         <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>" class="btn btn-primary">Editer</a>

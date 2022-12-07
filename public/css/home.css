@@ -36,6 +36,7 @@
     font-style: normal;
     font-weight: 700;
     font-family: 'Montserrat';
+    user-select: none;
 }
 
 .hook>h1>span {
@@ -52,6 +53,7 @@
     letter-spacing: 12px;
     color: white;
     margin: 0;
+    user-select: none;
 }
 
 .hook a:hover {
@@ -128,17 +130,6 @@
     position: relative;
 }
 
-/* .hook>div.line_text>.line::before {
-    content: "";
-    width: 100px;
-    height: 2px;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 1);
-    top: 0;
-    left: 0;
-} */
-
-
 .line_text {
     min-width: 619px;
 }
@@ -188,6 +179,7 @@
     font-size: 50px;
     line-height: 61px;
     color: white;
+
 }
 
 .content_home_game {

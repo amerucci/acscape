@@ -27,7 +27,8 @@ $objects = $params['objects'];
                         </p>
                         <p class="m-0">&#x2022; Les meubles sont des composants qui peuvent être ouverts ou vérouillés
                         </p>
-                        <p class="m-0">&#x2022; Si vous choisissez de le vérouillé, vous aurez accès à une liste de
+                        <p class="m-0">&#x2022; Si vous choisissez de vérouiller le meuble, vous aurez accès à une liste
+                            de
                             mini-jeux pour pouvoir le dévérouiller</p>
                         <p class="m-0">&#x2022; Une fois dévérouillé votre meuble pourra donner au joueur plusieurs
                             choses, comme
