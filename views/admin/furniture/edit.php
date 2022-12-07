@@ -4,9 +4,9 @@ $title = "Modification du meuble"; ?>
 <div class="container admin_container">
     <h1 class="text-center">Modification du meuble</h1>
 
-    <div class="d-flex justify-content-center align-items-center flex-column gap-5">
+    <div class="d-flex justify-content-center align-items-center flex-column gap-5 w-100">
         <form action="/acscape/admin/furniture/edit/<?= $furniture->id ?>" method="post" enctype="multipart/form-data"
-            class="d-flex justify-content-center align-items-center flex-column gap-3 w-75">
+            class="d-flex justify-content-center align-items-center flex-column gap-3 w-50">
             <div class="form-group form_name w-100 d-flex justify-content-center align-items-center flex-column">
                 <label for="title">Titre</label>
                 <input type="text" class="form-control" id="title" name="title" value="<?= $furniture->title ?>"
@@ -57,6 +57,7 @@ $title = "Modification du meuble"; ?>
                         <option value="no" <?= $furniture->padlock == 'no' ? 'selected' : '' ?>>Non</option>
                         <option value="yes" <?= $furniture->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
                     </select>
+                    <a class="dnone padlock_params" href="/acscape/admin/padlock">Paramètre de la serrure</a>
                 </div>
                 <div class="form-group form_object d-flex justify-content-center align-items-center flex-column">
                     <label for="object">Objet</label>
@@ -73,31 +74,33 @@ $title = "Modification du meuble"; ?>
                 </div>
             </div>
 
-            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-            <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
-            <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
+            <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user_id'] ?>">
+            <input type="hidden" name="script_id" id="script_id" value="<?= $_SESSION['script_id'] ?>">
+            <input type="hidden" name="room_id" id="room_id" value="<?= $_SESSION['room_id'] ?>">
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
 
 
 
-    <div class="d-flex justify-content-center align-items-center flex-column">
+    <div class="d-flex justify-content-center align-items-center flex-column mb-5">
 
         <h2 class="mt-5">objet lié à ce meuble</h2>
-        <a href="/acscape/admin/objects/create" class="btn btn-primary">Créer un objet</a>
-        <div class="d-flex mx-2">
+        <a href="/acscape/admin/objects/create" class="btn btn-primary my-2">Créer un objet</a>
+        <div class="d-flex mx-2 justify-content-center align-items-center flex-column gap-2">
             <?php foreach ($params['object'] as $object) : ?>
             <?php if ($furniture->object_id == $object->id) : ?>
-            <div class="card" style="width: 18rem;">
-                <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" class="card-img-top" alt="...">
-                <div class="card-body">
+            <div class="card" style="width: 12rem;">
+                <div class="card-body card_objects d-flex justify-content-center align-items-center flex-column">
+                    <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" class="card-img-top" alt="...">
                     <h5 class="card-title"><?= $object->title ?></h5>
                     <p class="card-text"><?= $object->description ?></p>
-                    <a href="/acscape/admin/objects/edit/<?= $object->id ?>" class="btn btn-primary">Modifier</a>
-                    <form action="/acscape/admin/objects/destroy/<?= $object->id ?>" method="post">
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
+                    <div class="d-flex justify-content-center align-items-center flex-column gap-2">
+                        <a href="/acscape/admin/objects/edit/<?= $object->id ?>" class="btn btn-primary">Modifier</a>
+                        <form action="/acscape/admin/objects/destroy/<?= $object->id ?>" method="post">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <?php endif; ?>
@@ -105,9 +108,6 @@ $title = "Modification du meuble"; ?>
         </div>
     </div>
 </div>
-
-<?php var_dump($_SESSION); ?>
-
 
 
 <script>
@@ -118,6 +118,7 @@ $title = "Modification du meuble"; ?>
             let newClue = document.createElement('textarea');
             newClue.setAttribute('name', 'clue' + i);
             newClue.setAttribute('id', 'clue' + i);
+            newClue.setAttribute('placeholder', 'Indice ' + i);
             newClue.setAttribute('class', 'form-control mt-2');
             document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
                 'addClue'));
@@ -153,8 +154,24 @@ $title = "Modification du meuble"; ?>
                 let picturePreview = document.getElementById('picturePreview');
                 picturePreview.remove();
                 picturePreviewTemp.src = URL.createObjectURL(file)
+                picturePreviewTemp.width = 100;
+                picturePreviewTemp.height = 100;
             }
         }
 
+    });
+
+    let padlock = document.getElementById('padlock');
+    let padlockParams = document.querySelector('.padlock_params');
+    if (padlock.value === 'yes') {
+        padlockParams.classList.remove('dnone');
+    }
+
+    padlock.addEventListener('change', function () {
+        if (padlock.value === 'yes') {
+            padlockParams.classList.remove('dnone');
+        } else {
+            padlockParams.classList.add('dnone');
+        }
     });
 </script>

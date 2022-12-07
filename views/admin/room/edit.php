@@ -12,34 +12,38 @@ $title = "Modifier la salle {$room->title}";
                 <label for="title">Titre</label>
                 <input type="text" name="title" id="title" class="form-control" value="<?= $room->title ?>" required>
             </div>
-            <div class="form-group form_desc d-flex justify-content-center align-items-center flex-column w-100">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" cols="30" rows="10" class="form-control"
-                    required><?= $room->description ?></textarea>
-            </div>
-            <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
-                <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
-                <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
-                <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
-                    height="100px" id="picturePreview">
-                <img id="picturePreviewTemp">
-            </div>
-            <div class="d-flex justify-content-center align-items-center gap-5">
-                <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
-                    <label for="padlock">Serrure</label>
-                    <select name="padlock" id="padlock" class="form-control">
-                        <option value="no" <?= $room->padlock == 'no' ? 'selected' : '' ?>>Non</option>
-                        <option value="yes" <?= $room->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
-                    </select>
+            <div class="dnone edit_plus d-flex justify-content-center align-items-center flex-column gap-3">
+                <div class="form-group form_desc d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"
+                        required><?= $room->description ?></textarea>
                 </div>
-                <div class="form-group form_room_start d-flex justify-content-center align-items-center flex-column">
-                    <label for="start">Salle de départ</label>
-                    <select name="start" id="start" class="form-control">
-                        <option value="0" <?= $room->start == 0 ? 'selected' : '' ?>>Non</option>
-                        <option value="1" <?= $room->start == 1 ? 'selected' : '' ?>>Oui</option>
-                    </select>
+                <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
+                    <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
+                    <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
+                    <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
+                        height="100px" id="picturePreview">
+                    <img id="picturePreviewTemp">
+                </div>
+                <div class="d-flex justify-content-center align-items-center gap-5">
+                    <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
+                        <label for="padlock">Serrure</label>
+                        <select name="padlock" id="padlock" class="form-control">
+                            <option value="no" <?= $room->padlock == 'no' ? 'selected' : '' ?>>Non</option>
+                            <option value="yes" <?= $room->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
+                        </select>
+                    </div>
+                    <div
+                        class="form-group form_room_start d-flex justify-content-center align-items-center flex-column">
+                        <label for="start">Salle de départ</label>
+                        <select name="start" id="start" class="form-control">
+                            <option value="0" <?= $room->start == 0 ? 'selected' : '' ?>>Non</option>
+                            <option value="1" <?= $room->start == 1 ? 'selected' : '' ?>>Oui</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+            <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres de la salle</p>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
             <button type="submit" class="btn btn-primary my-1 w-100">Editer</button>
@@ -60,8 +64,8 @@ $title = "Modifier la salle {$room->title}";
                     <div class="card-body d-flex justify-content-center align-items-center flex-column">
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?= $furniture->description ?></p>
-                        <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>" class="btn btn-primary">Editer</a>
-                        <!--form for destroy -->
+                        <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>"
+                            class="btn btn-primary my-1">Editer</a>
                         <form action="/acscape/admin/furniture/delete/<?= $furniture->id ?>" method="post">
                             <input type="hidden" name="id" value="<?= $furniture->id ?>">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
@@ -107,5 +111,13 @@ $title = "Modifier la salle {$room->title}";
             }
         }
 
+    });
+
+    const edit_plus = document.querySelector('.edit_plus');
+    const editPlus = document.querySelector('.editPlus');
+
+    editPlus.addEventListener('click', function () {
+        edit_plus.classList.remove('dnone');
+        editPlus.classList.add('dnone');
     });
 </script>

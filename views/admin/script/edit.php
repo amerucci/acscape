@@ -69,7 +69,7 @@ $title = "modifier le scénario " . $params['script']->title;
             </div>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="id" value="<?= $script->id ?>">
-            <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres</p>
+            <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres du scénario</p>
             <button type="submit" class="btn btn-primary my-4 w-100">Modifier</button>
         </form>
     </div>

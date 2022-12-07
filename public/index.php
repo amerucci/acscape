@@ -85,6 +85,15 @@ $router->get('/admin/interactions/edit/:id', 'App\Controllers\Admin\Interactions
 $router->post('/admin/interactions/edit/:id', 'App\Controllers\Admin\InteractionsController@update');
 $router->get('/admin/interactions/show/:id', 'App\Controllers\Admin\InteractionsController@show');
 
+// gestion padlock
+$router->get('/admin/padlock', 'App\Controllers\Admin\PadlockController@index');
+$router->get('/admin/padlock/create', 'App\Controllers\Admin\PadlockController@create');
+$router->post('/admin/padlock/create', 'App\Controllers\Admin\PadlockController@createPadlock');
+$router->post('/admin/padlock/delete/:id', 'App\Controllers\Admin\PadlockController@destroy');
+$router->get('/admin/padlock/edit/:id', 'App\Controllers\Admin\PadlockController@edit');
+$router->post('/admin/padlock/edit/:id', 'App\Controllers\Admin\PadlockController@update');
+$router->get('/admin/padlock/show/:id', 'App\Controllers\Admin\PadlockController@show');
+
 
 // le gamecontroller admin
 $router->get('/admin/game', 'App\Controllers\Admin\GameController@index');  // affiche la page de création des paramètres du jeu

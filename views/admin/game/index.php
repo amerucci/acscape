@@ -61,12 +61,12 @@ $objects = $params['objects'];
         </div>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center flex-column">
+    <div class="d-flex justify-content-center align-items-center flex-column my-4">
         <h1 class="my-3">Objets</h1>
         <a href="objects/create">Créer un objet</a>
         <div class="d-flex align-items-center gap-2">
             <?php foreach ($objects as $object) : ?>
-            <div class="card col-2 mx-2">
+            <div class="card col-2 mx-2 d-flex justify-content-center align-items-center">
                 <div class="card-body card_objects d-flex justify-content-center align-items-center flex-column gap-2">
                     <h5 class="card-title"><?= $object->title ?></h5>
                     <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" alt="image" width="100px"
