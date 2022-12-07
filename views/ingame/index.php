@@ -25,6 +25,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mx-auto" id="roomsModalLabel">Les salles disponibles</h5>
+
+
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
@@ -36,6 +39,21 @@
                 <p class="m-0 rooms_list  ">
                     vous n'avez pas encore découvert d'autres salles.
                 </p>
+
+                <div id="rooms">
+                    <?php 
+                        $rooms = $params['room'];
+
+                        foreach ($rooms as $room) {
+                            if ($room->script_id == 54) {
+                                echo '<div class="room d-flex justify-content-center align-items-center gap-2" data-toggle="modal" data-target="#roomModal">
+                                        <p class="m-0 room_modal">' . $room->title . '</p>
+                                    </div>';
+                            }
+                        }
+                        ?>
+                </div>
+
             </div>
         </div>
     </div>
@@ -166,6 +184,21 @@
         </div>
     </div>
 </div>
+
+
+<!-- <?php 
+$rooms = $params['room'];
+
+foreach ($rooms as $room) {
+    // var_dump($room->script_id);
+    if ($room->script_id == 54) {
+        var_dump($room->script_id);
+    }
+}
+
+
+?> -->
+
 
 <script>
     const the_rooms = document.querySelector('.the_rooms');

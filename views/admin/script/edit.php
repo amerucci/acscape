@@ -62,7 +62,7 @@ $title = "modifier le scénario " . $params['script']->title;
                         <label class="d-flex justify-content-center align-items-center gap-1" for="duration">Durée en
                             minutes <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;">
                             </iconify-icon></label>
-                        <input type="time" class="form-control" name="duration" id="duration" min="00:10" max="01:00"
+                        <input type="number" class="form-control" name="duration" id="duration" min="10" max="60"
                             value="<?= $script->duration ?>">
                     </div>
                 </div>

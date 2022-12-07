@@ -114,4 +114,18 @@
             window.history.replaceState({}, document.title, "/" + "acscape/login");
         }
     }, 2000);
+
+
+    // regex password
+    const password = document.querySelectorAll('input[type="password"]');
+    for (let i = 0; i < password.length; i++) {
+        password[i].addEventListener('keyup', function () {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+            if (regex.test(password[i].value)) {
+                password[i].style.borderBottom = "2px solid #00ff00";
+            } else {
+                password[i].style.borderBottom = "2px solid #ff0000";
+            }
+        });
+    }
 </script>
