@@ -20,8 +20,8 @@ $scripts = $params['scripts']; ?>
                     <p class="">Comment créer son jeu ?</p>
                     <p class="m-0">&#x2022; Une fois le scénario créé, vous pouvez l'éditer</p>
                     <p class="m-0">&#x2022; L'édition vous permet d'avoir accès à l'option 'création du jeu' </p>
-                    <p class="m-0">&#x2022; 'création du jeu' vous permets de créer des pièces, meubles et objets pour
-                        le scénario choisi</p>
+                    <p class="m-0">&#x2022; 'création du jeu' vous permets de créer des pièces auxquelles vous pouvez
+                        y associer des meubles</p>
                 </div>
             </div>
         </div>

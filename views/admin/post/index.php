@@ -30,7 +30,8 @@
                     <p class="m-0">&#x2022; Vous pourrez alors ajouter des indices, des énigmes et des réponses aux
                         meubles et
                         pièces</p>
-                    <p class="m-0"></p>
+                    <p class="m-0">&#x2022; Le but du jeu sera de franchir toute les pièces, et une fois arrivé.e à la
+                        dernière pièce la partie sera gagnée, et affichera votre message de victoire.</p>
 
                 </div>
             </div>

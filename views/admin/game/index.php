@@ -22,22 +22,23 @@ $objects = $params['objects'];
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body d-flex justify-content-center flex-column">
-                        <p class="">Ici vous pourrez créer vos salles et objets</p>
+                        <p class="">Ici vous pourrez créer vos salles</p>
                         <p class="m-0">&#x2022; Une fois une salle créée depuis son édition vous aurez accès aux meubles
+                            lié à la salle.
                         </p>
+                        <p class="m-0">&#x2022; <bold>La première salle sera forcément ouverte</bold>, et sera
+                            considérée comme votre salle de départ. </p>
+                        <p class="m-0">&#x2022; <bold>Les salles suivantes seront vérouillées</bold>, et vous devrez
+                            déterminer un mot, ou un nombre, pour dévérouiller la pièce.</p>
                         <p class="m-0">&#x2022; Les meubles sont des composants qui peuvent être ouverts ou vérouillés
                         </p>
-                        <p class="m-0">&#x2022; Si vous choisissez de vérouiller le meuble, vous aurez accès à une liste
-                            de
-                            mini-jeux pour pouvoir le dévérouiller</p>
+                        <p class="m-0">&#x2022; Si vous choisissez de vérouiller le meuble, vous devrez vous assurez
+                            d'avoir laissé.e suffisament d'indices pour le dévérouiller, ou bien par cheminement logique
+                            des réponses
+                            précédentes</p>
                         <p class="m-0">&#x2022; Une fois dévérouillé votre meuble pourra donner au joueur plusieurs
                             choses, comme
-                            un message, un objet, un accès à une nouvelle salle</p>
-                        <p class="m-0">Les objets peuvent être créé depuis cette page, et pourront être ensuite appelé
-                            dans vos meubles</p>
-                        <p class="m-0">Ces objets pourront comporter des indices pour aider le joueur à résoudre votre
-                            scénario</p>
-
+                            un message, un indice pour dévérouiller l'accès à une nouvelle salle etc.</p>
                     </div>
                 </div>
             </div>
