@@ -9,8 +9,8 @@ $title = "Modification du meuble"; ?>
             class="d-flex justify-content-center align-items-center flex-column gap-3 w-50">
             <div class="form-group form_name w-100 d-flex justify-content-center align-items-center flex-column">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title" value="<?= $furniture->title ?>"
-                    required>
+                <input type="text" class="form-control" id="title" name="title"
+                    value="<?= htmlspecialchars($furniture->title) ?>" required>
             </div>
             <div class="form-group form_picture w-100 d-flex justify-content-center align-items-center flex-column">
                 <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
@@ -22,12 +22,13 @@ $title = "Modification du meuble"; ?>
             <div class="form-group form_desc w-100 d-flex justify-content-center align-items-center flex-column">
                 <label for="description">Description</label>
                 <textarea class="form-control" id="description" name="description" rows="6"
-                    required><?= $furniture->description ?></textarea>
+                    required><?=htmlspecialchars($furniture->description) ?></textarea>
             </div>
             <div class="d-flex gap-5">
                 <div class="form-group form_action d-flex justify-content-center align-items-center flex-column">
                     <label for="action">Action</label>
-                    <input type="text" class="form-control" id="action" name="action" value="<?= $furniture->action ?>">
+                    <input type="text" class="form-control" id="action" name="action"
+                        value="<?= htmlspecialchars($furniture->action) ?>">
                 </div>
                 <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
                     <label for="padlock">Serrure</label>
@@ -56,11 +57,12 @@ $title = "Modification du meuble"; ?>
                 <label for="title">Solution pour le dévérouillage</label>
                 <input type="text" name="unlock_word" id="unlock_word" class="form-control"
                     placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
-                    value="<?= $furniture->unlock_word ?>">
+                    value="<?= htmlspecialchars($furniture->unlock_word) ?>">
             </div>
             <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="clue">Indice</label>
-                <input type="text" class="form-control" id="clue" name="clue" value="<?= $furniture->clue ?>">
+                <textarea type="textarea" class="form-control" id="clue"
+                    name="clue"><?= htmlspecialchars($furniture->clue) ?></textarea>
                 <?php if (!$furniture->clue2): ?>
                 <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                 <?php endif; ?>
@@ -68,7 +70,8 @@ $title = "Modification du meuble"; ?>
             <?php if ($furniture->clue2) : ?>
             <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="clue2">Indice 2</label>
-                <input type="text" class="form-control" id="clue2" name="clue2" value="<?= $furniture->clue2 ?>">
+                <textarea type="textarea" class="form-control" id="clue2"
+                    name="clue2"><?= htmlspecialchars($furniture->clue2)?></textarea>
                 <?php if (!$furniture->clue3): ?>
                 <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                 <?php endif; ?>
@@ -77,26 +80,29 @@ $title = "Modification du meuble"; ?>
             <?php if ($furniture->clue3) : ?>
             <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="clue3">Indice 3</label>
-                <input type="text" class="form-control" id="clue3" name="clue3" value="<?= $furniture->clue3 ?>">
+                <textarea type="textarea" class="form-control" id="clue3"
+                    name="clue3"><?= htmlspecialchars($furniture->clue3) ?></textarea>
             </div>
             <?php endif; ?>
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Récompense du dévérouillage</label>
                 <input type="text" name="reward" id="reward" class="form-control"
                     placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
-                    value="<?= $furniture->reward ?>" required>
+                    value="<?= htmlspecialchars($furniture->reward) ?>" required>
             </div>
+
+            <?= $furniture->reward ?>
 
             <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="script_id" id="script_id" value="<?= $_SESSION['script_id'] ?>">
             <input type="hidden" name="room_id" id="room_id" value="<?= $_SESSION['room_id'] ?>">
-            <button type="submit" class="btn btn-primary">Modifier</button>
+            <button type="submit" class="btn btn-primary w-100 mb-5">Modifier</button>
         </form>
     </div>
 
 
 
-    <div class="d-flex justify-content-center align-items-center flex-column mb-5">
+    <!-- <div class="d-flex justify-content-center align-items-center flex-column mb-5">
 
         <h2 class="mt-5">objet lié à ce meuble</h2>
         <a href="/acscape/admin/objects/create" class="btn btn-primary my-2">Créer un objet</a>
@@ -119,7 +125,7 @@ $title = "Modification du meuble"; ?>
             <?php endif; ?>
             <?php endforeach; ?>
         </div>
-    </div>
+    </div> -->
 </div>
 
 

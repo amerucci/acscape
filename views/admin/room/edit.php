@@ -10,13 +10,14 @@ $title = "Modifier la salle {$room->title}";
             class="d-flex justify-content-center align-items-center flex-column gap-2 w-50">
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Titre</label>
-                <input type="text" name="title" id="title" class="form-control" value="<?= $room->title ?>" required>
+                <input type="text" name="title" id="title" class="form-control"
+                    value="<?=htmlspecialchars($room->title) ?>" required>
             </div>
             <div class="dnone edit_plus d-flex justify-content-center align-items-center flex-column gap-3">
                 <div class="form-group form_desc d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10" class="form-control"
-                        required><?= $room->description ?></textarea>
+                        required><?=htmlspecialchars($room->description) ?></textarea>
                 </div>
                 <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
                     <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
@@ -46,11 +47,12 @@ $title = "Modifier la salle {$room->title}";
                     <label for="title">Solution pour le dévérouillage</label>
                     <input type="text" name="unlock_word" id="unlock_word" class="form-control"
                         placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
-                        value="<?= $room->unlock_word ?>">
+                        value="<?=htmlspecialchars($room->unlock_word) ?>">
                 </div>
                 <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="clue">Indice</label>
-                    <input type="text" class="form-control" id="clue" name="clue" value="<?= $room->clue ?>">
+                    <textarea type="textarea" class="form-control" id="clue"
+                        name="clue"><?= htmlspecialchars($room->clue) ?></textarea>
                     <?php if (!$room->clue2): ?>
                     <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                     <?php endif; ?>
@@ -58,7 +60,8 @@ $title = "Modifier la salle {$room->title}";
                 <?php if ($room->clue2) : ?>
                 <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="clue2">Indice 2</label>
-                    <input type="text" class="form-control" id="clue2" name="clue2" value="<?= $room->clue2 ?>">
+                    <textarea type="textarea" class="form-control" id="clue2"
+                        name="clue2"><?= htmlspecialchars($room->clue2)?></textarea>
                     <?php if (!$room->clue3): ?>
                     <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                     <?php endif; ?>
@@ -67,7 +70,8 @@ $title = "Modifier la salle {$room->title}";
                 <?php if ($room->clue3) : ?>
                 <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="clue3">Indice 3</label>
-                    <input type="text" class="form-control" id="clue3" name="clue3" value="<?= $room->clue3 ?>">
+                    <textarea type="textarea" class="form-control" id="clue3"
+                        name="clue3"><?= htmlspecialchars($room->clue3) ?></textarea>
                 </div>
                 <?php endif; ?>
 

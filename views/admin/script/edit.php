@@ -13,26 +13,27 @@ $title = "modifier le scénario " . $params['script']->title;
             class="w-75">
             <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_name">
                 <label for="name">Nom du scénario</label>
-                <input type="text" class="form-control" name="title" id="title" value="<?= $script->title ?>" required>
+                <input type="text" class="form-control" name="title" id="title"
+                    value="<?= htmlspecialchars($script->title) ?>" required>
             </div>
             <div class="edit_plus dnone">
                 <div
                     class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 my-3 form_desc">
                     <label for="description">Description</label>
                     <textarea class="form-control" name="description" id="description" rows="6"
-                        required><?= $script->description ?></textarea>
+                        required><?= htmlspecialchars($script->description) ?></textarea>
                 </div>
                 <div class="d-flex justify-content-center align-items-center gap-5 my-5">
                     <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
                         <label for=" content">Message de victoire</label>
                         <textarea class="form-control" name="winner_msg" id="content" rows="3"
-                            required><?= $script->winner_msg ?></textarea>
+                            required><?= htmlspecialchars($script->winner_msg) ?></textarea>
                     </div>
                     <div
                         class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_lose">
                         <label for="content">Message de défaite</label>
                         <textarea class="form-control" name="lost_msg" id="content" rows="3"
-                            required><?= $script->lost_msg ?></textarea>
+                            required><?= htmlspecialchars($script->lost_msg) ?></textarea>
                     </div>
                 </div>
                 <div
