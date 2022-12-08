@@ -17,14 +17,6 @@
                 <label for="description">Description</label>
                 <textarea name="description" id="description" class="form-control" rows="6" required></textarea>
             </div>
-            <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
-                <label for="clue">Indice</label>
-                <input type="text" name="clue" id="clue" class="form-control">
-                <!-- button for a new clue -->
-                <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
-                <p class="max"></p>
-            </div>
-
             <div class="d-flex justify-content-center align-items-center w-100 gap-3">
                 <div class="form-group d-flex justify-content-center align-items-center flex-column form_action">
                     <label for="action">Action</label>
@@ -37,7 +29,7 @@
                         <option value="no">Non</option>
                     </select>
                 </div>
-                <div class="form-group d-flex justify-content-center align-items-center flex-column form_object">
+                <!-- <div class="form-group d-flex justify-content-center align-items-center flex-column form_object">
                     <label for="object">Objet</label>
                     <select name="object_id" id="object" class="form-control">
                         <option value="0">Aucun</option>
@@ -46,15 +38,32 @@
                         <option value="<?= $object->id ?>"><?= $object->title ?></option>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </select>
-                </div>
+                    </select> -->
             </div>
-            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-            <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
-            <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
-            <button type="submit" class="btn btn-primary">Créer</button>
-        </form>
+            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                <label for="title">Solution pour le dévérouillage</label>
+                <input type="text" name="unlock_word" id="unlock_word" class="form-control"
+                    placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required>
+            </div>
+            <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
+                <label for="clue">Indice</label>
+                <input type="text" name="clue" id="clue" class="form-control" placeholder="indice 1">
+                <!-- button for a new clue -->
+                <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                <p class="max"></p>
+            </div>
+            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                <label for="title">Récompense du dévérouillage</label>
+                <input type="text" name="reward" id="reward" class="form-control"
+                    placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles" required>
+            </div>
     </div>
+    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+    <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
+    <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
+    <button type="submit" class="btn btn-primary">Créer</button>
+    </form>
+</div>
 </div>
 
 <script>

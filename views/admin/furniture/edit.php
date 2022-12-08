@@ -24,6 +24,40 @@ $title = "Modification du meuble"; ?>
                 <textarea class="form-control" id="description" name="description" rows="6"
                     required><?= $furniture->description ?></textarea>
             </div>
+            <div class="d-flex gap-5">
+                <div class="form-group form_action d-flex justify-content-center align-items-center flex-column">
+                    <label for="action">Action</label>
+                    <input type="text" class="form-control" id="action" name="action" value="<?= $furniture->action ?>">
+                </div>
+                <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
+                    <label for="padlock">Serrure</label>
+                    <select name="padlock" id="padlock" class="form-control">
+                        <option value="no" <?= $furniture->padlock == 'no' ? 'selected' : '' ?>>Non</option>
+                        <option value="yes" <?= $furniture->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
+                    </select>
+                    <a class="dnone padlock_params" href="/acscape/admin/padlock">Paramètre de la serrure</a>
+                </div>
+                <!-- <div class="form-group form_object d-flex justify-content-center align-items-center flex-column">
+                    <label for="object">Objet</label>
+                    <select name="object_id" id="object" class="form-control">
+                        <option value="0">Aucun</option>
+                        <?php foreach ($params['object'] as $object) : ?>
+                        <?php if ($object->user_id == $_SESSION['user_id'] && $object->script_id == $_SESSION['script_id']) : ?>
+                        <option value="<?= $object->id ?>"
+                            <?= $furniture->object_id == $object->id ? 'selected' : '' ?>>
+                            <?= $object->title ?></option>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                </div> -->
+            </div>
+
+            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                <label for="title">Solution pour le dévérouillage</label>
+                <input type="text" name="unlock_word" id="unlock_word" class="form-control"
+                    placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
+                    value="<?= $furniture->unlock_word ?>">
+            </div>
             <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="clue">Indice</label>
                 <input type="text" class="form-control" id="clue" name="clue" value="<?= $furniture->clue ?>">
@@ -46,32 +80,11 @@ $title = "Modification du meuble"; ?>
                 <input type="text" class="form-control" id="clue3" name="clue3" value="<?= $furniture->clue3 ?>">
             </div>
             <?php endif; ?>
-            <div class="d-flex gap-5">
-                <div class="form-group form_action d-flex justify-content-center align-items-center flex-column">
-                    <label for="action">Action</label>
-                    <input type="text" class="form-control" id="action" name="action" value="<?= $furniture->action ?>">
-                </div>
-                <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
-                    <label for="padlock">Serrure</label>
-                    <select name="padlock" id="padlock" class="form-control">
-                        <option value="no" <?= $furniture->padlock == 'no' ? 'selected' : '' ?>>Non</option>
-                        <option value="yes" <?= $furniture->padlock == 'yes' ? 'selected' : '' ?>>Oui</option>
-                    </select>
-                    <a class="dnone padlock_params" href="/acscape/admin/padlock">Paramètre de la serrure</a>
-                </div>
-                <div class="form-group form_object d-flex justify-content-center align-items-center flex-column">
-                    <label for="object">Objet</label>
-                    <select name="object_id" id="object" class="form-control">
-                        <option value="0">Aucun</option>
-                        <?php foreach ($params['object'] as $object) : ?>
-                        <?php if ($object->user_id == $_SESSION['user_id'] && $object->script_id == $_SESSION['script_id']) : ?>
-                        <option value="<?= $object->id ?>"
-                            <?= $furniture->object_id == $object->id ? 'selected' : '' ?>>
-                            <?= $object->title ?></option>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                <label for="title">Récompense du dévérouillage</label>
+                <input type="text" name="reward" id="reward" class="form-control"
+                    placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
+                    value="<?= $furniture->reward ?>" required>
             </div>
 
             <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user_id'] ?>">

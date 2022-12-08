@@ -68,9 +68,8 @@ async function getData() {
     const response = await fetch('/acscape/ingame/data');
     if (response.ok) {
         const data = await response.json();
-        dataGlobal = data['data']; // les données de dataGlobal
+        dataGlobal = data['data']; // les données global
     } else {
-        // l'appel fetch a échoué
         console.error('Erreur lors de la récupération des données :', response.statusText);
     }
 }

@@ -41,6 +41,10 @@ class RoomController extends Controller {
             'picture' => time().'_'.$_FILES['picture']['name'],
             'padlock' => $_POST['padlock'],
             'start' => $_POST['start'],
+            'unlock_word' => $_POST['unlock_word'],
+            'clue' => (isset($_POST['clue'])) ? $_POST['clue'] : null,
+            'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
+            'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
 
@@ -96,6 +100,10 @@ class RoomController extends Controller {
             'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
             'padlock' => $_POST['padlock'],
             'start' => $_POST['start'],
+            'unlock_word' => $_POST['unlock_word'],
+            'clue' => (isset($_POST['clue'])) ? $_POST['clue'] : null,
+            'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
+            'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
 

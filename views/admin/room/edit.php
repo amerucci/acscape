@@ -42,6 +42,35 @@ $title = "Modifier la salle {$room->title}";
                         </select>
                     </div>
                 </div>
+                <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="title">Solution pour le dévérouillage</label>
+                    <input type="text" name="unlock_word" id="unlock_word" class="form-control"
+                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
+                        value="<?= $room->unlock_word ?>">
+                </div>
+                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="clue">Indice</label>
+                    <input type="text" class="form-control" id="clue" name="clue" value="<?= $room->clue ?>">
+                    <?php if (!$room->clue2): ?>
+                    <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                    <?php endif; ?>
+                </div>
+                <?php if ($room->clue2) : ?>
+                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="clue2">Indice 2</label>
+                    <input type="text" class="form-control" id="clue2" name="clue2" value="<?= $room->clue2 ?>">
+                    <?php if (!$room->clue3): ?>
+                    <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                <?php if ($room->clue3) : ?>
+                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="clue3">Indice 3</label>
+                    <input type="text" class="form-control" id="clue3" name="clue3" value="<?= $room->clue3 ?>">
+                </div>
+                <?php endif; ?>
+
             </div>
             <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres de la salle</p>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
@@ -111,6 +140,25 @@ $title = "Modifier la salle {$room->title}";
             }
         }
 
+    });
+
+
+    let c = 1;
+    document.getElementById('addClue').addEventListener('click', function () {
+        if (c < 3) {
+            c++;
+            let newClue = document.createElement('textarea');
+            newClue.setAttribute('name', 'clue' + c);
+            newClue.setAttribute('id', 'clue' + c);
+            newClue.setAttribute('placeholder', 'Indice ' + c);
+            newClue.setAttribute('class', 'form-control mt-2');
+            document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
+                'addClue'));
+        }
+        if (c === 3) {
+            document.getElementById('addClue').setAttribute('disabled', 'disabled');
+            document.getElementById('addClue').style.cursor = 'not-allowed';
+        }
     });
 
     const edit_plus = document.querySelector('.edit_plus');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 08 déc. 2022 à 10:11
+-- Généré le : jeu. 08 déc. 2022 à 11:35
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -38,36 +38,37 @@ CREATE TABLE IF NOT EXISTS `furnitures` (
   `clue2` text,
   `clue3` text,
   `padlock` enum('yes','no') NOT NULL DEFAULT 'no',
-  `interaction_id` int(11) DEFAULT NULL,
+  `unlock_word` varchar(255) DEFAULT NULL,
+  `reward` text,
   `object_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `script_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `interaction` (`interaction_id`),
   KEY `objects` (`object_id`),
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `room_id` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `furnitures`
 --
 
-INSERT INTO `furnitures` (`id`, `title`, `picture`, `description`, `action`, `clue`, `clue2`, `clue3`, `padlock`, `interaction_id`, `object_id`, `user_id`, `script_id`, `room_id`) VALUES
-(1, 'jhjf', NULL, 'hjfghj', 'fouiller', NULL, NULL, NULL, 'no', NULL, NULL, 14, NULL, NULL),
-(2, 'tre', '', 'fgd', 'fgd', '', NULL, NULL, 'yes', NULL, NULL, 14, NULL, NULL),
-(19, 'xwxxw', '1669714514_jorge.png', 'az', 'secouer', 'je suis un indice                    ', 'qsq', NULL, 'yes', NULL, 9, 18, 52, 10),
-(21, 'hjgf', '1669716746_', 'ghjfg', 'hjgf', 'ghf', NULL, NULL, 'yes', NULL, 9, 18, 52, 10),
-(25, 'hgdfhg', '1669719301_antoine.png', 'ghfd', 'secouer', '', NULL, NULL, 'yes', NULL, 10, 18, 52, 10),
-(37, 'fgds', '1669718272_', 'dsfgs', 'fgds', 'fgdsfgdsfddfdddfdffd', NULL, NULL, 'yes', NULL, 0, 18, 52, 10),
-(38, 'dfs', '1669718488_hamza.png', 'dfs', 'secouer', '', NULL, NULL, 'yes', NULL, 10, 18, 52, 10),
-(39, 'je suis un meuble', '1669719417_fondBrique.png', 'qui ressemble à un fond de brique', 'regarder', '', NULL, NULL, 'yes', NULL, 0, 14, 45, 11),
-(40, 'popo', '1670410645_Capture d\'écran_20221114_200901.png', 'titi', 'fouiller', 'premier indice', NULL, NULL, 'yes', NULL, 0, 14, 54, 14),
-(41, 'meuble 2', '1670489842_', 'je suis le second meuble', 'fouiller', '', NULL, NULL, 'yes', NULL, 0, 14, 54, 14),
-(42, 'toto', NULL, 'toto', 'fouiller', 'pouet', NULL, NULL, 'no', NULL, NULL, 14, 54, 14),
-(43, 'je suis le meuble de la salle 14', '1670490703_', ' meubles salle14', 'fouiller', 'trouve moi', NULL, NULL, 'yes', NULL, 0, 14, 54, 14);
+INSERT INTO `furnitures` (`id`, `title`, `picture`, `description`, `action`, `clue`, `clue2`, `clue3`, `padlock`, `unlock_word`, `reward`, `object_id`, `user_id`, `script_id`, `room_id`) VALUES
+(1, 'jhjf', NULL, 'hjfghj', 'fouiller', NULL, NULL, NULL, 'no', NULL, NULL, NULL, 14, NULL, NULL),
+(2, 'tre', '', 'fgd', 'fgd', '', NULL, NULL, 'yes', NULL, NULL, NULL, 14, NULL, NULL),
+(19, 'xwxxw', '1669714514_jorge.png', 'az', 'secouer', 'je suis un indice                    ', 'qsq', NULL, 'yes', NULL, NULL, 9, 18, 52, 10),
+(21, 'hjgf', '1669716746_', 'ghjfg', 'hjgf', 'ghf', NULL, NULL, 'yes', NULL, NULL, 9, 18, 52, 10),
+(25, 'hgdfhg', '1669719301_antoine.png', 'ghfd', 'secouer', '', NULL, NULL, 'yes', NULL, NULL, 10, 18, 52, 10),
+(37, 'fgds', '1669718272_', 'dsfgs', 'fgds', 'fgdsfgdsfddfdddfdffd', NULL, NULL, 'yes', NULL, NULL, 0, 18, 52, 10),
+(38, 'dfs', '1669718488_hamza.png', 'dfs', 'secouer', '', NULL, NULL, 'yes', NULL, NULL, 10, 18, 52, 10),
+(39, 'je suis un meuble', '1669719417_fondBrique.png', 'qui ressemble à un fond de brique', 'regarder', '', NULL, NULL, 'yes', NULL, NULL, 0, 14, 45, 11),
+(40, 'popo', '1670410645_Capture d\'écran_20221114_200901.png', 'titi', 'fouiller', 'premier indice', NULL, NULL, 'yes', NULL, NULL, 0, 14, 54, 14),
+(41, 'meuble 2', '1670489842_', 'je suis le second meuble', 'fouiller', '', NULL, NULL, 'yes', NULL, NULL, 0, 14, 54, 14),
+(42, 'toto', NULL, 'toto', 'fouiller', 'pouet', NULL, NULL, 'no', NULL, NULL, NULL, 14, 54, 14),
+(43, 'je suis le meuble de la salle 14', '1670490703_', ' meubles salle14', 'fouiller', 'trouve moi', NULL, NULL, 'yes', NULL, NULL, 0, 14, 54, 14),
+(44, 'mon premier vrai meuble', '1670498900_', 'je suis le premier vrai meuble dans sa structure', 'fouiller', 'je suis un célèbre oiseau de dessin animé accompagné le plus généralement d\'un gros minet', NULL, NULL, 'yes', 'titi', 'pour la pièce \"voiture à toto\" ma solution est sa couleur', NULL, 14, 56, 15);
 
 -- --------------------------------------------------------
 
@@ -136,33 +137,38 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `picture` text,
   `padlock` enum('yes','no') NOT NULL DEFAULT 'no',
   `start` tinyint(1) DEFAULT '0',
+  `unlock_word` varchar(255) DEFAULT NULL,
+  `clue` text,
+  `clue2` text,
+  `clue3` text,
   `user_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `start`, `user_id`, `script_id`) VALUES
-(1, 'bnbn', 'bnvbnv', '', 'yes', 0, 14, 0),
-(2, 'popo', 'popopo', 'convention.jpg', 'yes', 0, 14, 0),
-(3, 'popopo', 'popopo', 'jorge.png', 'no', 0, 14, 0),
-(4, 'opiuopuipoiu', 'jkghjkghjkhgjhg', 'jorge.png', 'no', 0, 14, 0),
-(5, 'scqcsq', 'hgjjjjjjjjjjjjjjjjjjjjj', 'pauline.png', 'no', 0, 14, 0),
-(6, 'ghfd', 'sdsdsd', '', 'yes', 0, 14, 43),
-(7, 'hgf', 'hgfgh', '', 'no', 0, 14, 42),
-(8, 'ghfd22', 'ghfdg', '', 'no', 0, 14, 42),
-(9, 'rte', 'rte', '', 'yes', 0, 14, 44),
-(10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, 18, 52),
-(11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, 14, 45),
-(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 0, 14, 54),
-(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 0, 14, 54),
-(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, 14, 54);
+INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `start`, `unlock_word`, `clue`, `clue2`, `clue3`, `user_id`, `script_id`) VALUES
+(1, 'bnbn', 'bnvbnv', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 0),
+(2, 'popo', 'popopo', 'convention.jpg', 'yes', 0, NULL, NULL, NULL, NULL, 14, 0),
+(3, 'popopo', 'popopo', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
+(4, 'opiuopuipoiu', 'jkghjkghjkhgjhg', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
+(5, 'scqcsq', 'hgjjjjjjjjjjjjjjjjjjjjj', 'pauline.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
+(6, 'ghfd', 'sdsdsd', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 43),
+(7, 'hgf', 'hgfgh', '', 'no', 0, NULL, NULL, NULL, NULL, 14, 42),
+(8, 'ghfd22', 'ghfdg', '', 'no', 0, NULL, NULL, NULL, NULL, 14, 42),
+(9, 'rte', 'rte', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 44),
+(10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, NULL, NULL, NULL, NULL, 18, 52),
+(11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 45),
+(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 0, NULL, NULL, NULL, NULL, 14, 54),
+(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 0, NULL, NULL, NULL, NULL, 14, 54),
+(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, NULL, NULL, NULL, NULL, 14, 54),
+(15, 'première salle', 'je suis la première salle', '1670497769_chris.png', 'no', 1, 'toto', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, 14, 56);
 
 -- --------------------------------------------------------
 
@@ -236,7 +242,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 -- Contraintes pour la table `furnitures`
 --
 ALTER TABLE `furnitures`
-  ADD CONSTRAINT `furnitures_ibfk_2` FOREIGN KEY (`interaction_id`) REFERENCES `interactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `furnitures_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `furnitures_ibfk_4` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `furnitures_ibfk_5` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -31,7 +31,7 @@ class InGameController extends Controller {
     {
         
         $room = new Room($this->getDB());
-        $room = $room->allByScriptId($_SESSION['test']);
+        $room = $room->allByScriptId(54);
         $furniture = new Furniture($this->getDB());
         $furniture = $furniture->allByFurnitureId(54);
 

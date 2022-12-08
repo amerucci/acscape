@@ -47,10 +47,12 @@ class FurnitureController extends Controller {
                 'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
                 'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
                 'padlock' => $_POST['padlock'],
+                'unlock_word' => $_POST['unlock_word'],
+                'reward' => $_POST['reward'],
                 'user_id' => $_POST['user_id'],
                 'script_id' => $_POST['script_id'],
                 'room_id' => $_POST['room_id'],
-                'object_id' => $_POST['object_id'],
+                // 'object_id' => $_POST['object_id'],
     
             ]);
     
@@ -104,10 +106,12 @@ class FurnitureController extends Controller {
                 'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
                 'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
                 'padlock' => $_POST['padlock'],
+                'unlock_word' => $_POST['unlock_word'],
+                'reward' => $_POST['reward'],
                 'user_id' => $_POST['user_id'],
                 'script_id' => $_POST['script_id'],
                 'room_id' => $_POST['room_id'],
-                'object_id' => $_POST['object_id'],
+                // 'object_id' => $_POST['object_id'],
             ]);
 
             if ($result) {
