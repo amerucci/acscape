@@ -183,13 +183,6 @@ echo '<script>const rooms = ' . $rooms . '</script>';
 
 
 <script>
-    // const the_rooms = document.querySelector('.the_rooms');
-    // const frisk = document.querySelector('.frisk');
-    // const furniture_modal = document.querySelector('.furniture_modal');
-    modal();
-    setInterval(updateCountdown, 1000);
-
-
     const roomsList = document.querySelector('.rooms_list');
 
 
@@ -221,31 +214,4 @@ echo '<script>const rooms = ' . $rooms . '</script>';
     //     rooms['room'][1]['padlock'] = "no";
     //     roomsArray[1].style.color = 'black';
     // });
-
-    let dataGlobal = []; // variable globale dataGlobal
-
-    // fetch pour récupérer le json dans /acscape/ingame/data with await and async
-    async function getData() {
-        const response = await fetch('/acscape/ingame/data');
-        if (response.ok) {
-            const data = await response.json();
-            dataGlobal = data['data']; // les données de dataGlobal
-        } else {
-            // l'appel fetch a échoué
-            console.error('Erreur lors de la récupération des données :', response.statusText);
-        }
-    }
-    // appeler la fonction asynchrone getData() et attendre qu'elle se termine
-    async function main() {
-        await getData();
-    }
-
-    main()
-        .then(toto => {
-            console.log(dataGlobal.room[0].title); // devrait afficher le titre de la salle
-            console.log(dataGlobal); // affiche le tableau global
-        })
-        .catch(error => {
-            console.error(error);
-        });
 </script>

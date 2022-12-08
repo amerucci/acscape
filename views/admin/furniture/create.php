@@ -57,6 +57,9 @@
     </div>
 </div>
 
+<?php var_dump($_SESSION); ?>
+
+
 <script>
     let i = 1;
     document.getElementById('addClue').addEventListener('click', function () {

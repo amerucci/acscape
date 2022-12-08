@@ -10,13 +10,14 @@ class InGameController extends Controller {
     public function index()
     {
         $room = new Room($this->getDB());
-        $room = $room->allByScriptId(54);
+        $room = $room->allByScriptId($_SESSION['test']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByRoomId(54);
+        $furniture = $furniture->allByFurnitureId(54);
 
         $data =  [
             'room' => $room,
             'furniture' => $furniture]; 
+
         $json = json_encode($data);
         $this-> view('ingame.index', compact('json'));        
     }
@@ -32,7 +33,7 @@ class InGameController extends Controller {
         $room = new Room($this->getDB());
         $room = $room->allByScriptId($_SESSION['test']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByRoomId(54);
+        $furniture = $furniture->allByFurnitureId(54);
 
         $data =  [
             'room' => $room,
