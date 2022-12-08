@@ -36,44 +36,56 @@ $title = "Modifier la salle {$room->title}";
                     </div>
                     <div
                         class="form-group form_room_start d-flex justify-content-center align-items-center flex-column">
-                        <label for="start">Salle de départ</label>
-                        <select name="start" id="start" class="form-control">
-                            <option value="0" <?= $room->start == 0 ? 'selected' : '' ?>>Non</option>
-                            <option value="1" <?= $room->start == 1 ? 'selected' : '' ?>>Oui</option>
-                        </select>
+                        <label for="n_room">numéro de salle</label>
+                        <input type="number" id="n_room" class="form-control" name="n_room"
+                            value="<?= $room->n_room ?>">
                     </div>
                 </div>
-                <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
-                    <label for="title">Solution pour le dévérouillage</label>
-                    <input type="text" name="unlock_word" id="unlock_word" class="form-control"
-                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
-                        value="<?=htmlspecialchars($room->unlock_word) ?>">
-                </div>
-                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
-                    <label for="clue">Indice</label>
-                    <textarea type="textarea" class="form-control" id="clue"
-                        name="clue"><?= htmlspecialchars($room->clue) ?></textarea>
-                    <?php if (!$room->clue2): ?>
-                    <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                <div
+                    class="dnone padlock_params d-flex justify-content-center align-items-center flex-column w-100 gap-3">
+                    <div
+                        class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                        <label for="title">Solution pour le dévérouillage</label>
+                        <input type="text" name="unlock_word" id="unlock_word" class="form-control"
+                            placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce"
+                            value="<?=htmlspecialchars($room->unlock_word) ?>">
+                    </div>
+                    <div
+                        class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                        <label for="clue">Indice</label>
+                        <textarea type="textarea" class="form-control" id="clue"
+                            name="clue"><?= htmlspecialchars($room->clue) ?></textarea>
+                        <?php if (!$room->clue2): ?>
+                        <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                        <?php endif; ?>
+                    </div>
+                    <?php if ($room->clue2) : ?>
+                    <div
+                        class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                        <label for="clue2">Indice 2</label>
+                        <textarea type="textarea" class="form-control" id="clue2"
+                            name="clue2"><?= htmlspecialchars($room->clue2)?></textarea>
+                        <?php if (!$room->clue3): ?>
+                        <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                        <?php endif; ?>
+                    </div>
                     <?php endif; ?>
-                </div>
-                <?php if ($room->clue2) : ?>
-                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
-                    <label for="clue2">Indice 2</label>
-                    <textarea type="textarea" class="form-control" id="clue2"
-                        name="clue2"><?= htmlspecialchars($room->clue2)?></textarea>
-                    <?php if (!$room->clue3): ?>
-                    <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                    <?php if ($room->clue3) : ?>
+                    <div
+                        class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
+                        <label for="clue3">Indice 3</label>
+                        <textarea type="textarea" class="form-control" id="clue3"
+                            name="clue3"><?= htmlspecialchars($room->clue3) ?></textarea>
+                    </div>
                     <?php endif; ?>
+                    <div
+                        class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                        <label for="title">Récompense du dévérouillage</label>
+                        <input type="text" name="reward" id="reward" class="form-control"
+                            placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
+                            value="<?= htmlspecialchars($room->reward) ?>">
+                    </div>
                 </div>
-                <?php endif; ?>
-                <?php if ($room->clue3) : ?>
-                <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
-                    <label for="clue3">Indice 3</label>
-                    <textarea type="textarea" class="form-control" id="clue3"
-                        name="clue3"><?= htmlspecialchars($room->clue3) ?></textarea>
-                </div>
-                <?php endif; ?>
 
             </div>
             <p class="btn btn-primary w-100 editPlus">Editer les autres paramètres de la salle</p>
@@ -172,4 +184,22 @@ $title = "Modifier la salle {$room->title}";
         edit_plus.classList.remove('dnone');
         editPlus.classList.add('dnone');
     });
+
+    function padlock() {
+
+        let padlock = document.getElementById('padlock');
+        let padlockParams = document.querySelector('.padlock_params');
+        if (padlock.value === 'yes') {
+            padlockParams.classList.remove('dnone');
+        }
+
+        padlock.addEventListener('change', function () {
+            if (padlock.value === 'yes') {
+                padlockParams.classList.remove('dnone');
+            } else {
+                padlockParams.classList.add('dnone');
+            }
+        });
+    }
+    padlock();
 </script>

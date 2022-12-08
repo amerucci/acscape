@@ -29,16 +29,6 @@
                         <option value="no">Non</option>
                     </select>
                 </div>
-                <!-- <div class="form-group d-flex justify-content-center align-items-center flex-column form_object">
-                    <label for="object">Objet</label>
-                    <select name="object_id" id="object" class="form-control">
-                        <option value="0">Aucun</option>
-                        <?php foreach ($params['objects'] as $object) : ?>
-                        <?php if ($object->user_id == $_SESSION['user_id']) : ?>
-                        <option value="<?= $object->id ?>"><?= $object->title ?></option>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select> -->
             </div>
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Solution pour le dévérouillage</label>
@@ -54,8 +44,9 @@
             </div>
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Récompense du dévérouillage</label>
-                <input type="text" name="reward" id="reward" class="form-control"
-                    placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles" required>
+                <textarea type="text" name="reward" id="reward" class="form-control"
+                    placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
+                    rows="6"></textarea>
             </div>
     </div>
     <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">

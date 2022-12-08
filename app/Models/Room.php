@@ -20,6 +20,11 @@ class Room extends Model {
     {
         return $this->query("SELECT * FROM {$this->table} WHERE room_id = ?", [$roomId], true);
     }
+
+    public function countByRoomScriptID(int $script_id): Room
+    {
+        return $this->query("SELECT COUNT(*) FROM {$this->table} WHERE script_id = ?", [$script_id], true);
+    }
     
 
 }

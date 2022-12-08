@@ -26,7 +26,7 @@ class RoomController extends Controller {
     public function create()
     {
         $this->isAdmin();
-        $rooms = (new Room($this->getDB()))->all();    
+        $rooms = (new Room($this->getDB()))->countByRoomScriptID($_SESSION['script_id']);
         return $this->view('admin.room.create', compact('rooms'));
     }
 
@@ -40,11 +40,12 @@ class RoomController extends Controller {
             'description' => $_POST['description'],
             'picture' => time().'_'.$_FILES['picture']['name'],
             'padlock' => $_POST['padlock'],
-            'start' => $_POST['start'],
+            'n_room' => $_POST['n_room'],
             'unlock_word' => $_POST['unlock_word'],
             'clue' => (isset($_POST['clue'])) ? $_POST['clue'] : null,
             'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
             'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
+            'reward' => (isset($_POST['reward'])) ? $_POST['reward'] : null,
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
 
@@ -99,14 +100,14 @@ class RoomController extends Controller {
             'description' => $_POST['description'],
             'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
             'padlock' => $_POST['padlock'],
-            'start' => $_POST['start'],
+            'n_room' => $_POST['n_room'],
             'unlock_word' => $_POST['unlock_word'],
             'clue' => (isset($_POST['clue'])) ? $_POST['clue'] : null,
             'clue2' => (isset($_POST['clue2'])) ? $_POST['clue2'] : null,
             'clue3' => (isset($_POST['clue3'])) ? $_POST['clue3'] : null,
+            'reward' => (isset($_POST['reward'])) ? $_POST['reward'] : null,
             'user_id' => $_POST['user_id'],
             'script_id' => $_POST['script_id'],
-
         ]);
 
         if ($result) {

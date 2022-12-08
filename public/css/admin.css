@@ -105,7 +105,7 @@ label {
 
 .form_name {
     background-color: rgba(51, 51, 51, 1);
-    height: 100px;
+    min-height: 100px;
     padding: 1%;
     border-radius: 5px;
 }
@@ -140,7 +140,7 @@ label {
 
 .form_clue {
     background-color: rgba(51, 51, 51, 1);
-    min-height: 300px;
+    min-height: 180px;
     padding: 1%;
     border-radius: 5px;
 }
