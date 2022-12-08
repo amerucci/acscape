@@ -26,6 +26,16 @@ abstract class Controller {
         require VIEWS . 'layout.php';
     }
 
+    protected function json(string $path, array $data)
+    {
+        
+        $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
+        require VIEWS . $path . '.php';
+        header('Content-Type: application/json');
+        echo json_encode( $data );
+        exit();
+   }
+
     protected function getDB()
     {
         return $this->db;

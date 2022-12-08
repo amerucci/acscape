@@ -30,6 +30,7 @@ $router->post('/register', 'App\Controllers\UserController@registerPost');
 // in game route
 $router->get('/ingame', 'App\Controllers\InGameController@index');
 $router->get('/ingame/show', 'App\Controllers\InGameController@show');
+$router->get('/ingame/data', 'App\Controllers\InGameController@jsonGame');
 
 
 // **********************************************************************************************************
@@ -93,6 +94,7 @@ $router->post('/admin/padlock/delete/:id', 'App\Controllers\Admin\PadlockControl
 $router->get('/admin/padlock/edit/:id', 'App\Controllers\Admin\PadlockController@edit');
 $router->post('/admin/padlock/edit/:id', 'App\Controllers\Admin\PadlockController@update');
 $router->get('/admin/padlock/show/:id', 'App\Controllers\Admin\PadlockController@show');
+
 
 
 // le gamecontroller admin

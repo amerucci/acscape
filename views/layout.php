@@ -152,9 +152,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> -->
 
 <script>
     // style en fonction de l'URL
@@ -189,31 +186,31 @@
     // compteur de temps de la partie
 
     // 60 minutes, implémenter la variable de temps depuis la bdd. Penser à changer la valeur time en number.
-    let countdown = 60 * 60;
+    // let countdown = 60 * 60;
     // let countdown = 10;
 
-    function updateCountdown() {
-        countdown--;
+    // function updateCountdown() {
+    //     countdown--;
 
-        let minutes = Math.floor(countdown / 60);
-        let seconds = countdown % 60;
+    //     let minutes = Math.floor(countdown / 60);
+    //     let seconds = countdown % 60;
 
-        // Formater les minutes et les secondes avec des zéros au début (pour obtenir un format 00:00)
-        minutes = minutes.toString().padStart(2, "0");
-        seconds = seconds.toString().padStart(2, "0");
+    //     // Formater les minutes et les secondes avec des zéros au début (pour obtenir un format 00:00)
+    //     minutes = minutes.toString().padStart(2, "0");
+    //     seconds = seconds.toString().padStart(2, "0");
 
-        if (countdownElement = document.getElementById("countdown") != null) {
-            countdownElement = document.getElementById("countdown");
+    //     if (countdownElement = document.getElementById("countdown") != null) {
+    //         countdownElement = document.getElementById("countdown");
 
-            if (countdown < 0) {
-                const endgame_lose = document.querySelector('.endgame_lose');
-                endgame_lose.classList.remove('dnone');
-                return;
-            }
-        }
+    //         if (countdown < 0) {
+    //             const endgame_lose = document.querySelector('.endgame_lose');
+    //             endgame_lose.classList.remove('dnone');
+    //             return;
+    //         }
+    //     }
 
-        countdownElement.innerHTML = minutes + ":" + seconds;
-    }
+    //     countdownElement.innerHTML = minutes + ":" + seconds;
+    // }
 
     setInterval(updateCountdown, 1000);
 </script>

@@ -1,3 +1,5 @@
+<?php $_SESSION['test'] = '54'; ?>
+
 <div class="tools d-flex gap-5">
     <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
         data-target="#roomsModal">
@@ -172,100 +174,78 @@
 </div>
 
 
-<?php 
+<!-- <?php 
 $rooms = $params['json'];
-
-// // envoyer les données de la room récupérable en javascript
 echo '<script>const rooms = ' . $rooms . '</script>';
+?> -->
 
-
-// foreach ($rooms as $room) {
-//     // var_dump($room->script_id);
-//     if ($room->script_id == 54) {
-//     }
-// }
-
-
-?>
+<script src="public\app\inGame.js"></script>
 
 
 <script>
-    const the_rooms = document.querySelector('.the_rooms');
-    const frisk = document.querySelector('.frisk');
-    // const inventories = document.querySelector('.inventories');
-    const furniture_modal = document.querySelector('.furniture_modal');
-    the_rooms.addEventListener('click', function () {
-        document.querySelector('#roomsModal').classList.add('show');
-        document.querySelector('#roomsModal').style.display = 'block';
-    });
-    frisk.addEventListener('click', function () {
-        document.querySelector('#friskModal').classList.add('show');
-        document.querySelector('#friskModal').style.display = 'block';
-        document.querySelector('#friskModal').style.opacity = '1';
-    });
-    // inventories.addEventListener('click', function () {
-    //     document.querySelector('#inventoriesModal').classList.add('show');
-    //     document.querySelector('#inventoriesModal').style.display = 'block';
-    // });
-    furniture_modal.addEventListener('click', function () {
-        document.querySelector('#furnitureModal').classList.add('show');
-        document.querySelector('#furnitureModal').style.display = 'block';
-        document.querySelector('#friskModal').style.opacity = '0';
-
-
-    });
-
-    const close = document.querySelectorAll('.close');
-    close.forEach(element => {
-        element.addEventListener('click', function () {
-            document.querySelector('#roomsModal').classList.remove('show');
-            document.querySelector('#roomsModal').style.display = 'none';
-            document.querySelector('#friskModal').classList.remove('show');
-            document.querySelector('#friskModal').style.display = 'none';
-            // document.querySelector('#inventoriesModal').classList.remove('show');
-            // document.querySelector('#inventoriesModal').style.display = 'none';
-            document.querySelector('#furnitureModal').classList.remove('show');
-            document.querySelector('#furnitureModal').style.display = 'none';
-
-        });
-    });
+    // const the_rooms = document.querySelector('.the_rooms');
+    // const frisk = document.querySelector('.frisk');
+    // const furniture_modal = document.querySelector('.furniture_modal');
+    modal();
+    setInterval(updateCountdown, 1000);
 
 
     const roomsList = document.querySelector('.rooms_list');
 
 
-    let li
-    // boucle for pour naviguer dans le json $rooms
-    for (let i = 0; i < rooms['room'].length; i++) {
+    // let li
+    // // boucle for pour naviguer dans le json $rooms
+    // for (let i = 0; i < rooms['room'].length; i++) {
 
-        li = document.createElement('li');
-        li.classList.add('rooms_list_item', `nb-${i}`);
+    //     li = document.createElement('li');
+    //     li.classList.add('rooms_list_item', `nb-${i}`);
 
-        li.innerHTML = rooms['room'][i]['title'];
-        roomsList.appendChild(li);
-        if (rooms['room'][i]['padlock'] == "yes") {
-            roomsList.appendChild(li).style.color = 'red';
-        }
-        if (rooms['room'][i]['padlock'] == "no") {
-            roomsList.appendChild(li).style.color = 'black';
+    //     li.innerHTML = rooms['room'][i]['title'];
+    //     roomsList.appendChild(li);
+    //     if (rooms['room'][i]['padlock'] == "yes") {
+    //         roomsList.appendChild(li).style.color = 'red';
+    //     }
+    //     if (rooms['room'][i]['padlock'] == "no") {
+    //         roomsList.appendChild(li).style.color = 'black';
+    //     }
+    // }
+
+
+
+
+    // const roomsArray = [];
+    // for (let i = 3; i <= 10; i++) {
+    //     roomsArray.push(roomsList.childNodes[i]);
+    // }
+    // roomsArray[1].addEventListener('click', function () {
+    //     rooms['room'][1]['padlock'] = "no";
+    //     roomsArray[1].style.color = 'black';
+    // });
+
+    let dataGlobal = []; // variable globale dataGlobal
+
+    // fetch pour récupérer le json dans /acscape/ingame/data with await and async
+    async function getData() {
+        const response = await fetch('/acscape/ingame/data');
+        if (response.ok) {
+            const data = await response.json();
+            dataGlobal = data['data']; // les données de dataGlobal
+        } else {
+            // l'appel fetch a échoué
+            console.error('Erreur lors de la récupération des données :', response.statusText);
         }
     }
-
-
-
-
-    const roomsArray = [];
-    for (let i = 3; i <= 10; i++) {
-        roomsArray.push(roomsList.childNodes[i]);
+    // appeler la fonction asynchrone getData() et attendre qu'elle se termine
+    async function main() {
+        await getData();
     }
-    roomsArray[1].addEventListener('click', function () {
-        rooms['room'][1]['padlock'] = "no";
-        roomsArray[1].style.color = 'black';
-    });
 
-
-
-    // const rooms1 = roomsList.childNodes[3];
-    // const rooms2 = roomsList.childNodes[4];
-    // const rooms3 = roomsList.childNodes[5];
+    main()
+        .then(toto => {
+            console.log(dataGlobal.room[0].title); // devrait afficher le titre de la salle
+            console.log(dataGlobal); // affiche le tableau global
+        })
+        .catch(error => {
+            console.error(error);
+        });
 </script>
