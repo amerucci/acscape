@@ -18,7 +18,7 @@
             </div>
             <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="picture">Image</label>
-                <input type="file" name="picture" id="picture" class="form-control" required>
+                <input type="file" name="picture" id="picture" class="form-control">
                 <img src="" alt="" id="picturePreview">
                 <img src="" alt="" id="picturePreviewTemp">
             </div>
@@ -30,7 +30,8 @@
                         <option value="yes">Oui</option>
                     </select>
                 </div>
-                <div class="form-group form_room_start d-flex justify-content-center align-items-center flex-column">
+                <div
+                    class="form-group form_room_start d-flex justify-content-center align-items-center flex-column dnone">
                     <label for="n-room">Numéro de salle</label>
                     <input type="number" name="n_room" id="n-room" class="form-control" min="1" value="1">
                 </div>

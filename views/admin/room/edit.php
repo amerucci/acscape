@@ -13,7 +13,7 @@ $title = "Modifier la salle {$room->title}";
                 <input type="text" name="title" id="title" class="form-control"
                     value="<?=htmlspecialchars($room->title) ?>" required>
             </div>
-            <div class="dnone edit_plus d-flex justify-content-center align-items-center flex-column gap-3">
+            <div class="dnone edit_plus d-flex justify-content-center align-items-center flex-column gap-3 w-100">
                 <div class="form-group form_desc d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10" class="form-control"
@@ -35,7 +35,7 @@ $title = "Modifier la salle {$room->title}";
                         </select>
                     </div>
                     <div
-                        class="form-group form_room_start d-flex justify-content-center align-items-center flex-column">
+                        class="form-group form_room_start d-flex justify-content-center align-items-center flex-column dnone">
                         <label for="n_room">numéro de salle</label>
                         <input type="number" id="n_room" class="form-control" name="n_room"
                             value="<?= $room->n_room ?>">
