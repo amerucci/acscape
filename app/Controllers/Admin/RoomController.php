@@ -27,7 +27,8 @@ class RoomController extends Controller {
     {
         $this->isAdmin();
         $rooms = (new Room($this->getDB()))->countByRoomScriptID($_SESSION['script_id']);
-        return $this->view('admin.room.create', compact('rooms'));
+        $json = json_encode($rooms);
+        return $this->view('admin.room.create', compact('json'));
     }
 
     public function createRoom()

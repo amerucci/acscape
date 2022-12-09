@@ -1,7 +1,7 @@
 <?php $title = "création de salles"; ?>
 
 <div class="container admin_container">
-    <?php var_dump($params['rooms']);?>
+
     <h1 class="text-center">Créer votre salle</h1>
 
     <div class="d-flex justify-content-center align-items-center flex-column my-3">
@@ -61,13 +61,6 @@
             <button type="submit" class="btn btn-primary my-1 w-100">Créer</button>
         </form>
 
-        <!-- <?php foreach ($roomsNb as $room) : ?>
-        <?php if ($room->script_id == $_SESSION['script_id']) :?>
-        <?= var_dump($room); ?>
-        <?php endif; ?>
-        <?php endforeach; ?> -->
-
-
         <!-- <?php if ($roomsNb->script_id == $_SESSION['script_id']) :?>
         <div class="d-flex justify-content-center align-items-center flex-column w-50">
             <h2 class="text-center">Liste des salles</h2>
@@ -89,7 +82,17 @@
         </div>
         <?php endif; ?> -->
 
+        <?php $rooms = $params['json']; echo '<script>const rooms = ' . $rooms . '</script>'; ?>
+
         <script>
+            const nbrooms = Object.values(rooms)[0];
+            const numeRoom = document.getElementById('n-room');
+            const nbroomsNumber = parseInt(nbrooms);
+            numeRoom.min = nbroomsNumber + 1;
+            numeRoom.value = nbroomsNumber + 1;
+
+
+
             picture.onchange = evt => {
                 const [file] = picture.files
                 if (file) {
