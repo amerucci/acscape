@@ -173,45 +173,4 @@
     </div>
 </div>
 
-
-<!-- <?php 
-$rooms = $params['json'];
-echo '<script>const rooms = ' . $rooms . '</script>';
-?> -->
-
 <script src="public\app\inGame.js"></script>
-
-
-<script>
-    const roomsList = document.querySelector('.rooms_list');
-
-
-    // let li
-    // // boucle for pour naviguer dans le json $rooms
-    // for (let i = 0; i < rooms['room'].length; i++) {
-
-    //     li = document.createElement('li');
-    //     li.classList.add('rooms_list_item', `nb-${i}`);
-
-    //     li.innerHTML = rooms['room'][i]['title'];
-    //     roomsList.appendChild(li);
-    //     if (rooms['room'][i]['padlock'] == "yes") {
-    //         roomsList.appendChild(li).style.color = 'red';
-    //     }
-    //     if (rooms['room'][i]['padlock'] == "no") {
-    //         roomsList.appendChild(li).style.color = 'black';
-    //     }
-    // }
-
-
-
-
-    // const roomsArray = [];
-    // for (let i = 3; i <= 10; i++) {
-    //     roomsArray.push(roomsList.childNodes[i]);
-    // }
-    // roomsArray[1].addEventListener('click', function () {
-    //     rooms['room'][1]['padlock'] = "no";
-    //     roomsArray[1].style.color = 'black';
-    // });
-</script>

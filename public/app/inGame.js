@@ -64,24 +64,115 @@ setInterval(updateCountdown, 1000);
 let dataGlobal = []; // variable globale dataGlobal
 
 // fetch pour récupérer le json dans /acscape/ingame/data with await and async
+// async function getData() {
+//     const response = await fetch('/acscape/ingame/data');
+//     if (response.ok) {
+//         const data = await response.json();
+//         dataGlobal = data['data']; // les données global
+//     } else {
+//         console.error('Erreur lors de la récupération des données :', response.statusText);
+//     }
+// }
+// // appeler la fonction asynchrone getData() et attendre qu'elle se termine
+// async function main() {
+//     await getData();
+// }
+
+let li
+
+const roomsList = document.querySelector('.rooms_list');
+
 async function getData() {
-    const response = await fetch('/acscape/ingame/data');
-    if (response.ok) {
-        const data = await response.json();
-        dataGlobal = data['data']; // les données global
-    } else {
-        console.error('Erreur lors de la récupération des données :', response.statusText);
+    try {
+        const response = await fetch('/acscape/ingame/data');
+        if (response.ok) {
+            const data = await response.json();
+            dataGlobal = data.data; // les données global
+            return dataGlobal;
+        } else {
+            console.error('Erreur lors de la récupération des données :', response.statusText);
+        }
+    } catch (error) {
+        console.error('Erreur lors du chargement des données :', error);
     }
 }
-// appeler la fonction asynchrone getData() et attendre qu'elle se termine
+
 async function main() {
-    await getData();
+    const data = await getData();
+    console.log(data); // affiche la valeur retournée par getData()
 }
 
 main()
-    .then(toto => {
-        console.log(dataGlobal.room[0].title); // devrait afficher le titre de la salle
-        console.log(dataGlobal); // affiche le tableau global
+    .then(data => {
+        for (let i = 0; i < dataGlobal.room.length; i++) {
+
+            li = document.createElement('li');
+            li.classList.add('rooms_list_item', `nb-${i}`);
+            li.innerHTML = dataGlobal.room[i].title;
+            roomsList.appendChild(li);
+            if (dataGlobal.room[i]['padlock'] == "yes") {
+                roomsList.appendChild(li).style.color = 'red';
+            }
+            if (dataGlobal.room[i]['padlock'] == "no") {
+                roomsList.appendChild(li).style.color = 'black';
+            }
+
+            let roomsArray = [];
+            for (let j = 3; j <= 10; j++) {
+                roomsArray.push(roomsList.childNodes[j]);
+            }
+            if (dataGlobal.room[i]['padlock'] == "yes") {
+                roomsArray[i].addEventListener('click', function () {
+                    // alert("Vous ne pouvez pas accéder à cette pièce");
+                    // create a unique modal for the room on the model bootstrap 5
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'fade', 'modal-lg');
+                    modal.setAttribute('id', 'roomsLock');
+                    modal.setAttribute('tabindex', '-1');
+                    modal.setAttribute('aria-labelledby', 'roomsModalLabel');
+                    modal.setAttribute('aria-hidden', 'true');
+                    modal.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content modalRoomLock">
+                            <div class="modal-header">
+                                <h5 class="modal-title  mx-auto" id="roomsModalLabel">Cette pièce est fermée</h5>
+                                <button type="button" class="closeLock" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                        </iconify-icon>
+                    </span>
+                            </div>
+                            <div class="modal-body
+                                <p>Vous devez trouver la clé pour accéder à cette pièce</p>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    document.body.appendChild(modal);
+                    const roomsModal = new bootstrap.Modal(modal);
+                    roomsModal.show();
+                    // remove the last modal element
+                    const close = document.querySelectorAll('.closeLock');
+                    close.forEach(element => {
+                        element.addEventListener('click', function () {
+                            document.querySelector('#roomsLock').remove();
+                            console.log("test");
+                        });
+                    });
+
+
+
+
+
+
+
+
+                });
+            }
+        }
+
+
+
     })
     .catch(error => {
         console.error(error);

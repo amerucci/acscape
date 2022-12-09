@@ -25,7 +25,8 @@
     transform: translate(-50%);
 }
 
-.close {
+.close,
+.closeLock {
     background: none;
     border: none;
     cursor: pointer;
@@ -150,4 +151,8 @@
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
+}
+
+.modalRoomLock {
+    min-height: 40vh;
 }

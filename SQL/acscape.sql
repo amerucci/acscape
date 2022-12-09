@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 08 déc. 2022 à 11:35
+-- Généré le : ven. 09 déc. 2022 à 13:47
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -136,39 +136,41 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `description` text NOT NULL,
   `picture` text,
   `padlock` enum('yes','no') NOT NULL DEFAULT 'no',
-  `start` tinyint(1) DEFAULT '0',
+  `n_room` tinyint(4) DEFAULT NULL,
   `unlock_word` varchar(255) DEFAULT NULL,
   `clue` text,
   `clue2` text,
   `clue3` text,
+  `reward` text,
   `user_id` int(11) NOT NULL,
   `script_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `start`, `unlock_word`, `clue`, `clue2`, `clue3`, `user_id`, `script_id`) VALUES
-(1, 'bnbn', 'bnvbnv', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 0),
-(2, 'popo', 'popopo', 'convention.jpg', 'yes', 0, NULL, NULL, NULL, NULL, 14, 0),
-(3, 'popopo', 'popopo', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
-(4, 'opiuopuipoiu', 'jkghjkghjkhgjhg', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
-(5, 'scqcsq', 'hgjjjjjjjjjjjjjjjjjjjjj', 'pauline.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 0),
-(6, 'ghfd', 'sdsdsd', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 43),
-(7, 'hgf', 'hgfgh', '', 'no', 0, NULL, NULL, NULL, NULL, 14, 42),
-(8, 'ghfd22', 'ghfdg', '', 'no', 0, NULL, NULL, NULL, NULL, 14, 42),
-(9, 'rte', 'rte', '', 'yes', 0, NULL, NULL, NULL, NULL, 14, 44),
-(10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, NULL, NULL, NULL, NULL, 18, 52),
-(11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, NULL, NULL, NULL, NULL, 14, 45),
-(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 0, NULL, NULL, NULL, NULL, 14, 54),
-(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 0, NULL, NULL, NULL, NULL, 14, 54),
-(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, NULL, NULL, NULL, NULL, 14, 54),
-(15, 'première salle', 'je suis la première salle', '1670497769_chris.png', 'no', 1, 'toto', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, 14, 56);
+INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `n_room`, `unlock_word`, `clue`, `clue2`, `clue3`, `reward`, `user_id`, `script_id`) VALUES
+(1, 'bnbn', 'bnvbnv', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
+(2, 'popo', 'popopo', 'convention.jpg', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
+(3, 'popopo', 'popopo', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
+(4, 'opiuopuipoiu', 'jkghjkghjkhgjhg', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
+(5, 'scqcsq', 'hgjjjjjjjjjjjjjjjjjjjjj', 'pauline.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
+(6, 'ghfd', 'sdsdsd', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 43),
+(7, 'hgf', 'hgfgh', '', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 42),
+(8, 'ghfd22', 'ghfdg', '', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 42),
+(9, 'rte', 'rte', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 44),
+(10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 18, 52),
+(11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 45),
+(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 3, NULL, NULL, NULL, NULL, NULL, 14, 54),
+(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 2, NULL, NULL, NULL, NULL, NULL, 14, 54),
+(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, NULL, NULL, NULL, NULL, NULL, 14, 54),
+(15, 'première salle', 'je suis la première salle', '1670497769_chris.png', 'no', 1, 'toto', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, NULL, 14, 56),
+(16, 'salle 4', 'je suis la salle 4', '1670579031_chris.png', 'yes', 4, 'toto', 'c\'est le nom d\'un personnage célèbre pour ses blagues ', NULL, NULL, 'coucou', 14, 54);
 
 -- --------------------------------------------------------
 
