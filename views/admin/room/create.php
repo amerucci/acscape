@@ -44,7 +44,8 @@
                 </div>
                 <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
                     <label for="clue">Indice</label>
-                    <input type="text" name="clue" id="clue" class="form-control" placeholder="indice 1">
+                    <textarea type="text" name="clue" id="clue" class="form-control" placeholder="indice 1"
+                        rows="6"></textarea>
                     <!-- button for a new clue -->
                     <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                     <p class="max"></p>
@@ -108,7 +109,7 @@
             document.getElementById('addClue').addEventListener('click', function () {
                 if (i < 3) {
                     i++;
-                    let newClue = document.createElement('input');
+                    let newClue = document.createElement('textarea');
                     newClue.setAttribute('type', 'text');
                     newClue.setAttribute('name', 'clue' + i);
                     newClue.setAttribute('id', 'clue' + i);
