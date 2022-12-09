@@ -12,12 +12,6 @@
         <iconify-icon icon="uil:search-alt"></iconify-icon>
         <p class="m-0 frisk_modal">fouiller</p>
     </div>
-
-    <!-- <div class="inventories d-flex justify-content-center align-items-center gap-2" data-toggle=" modal"
-        data-target="#inventoriesModal">
-        <iconify-icon icon="ph:suitcase-simple-bold"></iconify-icon>
-        <p class="m-0 inventories_modal">votre inventaire</p>
-    </div> -->
 </div>
 
 <!-- Modal rooms-->

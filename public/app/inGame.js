@@ -63,21 +63,6 @@ setInterval(updateCountdown, 1000);
 
 let dataGlobal = []; // variable globale dataGlobal
 
-// fetch pour récupérer le json dans /acscape/ingame/data with await and async
-// async function getData() {
-//     const response = await fetch('/acscape/ingame/data');
-//     if (response.ok) {
-//         const data = await response.json();
-//         dataGlobal = data['data']; // les données global
-//     } else {
-//         console.error('Erreur lors de la récupération des données :', response.statusText);
-//     }
-// }
-// // appeler la fonction asynchrone getData() et attendre qu'elle se termine
-// async function main() {
-//     await getData();
-// }
-
 let li
 
 const roomsList = document.querySelector('.rooms_list');
@@ -124,37 +109,35 @@ main()
             if (dataGlobal.room[i]['padlock'] == "yes") {
                 roomsArray[i].addEventListener('click', function () {
                     // alert("Vous ne pouvez pas accéder à cette pièce");
-                    // create a unique modal for the room on the model bootstrap 5
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'roomsLock');
                     modal.setAttribute('tabindex', '-1');
-                    modal.setAttribute('aria-labelledby', 'roomsModalLabel');
+                    modal.setAttribute('aria-labelledby', 'roomsModalLockLabel');
                     modal.setAttribute('aria-hidden', 'true');
                     modal.innerHTML = `
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content modalRoomLock">
                             <div class="modal-header">
-                                <h5 class="modal-title  mx-auto" id="roomsModalLabel">Cette pièce est fermée</h5>
+                                <h5 class="modal-title  mx-auto" id="roomsModalLockLabel">Cette pièce est fermée</h5>
                                 <button type="button" class="closeLock" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
-                        </iconify-icon>
-                    </span>
+                                    <span aria-hidden="true">
+                                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                                        </iconify-icon>
+                                    </span>
                             </div>
-                            <div class="modal-body
-                                <p>Vous devez trouver la clé pour accéder à cette pièce</p>
-                            </div>
+                                <div class="modal-body">
+                                    <p>Vous devez trouver la clé pour accéder à cette pièce</p>
+                                </div>
                         </div>
-                    </div>
-                    `;
+                    </div>`;
                     document.body.appendChild(modal);
                     const roomsModal = new bootstrap.Modal(modal);
                     roomsModal.show();
-                    // remove the last modal element
-                    const close = document.querySelectorAll('.closeLock');
-                    close.forEach(element => {
+                    const closeLock = document.querySelectorAll('.closeLock');
+                    closeLock.forEach(element => {
                         element.addEventListener('click', function () {
+                            document.querySelector('#roomsLock').classList.remove('show');
                             document.querySelector('#roomsLock').remove();
                             console.log("test");
                         });
