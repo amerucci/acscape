@@ -136,22 +136,32 @@ main()
                     const roomsModal = new bootstrap.Modal(modal);
                     roomsModal.show();
                     const closeLock = document.querySelectorAll('.closeLock');
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    const modalRoomLock = document.querySelector('.modalRoomLock');
+                    const roomsLock = document.querySelector('#roomsLock');
 
-                    closeLock.addEventListener('click', function () {
-                        document.querySelector('#roomsLock').classList.remove('show');
-                        // document.querySelector('#roomsLock').remove();
-                        console.log("test");
+                    closeLock.forEach(element => {
+                        element.addEventListener('click', function () {
+                            roomsLock.classList.remove('show');
+                            roomsLock.style.display = 'none';
+                            roomsLock.remove();
+                            backdrop.remove();
+                            roomsModal.remove();
+                        });
                     });
 
-
-
-
-
-
-
-
+                    roomsLock.addEventListener('click', function () {
+                        if (!modalRoomLock.contains(Event.target)) {
+                            roomsLock.classList.remove('show');
+                            roomsLock.style.display = 'none';
+                            roomsLock.remove();
+                            backdrop.remove();
+                            roomsModal.remove();
+                        }
+                    });
 
                 });
+
             }
         }
 
