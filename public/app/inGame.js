@@ -146,17 +146,16 @@ main()
                             roomsLock.style.display = 'none';
                             roomsLock.remove();
                             backdrop.remove();
-                            roomsModal.remove();
+                            // roomsModal.remove();
                         });
                     });
 
                     roomsLock.addEventListener('click', function () {
-                        if (!modalRoomLock.contains(Event.target)) {
-                            roomsLock.classList.remove('show');
-                            roomsLock.style.display = 'none';
-                            roomsLock.remove();
+                        console.log('parent');
+                        if (!modalRoomLock.contains(event.target)) {
+                            console.log('enfant')
                             backdrop.remove();
-                            roomsModal.remove();
+                            roomsLock.remove();
                         }
                     });
 
