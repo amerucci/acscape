@@ -93,28 +93,6 @@
     </div>
 </div>
 
-<!-- Modal inventories -->
-<!-- <div class="modal fade modal-lg" id="inventoriesModal" tabindex="-1" role="dialog"
-    aria-labelledby="inventoriesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mx-auto" id="inventoriesModalLabel">Votre inventaire</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
-                        </iconify-icon>
-                    </span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
 <!-- Modal furniture -->
 <div class="modal fade modal-lg" id="furnitureModal" tabindex="-1" role="dialog" aria-labelledby="furnitureModalLabel"
     aria-hidden="true">

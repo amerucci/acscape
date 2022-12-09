@@ -23,7 +23,7 @@ class Room extends Model {
 
     public function countByRoomScriptID(int $script_id): Room
     {
-        return $this->query("SELECT COUNT(*) FROM {$this->table} ORDER BY n_room WHERE script_id = ?" , [$script_id], true);
+        return $this->query("SELECT COUNT(*) FROM {$this->table}  WHERE script_id = ?" , [$script_id], true);
     }
     
 

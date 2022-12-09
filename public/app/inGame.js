@@ -113,10 +113,11 @@ main()
                     modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'roomsLock');
                     modal.setAttribute('tabindex', '-1');
+                    modal.setAttribute('role', 'dialog');
                     modal.setAttribute('aria-labelledby', 'roomsModalLockLabel');
                     modal.setAttribute('aria-hidden', 'true');
                     modal.innerHTML = `
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modalRoomLock">
                             <div class="modal-header">
                                 <h5 class="modal-title  mx-auto" id="roomsModalLockLabel">Cette pièce est fermée</h5>
@@ -135,13 +136,13 @@ main()
                     const roomsModal = new bootstrap.Modal(modal);
                     roomsModal.show();
                     const closeLock = document.querySelectorAll('.closeLock');
-                    closeLock.forEach(element => {
-                        element.addEventListener('click', function () {
-                            document.querySelector('#roomsLock').classList.remove('show');
-                            document.querySelector('#roomsLock').remove();
-                            console.log("test");
-                        });
+
+                    closeLock.addEventListener('click', function () {
+                        document.querySelector('#roomsLock').classList.remove('show');
+                        // document.querySelector('#roomsLock').remove();
+                        console.log("test");
                     });
+
 
 
 
