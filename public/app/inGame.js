@@ -132,9 +132,11 @@ main()
                                 <div class="modal-body">
                                     <p>Vous devez trouver la clé pour accéder à cette pièce</p>
                                         <div class="d-flex gap-2 clue_show">
-                                           <p class="clue_show_text">${dataGlobal.room[i]['clue']}</p>            
+                                           <p class="clue_show">Indice :</p>
+                                           <p class="clue_show_content dnone">${dataGlobal.room[i]['clue']}</p>            
                                         </div>
                                     <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${this.innerHTML} ">
+                                    <p class="room_control_key"></p>
                                 </div>
                         </div>
                     </div>`;
@@ -164,6 +166,28 @@ main()
                             roomsLock.remove();
                         }
                     });
+
+                    const clue_show = document.querySelector('.clue_show');
+                    const clue_show_content1 = document.querySelector('.clue_show_content');
+
+                    clue_show.addEventListener('click', function () {
+                        clue_show_content1.classList.remove('dnone');
+                        if (clue_show_content1.innerHTML == "null") {
+                            clue_show_content1.innerHTML = 'Pas d\'indice';
+                        }
+                    });
+
+                    const rooms_unlock_key = document.querySelector('#rooms_unlock_key');
+                    const room_control_key = document.querySelector('.room_control_key');
+                    rooms_unlock_key.addEventListener('keyup', function () {
+                        if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
+                            room_control_key.innerHTML = 'Clé valide';
+                        } else {
+                            room_control_key.innerHTML = 'Clé invalide';
+                        }
+                    });
+
+
 
                 });
 
