@@ -110,10 +110,11 @@ $title = "Modifier la salle {$room->title}";
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?= $furniture->description ?></p>
                         <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>"
-                            class="btn btn-primary my-1">Editer</a>
-                        <form action="/acscape/admin/furniture/delete/<?= $furniture->id ?>" method="post">
+                            class="btn btn-primary my-1 w-100">Editer</a>
+                        <form action="/acscape/admin/furniture/delete/<?= $furniture->id ?>" method="post"
+                            class="w-100">
                             <input type="hidden" name="id" value="<?= $furniture->id ?>">
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                            <button type="submit" class="btn btn-danger w-100">Supprimer</button>
                         </form>
                     </div>
                 </div>
