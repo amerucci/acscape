@@ -108,7 +108,9 @@ main()
             }
             if (dataGlobal.room[i]['padlock'] == "yes") {
                 roomsArray[i].addEventListener('click', function () {
-                    // alert("Vous ne pouvez pas accéder à cette pièce");
+
+
+
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'roomsLock');
@@ -120,7 +122,7 @@ main()
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modalRoomLock">
                             <div class="modal-header">
-                                <h5 class="modal-title  mx-auto" id="roomsModalLockLabel">Cette pièce est fermée</h5>
+                                <h5 class="modal-title  mx-auto" id="roomsModalLockLabel">${this.innerHTML} est fermée</h5>
                                 <button type="button" class="closeLock" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">
                                         <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
