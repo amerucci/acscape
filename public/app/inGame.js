@@ -137,6 +137,8 @@ main()
                                         </div>
                                     <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${this.innerHTML} ">
                                     <p class="room_control_key"></p>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn">Déverrouiller</button>
+                                    <p class="reward dnone"></p>
                                 </div>
                         </div>
                     </div>`;
@@ -179,11 +181,23 @@ main()
 
                     const rooms_unlock_key = document.querySelector('#rooms_unlock_key');
                     const room_control_key = document.querySelector('.room_control_key');
-                    rooms_unlock_key.addEventListener('keyup', function () {
+                    const rooms_unlock_btn = document.querySelector('#rooms_unlock_btn');
+                    const reward = document.querySelector('.reward');
+                    let room_try = 3;
+                    rooms_unlock_btn.addEventListener('click', function () {
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
                             room_control_key.innerHTML = 'Clé valide';
+                            reward.classList.remove('dnone');
+                            reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                         } else {
-                            room_control_key.innerHTML = 'Clé invalide';
+                            room_try--;
+                            room_control_key.innerHTML = `Clé invalide ! Encore ${room_try} essais avant une pénalité de 5 minutes`;
+                            if (room_try == 0) {
+                                room_control_key.innerHTML = `Dommage vous avez une pénalité de 5 minutes !`;
+                                room_try = 3;
+                                countdown = countdown - 300;
+                            }
+
                         }
                     });
 
