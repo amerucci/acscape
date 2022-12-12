@@ -111,73 +111,76 @@ main()
                 roomsArray.push(roomsList.childNodes[j]);
             }
 
-            function openRoom() {
-                if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+            // function openRoom() {
+            if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
 
-                    roomsArray[i].classList.add('room_unlock_open');
+                roomsArray[i].classList.add('room_unlock_open');
 
-                    if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
-                        roomsArray[i].style.color = 'black';
+                if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                    roomsArray[i].style.color = 'black';
 
-                        roomsArray[i].addEventListener('click', function (openRoom) {
-                                const modal = document.createElement('div');
-                                modal.classList.add('modal', 'fade', 'modal-lg');
-                                modal.setAttribute('id', 'roomsOpen');
-                                modal.classList.add('room_open');
-                                modal.setAttribute('tabindex', '-1');
-                                modal.setAttribute('role', 'dialog');
-                                modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
-                                modal.setAttribute('aria-hidden', 'true');
-                                modal.innerHTML = `
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content modalRoomOpen">
-                            <div class="modal-header">
-                                <h5 class="modal-title  mx-auto" id="roomsModalOpenLabel">${this.innerHTML} est ouverte</h5>
-                                <button type="button" class="closeOpen" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">
-                                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
-                                        </iconify-icon>
-                                    </span>
-                            </div>
-                                <div class="modal-body">
-                                    <p>${dataGlobal.room[i].reward}</p>
-                                </div>
-                        </div>
-                    </div>`;
-                                document.body.appendChild(modal);
-                                const roomsModal = new bootstrap.Modal(modal);
-                                roomsModal.show();
+                    roomsArray[i].addEventListener('click', function (openRoom) {
+                        const modal = document.createElement('div');
+                        modal.classList.add('modal', 'fade', 'modal-lg');
+                        modal.setAttribute('id', 'roomsOpen');
+                        modal.classList.add('room_open');
+                        modal.setAttribute('tabindex', '-1');
+                        modal.setAttribute('role', 'dialog');
+                        modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
+                        modal.setAttribute('aria-hidden', 'true');
+                        modal.innerHTML = `
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content modalRoomOpen">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title  mx-auto" id="roomsModalOpenLabel">${this.innerHTML} est ouverte</h5>
+                                                            <button type="button" class="closeOpen" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">
+                                                                    <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                                                                    </iconify-icon>
+                                                                </span>
+                                                        </div>
+                                                            <div class="modal-body">
+                                                                <p>${dataGlobal.room[i].reward}</p>
+                                                            </div>
+                                                    </div>
+                                                </div>`;
+                        document.body.appendChild(modal);
+                        const roomsModal = new bootstrap.Modal(modal);
+                        roomsModal.show();
 
-                                const closeOpen = document.querySelector('.closeOpen');
-                                const roomsOpen = document.querySelector('#roomsOpen');
-                                const room_open = document.querySelectorAll('.room_open');
-                                const modalRoomOpen = document.querySelector('.modalRoomOpen');
-                                const backdrop = document.querySelector('.modal-backdrop');
+                        const closeOpen = document.querySelectorAll('.closeOpen');
+                        const backdrop = document.querySelector('.modal-backdrop');
+                        const modalRoomOpen = document.querySelector('.modalRoomOpen');
+                        const roomsOpen = document.querySelector('#roomsOpen');
 
-                                roomsOpen.addEventListener('click', function () {
-                                    console.log('parent');
-                                    if (!modalRoomOpen.contains(event.target)) {
-                                        console.log('enfant');
-                                        backdrop.remove();
-                                        roomsOpen.remove();
-                                    }
-                                });
+                        function room_modalOpen_remove() {
+                            roomsOpen.remove();
+                            backdrop.remove();
+                        }
 
-                                closeOpen.addEventListener('click', function () {
-                                    backdrop.remove();
-                                    roomsOpen.remove();
-                                });
+                        closeOpen.forEach(element => {
+                            element.addEventListener('click', function () {
+                                room_modalOpen_remove();
+                            });
+                        });
+
+                        roomsOpen.addEventListener('click', function () {
+                            if (!modalRoomOpen.contains(event.target)) {
+                                backdrop.remove();
+                                roomsOpen.remove();
                             }
+                        });
 
 
 
-                        );
-                    }
+                    });
+
                 }
-
-
             }
-            openRoom();
+
+
+            // }
+            // openRoom();
 
 
 
@@ -193,7 +196,7 @@ main()
 
                     if (roomsArray[i].classList.contains('room_unlock_open')) {
                         // this.removeEventListener('click', unlock);
-                        openRoom();
+                        // openRoom();
                         return;
                     }
 
@@ -274,7 +277,6 @@ main()
                     let room_try = 3;
                     rooms_unlock_btn.addEventListener('click', function () {
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
-                            console.log('passez dans valide');
                             room_control_key.innerHTML = 'Clé valide';
                             reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
