@@ -103,6 +103,7 @@ main()
         for (let i = 0; i < dataGlobal.room.length; i++) {
 
 
+
             li = document.createElement('li');
             li.classList.add('rooms_list_item', `nb-${i}`);
             li.innerHTML = dataGlobalUnlock[0].room[i].title;
@@ -113,40 +114,28 @@ main()
                 roomsArray.push(roomsList.childNodes[j]);
             }
 
-            function openRoom() {
-                if (openRoomCalled) {
-                    return;
-                }
+            if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
+                roomsList.appendChild(li).style.color = 'red';
+            } else {
+                roomsList.appendChild(li).style.color = 'black';
+            }
+
+            roomsArray[i].addEventListener('click', function (openRoom) {
+
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
-
                     roomsArray[i].classList.add('room_unlock_open');
-
-
-
-                    if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
-                        roomsArray[i].style.color = 'black';
-                    }
-
-
-
-                    // roomsArray[i].addEventListener('click', function (openRoom) {
-                    roomsList.addEventListener('click', function (openRoom) {
-
-
-                        console.log("passez par là une fois trop");
-
-
-
-                        const modal = document.createElement('div');
-                        modal.classList.add('modal', 'fade', 'modal-lg');
-                        modal.setAttribute('id', 'roomsOpen');
-                        modal.classList.add('room_open');
-                        modal.setAttribute('tabindex', '-1');
-                        modal.setAttribute('role', 'dialog');
-                        modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
-                        modal.setAttribute('aria-hidden', 'true');
-                        modal.innerHTML = `
+                    // if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                    // }
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'fade', 'modal-lg');
+                    modal.setAttribute('id', 'roomsOpen');
+                    modal.classList.add('room_open');
+                    modal.setAttribute('tabindex', '-1');
+                    modal.setAttribute('role', 'dialog');
+                    modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
+                    modal.setAttribute('aria-hidden', 'true');
+                    modal.innerHTML = `
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content modalRoomOpen">
                                                         <div class="modal-header">
@@ -162,70 +151,39 @@ main()
                                                             </div>
                                                     </div>
                                                 </div>`;
-                        document.body.appendChild(modal);
-                        const roomsOpenModal = new bootstrap.Modal(modal);
-                        roomsOpenModal.show();
+                    document.body.appendChild(modal);
+                    const roomsOpenModal = new bootstrap.Modal(modal);
+                    roomsOpenModal.show();
 
-                        const closeOpen = document.querySelectorAll('.closeOpen');
-                        const backdrop = document.querySelector('.modal-backdrop');
-                        const modalRoomOpen = document.querySelector('.modalRoomOpen');
-                        const roomsOpen = document.querySelector('#roomsOpen');
+                    const closeOpen = document.querySelectorAll('.closeOpen');
+                    const backdrop = document.querySelector('.modal-backdrop');
+                    const modalRoomOpen = document.querySelector('.modalRoomOpen');
+                    const roomsOpen = document.querySelector('#roomsOpen');
 
-                        function room_modalOpen_remove() {
-                            roomsOpen.remove();
-                            backdrop.remove();
-                        }
+                    function room_modalOpen_remove() {
+                        roomsOpen.remove();
+                        backdrop.remove();
+                    }
 
-                        closeOpen.forEach(element => {
-                            element.addEventListener('click', function () {
-                                room_modalOpen_remove();
+                    closeOpen.forEach(element => {
+                        element.addEventListener('click', function () {
+                            room_modalOpen_remove();
 
-                            });
                         });
-
-                        roomsOpen.addEventListener('click', function () {
-                            if (!modalRoomOpen.contains(event.target)) {
-                                backdrop.remove();
-                                roomsOpen.remove();
-                                modalRoomOpen.remove();
-
-                            }
-                        });
-
-
-
                     });
 
+                    roomsOpen.addEventListener('click', function () {
+                        if (!modalRoomOpen.contains(event.target)) {
+                            backdrop.remove();
+                            roomsOpen.remove();
+                            modalRoomOpen.remove();
+
+                        }
+                    });
 
                 }
 
-
-
-            };
-
-            openRoom();
-
-
-
-
-            if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
-                roomsList.appendChild(li).style.color = 'red';
-
-
-                roomsArray[i].addEventListener('click', function (unlock) {
-
-                    if (roomsArray[i].classList.contains('room_unlock_open')) {
-                        // this.removeEventListener('click', unlock);
-                        // this.addEventListener('click', openRoom);
-                        openRoomCalled = true;
-                        openRoom();
-                        if (openRoomCalled) {
-                            return;
-                        }
-                        return;
-                        console.log('ok passe plusieurs fois');
-
-                    }
+                if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
 
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
@@ -311,9 +269,6 @@ main()
                             dataGlobal.room[i]['unlock_word'] = null;
                             roomsArray[i].classList.add('room_unlock_open');
                             roomsArray[i].style.color = 'black';
-                            roomsArray[i].removeEventListener('click', unlock);
-                            roomsArray[i].addEventListener('click', openRoom);
-                            // openRoomCalled = true;
                             dataGlobalUnlock.push(dataGlobal);
                             if (dataGlobalUnlock.length > 1) {
                                 dataGlobalUnlock.pop();
@@ -337,17 +292,18 @@ main()
                         }
                     });
 
-                });
+                };
 
 
 
-            }
+
+
+
+            })
+
 
 
         }
-
-
-
     })
     .catch(error => {
         console.error(error);
