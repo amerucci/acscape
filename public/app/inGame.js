@@ -150,20 +150,19 @@ main()
                     const modalRoomLock = document.querySelector('.modalRoomLock');
                     const roomsLock = document.querySelector('#roomsLock');
 
+                    function room_modal_remove() {
+                        roomsLock.remove();
+                        backdrop.remove();
+                    }
+
                     closeLock.forEach(element => {
                         element.addEventListener('click', function () {
-                            roomsLock.classList.remove('show');
-                            roomsLock.style.display = 'none';
-                            roomsLock.remove();
-                            backdrop.remove();
-                            // roomsModal.remove();
+                            room_modal_remove();
                         });
                     });
 
                     roomsLock.addEventListener('click', function () {
-                        console.log('parent');
                         if (!modalRoomLock.contains(event.target)) {
-                            console.log('enfant')
                             backdrop.remove();
                             roomsLock.remove();
                         }
@@ -190,6 +189,9 @@ main()
                             reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
+                            roomsArray[i].style.color = 'black';
+                            setTimeout(room_modal_remove, 2000);
+
                         } else {
                             room_try--;
                             room_control_key.innerHTML = `Clé invalide ! Encore ${room_try} essais avant une pénalité de 5 minutes`;
