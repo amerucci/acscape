@@ -81,9 +81,8 @@ $title = "Modifier la salle {$room->title}";
                     <div
                         class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                         <label for="title">Récompense du dévérouillage</label>
-                        <input type="text" name="reward" id="reward" class="form-control"
-                            placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
-                            value="<?= htmlspecialchars($room->reward) ?>">
+                        <textarea type="text" name="reward" id="reward" class="form-control" rows="5"
+                            placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"><?= htmlspecialchars($room->reward) ?></textarea>
                     </div>
                 </div>
 

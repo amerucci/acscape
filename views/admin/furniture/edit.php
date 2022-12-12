@@ -44,7 +44,7 @@ $title = "Modification du meuble"; ?>
                 <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="title">Solution pour le dévérouillage</label>
                     <input type="text" name="unlock_word" id="unlock_word" class="form-control"
-                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required
+                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce"
                         value="<?= htmlspecialchars($furniture->unlock_word) ?>">
                 </div>
                 <div class="form-group form_clue d-flex justify-content-center align-items-center flex-column w-100">
@@ -74,9 +74,8 @@ $title = "Modification du meuble"; ?>
                 <?php endif; ?>
                 <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="title">Récompense du dévérouillage</label>
-                    <input type="text" name="reward" id="reward" class="form-control"
-                        placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
-                        value="<?= htmlspecialchars($furniture->reward) ?>" required>
+                    <textarea type="text" name="reward" id="reward" class="form-control" rows="5"
+                        placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"><?= htmlspecialchars($furniture->reward) ?></textarea>
                 </div>
             </div>
 
