@@ -111,24 +111,24 @@ main()
                 roomsArray.push(roomsList.childNodes[j]);
             }
 
-            // function openRoom() {
-            if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+            function openRoom() {
+                if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
 
-                roomsArray[i].classList.add('room_unlock_open');
+                    roomsArray[i].classList.add('room_unlock_open');
 
-                if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
-                    roomsArray[i].style.color = 'black';
+                    if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                        roomsArray[i].style.color = 'black';
 
-                    roomsArray[i].addEventListener('click', function (openRoom) {
-                        const modal = document.createElement('div');
-                        modal.classList.add('modal', 'fade', 'modal-lg');
-                        modal.setAttribute('id', 'roomsOpen');
-                        modal.classList.add('room_open');
-                        modal.setAttribute('tabindex', '-1');
-                        modal.setAttribute('role', 'dialog');
-                        modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
-                        modal.setAttribute('aria-hidden', 'true');
-                        modal.innerHTML = `
+                        roomsArray[i].addEventListener('click', function (openRoom) {
+                            const modal = document.createElement('div');
+                            modal.classList.add('modal', 'fade', 'modal-lg');
+                            modal.setAttribute('id', 'roomsOpen');
+                            modal.classList.add('room_open');
+                            modal.setAttribute('tabindex', '-1');
+                            modal.setAttribute('role', 'dialog');
+                            modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
+                            modal.setAttribute('aria-hidden', 'true');
+                            modal.innerHTML = `
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content modalRoomOpen">
                                                         <div class="modal-header">
@@ -144,43 +144,43 @@ main()
                                                             </div>
                                                     </div>
                                                 </div>`;
-                        document.body.appendChild(modal);
-                        const roomsModal = new bootstrap.Modal(modal);
-                        roomsModal.show();
+                            document.body.appendChild(modal);
+                            const roomsModal = new bootstrap.Modal(modal);
+                            roomsModal.show();
 
-                        const closeOpen = document.querySelectorAll('.closeOpen');
-                        const backdrop = document.querySelector('.modal-backdrop');
-                        const modalRoomOpen = document.querySelector('.modalRoomOpen');
-                        const roomsOpen = document.querySelector('#roomsOpen');
+                            const closeOpen = document.querySelectorAll('.closeOpen');
+                            const backdrop = document.querySelector('.modal-backdrop');
+                            const modalRoomOpen = document.querySelector('.modalRoomOpen');
+                            const roomsOpen = document.querySelector('#roomsOpen');
 
-                        function room_modalOpen_remove() {
-                            roomsOpen.remove();
-                            backdrop.remove();
-                        }
-
-                        closeOpen.forEach(element => {
-                            element.addEventListener('click', function () {
-                                room_modalOpen_remove();
-                            });
-                        });
-
-                        roomsOpen.addEventListener('click', function () {
-                            if (!modalRoomOpen.contains(event.target)) {
-                                backdrop.remove();
+                            function room_modalOpen_remove() {
                                 roomsOpen.remove();
+                                backdrop.remove();
                             }
+
+                            closeOpen.forEach(element => {
+                                element.addEventListener('click', function () {
+                                    room_modalOpen_remove();
+                                });
+                            });
+
+                            roomsOpen.addEventListener('click', function () {
+                                if (!modalRoomOpen.contains(event.target)) {
+                                    backdrop.remove();
+                                    roomsOpen.remove();
+                                }
+                            });
+
+
+
                         });
 
-
-
-                    });
-
+                    }
                 }
+
+
             }
-
-
-            // }
-            // openRoom();
+            openRoom();
 
 
 
@@ -196,7 +196,7 @@ main()
 
                     if (roomsArray[i].classList.contains('room_unlock_open')) {
                         // this.removeEventListener('click', unlock);
-                        // openRoom();
+                        openRoom();
                         return;
                     }
 
