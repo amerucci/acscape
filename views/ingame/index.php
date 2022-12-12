@@ -145,4 +145,4 @@
     </div>
 </div>
 
-<script src="public\app\inGame2.js"></script>
+<script src="public\app\inGame.js"></script>
