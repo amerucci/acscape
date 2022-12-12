@@ -45,8 +45,8 @@ $objects = $params['objects'];
         </div>
 
         <h1>Salles</h1>
-        <a href="room/create">Créer une salle</a>
-        <div class="d-flex justify-content-center align-items-center gap-2 ">
+        <a class="my-2" href="room/create">Créer une salle</a>
+        <div class="d-flex justify-content-center align-items-center gap-2 row mb-5">
             <?php foreach ($rooms as $room) : ?>
             <div class="card col-2 mx-2">
                 <div class="card-body card_rooms d-flex justify-content-center align-items-center flex-column gap-2">
@@ -62,7 +62,7 @@ $objects = $params['objects'];
         </div>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center flex-column my-4">
+    <!-- <div class="d-flex justify-content-center align-items-center flex-column my-4">
         <h1 class="my-3">Objets</h1>
         <a href="objects/create">Créer un objet</a>
         <div class="d-flex align-items-center gap-2">
@@ -82,7 +82,7 @@ $objects = $params['objects'];
                 <?php endforeach; ?>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <?php unset($_SESSION['room_id']); ?>

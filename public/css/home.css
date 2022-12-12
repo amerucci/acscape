@@ -311,7 +311,7 @@
 .card {
     background-color: transparent;
     border: none;
-    height: 333px;
+    min-height: 350px;
     width: 297px;
 }
 
