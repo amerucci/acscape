@@ -189,6 +189,7 @@ main()
                             room_control_key.innerHTML = 'Clé valide';
                             reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
+                            dataGlobal.room[i]['padlock'] = "no";
                         } else {
                             room_try--;
                             room_control_key.innerHTML = `Clé invalide ! Encore ${room_try} essais avant une pénalité de 5 minutes`;
@@ -198,6 +199,11 @@ main()
                                 countdown = countdown - 300;
                             }
 
+                        }
+                    });
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key == 'Enter') {
+                            rooms_unlock_btn.click();
                         }
                     });
 

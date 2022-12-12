@@ -58,6 +58,7 @@
     background-color: white;
     width: 842px;
     height: 317px;
+    z-index: 999999;
 }
 
 .endgame_title {
