@@ -37,11 +37,11 @@ $scripts = $params['scripts']; ?>
                     class="card-img-top">
                 <h5 class="card-title"><?= $script->title ?></h5>
                 <p class="card-text"><?= $script->description ?></p>
-                <div class="d-flex justify-content-center align-items-center flex-column gap-1">
+                <div class="d-flex justify-content-center align-items-center flex-column gap-1 w-100">
                     <a href="script/edit/<?= $script->id ?>" class="btn btn-primary w-100">Editer</a>
-                    <form action="script/delete/<?= $script->id ?>" method="post">
+                    <form action="script/delete/<?= $script->id ?>" method="post" class="w-100">
                         <input type="hidden" name="id" value="<?= $script->id ?>">
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                        <button type="submit" class="btn btn-danger w-100">Supprimer</button>
                     </form>
                 </div>
             </div>

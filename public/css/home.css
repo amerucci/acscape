@@ -331,6 +331,7 @@
     text-align: center;
     text-transform: capitalize;
     color: white;
+    min-height: 80px;
 }
 
 .card p {
@@ -341,6 +342,7 @@
     line-height: 24px;
     text-align: center;
     color: #717171;
+    min-height: 50px;
 }
 
 div.card:nth-child(3)>div:nth-child(2)>h5:nth-child(1) {
