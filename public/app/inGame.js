@@ -62,6 +62,8 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 
 let dataGlobal = []; // variable globale dataGlobal
+let dataGlobalUnlock = [] // variable globale dataGlobal deverouillé
+
 
 let li
 
@@ -73,6 +75,7 @@ async function getData() {
         if (response.ok) {
             const data = await response.json();
             dataGlobal = data.data; // les données global
+
             return dataGlobal;
         } else {
             console.error('Erreur lors de la récupération des données :', response.statusText);
@@ -87,29 +90,112 @@ async function main() {
     console.log(data); // affiche la valeur retournée par getData()
 }
 
+let room_open
+
+
 main()
     .then(data => {
+
+        dataGlobalUnlock.push(dataGlobal);
+
         for (let i = 0; i < dataGlobal.room.length; i++) {
+
 
             li = document.createElement('li');
             li.classList.add('rooms_list_item', `nb-${i}`);
-            li.innerHTML = dataGlobal.room[i].title;
+            li.innerHTML = dataGlobalUnlock[0].room[i].title;
             roomsList.appendChild(li);
-            if (dataGlobal.room[i]['padlock'] == "yes") {
-                roomsList.appendChild(li).style.color = 'red';
-            }
-            if (dataGlobal.room[i]['padlock'] == "no") {
-                roomsList.appendChild(li).style.color = 'black';
-            }
 
             let roomsArray = [];
-            for (let j = 3; j <= 10; j++) {
+            for (let j = 3; j <= 20; j++) {
                 roomsArray.push(roomsList.childNodes[j]);
             }
-            if (dataGlobal.room[i]['padlock'] == "yes") {
-                roomsArray[i].addEventListener('click', function () {
 
-                    console.log(dataGlobal.room[i]['clue']);
+            function openRoom() {
+                if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+
+                    roomsArray[i].classList.add('room_unlock_open');
+
+                    if (roomsArray[i].classList.contains('room_unlock_open') == true && dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                        roomsArray[i].style.color = 'black';
+
+                        roomsArray[i].addEventListener('click', function (openRoom) {
+                                const modal = document.createElement('div');
+                                modal.classList.add('modal', 'fade', 'modal-lg');
+                                modal.setAttribute('id', 'roomsOpen');
+                                modal.classList.add('room_open');
+                                modal.setAttribute('tabindex', '-1');
+                                modal.setAttribute('role', 'dialog');
+                                modal.setAttribute('aria-labelledby', 'roomsModalOpenLabel');
+                                modal.setAttribute('aria-hidden', 'true');
+                                modal.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modalRoomOpen">
+                            <div class="modal-header">
+                                <h5 class="modal-title  mx-auto" id="roomsModalOpenLabel">${this.innerHTML} est ouverte</h5>
+                                <button type="button" class="closeOpen" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                                        </iconify-icon>
+                                    </span>
+                            </div>
+                                <div class="modal-body">
+                                    <p>${dataGlobal.room[i].reward}</p>
+                                </div>
+                        </div>
+                    </div>`;
+                                document.body.appendChild(modal);
+                                const roomsModal = new bootstrap.Modal(modal);
+                                roomsModal.show();
+
+                                const closeOpen = document.querySelector('.closeOpen');
+                                const roomsOpen = document.querySelector('#roomsOpen');
+                                const room_open = document.querySelectorAll('.room_open');
+                                const modalRoomOpen = document.querySelector('.modalRoomOpen');
+                                const backdrop = document.querySelector('.modal-backdrop');
+
+                                roomsOpen.addEventListener('click', function () {
+                                    console.log('parent');
+                                    if (!modalRoomOpen.contains(event.target)) {
+                                        console.log('enfant');
+                                        backdrop.remove();
+                                        roomsOpen.remove();
+                                    }
+                                });
+
+                                closeOpen.addEventListener('click', function () {
+                                    backdrop.remove();
+                                    roomsOpen.remove();
+                                });
+                            }
+
+
+
+                        );
+                    }
+                }
+
+
+            }
+            openRoom();
+
+
+
+
+
+            if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
+                roomsList.appendChild(li).style.color = 'red';
+
+
+
+
+                roomsArray[i].addEventListener('click', function (unlock) {
+
+                    if (roomsArray[i].classList.contains('room_unlock_open')) {
+                        // this.removeEventListener('click', unlock);
+                        openRoom();
+                        return;
+                    }
 
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
@@ -132,19 +218,22 @@ main()
                                 <div class="modal-body">
                                     <p>Vous devez trouver la clé pour accéder à cette pièce</p>
                                         <div class="d-flex gap-2 clue_show">
-                                           <p class="clue_show">Indice :</p>
+                                           <p class="clue_show1">Indice :</p>
                                            <p class="clue_show_content dnone">${dataGlobal.room[i]['clue']}</p>            
                                         </div>
                                     <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${this.innerHTML} ">
                                     <p class="room_control_key"></p>
                                     <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn">Déverrouiller</button>
-                                    <p class="reward dnone"></p>
+                                    <p class="reward dnone">${dataGlobal.room[i]['reward']}</p>
                                 </div>
                         </div>
                     </div>`;
                     document.body.appendChild(modal);
                     const roomsModal = new bootstrap.Modal(modal);
                     roomsModal.show();
+
+
+
                     const closeLock = document.querySelectorAll('.closeLock');
                     const backdrop = document.querySelector('.modal-backdrop');
                     const modalRoomLock = document.querySelector('.modalRoomLock');
@@ -168,10 +257,10 @@ main()
                         }
                     });
 
-                    const clue_show = document.querySelector('.clue_show');
+                    const clue_show1 = document.querySelector('.clue_show1');
                     const clue_show_content1 = document.querySelector('.clue_show_content');
 
-                    clue_show.addEventListener('click', function () {
+                    clue_show1.addEventListener('click', function () {
                         clue_show_content1.classList.remove('dnone');
                         if (clue_show_content1.innerHTML == "null") {
                             clue_show_content1.innerHTML = 'Pas d\'indice';
@@ -185,12 +274,21 @@ main()
                     let room_try = 3;
                     rooms_unlock_btn.addEventListener('click', function () {
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
+                            console.log('passez dans valide');
                             room_control_key.innerHTML = 'Clé valide';
                             reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
+                            dataGlobal.room[i]['unlock_word'] = null;
+                            roomsArray[i].classList.add('room_unlock_open');
                             roomsArray[i].style.color = 'black';
-                            setTimeout(room_modal_remove, 2000);
+                            // roomsArray[i].removeEventListener('click', unlock);
+                            // roomsArray[i].addEventListener('click', openRoom);
+                            dataGlobalUnlock.push(dataGlobal);
+                            if (dataGlobalUnlock.length > 1) {
+                                dataGlobalUnlock.pop();
+                            }
+                            // setTimeout(room_modal_remove, 2000);
 
                         } else {
                             room_try--;
@@ -209,11 +307,13 @@ main()
                         }
                     });
 
-
-
                 });
 
+
+
             }
+
+
         }
 
 
