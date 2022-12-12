@@ -109,7 +109,7 @@ main()
             if (dataGlobal.room[i]['padlock'] == "yes") {
                 roomsArray[i].addEventListener('click', function () {
 
-
+                    console.log(dataGlobal.room[i]['clue']);
 
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
@@ -131,6 +131,10 @@ main()
                             </div>
                                 <div class="modal-body">
                                     <p>Vous devez trouver la clé pour accéder à cette pièce</p>
+                                        <div class="d-flex gap-2 clue_show">
+                                           <p class="clue_show_text">${dataGlobal.room[i]['clue']}</p>            
+                                        </div>
+                                    <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${this.innerHTML} ">
                                 </div>
                         </div>
                     </div>`;

@@ -38,7 +38,6 @@
             <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
                 <label for="clue">Indice</label>
                 <input type="text" name="clue" id="clue" class="form-control" placeholder="indice 1">
-                <!-- button for a new clue -->
                 <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
                 <p class="max"></p>
             </div>
