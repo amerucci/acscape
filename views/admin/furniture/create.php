@@ -47,12 +47,12 @@
                     placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
                     rows="6"></textarea>
             </div>
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+            <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
+            <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
+            <button type="submit" class="btn btn-primary mx-auto w-100">Créer</button>
+        </form>
     </div>
-    <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
-    <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
-    <input type="hidden" name="room_id" value="<?= $_SESSION['room_id'] ?>">
-    <button type="submit" class="btn btn-primary">Créer</button>
-    </form>
 </div>
 </div>
 
