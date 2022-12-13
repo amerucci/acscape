@@ -377,8 +377,11 @@ main()
                             room_control_key.innerHTML = `Clé invalide ! Encore ${room_try} essais avant une pénalité de 5 minutes`;
                             if (room_try == 0) {
                                 room_control_key.innerHTML = `Dommage vous avez une pénalité de 5 minutes !`;
+                                penality.classList.add('topToBottom');
+                                penality.innerHTML = "-5 min";
                                 room_try = 3;
                                 countdown = countdown - 300;
+                                removeToptoBottom()
                             }
 
                         }
