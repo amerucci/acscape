@@ -68,3 +68,9 @@ logoNav {
 .navbar-nav {
     margin-left: 3%;
 }
+
+.navbar-navInGame {
+    display: flex;
+    justify-content: space-between;
+    width: 49%;
+}

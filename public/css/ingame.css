@@ -26,7 +26,8 @@
 }
 
 .close,
-.closeLock {
+.closeLock,
+.closeOpen {
     background: none;
     border: none;
     cursor: pointer;
@@ -197,4 +198,8 @@
         transform: translateY(25%);
         opacity: 0;
     }
+}
+
+.modalRoomOpen {
+    min-height: 350px;
 }

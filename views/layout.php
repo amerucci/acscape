@@ -51,6 +51,8 @@
             if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) {
                 // echo '<li class="nav-item">'.$game->title.'</li>';
                 echo '<li class="nav-item in_game_nav"> Le développeur perdu</li>';
+                echo '<li class="nav-item in_game_nav room_active"></li>';
+
             } else { ?>
 
                     <li class="nav-item">
@@ -64,7 +66,6 @@
                     </li>
                     <li>
                         <?php if ($_SESSION) : ?>
-                        <!-- <a class="nav-link" href="/acscape/admin/posts">créer votre jeu</a> -->
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -173,6 +174,7 @@
         document.querySelector('.navbar').style.color = "white";
         document.querySelector('.navLog').style.marginRight = "5%";
         document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
+        document.querySelector('.navbar-nav').classList.add("navbar-navInGame");
         if (screen.width < 1440) {
             document.querySelector('body').style.backgroundSize = "contain";
         } else {
@@ -181,6 +183,8 @@
         document.querySelector('body').style.backgroundRepeat = "no-repeat";
         document.querySelector('body').style.backgroundPosition = "center";
         document.querySelector('.footer_acs').style.background = "transparent";
+    } else {
+        document.querySelector('navbar-nav').classList.remove("navbar-navInGame");
     }
 </script>
 

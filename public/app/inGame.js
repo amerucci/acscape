@@ -69,6 +69,7 @@ let li
 
 const roomsList = document.querySelector('.rooms_list');
 const penality = document.querySelector('.penality');
+const navInGameTitle = document.querySelector('.room_active');
 
 async function getData() {
     try {
@@ -121,10 +122,22 @@ main()
                 roomsList.appendChild(li).style.color = 'black';
             }
 
+            // roomsArray[0].classList.add('activeR');
+
             roomsArray[i].addEventListener('click', function () {
 
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                    navInGameTitle.innerHTML = dataGlobalUnlock[0].room[i].title;
+
+                    const rooms_list_item = document.querySelectorAll('.rooms_list_item');
+                    rooms_list_item.forEach(element => {
+                        element.classList.remove('activeR');
+                    });
+                    roomsArray[i].classList.add('activeR');
+
+
+
                     roomsArray[i].classList.add('room_unlock_open');
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
@@ -294,8 +307,8 @@ main()
                         if (t == 0) {
                             t++;
                             penality.classList.add('topToBottom');
-                            penality.textContent = "-60 sec";
-                            countdown = countdown - 60;
+                            penality.textContent = "-30 sec";
+                            countdown = countdown - 30;
                             removeToptoBottom()
                             return;
                         }
@@ -323,8 +336,8 @@ main()
                         if (t == 1) {
                             t++;
                             penality.classList.add('topToBottom');
-                            penality.innerHTML = "-60 sec";
-                            countdown = countdown - 60;
+                            penality.innerHTML = "-30 sec";
+                            countdown = countdown - 30;
                             removeToptoBottom()
                             return;
                         }
@@ -341,8 +354,8 @@ main()
                         if (t == 2) {
                             t++;
                             penality.classList.add('topToBottom');
-                            penality.innerHTML = "-60 sec";
-                            countdown = countdown - 60;
+                            penality.innerHTML = "-30 sec";
+                            countdown = countdown - 30;
                             removeToptoBottom()
                             return;
                         }
