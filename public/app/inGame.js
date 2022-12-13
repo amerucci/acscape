@@ -63,6 +63,7 @@ setInterval(updateCountdown, 1000);
 
 let dataGlobal = []; // variable globale dataGlobal
 let dataGlobalUnlock = [] // variable globale dataGlobal deverouillé
+let roomID = 0;
 
 
 let li
@@ -122,7 +123,7 @@ main()
                 roomsList.appendChild(li).style.color = 'black';
             }
 
-            // roomsArray[0].classList.add('activeR');
+
 
             roomsArray[i].addEventListener('click', function () {
 
@@ -135,6 +136,8 @@ main()
                         element.classList.remove('activeR');
                     });
                     roomsArray[i].classList.add('activeR');
+
+
 
 
 
@@ -166,6 +169,15 @@ main()
                     document.body.appendChild(modal);
                     const roomsOpenModal = new bootstrap.Modal(modal);
                     roomsOpenModal.show();
+
+                    if (roomsArray[i].classList.contains('activeR')) {
+                        roomID = dataGlobal.room[i].id;
+                    }
+                    // if (roomsArray.length > 1) {
+                    //     // roomID.shift(2);
+                    //     // roomID.splice(1);
+                    // }
+
 
                     const closeOpen = document.querySelectorAll('.closeOpen');
                     const backdrop = document.querySelector('.modal-backdrop');
