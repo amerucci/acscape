@@ -157,3 +157,13 @@
 .modalRoomLock {
     min-height: 40vh;
 }
+
+.clue_show1,
+.clue_show2,
+.clue_show3 {
+    background: blue;
+    color: white;
+    padding: 1%;
+    border-radius: 5%;
+    cursor: pointer;
+}

@@ -200,11 +200,21 @@ main()
                                     </span>
                             </div>
                                 <div class="modal-body">
-                                    <p>Vous devez trouver la clé pour accéder à cette pièce</p>
+                                   
                                         <div class="d-flex gap-2 clue_show">
-                                           <p class="clue_show1">Indice :</p>
-                                           <p class="clue_show_content dnone">${dataGlobal.room[i]['clue']}</p>            
-                                        </div>
+                                           <div class="d-flex flex-column w-100">
+                                               <div class="d-flex gap-3 justify-content-center">
+                                                   <p class="clue_show1">Indice 1</p>
+                                                     <p class="clue_show2">indice 2</p>
+                                                        <p class="clue_show3">indice 3</p>
+                                               </div>
+                                               <div class="d-flex gap-2 justify-content-center">
+                                                   <p class="clue_show1_content dnone">${dataGlobal.room[i]['clue']}</p>
+                                                        <p class="clue_show2_content dnone ">${dataGlobal.room[i]['clue2']}</p>
+                                                        <p class="clue_show3_content dnone">${dataGlobal.room[i]['clue3']}</p>
+                                               </div>    
+                                                                                       </div>
+                                           </div>
                                     <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${this.innerHTML} ">
                                     <p class="room_control_key"></p>
                                     <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn">Déverrouiller</button>
@@ -240,12 +250,64 @@ main()
                     });
 
                     const clue_show1 = document.querySelector('.clue_show1');
-                    const clue_show_content1 = document.querySelector('.clue_show_content');
+                    const clue_show_content1 = document.querySelector('.clue_show1_content');
+                    const clue_show2 = document.querySelector('.clue_show2');
+                    const clue_show_content2 = document.querySelector('.clue_show2_content');
+                    const clue_show3 = document.querySelector('.clue_show3');
+                    const clue_show_content3 = document.querySelector('.clue_show3_content');
+                    let t = 0;
+
+                    function lessTime() {
+                        if (t == 0) {
+                            t++;
+                            countdown = countdown - 60;
+                            return;
+                        }
+                    }
+
+                    if (clue_show_content1.innerHTML == "null") {
+                        clue_show1.classList.add('dnone');
+                        clue_show2.classList.add('dnone');
+                        clue_show3.classList.add('dnone');
+                    }
+
+                    if (clue_show_content2.innerHTML == "null") {
+                        clue_show2.classList.add('dnone');
+                        clue_show3.classList.add('dnone');
+                    }
+
+                    if (clue_show_content3.innerHTML == "null") {
+                        clue_show3.classList.add('dnone');
+                    }
 
                     clue_show1.addEventListener('click', function () {
-                        clue_show_content1.classList.remove('dnone');
+                        clue_show_content1.classList.toggle('dnone');
+                        clue_show_content2.classList.add('dnone');
+                        clue_show_content3.classList.add('dnone');
+                        lessTime();
                         if (clue_show_content1.innerHTML == "null") {
                             clue_show_content1.innerHTML = 'Pas d\'indice';
+                        }
+                    });
+
+
+                    clue_show2.addEventListener('click', function () {
+                        clue_show_content2.classList.toggle('dnone');
+                        clue_show_content1.classList.add('dnone');
+                        clue_show_content3.classList.add('dnone');
+                        lessTime();
+                        if (clue_show_content2.innerHTML == "null") {
+                            clue_show_content2.innerHTML = 'Pas d\'indice';
+                        }
+                    });
+
+                    clue_show3.addEventListener('click', function () {
+                        clue_show_content3.classList.toggle('dnone');
+                        clue_show_content1.classList.add('dnone');
+                        clue_show_content2.classList.add('dnone');
+                        lessTime();
+                        if (clue_show_content3.innerHTML == "null") {
+                            clue_show_content3.innerHTML = 'Pas d\'indice';
                         }
                     });
 
