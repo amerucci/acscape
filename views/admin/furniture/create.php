@@ -30,22 +30,24 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
-                <label for="title">Solution pour le dévérouillage</label>
-                <input type="text" name="unlock_word" id="unlock_word" class="form-control"
-                    placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required>
-            </div>
-            <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
-                <label for="clue">Indice</label>
-                <input type="text" name="clue" id="clue" class="form-control" placeholder="indice 1">
-                <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
-                <p class="max"></p>
-            </div>
-            <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
-                <label for="title">Récompense du dévérouillage</label>
-                <textarea type="text" name="reward" id="reward" class="form-control"
-                    placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
-                    rows="6"></textarea>
+            <div class="dnone padlock_params d-flex justify-content-center align-items-center flex-column w-100 gap-3">
+                <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="title">Solution pour le dévérouillage</label>
+                    <input type="text" name="unlock_word" id="unlock_word" class="form-control"
+                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required>
+                </div>
+                <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
+                    <label for="clue">Indice</label>
+                    <textarea type="text" name="clue" id="clue" class="form-control" placeholder="indice 1"></textarea>
+                    <button type="button" class="btn btn-primary mt-1" id="addClue">Ajouter un indice</button>
+                    <p class="max"></p>
+                </div>
+                <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="title">Récompense du dévérouillage</label>
+                    <textarea type="text" name="reward" id="reward" class="form-control"
+                        placeholder="Indiquer ici une aide pour dévérrouiller d'autres pièces ou meubles"
+                        rows="6"></textarea>
+                </div>
             </div>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="script_id" value="<?= $_SESSION['script_id'] ?>">
@@ -61,7 +63,7 @@
     document.getElementById('addClue').addEventListener('click', function () {
         if (i < 3) {
             i++;
-            let newClue = document.createElement('input');
+            let newClue = document.createElement('textarea');
             newClue.setAttribute('type', 'text');
             newClue.setAttribute('name', 'clue' + i);
             newClue.setAttribute('id', 'clue' + i);
@@ -75,4 +77,22 @@
             document.getElementById('addClue').style.cursor = 'not-allowed';
         }
     });
+
+    function padlock() {
+
+        let padlock = document.getElementById('padlock');
+        let padlockParams = document.querySelector('.padlock_params');
+        if (padlock.value === 'yes') {
+            padlockParams.classList.remove('dnone');
+        }
+
+        padlock.addEventListener('change', function () {
+            if (padlock.value === 'yes') {
+                padlockParams.classList.remove('dnone');
+            } else {
+                padlockParams.classList.add('dnone');
+            }
+        });
+    }
+    padlock();
 </script>

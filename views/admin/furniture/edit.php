@@ -167,17 +167,21 @@ $title = "Modification du meuble"; ?>
 
     });
 
-    let padlock = document.getElementById('padlock');
-    let padlockParams = document.querySelector('.padlock_params');
-    if (padlock.value === 'yes') {
-        padlockParams.classList.remove('dnone');
-    }
+    function padlock() {
 
-    padlock.addEventListener('change', function () {
+        let padlock = document.getElementById('padlock');
+        let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
-        } else {
-            padlockParams.classList.add('dnone');
         }
-    });
+
+        padlock.addEventListener('change', function () {
+            if (padlock.value === 'yes') {
+                padlockParams.classList.remove('dnone');
+            } else {
+                padlockParams.classList.add('dnone');
+            }
+        });
+    }
+    padlock();
 </script>
