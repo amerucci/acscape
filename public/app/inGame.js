@@ -388,7 +388,11 @@ main()
                     });
                     document.addEventListener('keydown', function (e) {
                         if (e.key == 'Enter') {
-                            rooms_unlock_btn.click();
+                            if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
+                                rooms_unlock_btn.click();
+                                e.preventDefault;
+                                return;
+                            }
                         }
                     });
 
