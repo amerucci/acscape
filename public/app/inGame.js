@@ -173,11 +173,6 @@ main()
                     if (roomsArray[i].classList.contains('activeR')) {
                         roomID = dataGlobal.room[i].id;
                     }
-                    // if (roomsArray.length > 1) {
-                    //     // roomID.shift(2);
-                    //     // roomID.splice(1);
-                    // }
-
 
                     const closeOpen = document.querySelectorAll('.closeOpen');
                     const backdrop = document.querySelector('.modal-backdrop');
@@ -284,6 +279,7 @@ main()
                     let t = 0;
                     let tl = 0;
 
+
                     function removeToptoBottom() {
                         setTimeout(() => {
                             penality.classList.remove('topToBottom');
@@ -306,6 +302,7 @@ main()
                     }
 
                     clue_show1.addEventListener('click', function () {
+
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
                         clue_show2.classList.add('timelaps');
@@ -316,13 +313,16 @@ main()
                                 clue_show2.disabled = false;
                             }, 5000);
                         }
-                        if (t == 0) {
-                            t++;
-                            penality.classList.add('topToBottom');
-                            penality.textContent = "-30 sec";
-                            countdown = countdown - 30;
-                            removeToptoBottom()
-                            return;
+                        if (!dataGlobalUnlock[0].room[i].clue1Found) {
+                            if (t == 0) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.textContent = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                dataGlobalUnlock[0].room[i].clue1Found = "yes";
+
+                            }
                         }
 
 
@@ -334,7 +334,7 @@ main()
 
                     clue_show2.addEventListener('click', function () {
 
-
+                        dataGlobalUnlock[0].room[i].clue2Found = "yes";
                         clue_show_content2.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
@@ -345,13 +345,15 @@ main()
                                 clue_show3.disabled = false;
                             }, 5000);
                         }
-                        if (t == 1) {
-                            t++;
-                            penality.classList.add('topToBottom');
-                            penality.innerHTML = "-30 sec";
-                            countdown = countdown - 30;
-                            removeToptoBottom()
-                            return;
+                        if (!dataGlobalUnlock[0].room[i].clue2Found) {
+                            if (t == 1) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.innerHTML = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                return;
+                            }
                         }
 
                         if (clue_show_content2.innerHTML == "null") {
@@ -360,16 +362,19 @@ main()
                     });
 
                     clue_show3.addEventListener('click', function () {
+                        dataGlobalUnlock[0].room[i].clue3Found = "yes";
                         clue_show_content3.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content2.classList.add('dnone');
-                        if (t == 2) {
-                            t++;
-                            penality.classList.add('topToBottom');
-                            penality.innerHTML = "-30 sec";
-                            countdown = countdown - 30;
-                            removeToptoBottom()
-                            return;
+                        if (!dataGlobalUnlock[0].room[i].clue3Found) {
+                            if (t == 2) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.innerHTML = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                return;
+                            }
                         }
 
                         if (clue_show_content3.innerHTML == "null") {
