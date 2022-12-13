@@ -162,22 +162,24 @@ $title = "Modifier la salle {$room->title}";
 
 
     let c = 1;
-    document.getElementById('addClue').addEventListener('click', function () {
-        if (c < 3) {
-            c++;
-            let newClue = document.createElement('textarea');
-            newClue.setAttribute('name', 'clue' + c);
-            newClue.setAttribute('id', 'clue' + c);
-            newClue.setAttribute('placeholder', 'Indice ' + c);
-            newClue.setAttribute('class', 'form-control mt-2');
-            document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
-                'addClue'));
-        }
-        if (c === 3) {
-            document.getElementById('addClue').setAttribute('disabled', 'disabled');
-            document.getElementById('addClue').style.cursor = 'not-allowed';
-        }
-    });
+    if (document.getElementById('addClue') != null) {
+        document.getElementById('addClue').addEventListener('click', function () {
+            if (c < 3) {
+                c++;
+                let newClue = document.createElement('textarea');
+                newClue.setAttribute('name', 'clue' + c);
+                newClue.setAttribute('id', 'clue' + c);
+                newClue.setAttribute('placeholder', 'Indice ' + c);
+                newClue.setAttribute('class', 'form-control mt-2');
+                document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
+                    'addClue'));
+            }
+            if (c === 3) {
+                document.getElementById('addClue').setAttribute('disabled', 'disabled');
+                document.getElementById('addClue').style.cursor = 'not-allowed';
+            }
+        });
+    }
 
     const edit_plus = document.querySelector('.edit_plus');
     const editPlus = document.querySelector('.editPlus');
@@ -186,6 +188,7 @@ $title = "Modifier la salle {$room->title}";
         edit_plus.classList.remove('dnone');
         editPlus.classList.add('dnone');
     });
+
 
     function padlock() {
 
