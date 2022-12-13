@@ -68,6 +68,7 @@ let dataGlobalUnlock = [] // variable globale dataGlobal deverouillé
 let li
 
 const roomsList = document.querySelector('.rooms_list');
+const penality = document.querySelector('.penality');
 
 async function getData() {
     try {
@@ -204,9 +205,9 @@ main()
                                         <div class="d-flex gap-2 clue_show">
                                            <div class="d-flex flex-column w-100">
                                                <div class="d-flex gap-3 justify-content-center">
-                                                   <p class="clue_show1">Indice 1</p>
-                                                     <p class="clue_show2">indice 2</p>
-                                                        <p class="clue_show3">indice 3</p>
+                                                   <button class="clue_show1 my-2">Indice 1</button>
+                                                     <button class="clue_show2 my-2" disabled>indice 2</button>
+                                                        <button class="clue_show3 my-2" disabled>indice 3</button>
                                                </div>
                                                <div class="d-flex gap-2 justify-content-center">
                                                    <p class="clue_show1_content dnone">${dataGlobal.room[i]['clue']}</p>
@@ -256,13 +257,12 @@ main()
                     const clue_show3 = document.querySelector('.clue_show3');
                     const clue_show_content3 = document.querySelector('.clue_show3_content');
                     let t = 0;
+                    let tl = 0;
 
-                    function lessTime() {
-                        if (t == 0) {
-                            t++;
-                            countdown = countdown - 60;
-                            return;
-                        }
+                    function removeToptoBottom() {
+                        setTimeout(() => {
+                            penality.classList.remove('topToBottom');
+                        }, 2000);
                     }
 
                     if (clue_show_content1.innerHTML == "null") {
@@ -283,8 +283,24 @@ main()
                     clue_show1.addEventListener('click', function () {
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
+                        clue_show2.classList.add('timelaps');
                         clue_show_content3.classList.add('dnone');
-                        lessTime();
+                        if (clue_show2.classList.contains('timelaps') && tl == 0) {
+                            tl++;
+                            setTimeout(function () {
+                                clue_show2.disabled = false;
+                            }, 5000);
+                        }
+                        if (t == 0) {
+                            t++;
+                            penality.classList.add('topToBottom');
+                            penality.textContent = "-60 sec";
+                            countdown = countdown - 60;
+                            removeToptoBottom()
+                            return;
+                        }
+
+
                         if (clue_show_content1.innerHTML == "null") {
                             clue_show_content1.innerHTML = 'Pas d\'indice';
                         }
@@ -292,10 +308,27 @@ main()
 
 
                     clue_show2.addEventListener('click', function () {
+
+
                         clue_show_content2.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
-                        lessTime();
+                        clue_show3.classList.add('timelaps');
+                        if (clue_show3.classList.contains('timelaps') && tl == 1) {
+                            tl++;
+                            setTimeout(function () {
+                                clue_show3.disabled = false;
+                            }, 5000);
+                        }
+                        if (t == 1) {
+                            t++;
+                            penality.classList.add('topToBottom');
+                            penality.innerHTML = "-60 sec";
+                            countdown = countdown - 60;
+                            removeToptoBottom()
+                            return;
+                        }
+
                         if (clue_show_content2.innerHTML == "null") {
                             clue_show_content2.innerHTML = 'Pas d\'indice';
                         }
@@ -305,7 +338,15 @@ main()
                         clue_show_content3.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content2.classList.add('dnone');
-                        lessTime();
+                        if (t == 2) {
+                            t++;
+                            penality.classList.add('topToBottom');
+                            penality.innerHTML = "-60 sec";
+                            countdown = countdown - 60;
+                            removeToptoBottom()
+                            return;
+                        }
+
                         if (clue_show_content3.innerHTML == "null") {
                             clue_show_content3.innerHTML = 'Pas d\'indice';
                         }

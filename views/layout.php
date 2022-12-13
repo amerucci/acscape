@@ -85,7 +85,10 @@
                 <ul class="navLog">
                     <li>
                         <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                        <p class="m-0 d-flex justify-content-center align-items-center" id='countdown'></p>
+                        <div class="countdown_container d-flex gap-3">
+                            <div class="penality d-flex align-items-center"></div>
+                            <div class="m-0 d-flex justify-content-center align-items-center" id='countdown'></div>
+                        </div>
                         <?php else : ?>
                         <?php if (!$_SESSION): ?>
                         <a alt="" href="login">
@@ -175,8 +178,6 @@
         } else {
             document.querySelector('body').style.backgroundSize = "cover";
         }
-        // document.querySelector('body').style.backgroundSize = "cover";
-        // document.querySelector('body').style.backgroundSize = "contain";
         document.querySelector('body').style.backgroundRepeat = "no-repeat";
         document.querySelector('body').style.backgroundPosition = "center";
         document.querySelector('.footer_acs').style.background = "transparent";
