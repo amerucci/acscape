@@ -334,7 +334,7 @@ main()
 
                     clue_show2.addEventListener('click', function () {
 
-                        dataGlobalUnlock[0].room[i].clue2Found = "yes";
+
                         clue_show_content2.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
@@ -352,7 +352,7 @@ main()
                                 penality.innerHTML = "-30 sec";
                                 countdown = countdown - 30;
                                 removeToptoBottom()
-                                return;
+                                dataGlobalUnlock[0].room[i].clue2Found = "yes";
                             }
                         }
 
@@ -362,7 +362,7 @@ main()
                     });
 
                     clue_show3.addEventListener('click', function () {
-                        dataGlobalUnlock[0].room[i].clue3Found = "yes";
+
                         clue_show_content3.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content2.classList.add('dnone');
@@ -373,7 +373,7 @@ main()
                                 penality.innerHTML = "-30 sec";
                                 countdown = countdown - 30;
                                 removeToptoBottom()
-                                return;
+                                dataGlobalUnlock[0].room[i].clue3Found = "yes";
                             }
                         }
 
