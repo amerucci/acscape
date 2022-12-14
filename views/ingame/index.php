@@ -56,39 +56,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
-                <div
-                    class="frisk_content_container d-flex justify-content-center align-items-center flex-wrap gap-3 furniture_list">
-
-                    <!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap"
-                        data-toggle="modal" data-target="#furnitureModal">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0 furniture_modal w-100 text-center">Ouvrir</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div> -->
-                </div>
-
-
-
+                <div class="d-flex justify-content-center align-items-center flex-wrap gap-5 furniture_list"></div>
             </div>
         </div>
     </div>
@@ -146,4 +114,31 @@
     </div>
 </div>
 
-<script src="public\app\inGame.js"></script>
+<script src="public\app\inGame2.js"></script>
+
+
+<!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
+                        <img src="assets/front/ingame/furnitures.png" alt="">
+                        <div class="frisk_content">
+                            <p class="frisk_title m-0">Fouiller</p>
+                        </div>
+                    </div>
+                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap"
+                        data-toggle="modal" data-target="#furnitureModal">
+                        <img src="assets/front/ingame/furnitures.png" alt="">
+                        <div class="frisk_content">
+                            <p class="frisk_title m-0 furniture_modal w-100 text-center">Ouvrir</p>
+                        </div>
+                    </div>
+                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
+                        <img src="assets/front/ingame/furnitures.png" alt="">
+                        <div class="frisk_content">
+                            <p class="frisk_title m-0">Fouiller</p>
+                        </div>
+                    </div>
+                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
+                        <img src="assets/front/ingame/furnitures.png" alt="">
+                        <div class="frisk_content">
+                            <p class="frisk_title m-0">Fouiller</p>
+                        </div>
+                    </div> -->
