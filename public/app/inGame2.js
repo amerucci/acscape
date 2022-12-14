@@ -453,41 +453,41 @@ main()
 
 
         for (let i = 0; i < dataGlobal.furniture.length; i++) {
-            if (dataGlobal.furniture[i].room_id == roomID) {
-                frisk_btn.addEventListener('click', function () {
-                    // console.log("ok bonne id");
-                    if (dataGlobal.furniture[i].room_id == roomID) {
-                        console.log("a");
-                    }
 
-                    // }
+            frisk_btn.addEventListener('click', function () {
+                // console.log("ok bonne id");
+                if (dataGlobal.furniture[i].room_id == roomID) {
+                    console.log("a");
+                }
 
-
-                    li_furniture = document.createElement('li');
-                    li_furniture.classList.add('furniture_list_item', `nb-${i}`);
-                    li_furniture.innerHTML = dataGlobalUnlock[0].furniture[i]['title'];
-                    furnitureList.appendChild(li_furniture);
-
-                    // }
+                // }
 
 
+                li_furniture = document.createElement('li');
+                li_furniture.classList.add('furniture_list_item', `nb-${i}`);
+                li_furniture.innerHTML = dataGlobalUnlock[0].furniture[i]['title'];
+                furnitureList.appendChild(li_furniture);
 
-                    let furnitureArray = [];
-                    for (let j = 0; j < furnitureList.childElementCount; j++) {
-                        furnitureArray.push(furnitureList.childNodes[j]);
-                    }
+                // }
 
-                    // if (furnitureArray.length > 0) {
-                    furnitureArray[i].addEventListener('click', function () {
-                        // console.log(dataGlobalUnlock[0].furniture[i]['title']);
 
-                        const modal = document.createElement('div');
-                        modal.classList.add('modal', 'fade');
-                        modal.setAttribute('id', 'furniture_modal');
-                        modal.setAttribute('tabindex', '-1');
-                        modal.setAttribute('aria-labelledby', 'furniture_modal_label');
-                        modal.setAttribute('aria-hidden', 'true');
-                        modal.innerHTML = `
+
+                let furnitureArray = [];
+                for (let j = 0; j < furnitureList.childElementCount; j++) {
+                    furnitureArray.push(furnitureList.childNodes[j]);
+                }
+
+                // if (furnitureArray.length > 0) {
+                furnitureArray[i].addEventListener('click', function () {
+                    // console.log(dataGlobalUnlock[0].furniture[i]['title']);
+
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'fade');
+                    modal.setAttribute('id', 'furniture_modal');
+                    modal.setAttribute('tabindex', '-1');
+                    modal.setAttribute('aria-labelledby', 'furniture_modal_label');
+                    modal.setAttribute('aria-hidden', 'true');
+                    modal.innerHTML = `
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -503,18 +503,18 @@ main()
                         </div>
                     </div>
                     `;
-                        document.body.appendChild(modal);
-                        const furniture_modal = new bootstrap.Modal(modal);
-                        furniture_modal.show();
-                        modal.addEventListener('hidden.bs.modal', function () {
-                            modal.remove();
-                        })
-
-
+                    document.body.appendChild(modal);
+                    const furniture_modal = new bootstrap.Modal(modal);
+                    furniture_modal.show();
+                    modal.addEventListener('hidden.bs.modal', function () {
+                        modal.remove();
                     })
-                    // }
+
+
                 })
-            }
+                // }
+            })
+
 
         }
 
