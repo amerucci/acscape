@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 09 déc. 2022 à 13:47
+-- Généré le : mer. 14 déc. 2022 à 10:38
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `furnitures` (
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `room_id` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `furnitures`
@@ -68,7 +68,9 @@ INSERT INTO `furnitures` (`id`, `title`, `picture`, `description`, `action`, `cl
 (41, 'meuble 2', '1670489842_', 'je suis le second meuble', 'fouiller', '', NULL, NULL, 'yes', NULL, NULL, 0, 14, 54, 14),
 (42, 'toto', NULL, 'toto', 'fouiller', 'pouet', NULL, NULL, 'no', NULL, NULL, NULL, 14, 54, 14),
 (43, 'je suis le meuble de la salle 14', '1670490703_', ' meubles salle14', 'fouiller', 'trouve moi', NULL, NULL, 'yes', NULL, NULL, 0, 14, 54, 14),
-(44, 'mon premier vrai meuble', '1670498900_', 'je suis le premier vrai meuble dans sa structure', 'fouiller', 'je suis un célèbre oiseau de dessin animé accompagné le plus généralement d\'un gros minet', NULL, NULL, 'yes', 'titi', 'pour la pièce \"voiture à toto\" ma solution est sa couleur', NULL, 14, 56, 15);
+(44, 'mon premier vrai meuble', '1670498900_', 'je suis le premier vrai meuble dans sa structure', 'fouiller', 'je suis un célèbre oiseau de dessin animé accompagné le plus généralement d\'un gros minet', NULL, NULL, 'yes', 'titi', 'pour la pièce \"voiture à toto\" ma solution est sa couleur', NULL, 14, 56, 15),
+(45, 'meuble salle 3', '1670918578_', 'je suis un super meuble', 'fouiller', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, 'yes', 'toto', 'je suis la récompense ', NULL, 14, 54, 12),
+(46, 'meuble du matin', '1670919132_', 'je suis un meuble du matin, créé pendant une période de révolution.\r\nJe suis un meuble associé à un astre royal. Mais de qui ?', 'fouiller', 'célèbre personnage de blague', 'vraiment famous', 'mais si la tête à ', 'yes', 'toto', 'couleur de la voiture de Toto', NULL, 14, 54, 16);
 
 -- --------------------------------------------------------
 
@@ -166,11 +168,11 @@ INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `n_room
 (9, 'rte', 'rte', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 44),
 (10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 18, 52),
 (11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 45),
-(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 3, NULL, NULL, NULL, NULL, NULL, 14, 54),
-(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 2, NULL, NULL, NULL, NULL, NULL, 14, 54),
-(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, NULL, NULL, NULL, NULL, NULL, 14, 54),
+(12, 'salle 3', 'un deux un deux', '1669725936_chris.png', 'yes', 3, 'toto', 'je suis le premier indice', 'je suis un second indice', 'je suis le troisième indice', 'additionne les indices ', 14, 54),
+(13, 'salle 2', 'azert', '1669727042_julien.png', 'yes', 2, 'toto', 'célèbre personnage de blague', NULL, NULL, 'le code pour la salle suivante est l\'année de naissance de ToTo', 14, 54),
+(14, 'salle 1', 'rtez', '1669729362_antoine.png', 'no', 1, '', '', NULL, NULL, '', 14, 54),
 (15, 'première salle', 'je suis la première salle', '1670497769_chris.png', 'no', 1, 'toto', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, NULL, 14, 56),
-(16, 'salle 4', 'je suis la salle 4', '1670579031_chris.png', 'yes', 4, 'toto', 'c\'est le nom d\'un personnage célèbre pour ses blagues ', NULL, NULL, 'coucou', 14, 54);
+(16, 'salle 4', 'je suis la salle 4', '1670579031_chris.png', 'yes', 4, 'titi', 'c\'est le nom d\'un oiseau de dessin animé', NULL, NULL, 'coucou', 14, 54);
 
 -- --------------------------------------------------------
 

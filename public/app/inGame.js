@@ -459,18 +459,15 @@ main()
             for (let f = 0; f < dataGlobal.furniture.length; f++) {
 
                 if (dataGlobal.furniture[f].room_id == roomID) {
-                    console.log("bien passé");
                     li_furniture = document.createElement('li');
                     li_furniture.classList.add('furniture_list_item', `nb-${f}`);
                     li_furniture.innerHTML = dataGlobal.furniture[f].title;
                     furnitureList.appendChild(li_furniture);
                 }
-
                 let furnitureArray = [];
                 for (let j = 3; j < furnitureList.childNodes.length; j++) {
                     furnitureArray.push(furnitureList.childNodes[j]);
                 }
-
             }
         });
 
