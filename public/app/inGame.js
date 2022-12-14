@@ -457,17 +457,21 @@ main()
                 furnitureList.innerHTML = "";
             }
             for (let f = 0; f < dataGlobal.furniture.length; f++) {
-
                 if (dataGlobal.furniture[f].room_id == roomID) {
                     li_furniture = document.createElement('li');
                     li_furniture.classList.add('furniture_list_item', `nb-${f}`);
                     li_furniture.innerHTML = dataGlobal.furniture[f].title;
                     furnitureList.appendChild(li_furniture);
+
                 }
                 let furnitureArray = [];
-                for (let j = 3; j < furnitureList.childNodes.length; j++) {
+                for (let j = 0; j < furnitureList.childNodes.length; j++) {
                     furnitureArray.push(furnitureList.childNodes[j]);
                 }
+            }
+
+            if (furnitureList.childNodes.length == 0) {
+                furnitureList.innerHTML = "Aucun objet trouvé";
             }
         });
 
