@@ -1,7 +1,7 @@
 function modal() {
     const the_rooms = document.querySelector('.the_rooms');
     const frisk = document.querySelector('.frisk');
-    const furniture_modal = document.querySelector('.furniture_modal');
+    // const furniture_modal = document.querySelector('.furniture_modal');
 
 
     the_rooms.addEventListener('click', function () {
@@ -13,13 +13,13 @@ function modal() {
         document.querySelector('#friskModal').style.display = 'block';
         document.querySelector('#friskModal').style.opacity = '1';
     });
-    furniture_modal.addEventListener('click', function () {
-        document.querySelector('#furnitureModal').classList.add('show');
-        document.querySelector('#furnitureModal').style.display = 'block';
-        document.querySelector('#friskModal').style.opacity = '0';
+    // furniture_modal.addEventListener('click', function () {
+    //     document.querySelector('#furnitureModal').classList.add('show');
+    //     document.querySelector('#furnitureModal').style.display = 'block';
+    //     document.querySelector('#friskModal').style.opacity = '0';
 
 
-    });
+    // });
     const close = document.querySelectorAll('.close');
     close.forEach(element => {
         element.addEventListener('click', function () {
@@ -27,13 +27,14 @@ function modal() {
             document.querySelector('#roomsModal').style.display = 'none';
             document.querySelector('#friskModal').classList.remove('show');
             document.querySelector('#friskModal').style.display = 'none';
-            document.querySelector('#furnitureModal').classList.remove('show');
-            document.querySelector('#furnitureModal').style.display = 'none';
+            // document.querySelector('#furnitureModal').classList.remove('show');
+            // document.querySelector('#furnitureModal').style.display = 'none';
 
         });
     });
 };
 modal();
+// furniture modal disabled in construction 
 
 let countdown = 60 * 60; // 60 minutes (temps exprimé en secondes)
 // let countdown = 10;
@@ -61,16 +62,6 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let dataGlobal = []; // variable globale dataGlobal
-let dataGlobalUnlock = [] // variable globale dataGlobal deverouillé
-let roomID = 0;
-
-
-let li
-
-const roomsList = document.querySelector('.rooms_list');
-const penality = document.querySelector('.penality');
-const navInGameTitle = document.querySelector('.room_active');
 
 async function getData() {
     try {
@@ -93,8 +84,22 @@ async function main() {
     console.log(data); // affiche la valeur retournée par getData()
 }
 
+let dataGlobal = []; // variable globale dataGlobal
+let dataGlobalUnlock = [] // variable globale dataGlobal deverouillé
+
+
+let roomID = 0;
+let li_room
+const roomsList = document.querySelector('.rooms_list');
+const penality = document.querySelector('.penality');
+const navInGameTitle = document.querySelector('.room_active');
 let room_open
 let openRoomCalled = false;
+
+
+let li_furniture
+const furnitureList = document.querySelector('.furniture_list')
+const frisk_btn = document.querySelector('.frisk_btn')
 
 
 main()
@@ -107,25 +112,28 @@ main()
 
 
 
-            li = document.createElement('li');
-            li.classList.add('rooms_list_item', `nb-${i}`);
-            li.innerHTML = dataGlobalUnlock[0].room[i].title;
-            roomsList.appendChild(li);
+            li_room = document.createElement('li');
+            li_room.classList.add('rooms_list_item', `nb-${i}`);
+            li_room.innerHTML = dataGlobalUnlock[0].room[i].title;
+            roomsList.appendChild(li_room);
 
             let roomsArray = [];
             for (let j = 3; j < roomsList.childNodes.length; j++) {
                 roomsArray.push(roomsList.childNodes[j]);
             }
 
+
             if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
-                roomsList.appendChild(li).style.color = 'red';
+                roomsList.appendChild(li_room).style.color = 'red';
             } else {
-                roomsList.appendChild(li).style.color = 'black';
+                roomsList.appendChild(li_room).style.color = 'black';
             }
 
 
 
-            roomsArray[i].addEventListener('click', function () {
+
+
+            roomsArray[i].addEventListener('click', function (roomClick) {
 
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
@@ -170,8 +178,9 @@ main()
                     const roomsOpenModal = new bootstrap.Modal(modal);
                     roomsOpenModal.show();
 
-                    if (roomsArray[i].classList.contains('activeR')) {
+                    if (roomsArray[i].classList.contains('activeR') && roomID == roomID) {
                         roomID = dataGlobal.room[i].id;
+                        console.log("bien changé l'id de la room");
                     }
 
                     const closeOpen = document.querySelectorAll('.closeOpen');
@@ -197,6 +206,13 @@ main()
                             modalRoomOpen.remove();
                         }
                     });
+
+
+
+
+
+
+
 
                 }
 
@@ -427,8 +443,41 @@ main()
                     });
 
                 };
+
             })
+
         }
+
+
+
+        frisk_btn.addEventListener('click', function () {
+            if (roomID == 0) {
+                furnitureList.innerHTML = "Veuillez sélectionner une salle";
+            } else {
+                furnitureList.innerHTML = "";
+            }
+            for (let f = 0; f < dataGlobal.furniture.length; f++) {
+
+                if (dataGlobal.furniture[f].room_id == roomID) {
+                    console.log("bien passé");
+                    li_furniture = document.createElement('li');
+                    li_furniture.classList.add('furniture_list_item', `nb-${f}`);
+                    li_furniture.innerHTML = dataGlobal.furniture[f].title;
+                    furnitureList.appendChild(li_furniture);
+                }
+
+                let furnitureArray = [];
+                for (let j = 3; j < furnitureList.childNodes.length; j++) {
+                    furnitureArray.push(furnitureList.childNodes[j]);
+                }
+
+            }
+        });
+
+
+
+
+
     })
     .catch(error => {
         console.error(error);

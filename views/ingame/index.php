@@ -7,7 +7,7 @@
         <p class="m-0 rooms_modal">les salles</p>
     </div>
 
-    <div class="frisk d-flex justify-content-center align-items-center gap-2" data-toggle=" modal"
+    <div class="frisk d-flex justify-content-center align-items-center gap-2 frisk_btn" data-toggle=" modal"
         data-target="#friskModal">
         <iconify-icon icon="uil:search-alt"></iconify-icon>
         <p class="m-0 frisk_modal">fouiller</p>
@@ -57,9 +57,10 @@
             </div>
             <div class="modal-body">
 
-                <div class="frisk_content_container d-flex justify-content-center align-items-center flex-wrap gap-3">
+                <div
+                    class="frisk_content_container d-flex justify-content-center align-items-center flex-wrap gap-3 furniture_list">
 
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
+                    <!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
                         <img src="assets/front/ingame/furnitures.png" alt="">
                         <div class="frisk_content">
                             <p class="frisk_title m-0">Fouiller</p>
@@ -83,7 +84,7 @@
                         <div class="frisk_content">
                             <p class="frisk_title m-0">Fouiller</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -94,7 +95,7 @@
 </div>
 
 <!-- Modal furniture -->
-<div class="modal fade modal-lg" id="furnitureModal" tabindex="-1" role="dialog" aria-labelledby="furnitureModalLabel"
+<!-- <div class="modal fade modal-lg" id="furnitureModal" tabindex="-1" role="dialog" aria-labelledby="furnitureModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -119,7 +120,7 @@
         </div>
     </div>
 </div>
-</div>
+</div> -->
 
 
 <div class="endgame_win d-flex justify-content-center align-items-center my-auto dnone">
