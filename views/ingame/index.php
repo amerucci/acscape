@@ -62,35 +62,6 @@
     </div>
 </div>
 
-<!-- Modal furniture -->
-<!-- <div class="modal fade modal-lg" id="furnitureModal" tabindex="-1" role="dialog" aria-labelledby="furnitureModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mx-auto" id="furnitureModalLabel">Téléphone</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
-                        </iconify-icon>
-                    </span>
-                </button>
-            </div>
-            <div class="modal-body d-flex justify-content-center align-items-center flex-column">
-                <p class="m-0 furniture_desc">Ce téléphone est étrange, mais j'ai du mal à voir ce que c'est, peut-être
-                    devrais-je essayer
-                    d'appuyer sur cette touche.
-                </p>
-
-                <p class="furniture_desc_action my-5">Appuyer</p>
-
-            </div>
-        </div>
-    </div>
-</div>
-</div> -->
-
-
 <div class="endgame_win d-flex justify-content-center align-items-center my-auto dnone">
     <div class="endgame_content d-flex justify-content-center align-items-center flex-column">
         <h1 class="endgame_title my-3">Vous avez gagné !</h1>

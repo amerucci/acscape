@@ -461,10 +461,14 @@ main()
 
         frisk_btn.addEventListener('click', function () {
             furnitureList.innerHTML = "";
+            if (filteredFurnitureLength == 0) {
+                furnitureList.innerHTML = "<p>Aucun meuble à fouiller</p>";
+            }
             if (roomID == 0) {
                 furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
             }
             for (let i = 0; i < filteredFurniture.length; i++) {
+
 
                 const furniture = document.createElement('li');
                 furniture.classList.add('furniture_list_item');
