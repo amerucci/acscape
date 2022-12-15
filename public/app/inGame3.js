@@ -13,12 +13,6 @@ function modal() {
         document.querySelector('#friskModal').style.display = 'block';
         document.querySelector('#friskModal').style.opacity = '1';
     });
-    // furniture_modal.addEventListener('click', function () {
-    //     document.querySelector('#furnitureModal').classList.add('show');
-    //     document.querySelector('#furnitureModal').style.display = 'block';
-    //     document.querySelector('#friskModal').style.opacity = '0';
-
-
     // });
     const close = document.querySelectorAll('.close');
     close.forEach(element => {
@@ -27,9 +21,6 @@ function modal() {
             document.querySelector('#roomsModal').style.display = 'none';
             document.querySelector('#friskModal').classList.remove('show');
             document.querySelector('#friskModal').style.display = 'none';
-            // document.querySelector('#furnitureModal').classList.remove('show');
-            // document.querySelector('#furnitureModal').style.display = 'none';
-
         });
     });
 };
@@ -100,8 +91,8 @@ let openRoomCalled = false;
 let li_furniture
 const furnitureList = document.querySelector('.furniture_list')
 const frisk_btn = document.querySelector('.frisk_btn')
-
-// let furnitureArray = [];
+let filteredFurniture = [];
+let filteredFurnitureLength = 0;
 
 
 
@@ -184,7 +175,18 @@ main()
 
                     if (roomsArray[i].classList.contains('activeR') && roomID == roomID) {
                         roomID = dataGlobal.room[i].id;
-                        console.log("bien changé l'id de la room");
+                        filteredFurniture = dataGlobalUnlock[0].furniture.filter(furniture => furniture.room_id == roomID);
+                        filteredFurnitureLength = filteredFurniture.length;
+                        console.log("tableau filteredFurniture -> " + filteredFurniture);
+                        console.log(" ");
+                        console.log("tableau filterFurniture ↓ pour id " + roomID);
+                        console.log(filteredFurniture);
+                        console.log(" ");
+                        console.log("longueur du tableau filteredFurniture ↓ ");
+                        console.log(filteredFurniture.length);
+                        console.log(" ");
+                        console.log("filteredFurnitureLength " + filteredFurnitureLength);
+
                     }
 
                     const closeOpen = document.querySelectorAll('.closeOpen');
@@ -267,28 +269,32 @@ main()
                     const roomsModal = new bootstrap.Modal(modal);
                     roomsModal.show();
 
-                    const closeLock = document.querySelectorAll('.closeLock');
-                    const backdrop = document.querySelector('.modal-backdrop');
-                    const modalRoomLock = document.querySelector('.modalRoomLock');
-                    const roomsLock = document.querySelector('#roomsLock');
+                    modal.addEventListener('hidden.bs.modal', function () {
+                        modal.remove();
+                    })
 
-                    function room_modal_remove() {
-                        roomsLock.remove();
-                        backdrop.remove();
-                    }
+                    // const closeLock = document.querySelectorAll('.closeLock');
+                    // const backdrop = document.querySelector('.modal-backdrop');
+                    // const modalRoomLock = document.querySelector('.modalRoomLock');
+                    // const roomsLock = document.querySelector('#roomsLock');
 
-                    closeLock.forEach(element => {
-                        element.addEventListener('click', function () {
-                            room_modal_remove();
-                        });
-                    });
+                    // function room_modal_remove() {
+                    //     roomsLock.remove();
+                    //     backdrop.remove();
+                    // }
 
-                    roomsLock.addEventListener('click', function () {
-                        if (!modalRoomLock.contains(event.target)) {
-                            backdrop.remove();
-                            roomsLock.remove();
-                        }
-                    });
+                    // closeLock.forEach(element => {
+                    //     element.addEventListener('click', function () {
+                    //         room_modal_remove();
+                    //     });
+                    // });
+
+                    // roomsLock.addEventListener('click', function () {
+                    //     if (!modalRoomLock.contains(event.target)) {
+                    //         backdrop.remove();
+                    //         roomsLock.remove();
+                    //     }
+                    // });
 
                     const clue_show1 = document.querySelector('.clue_show1');
                     const clue_show_content1 = document.querySelector('.clue_show1_content');
@@ -452,99 +458,62 @@ main()
 
         }
 
-        // let i = 0;
-        // for (i = 0; i < dataGlobal.furniture.length; i++) {
-        //     console.log("ok bonne id" + i);
-        //     return i;
-        // }
-
-        // if (dataGlobalUnlock[0].furniture[i].room_id == roomID) {
-        //     console.log("a");
-        //     // }
-
-        let furnitureArray = [];
-        for (let j = 0; j < furnitureList.childElementCount; j++) {
-            furnitureArray.push(furnitureList.childNodes[j]);
-        }
-
-        for (let i = 0; i < dataGlobalUnlock[0].furniture.length; i++) {
-
-            frisk_btn.addEventListener('click', function () {
 
 
 
-                if (dataGlobal.furniture[i].room_id == roomID) {
-                    console.log("ok bonne id + " + dataGlobal.furniture[i].title);
 
+        // filteredFurniture = dataGlobalUnlock[0].furniture.filter(furniture => furniture.room_id == roomID);
+        frisk_btn.addEventListener('click', function () {
+            furnitureList.innerHTML = "";
+            if (roomID == 0) {
+                furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
+            }
+            for (let i = 0; i < filteredFurniture.length; i++) {
 
-                    li_furniture = document.createElement('li');
-                    li_furniture.classList.add('furniture_list_item', `nb-${i}`);
-                    li_furniture.innerHTML = dataGlobalUnlock[0].furniture[i]['title'];
-                    furnitureList.appendChild(li_furniture);
+                const furniture = document.createElement('li');
+                furniture.classList.add('furniture_list_item');
+                furniture.innerHTML = filteredFurniture[i].title;
+                furnitureList.appendChild(furniture);
+            }
 
-                }
+            for (let i = 0; i < filteredFurnitureLength; i++) {
 
+                furnitureList.childNodes[i].addEventListener('click', function () {
+                    modalF();
+                });
 
-                let furnitureArray = [];
-                for (let j = 0; j < furnitureList.childElementCount; j++) {
-                    furnitureArray.push(furnitureList.childNodes[j]);
-                }
-
-
-
-                if (furnitureArray[i] != undefined) {
-                    furnitureArray[i].addEventListener('click', function () {
-
-                        if (roomID == 0) {
-                            furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
-                        } else {
-                            furnitureList.innerHTML = "";
-                        }
-
-
-                        const modal = document.createElement('div');
-                        modal.classList.add('modal', 'fade');
-                        modal.setAttribute('id', 'furniture_modal');
-                        modal.setAttribute('tabindex', '-1');
-                        modal.setAttribute('aria-labelledby', 'furniture_modal_label');
-                        modal.setAttribute('aria-hidden', 'true');
-                        modal.innerHTML = `
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="furniture_modal_label">${dataGlobalUnlock[0].furniture[i]['title']}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>${dataGlobalUnlock[0].furniture[i]['description']}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> 
+                function modalF() {
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal', 'fade');
+                    modal.setAttribute('id', 'furniture_modal');
+                    modal.setAttribute('tabindex', '-1');
+                    modal.setAttribute('aria-labelledby', 'furniture_modal_label');
+                    modal.setAttribute('aria-hidden', 'true');
+                    modal.innerHTML = `
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="furniture_modal_label">${filteredFurniture[i]['title']}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>${filteredFurniture[i]['description']}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        `;
-                        document.body.appendChild(modal);
-                        const furniture_modal = new bootstrap.Modal(modal);
-                        furniture_modal.show();
-                        modal.addEventListener('hidden.bs.modal', function () {
-                            modal.remove();
-                        })
-
-
-
+                            `;
+                    document.body.appendChild(modal);
+                    const furniture_modal = new bootstrap.Modal(modal);
+                    furniture_modal.show();
+                    modal.addEventListener('hidden.bs.modal', function () {
+                        modal.remove();
                     })
-                    // } else {
-                    //     furnitureList.innerHTML = "ça marche pas mais l'id est passé!!";
-                    // }
                 }
-            })
-        }
-
-        // }
-
-
-
+            }
+        });
 
 
 

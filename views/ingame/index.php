@@ -114,7 +114,7 @@
     </div>
 </div>
 
-<script src="public\app\inGame2.js"></script>
+<script src="public\app\inGame3.js"></script>
 
 
 <!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
