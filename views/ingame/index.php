@@ -24,7 +24,7 @@
 
 
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
                         </iconify-icon>
@@ -48,7 +48,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title mx-auto" id="friskModalLabel">Fouiller</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
                         </iconify-icon>
@@ -114,7 +114,7 @@
     </div>
 </div>
 
-<script src="public\app\inGame3.js"></script>
+<script src="public\app\inGame.js"></script>
 
 
 <!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
