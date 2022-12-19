@@ -12,13 +12,18 @@
         <iconify-icon icon="uil:search-alt"></iconify-icon>
         <p class="m-0 frisk_modal">fouiller</p>
     </div>
+
+    <div class="wiki d-flex justify-content-center align-items-center gap-2">
+        <iconify-icon icon="uil:search-alt"></iconify-icon>
+        <p class="m-0 frisk_modal">Wiki</p>
+    </div>
 </div>
 
 <!-- Modal rooms-->
 <div class="modal fade modal-lg" id="roomsModal" tabindex="-1" role="dialog" aria-labelledby="roomsModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content" data-bs-backdrop="true">
             <div class="modal-header">
                 <div class="modal-title mx-auto d-flex justify-content-center align-items-center gap-2"
                     id="roomsModalLabel">
@@ -89,38 +94,19 @@
     </div>
 </div>
 
-<svg>
-    <filter id="wavy2">
-        <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1" />
-        <feDisplacementMap in="SourceGraphic" scale="20" />
-    </filter>
-</svg>
+<!-- sticky it -->
+<div id="stickies-container"></div>
+<div class="sticky-form">
+    <div id="cacheOpac" class="cacheOpac">
+        <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
+        <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
+        <label for="stickytext" class="dnone">Ecrire quelque chose</label>
+        <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+    </div>
+    <!-- <button class="button" id="createsticky">Post it !</button> -->
+    <button class="button" id="createstickyOpac">Post it !</button>
+</div>
+
+
 
 <script src="public\app\inGame2.js"></script>
-
-
-<!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap"
-                        data-toggle="modal" data-target="#furnitureModal">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0 furniture_modal w-100 text-center">Ouvrir</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div>
-                    <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">
-                        <img src="assets/front/ingame/furnitures.png" alt="">
-                        <div class="frisk_content">
-                            <p class="frisk_title m-0">Fouiller</p>
-                        </div>
-                    </div> -->

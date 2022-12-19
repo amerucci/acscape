@@ -807,3 +807,249 @@ main()
     .catch(error => {
         console.error(error);
     });
+
+
+const wiki = document.querySelector('.wiki');
+
+wiki.addEventListener('click', function () {
+    // create modal bootstrap5 for iframe
+    const modal = document.createElement('div');
+    modal.classList.add('modal', 'fade');
+    modal.id = 'wikiModal';
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('aria-labelledby', 'wikiModal');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('data-bs-backdrop', 'false');
+    modal.setAttribute("pointer-events", "auto")
+    modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wikiModal">Wiki</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body wiki_modal">
+               <iframe src="https://fr.m.wikipedia.org" width="100%" height="100%"></iframe>
+            </div>
+        </div>
+    </div>
+    `;
+    document.body.appendChild(modal);
+    const modalBootstrap = new bootstrap.Modal(modal);
+    modalBootstrap.show();
+    modal.addEventListener('hidden.bs.modal', function () {
+        modal.remove();
+    });
+})
+
+// sticky
+document.addEventListener('DOMContentLoaded', () => {
+    const stickyArea = document.querySelector(
+        '#stickies-container'
+    );
+
+
+
+    // const createStickyButton = document.querySelector(
+    //     '#createsticky'
+    // );
+    const createStickyButton = document.querySelector(
+        '#createstickyOpac'
+    );
+    if (!document.querySelector(".textareaSticky") == false) {
+        document.querySelector(".textareaSticky").addEventListener('click', function () {
+            console.log("click");
+        });
+    }
+
+
+    const stickyTitleInput = document.querySelector('#stickytitle');
+    const stickyTextInput = document.querySelector('#stickytext');
+
+    const deleteSticky = e => {
+        e.target.parentNode.remove();
+    };
+
+    let isDragging = false;
+    let dragTarget;
+
+    let lastOffsetX = 0;
+    let lastOffsetY = 0;
+
+    function drag(e) {
+        if (!isDragging) return;
+
+        // console.log(lastOffsetX);
+
+        dragTarget.style.left = e.clientX - lastOffsetX + 'px';
+        dragTarget.style.top = e.clientY - lastOffsetY + 'px';
+    }
+
+    function createSticky() {
+        cacheOpac.classList.toggle('cacheOpac');
+        const newSticky = document.createElement('div');
+        const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span><button class="toggle-button">Dessiner</button>`
+
+
+
+
+        //   )}</textarea><span class="deletesticky">&times;</span>`;
+        newSticky.classList.add('drag', 'sticky');
+        newSticky.innerHTML = html;
+        newSticky.style.backgroundColor = randomColor();
+        stickyArea.append(newSticky);
+        positionSticky(newSticky);
+        if (document.querySelectorAll('.sticky').length > 0) {
+            const textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+            textarea_title_sticky.forEach(textarea_title_sticky => {
+                textarea_title_sticky.addEventListener('keydown', (event) => {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                    }
+                })
+            });
+            const toggleButton = document.querySelectorAll('.toggle-button');
+            const textarea = newSticky.querySelectorAll('.textareaSticky');
+            const canvas = document.querySelectorAll('.drawing-canvas');
+            toggleButton.forEach(toggleButton => {
+                toggleButton.addEventListener('click', () => {
+
+                    console.log(toggleButton)
+
+                    textarea.forEach(textarea => {
+                        textarea.classList.toggle('dnone');
+                    });
+                    canvas.forEach(canvas => {
+
+                        canvas.width = 240;
+                        canvas.height = 300;
+
+
+                        ctx = canvas.getContext('2d');
+                        // });
+
+                        let isDrawing = false;
+                        let lastX = 0;
+                        let lastY = 0;
+
+                        // // Set the stroke style
+                        ctx.strokeStyle = 'black';
+
+                        // // Set the line width
+                        ctx.lineWidth = 3;
+
+                        // // Begin the path
+                        ctx.beginPath();
+
+                        // Add mouse events to the canvas
+                        canvas.addEventListener('mousedown', (e) => {
+                            isDrawing = true;
+                            lastX = e.offsetX;
+                            lastY = e.offsetY;
+                        });
+
+                        canvas.addEventListener('mousemove', (e) => {
+                            if (isDrawing) {
+                                ctx.moveTo(lastX, lastY);
+                                ctx.lineTo(e.offsetX, e.offsetY);
+                                ctx.stroke();
+                                lastX = e.offsetX;
+                                lastY = e.offsetY;
+                            }
+                        });
+
+                        canvas.addEventListener('mouseup', () => {
+                            isDrawing = false;
+                        });
+
+                        canvas.addEventListener('mouseout', () => {
+                            isDrawing = false;
+                        });
+
+                        // textarea.classList.toggle('dnone');
+                        canvas.classList.toggle('dnone');
+                    });
+
+
+                    // textarea.forEach(textarea => {
+                    //     textarea.classList.toggle('dnone');
+                    // });
+                    // canvas.forEach(canvas => {
+                    //     canvas.classList.toggle('dnone');
+                    // });
+
+
+
+                })
+                // });
+            });
+
+        }
+        applyDeleteListener();
+        clearStickyForm();
+    }
+
+    function clearStickyForm() {
+        stickyTitleInput.value = '';
+        stickyTextInput.value = '';
+    }
+
+    function positionSticky(sticky) {
+        sticky.style.left =
+            window.innerWidth / 2 -
+            sticky.clientWidth / 2 +
+            (750 + Math.round(Math.random() * 50)) +
+            'px';
+        sticky.style.top =
+            sticky.clientHeight / 2 +
+            (0 + Math.round(Math.random() * 50)) +
+            'px';
+    }
+
+    function editSticky() {}
+
+    function stripHtml(text) {
+        return text.replace(/<\/?[^>]+(>|$)/g, '');
+    }
+
+    function randomColor() {
+        const r = 200 + Math.floor(Math.random() * 56);
+        const g = 200 + Math.floor(Math.random() * 56);
+        const b = 200 + Math.floor(Math.random() * 56);
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+
+
+    function applyDeleteListener() {
+        let deleteStickyButtons = document.querySelectorAll(
+            '.deletesticky'
+        );
+        deleteStickyButtons.forEach(dsb => {
+            dsb.removeEventListener('click', deleteSticky, false);
+            dsb.addEventListener('click', deleteSticky);
+        });
+    }
+
+    window.addEventListener('mousedown', e => {
+        if (!e.target.classList.contains('drag')) {
+            return;
+        }
+        dragTarget = e.target;
+        dragTarget.parentNode.append(dragTarget);
+        lastOffsetX = e.offsetX;
+        lastOffsetY = e.offsetY;
+        // console.log(lastOffsetX, lastOffsetY);
+        isDragging = true;
+    });
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('mouseup', () => (isDragging = false));
+
+    createStickyButton.addEventListener('click', createSticky);
+
+
+
+
+    applyDeleteListener();
+
+
+});
