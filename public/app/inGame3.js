@@ -100,6 +100,7 @@ const furnitureList = document.querySelector('.furniture_list')
 const frisk_btn = document.querySelector('.frisk_btn')
 let filteredFurniture = []; // tableau filtré de furniture.room_id = roomID. Se remplit au click d'une room à l'injection de l'id dans roomID
 let filteredFurnitureLength = 0; // longueur du tableau filtré de furniture.room_id = roomID. Se remplit au click d'une room à l'injection de l'id dans roomID stocké en varaible globale sous la forme d'un number, pour éviter des problèmes de variable undefined pour les boucles for. 
+let filteredFurnitureChange = []
 
 function removeToptoBottom() {
     setTimeout(() => {
@@ -167,6 +168,7 @@ main()
                 padlock_img();
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+
                     navInGameTitle.innerHTML = dataGlobalUnlock[0].room[i].title;
 
                     const rooms_list_item = document.querySelectorAll('.rooms_list_item');
@@ -555,8 +557,15 @@ main()
 
         }
 
+        // FURNITURE
+
 
         frisk_btn.addEventListener('click', function () {
+            filteredFurnitureChange.pop();
+            filteredFurnitureChange.push(filteredFurniture);
+            console.log(filteredFurnitureChange);
+
+
 
             furnitureList.innerHTML = "";
             if (filteredFurnitureLength == 0) {
@@ -588,7 +597,6 @@ main()
                         title = title.substring(0, 10) + '...';
                     }
                     furniture.innerHTML = title
-                    // furniture.innerHTML = item.title;
                     furniture.appendChild(padlock);
                 } else {
                     furniture.style.color = "green";
@@ -664,7 +672,7 @@ main()
                     <div class="modal-content furnitureLock">
                         <div class="modal-header">
                         
-                                <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalLockLabel">${filteredFurniture[i]['title']}</h5>
+                                <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="furnitureModalLockLabel">${filteredFurniture[i]['title']}</h5>
                           
                             <button type="button" class="closeLock" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">
@@ -713,7 +721,7 @@ main()
                         modal.remove();
                     })
 
-                    // const roomsModalLockLabel = document.getElementById('roomsModalLockLabel');
+                    const furnitureModalLockLabel = document.getElementById('furnitureModalLockLabel');
                     switch_try = document.querySelector('.switch_try');
                     checkTry = document.querySelector('.check_try');
 
@@ -842,9 +850,11 @@ main()
                             if (furniture_key_unlock.value == filteredFurniture[i].unlock_word) {
                                 furniture_key_unlock_btn.disabled = true;
                                 checkTry.checked = true;
+                                filteredFurniture[i].unlock = 'no';
+
                                 furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
                                 furniture_reward.innerHTML = filteredFurniture[i].reward;
-                                // room_control_key.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
+                                furnitureModalLockLabel.innerHTML = `${filteredFurniture[i]['title']} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
                             } else {
                                 furniture_unlock_try--;
 
