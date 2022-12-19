@@ -1056,8 +1056,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const toolBox_btn = document.querySelector('#toolBox_btn');
 const toolbox_content = document.querySelector('#toolbox_content');
+const espaceVoid = document.querySelector('#espaceVoid')
 
 toolBox_btn.addEventListener('click', () => {
+    espaceVoid.classList.toggle('dnone');
     toolbox_content.classList.toggle('dnone');
 
 });

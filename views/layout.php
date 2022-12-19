@@ -51,12 +51,10 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <?php
-            if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) {
-                // echo '<li class="nav-item">'.$game->title.'</li>';
-                echo '<li class="nav-item in_game_nav"> Le développeur perdu</li>';
-                echo '<li class="nav-item in_game_nav room_active"></li>';
-            } else { ?>
-
+            if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+                    <li class="nav-item in_game_nav"> Le développeur perdu</li>
+                    <li class="nav-item in_game_nav room_active"></li>
+                    <?php else : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/acscape">accueil</a>
                     </li>
@@ -82,7 +80,7 @@
 
                     <?php endif; ?>
                     </li>
-                    <?php } ?>
+                    <?php endif; ?>
                 </ul>
 
                 <ul class="navLog">

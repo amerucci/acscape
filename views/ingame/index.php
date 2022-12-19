@@ -98,6 +98,7 @@
 <div id="stickies-container"></div>
 <div class="toolbox d-flex flex-column justify-content-center align-items-center">
     <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
+    <div id="espaceVoid" class="espace"></div>
     <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
         <div class="sticky-form">
             <div>
