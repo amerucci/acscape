@@ -20,7 +20,11 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mx-auto" id="roomsModalLabel">Les salles disponibles</h5>
+                <div class="modal-title mx-auto d-flex justify-content-center align-items-center gap-2"
+                    id="roomsModalLabel">
+                    <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
+                    <p class="m-0 rooms_modal">les salles</p>
+                </div>
 
 
 
@@ -32,7 +36,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="m-0 rooms_list  ">
+                <div class="m-0 rooms_list d-flex justify-content-center align-items-center gap-5">
                     <!-- injection en js des salles -->
                 </div>
 
@@ -85,7 +89,14 @@
     </div>
 </div>
 
-<script src="public\app\inGame.js"></script>
+<svg>
+    <filter id="wavy2">
+        <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="1" />
+        <feDisplacementMap in="SourceGraphic" scale="20" />
+    </filter>
+</svg>
+
+<script src="public\app\inGame2.js"></script>
 
 
 <!-- <div class="furnitures d-flex justify-content-center align-items-center flex-column flex-wrap">

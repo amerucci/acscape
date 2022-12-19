@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Digits';
+    src: url(‘../../public/font/Digits-JR6M.ttf’) format(‘truetype’);
+}
+
+
 .in_game_nav {
     font-family: 'Montserrat';
     font-style: normal;
@@ -136,6 +142,94 @@
 
 }
 
+.rooms_list_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    padding: 10px 0;
+    min-height: 150px;
+    width: 20%;
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    position: relative;
+    gap: 2%;
+}
+
+.activeR {
+    border: 2px dashed #D31E44;
+    animation: dashed 3s ease-in-out infinite;
+}
+
+@keyframes dashed {
+    0% {
+        border: 2px dashed #D31E44;
+        border-radius: 5%;
+    }
+
+    50% {
+        border: 2px dashed #D31E44;
+        border-radius: 10%;
+    }
+
+    100% {
+        border: 2px dashed #D31E44;
+        border-radius: 5%;
+    }
+}
+
+.room_control_key {
+    font-size: 30px;
+    font-family: 'montserrat';
+    font-weight: 700;
+    color: #ffffffd5;
+    height: 100%;
+
+}
+
+.opacity {
+    opacity: 0;
+    /* animation: typing 0.4s steps(5, end), blink-caret .5s step-end infinite; */
+}
+
+@keyframes typing {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+.room_control_key>span:nth-child(1) {
+    animation: typing 0.4s steps(5, end), blink-caret .5s step-end infinite;
+    transition: all 0.5s ease-in-out;
+}
+
+.room_control_key>span.endTry {
+    height: 100%;
+}
+
+#rooms_unlock_btn {
+    border-radius: 0% 10% 10% 0%;
+    background-color: #D31E44;
+}
+
+#rooms_unlock_btn:active {
+    background-color: #D31E44;
+    color: white;
+    font-size: 20px;
+}
+
+#rooms_unlock_key {
+    border-radius: 10px 0% 0% 10px;
+}
+
+
+
+/* .padlock {} */
+
 .furniture_desc_action {
     display: flex;
     align-items: center;
@@ -162,14 +256,66 @@
 .clue_show1,
 .clue_show2,
 .clue_show3 {
-    background: blue;
+    background-image: url(../../assets/front/ingame/clue.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     color: white;
     padding: 1%;
     border-radius: 5%;
     cursor: pointer;
     border: none;
     outline: none;
+
 }
+
+.clue_show1_content,
+.clue_show2_content,
+.clue_show3_content {
+    background-image: url(../../assets/front/ingame/clue.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 100%;
+    color: white;
+    font-family: 'montserrat';
+    padding: 5%;
+    transition: all 0.5s ease-in-out;
+}
+
+.scale0 {
+    /* transform: scale(0); */
+    animation: scale1to0 0.4s ease-in-out forwards;
+
+
+}
+
+.tryNumber {
+    font-size: 60px;
+    color: #ffffff;
+    /* font-family: 'Montserrat'; */
+    font-family: 'Digits';
+}
+
+
+.scale0to1 {
+    /* transform: scale(0); */
+    animation: scale0to1 0.7s ease-in-out forwards;
+}
+
+@keyframes scale0to1 {
+    0% {
+        /* transform: scale(0); */
+        height: 0%;
+    }
+
+    100% {
+
+        min-height: 100%;
+    }
+}
+
 
 .penality {
     font-size: 32px;
