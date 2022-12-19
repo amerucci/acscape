@@ -953,7 +953,6 @@ wiki.addEventListener('click', function () {
     modal.setAttribute('tabindex', '-1');
     modal.setAttribute('aria-labelledby', 'wikiModal');
     modal.setAttribute('aria-hidden', 'false');
-    modal.setAttribute('data-bs-backdrop', 'false');
     modal.setAttribute("pointer-events", "auto")
     modal.innerHTML = `
     <div class="modal-dialog modal-dialog-centered modal-xl">

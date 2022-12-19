@@ -541,12 +541,12 @@ button.button {
     font-size: 1.5rem;
     cursor: pointer;
     font-family: 'montserrat';
-    background-color: #242424;
+    background-color: #2424249a;
     min-width: 100%;
 }
 
 #toolbox_content {
-    background-color: #242424;
+    background-color: #2424249a;
     width: 100%;
     padding: 1%;
 }
