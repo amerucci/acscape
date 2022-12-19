@@ -561,4 +561,18 @@ button.button {
 .canvas_container {
     position: absolute;
     background-color: #ffffff69;
+    padding: 1%;
+}
+
+.drawing-canvas {
+    border: 2px dashed #D31E44;
+    background: #ffffffc9;
+}
+
+.canva_delete {
+    position: absolute;
+    top: -1.55rem;
+    font-size: 2.4rem;
+    right: -0.2rem;
+    padding: 1%;
 }

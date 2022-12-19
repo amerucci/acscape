@@ -869,6 +869,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.parentNode.remove();
     };
 
+    const deleteCanvas = e => {
+        e.target.parentNode.remove();
+    }
+
     let isDragging = false;
     let dragTarget;
 
@@ -909,10 +913,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCanvas() {
         // Créer un canvas et l'ajouter au DOM
         const canvas_container = document.createElement('div');
+        const canvas_delete = document.createElement('span')
+        const canvas_rubber = document.createElement('span')
+        canvas_rubber.classList.add('rubber_btn')
+        canvas_rubber.innerHTML = '<iconify-icon icon="jam:rubber"></iconify-icon>'
+        canvas_delete.innerHTML = "&times"
+        canvas_delete.classList.add('canva_delete');
         canvas_container.classList.add('canvas_container', 'drag')
         const canvas = document.createElement('canvas');
         canvas.classList.add('drawing-canvas');
         canvas_container.appendChild(canvas)
+        canvas_container.appendChild(canvas_delete)
+        canvas_container.appendChild(canvas_rubber)
         stickyArea.append(canvas_container);
         positionCanvas(canvas);
 
@@ -942,6 +954,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             [lastX, lastY] = [e.offsetX, e.offsetY];
         });
+        applyDeleteCanvas();
+        applyRubberCanvas();
     }
 
 
@@ -949,6 +963,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function clearStickyForm() {
         stickyTitleInput.value = '';
         stickyTextInput.value = '';
+    }
+
+    function rubberCanvas() {
+        ctx.clearRect();
     }
 
     function positionCanvas() {
@@ -961,7 +979,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sticky.style.left =
             window.innerWidth / 2 -
             sticky.clientWidth / 2 +
-            (750 + Math.round(Math.random() * 50)) +
+            (650 + Math.round(Math.random() * 50)) +
             'px';
         sticky.style.top =
             sticky.clientHeight / 2 +
@@ -987,6 +1005,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function applyDeleteCanvas() {
+        let deleteCanvasBtn = document.querySelectorAll('.canva_delete');
+        deleteCanvasBtn.forEach(dc => {
+            dc.removeEventListener('click', deleteCanvas, false);
+            dc.addEventListener('click', deleteCanvas)
+        })
+    }
+
+    function applyRubberCanvas() {
+        let rubberCanvasBtn = document.querySelectorAll('.rubber_btn')
+        rubberCanvasBtn.forEach(rcb => {
+            rcb.removeEventListener('click', rubberCanvas, false);
+            rcb.addEventListener('click', function () {
+                console.log("ok");
+            })
+            // rcb.addEventListener('click', rubberCanvas);
+        })
+    }
+
     window.addEventListener('mousedown', e => {
         if (!e.target.classList.contains('drag')) {
             return;
@@ -1008,6 +1045,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     applyDeleteListener();
+    applyDeleteCanvas();
+    applyRubberCanvas();
 
 
 });
@@ -1021,80 +1060,3 @@ toolBox_btn.addEventListener('click', () => {
     toolbox_content.classList.toggle('dnone');
 
 });
-
-
-// const toggleButton = document.querySelectorAll('.toggle-button');
-// const textarea = newSticky.querySelectorAll('.textareaSticky');
-// const canvas = document.querySelectorAll('.drawing-canvas');
-// toggleButton.forEach(toggleButton => {
-//     toggleButton.addEventListener('click', () => {
-
-//         console.log(toggleButton)
-
-//         textarea.forEach(textarea => {
-//             textarea.classList.toggle('dnone');
-//         });
-//         canvas.forEach(canvas => {
-
-//             canvas.width = 240;
-//             canvas.height = 300;
-
-
-//             ctx = canvas.getContext('2d');
-//             // });
-
-//             let isDrawing = false;
-//             let lastX = 0;
-//             let lastY = 0;
-
-//             // // Set the stroke style
-//             ctx.strokeStyle = 'black';
-
-//             // // Set the line width
-//             ctx.lineWidth = 3;
-
-//             // // Begin the path
-//             ctx.beginPath();
-
-//             // Add mouse events to the canvas
-//             canvas.addEventListener('mousedown', (e) => {
-//                 isDrawing = true;
-//                 lastX = e.offsetX;
-//                 lastY = e.offsetY;
-//             });
-
-//             canvas.addEventListener('mousemove', (e) => {
-//                 if (isDrawing) {
-//                     ctx.moveTo(lastX, lastY);
-//                     ctx.lineTo(e.offsetX, e.offsetY);
-//                     ctx.stroke();
-//                     lastX = e.offsetX;
-//                     lastY = e.offsetY;
-//                 }
-//             });
-
-//             canvas.addEventListener('mouseup', () => {
-//                 isDrawing = false;
-//             });
-
-//             canvas.addEventListener('mouseout', () => {
-//                 isDrawing = false;
-//             });
-
-//             // textarea.classList.toggle('dnone');
-//             canvas.classList.toggle('dnone');
-//         });
-
-
-// textarea.forEach(textarea => {
-//     textarea.classList.toggle('dnone');
-// });
-// canvas.forEach(canvas => {
-//     canvas.classList.toggle('dnone');
-// });
-
-
-
-// })
-// });
-// });
