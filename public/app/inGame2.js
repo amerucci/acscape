@@ -557,6 +557,23 @@ main()
 
 
         frisk_btn.addEventListener('click', function () {
+
+            // let padlock = document.createElement('iconify-icon');
+            // padlock.setAttribute('icon', 'uis:padlock');
+            // padlock.setAttribute('width', '60');
+            // padlock.setAttribute('height', '60');
+            // padlock.classList.add('padlock');
+
+            // let padlock_open = document.createElement('iconify-icon');
+            // padlock_open.setAttribute('icon', 'uil:unlock-alt');
+            // padlock_open.setAttribute('width', '60');
+            // padlock_open.setAttribute('height', '60');
+            // padlock_open.classList.add('padlock_open');
+
+
+
+
+
             furnitureList.innerHTML = "";
             if (filteredFurnitureLength == 0) {
                 furnitureList.innerHTML = "<p>Aucun meuble à fouiller</p>";
@@ -564,16 +581,50 @@ main()
             if (roomID == 0) {
                 furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
             }
-            for (let i = 0; i < filteredFurniture.length; i++) {
+            // for (let i = 0; i < filteredFurniture.length; i++) {
+            //     const furniture = document.createElement('li');
+            //     furniture.classList.add('furniture_list_item');
+            //     furniture.innerHTML = filteredFurniture[i].title;
+            //     furnitureList.appendChild(furniture);
+            // }
 
+            filteredFurniture.forEach(function (item) {
+
+                let padlock = document.createElement('iconify-icon');
+                padlock.setAttribute('icon', 'uis:padlock');
+                padlock.setAttribute('width', '60');
+                padlock.setAttribute('height', '60');
+                padlock.classList.add('padlock');
+
+                let padlock_open = document.createElement('iconify-icon');
+                padlock_open.setAttribute('icon', 'uil:unlock-alt');
+                padlock_open.setAttribute('width', '60');
+                padlock_open.setAttribute('height', '60');
+                padlock_open.classList.add('padlock_open');
 
                 const furniture = document.createElement('li');
                 furniture.classList.add('furniture_list_item');
-                furniture.innerHTML = filteredFurniture[i].title;
+                if (item.padlock == "yes") {
+                    furniture.style.color = "red";
+                    furniture.innerHTML = item.title;
+                    furniture.appendChild(padlock);
+                } else {
+                    furniture.style.color = "green";
+                    furniture.innerHTML = item.title;
+                    padlock.remove();
+                    furniture.appendChild(padlock_open);
+                }
                 furnitureList.appendChild(furniture);
-            }
+
+            });
+
 
             for (let i = 0; i < filteredFurnitureLength; i++) {
+
+
+
+
+
 
                 furnitureList.childNodes[i].addEventListener('click', function () {
                     modalF();
@@ -747,10 +798,7 @@ main()
                         let furniture_unlock_try = 3;
                         furniture_unlock_statut.innerHTML = `vous avez ${furniture_unlock_try} essais avant une pénalité de 5 minutes`;
 
-                        furniture_key_unlock_btn.addEventListener('click', function () {
-                            if (furniture_key_unlock.value == "") {
-                                e.preventDefault;
-                            }
+                        furniture_key_unlock_btn.addEventListener('click', function (e) {
 
                             if (furniture_key_unlock.value == dataGlobalUnlock[0].furniture[i].unlock_word) {
                                 furniture_unlock_statut.innerHTML = "meuble ouvert";
