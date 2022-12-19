@@ -431,10 +431,14 @@ modal {
 }
 
 .sticky-form {
-    top: 5rem;
+    /* top: 5rem;
     position: absolute;
-    right: 5rem;
-    z-index: 5555;
+    right: 5rem; */
+    /* z-index: 5555; */
+    /* width: 120px; */
+    width: 100%;
+    padding-top: 1%;
+    border-top: 1px dashed;
 }
 
 .sticky-form label,
@@ -470,12 +474,12 @@ button.button {
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
-    background-color: #d4fc78;
+    background-color: transparent;
     border-radius: 0.25rem;
     border: 1px solid transparent;
-    color: #0065b3;
+    color: white;
     display: inline-block;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.5;
@@ -512,4 +516,84 @@ button.button {
 
 .drawing-canvas {
     border: 2px dashed #D31E44;
+}
+
+.toolbox {
+    margin-right: 1%;
+    margin-left: auto;
+    width: 14%;
+    transform: translateY(-21%);
+}
+
+
+/* .cacheOpac {
+    opacity: 0;
+    animation: cacheOpacity 0.1s ease-in-out forwards;
+
+}
+
+@keyframes cacheOpacity {
+    0% {
+        display: none;
+    }
+
+    20% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.cacheOpacInvert {
+    opacity: 0;
+    animation: cacheOpacityInvert 0.5s ease-in-out forwards;
+    display: none;
+}
+
+@keyframes cacheOpacityInvert {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    20% {
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+} */
+
+.button_toolBox {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: 'montserrat';
+    background-color: #242424;
+    min-width: 100%;
+}
+
+#toolbox_content {
+    background-color: #242424;
+    width: 100%;
+    padding: 1%;
+}
+
+#createstickyOpac {
+    padding-bottom: 0;
+    padding-top: 5%;
+    width: 100%;
+    border-top: dashed 1px;
+}
+
+.sticky-draw {
+    padding-bottom: 2%;
 }

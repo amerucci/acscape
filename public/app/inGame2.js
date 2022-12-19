@@ -886,9 +886,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createSticky() {
-        cacheOpac.classList.toggle('cacheOpac');
         const newSticky = document.createElement('div');
-        const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span><button class="toggle-button">Dessiner</button>`
+        // const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span><button class="toggle-button">Dessiner</button>`
+        const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span>`
 
 
 
@@ -908,81 +908,81 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 })
             });
-            const toggleButton = document.querySelectorAll('.toggle-button');
+            // const toggleButton = document.querySelectorAll('.toggle-button');
             const textarea = newSticky.querySelectorAll('.textareaSticky');
-            const canvas = document.querySelectorAll('.drawing-canvas');
-            toggleButton.forEach(toggleButton => {
-                toggleButton.addEventListener('click', () => {
+            // const canvas = document.querySelectorAll('.drawing-canvas');
+            // toggleButton.forEach(toggleButton => {
+            //     toggleButton.addEventListener('click', () => {
 
-                    console.log(toggleButton)
+            //         console.log(toggleButton)
 
-                    textarea.forEach(textarea => {
-                        textarea.classList.toggle('dnone');
-                    });
-                    canvas.forEach(canvas => {
+            //         textarea.forEach(textarea => {
+            //             textarea.classList.toggle('dnone');
+            //         });
+            //         canvas.forEach(canvas => {
 
-                        canvas.width = 240;
-                        canvas.height = 300;
-
-
-                        ctx = canvas.getContext('2d');
-                        // });
-
-                        let isDrawing = false;
-                        let lastX = 0;
-                        let lastY = 0;
-
-                        // // Set the stroke style
-                        ctx.strokeStyle = 'black';
-
-                        // // Set the line width
-                        ctx.lineWidth = 3;
-
-                        // // Begin the path
-                        ctx.beginPath();
-
-                        // Add mouse events to the canvas
-                        canvas.addEventListener('mousedown', (e) => {
-                            isDrawing = true;
-                            lastX = e.offsetX;
-                            lastY = e.offsetY;
-                        });
-
-                        canvas.addEventListener('mousemove', (e) => {
-                            if (isDrawing) {
-                                ctx.moveTo(lastX, lastY);
-                                ctx.lineTo(e.offsetX, e.offsetY);
-                                ctx.stroke();
-                                lastX = e.offsetX;
-                                lastY = e.offsetY;
-                            }
-                        });
-
-                        canvas.addEventListener('mouseup', () => {
-                            isDrawing = false;
-                        });
-
-                        canvas.addEventListener('mouseout', () => {
-                            isDrawing = false;
-                        });
-
-                        // textarea.classList.toggle('dnone');
-                        canvas.classList.toggle('dnone');
-                    });
+            //             canvas.width = 240;
+            //             canvas.height = 300;
 
 
-                    // textarea.forEach(textarea => {
-                    //     textarea.classList.toggle('dnone');
-                    // });
-                    // canvas.forEach(canvas => {
-                    //     canvas.classList.toggle('dnone');
-                    // });
+            //             ctx = canvas.getContext('2d');
+            //             // });
+
+            //             let isDrawing = false;
+            //             let lastX = 0;
+            //             let lastY = 0;
+
+            //             // // Set the stroke style
+            //             ctx.strokeStyle = 'black';
+
+            //             // // Set the line width
+            //             ctx.lineWidth = 3;
+
+            //             // // Begin the path
+            //             ctx.beginPath();
+
+            //             // Add mouse events to the canvas
+            //             canvas.addEventListener('mousedown', (e) => {
+            //                 isDrawing = true;
+            //                 lastX = e.offsetX;
+            //                 lastY = e.offsetY;
+            //             });
+
+            //             canvas.addEventListener('mousemove', (e) => {
+            //                 if (isDrawing) {
+            //                     ctx.moveTo(lastX, lastY);
+            //                     ctx.lineTo(e.offsetX, e.offsetY);
+            //                     ctx.stroke();
+            //                     lastX = e.offsetX;
+            //                     lastY = e.offsetY;
+            //                 }
+            //             });
+
+            //             canvas.addEventListener('mouseup', () => {
+            //                 isDrawing = false;
+            //             });
+
+            //             canvas.addEventListener('mouseout', () => {
+            //                 isDrawing = false;
+            //             });
+
+            //             // textarea.classList.toggle('dnone');
+            //             canvas.classList.toggle('dnone');
+            //         });
+
+
+            // textarea.forEach(textarea => {
+            //     textarea.classList.toggle('dnone');
+            // });
+            // canvas.forEach(canvas => {
+            //     canvas.classList.toggle('dnone');
+            // });
 
 
 
-                })
-                // });
-            });
+            // })
+            // });
+            // });
 
         }
         applyDeleteListener();
@@ -1051,5 +1051,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyDeleteListener();
 
+
+});
+
+const toolBox_btn = document.querySelector('#toolBox_btn');
+const toolbox_content = document.querySelector('#toolbox_content');
+
+toolBox_btn.addEventListener('click', () => {
+    toolbox_content.classList.toggle('dnone');
 
 });

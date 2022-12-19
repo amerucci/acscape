@@ -13,10 +13,10 @@
         <p class="m-0 frisk_modal">fouiller</p>
     </div>
 
-    <div class="wiki d-flex justify-content-center align-items-center gap-2">
+    <!-- <div class="wiki d-flex justify-content-center align-items-center gap-2">
         <iconify-icon icon="uil:search-alt"></iconify-icon>
         <p class="m-0 frisk_modal">Wiki</p>
-    </div>
+    </div> -->
 </div>
 
 <!-- Modal rooms-->
@@ -96,16 +96,29 @@
 
 <!-- sticky it -->
 <div id="stickies-container"></div>
-<div class="sticky-form">
-    <div id="cacheOpac" class="cacheOpac">
-        <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
-        <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
-        <label for="stickytext" class="dnone">Ecrire quelque chose</label>
-        <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+<div class="toolbox d-flex flex-column justify-content-center align-items-center">
+    <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
+    <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
+        <div class="sticky-form">
+            <div>
+                <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
+                <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
+                <label for="stickytext" class="dnone">Ecrire quelque chose</label>
+                <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+            </div>
+
+            <button class="button" id="createstickyOpac">Post it !</button>
+        </div>
+        <div class="sticky-draw">
+            <button class="button m-0 p-0" id="createDraw">Dessin</button>
+        </div>
+        <div class="wiki d-flex justify-content-center align-items-center gap-2">
+            <iconify-icon icon="uil:search-alt"></iconify-icon>
+            <p class="m-0 frisk_modal">Wiki</p>
+        </div>
     </div>
-    <!-- <button class="button" id="createsticky">Post it !</button> -->
-    <button class="button" id="createstickyOpac">Post it !</button>
 </div>
+
 
 
 
