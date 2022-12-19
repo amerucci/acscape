@@ -525,50 +525,6 @@ button.button {
     transform: translateY(-21%);
 }
 
-
-/* .cacheOpac {
-    opacity: 0;
-    animation: cacheOpacity 0.1s ease-in-out forwards;
-
-}
-
-@keyframes cacheOpacity {
-    0% {
-        display: none;
-    }
-
-    20% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.cacheOpacInvert {
-    opacity: 0;
-    animation: cacheOpacityInvert 0.5s ease-in-out forwards;
-    display: none;
-}
-
-@keyframes cacheOpacityInvert {
-    0% {
-        opacity: 0;
-        display: none;
-    }
-
-    20% {
-        display: block;
-    }
-
-    100% {
-        opacity: 0;
-        display: none;
-    }
-} */
-
 .button_toolBox {
     border: none;
     outline: none;
@@ -600,4 +556,9 @@ button.button {
 
 .espace {
     height: 116px;
+}
+
+.canvas_container {
+    position: absolute;
+    background-color: #ffffff69;
 }

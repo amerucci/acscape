@@ -848,14 +848,13 @@ document.addEventListener('DOMContentLoaded', () => {
         '#stickies-container'
     );
 
-
-
-    // const createStickyButton = document.querySelector(
-    //     '#createsticky'
-    // );
     const createStickyButton = document.querySelector(
         '#createstickyOpac'
     );
+
+    const createCanvas_btn = document.querySelector('#createDraw');
+
+
     if (!document.querySelector(".textareaSticky") == false) {
         document.querySelector(".textareaSticky").addEventListener('click', function () {
             console.log("click");
@@ -887,13 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createSticky() {
         const newSticky = document.createElement('div');
-        // const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span><button class="toggle-button">Dessiner</button>`
         const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span>`
-
-
-
-
-        //   )}</textarea><span class="deletesticky">&times;</span>`;
         newSticky.classList.add('drag', 'sticky');
         newSticky.innerHTML = html;
         newSticky.style.backgroundColor = randomColor();
@@ -908,90 +901,60 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 })
             });
-            // const toggleButton = document.querySelectorAll('.toggle-button');
-            const textarea = newSticky.querySelectorAll('.textareaSticky');
-            // const canvas = document.querySelectorAll('.drawing-canvas');
-            // toggleButton.forEach(toggleButton => {
-            //     toggleButton.addEventListener('click', () => {
-
-            //         console.log(toggleButton)
-
-            //         textarea.forEach(textarea => {
-            //             textarea.classList.toggle('dnone');
-            //         });
-            //         canvas.forEach(canvas => {
-
-            //             canvas.width = 240;
-            //             canvas.height = 300;
-
-
-            //             ctx = canvas.getContext('2d');
-            //             // });
-
-            //             let isDrawing = false;
-            //             let lastX = 0;
-            //             let lastY = 0;
-
-            //             // // Set the stroke style
-            //             ctx.strokeStyle = 'black';
-
-            //             // // Set the line width
-            //             ctx.lineWidth = 3;
-
-            //             // // Begin the path
-            //             ctx.beginPath();
-
-            //             // Add mouse events to the canvas
-            //             canvas.addEventListener('mousedown', (e) => {
-            //                 isDrawing = true;
-            //                 lastX = e.offsetX;
-            //                 lastY = e.offsetY;
-            //             });
-
-            //             canvas.addEventListener('mousemove', (e) => {
-            //                 if (isDrawing) {
-            //                     ctx.moveTo(lastX, lastY);
-            //                     ctx.lineTo(e.offsetX, e.offsetY);
-            //                     ctx.stroke();
-            //                     lastX = e.offsetX;
-            //                     lastY = e.offsetY;
-            //                 }
-            //             });
-
-            //             canvas.addEventListener('mouseup', () => {
-            //                 isDrawing = false;
-            //             });
-
-            //             canvas.addEventListener('mouseout', () => {
-            //                 isDrawing = false;
-            //             });
-
-            //             // textarea.classList.toggle('dnone');
-            //             canvas.classList.toggle('dnone');
-            //         });
-
-
-            // textarea.forEach(textarea => {
-            //     textarea.classList.toggle('dnone');
-            // });
-            // canvas.forEach(canvas => {
-            //     canvas.classList.toggle('dnone');
-            // });
-
-
-
-            // })
-            // });
-            // });
-
         }
         applyDeleteListener();
         clearStickyForm();
     }
 
+    function createCanvas() {
+        // Créer un canvas et l'ajouter au DOM
+        const canvas_container = document.createElement('div');
+        canvas_container.classList.add('canvas_container', 'drag')
+        const canvas = document.createElement('canvas');
+        canvas.classList.add('drawing-canvas');
+        canvas_container.appendChild(canvas)
+        stickyArea.append(canvas_container);
+        positionCanvas(canvas);
+
+        // Récupérer le contexte du canvas pour pouvoir dessiner dessus
+        const ctx = canvas.getContext('2d');
+
+        // Initialiser les variables pour le dessin
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Gérer le début et la fin du dessin lorsque l'utilisateur presse et relâche le bouton de la souris
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+
+        // Gérer le mouvement de la souris et dessiner un segment de ligne entre la position précédente et la position actuelle
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+    }
+
+
+
     function clearStickyForm() {
         stickyTitleInput.value = '';
         stickyTextInput.value = '';
+    }
+
+    function positionCanvas() {
+        const canvas = document.querySelector('.drawing-canvas');
+        canvas.style.left = window.innerWidth / 2 - canvas.clientWidth / 2 + 'px';
+        canvas.style.top = canvas.clientHeight / 2 + 'px';
     }
 
     function positionSticky(sticky) {
@@ -1004,12 +967,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sticky.clientHeight / 2 +
             (0 + Math.round(Math.random() * 50)) +
             'px';
-    }
-
-    function editSticky() {}
-
-    function stripHtml(text) {
-        return text.replace(/<\/?[^>]+(>|$)/g, '');
     }
 
     function randomColor() {
@@ -1045,6 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mouseup', () => (isDragging = false));
 
     createStickyButton.addEventListener('click', createSticky);
+    createCanvas_btn.addEventListener('click', createCanvas);
 
 
 
@@ -1063,3 +1021,80 @@ toolBox_btn.addEventListener('click', () => {
     toolbox_content.classList.toggle('dnone');
 
 });
+
+
+// const toggleButton = document.querySelectorAll('.toggle-button');
+// const textarea = newSticky.querySelectorAll('.textareaSticky');
+// const canvas = document.querySelectorAll('.drawing-canvas');
+// toggleButton.forEach(toggleButton => {
+//     toggleButton.addEventListener('click', () => {
+
+//         console.log(toggleButton)
+
+//         textarea.forEach(textarea => {
+//             textarea.classList.toggle('dnone');
+//         });
+//         canvas.forEach(canvas => {
+
+//             canvas.width = 240;
+//             canvas.height = 300;
+
+
+//             ctx = canvas.getContext('2d');
+//             // });
+
+//             let isDrawing = false;
+//             let lastX = 0;
+//             let lastY = 0;
+
+//             // // Set the stroke style
+//             ctx.strokeStyle = 'black';
+
+//             // // Set the line width
+//             ctx.lineWidth = 3;
+
+//             // // Begin the path
+//             ctx.beginPath();
+
+//             // Add mouse events to the canvas
+//             canvas.addEventListener('mousedown', (e) => {
+//                 isDrawing = true;
+//                 lastX = e.offsetX;
+//                 lastY = e.offsetY;
+//             });
+
+//             canvas.addEventListener('mousemove', (e) => {
+//                 if (isDrawing) {
+//                     ctx.moveTo(lastX, lastY);
+//                     ctx.lineTo(e.offsetX, e.offsetY);
+//                     ctx.stroke();
+//                     lastX = e.offsetX;
+//                     lastY = e.offsetY;
+//                 }
+//             });
+
+//             canvas.addEventListener('mouseup', () => {
+//                 isDrawing = false;
+//             });
+
+//             canvas.addEventListener('mouseout', () => {
+//                 isDrawing = false;
+//             });
+
+//             // textarea.classList.toggle('dnone');
+//             canvas.classList.toggle('dnone');
+//         });
+
+
+// textarea.forEach(textarea => {
+//     textarea.classList.toggle('dnone');
+// });
+// canvas.forEach(canvas => {
+//     canvas.classList.toggle('dnone');
+// });
+
+
+
+// })
+// });
+// });
