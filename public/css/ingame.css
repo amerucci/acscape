@@ -164,6 +164,10 @@ modal {
     gap: 2%;
 }
 
+.furniture_list_item {
+    min-height: 200px;
+}
+
 .activeR {
     border: 2px dashed #D31E44;
     animation: dashed 3s ease-in-out infinite;
@@ -186,7 +190,8 @@ modal {
     }
 }
 
-.room_control_key {
+.room_control_key,
+.furniture_unlock_statut {
     font-size: 30px;
     font-family: 'montserrat';
     font-weight: 700;
@@ -210,12 +215,14 @@ modal {
     }
 }
 
-.room_control_key>span:nth-child(1) {
+.room_control_key>span:nth-child(1),
+.furniture_unlock_statut>span:nth-child(1) {
     animation: typing 0.4s steps(5, end), blink-caret .5s step-end infinite;
     transition: all 0.5s ease-in-out;
 }
 
-.room_control_key>span.endTry {
+.room_control_key>span.endTry,
+.furniture_unlock_statut>span.endTry {
     height: 100%;
 }
 

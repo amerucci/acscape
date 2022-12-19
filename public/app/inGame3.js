@@ -619,46 +619,93 @@ main()
 
                 function modalF() {
                     const modal = document.createElement('div');
-                    modal.classList.add('modal', 'fade');
+                    modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'furniture_modal');
                     modal.setAttribute('tabindex', '-1');
                     modal.setAttribute('aria-labelledby', 'furniture_modal_label');
                     modal.setAttribute('aria-hidden', 'true');
-                    modal.innerHTML = `
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="furniture_modal_label">${filteredFurniture[i]['title']}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>${filteredFurniture[i]['description']}</p>
-                                        <div class="d-flex gap-2 clue_show">
-                                            <div class="d-flex flex-column w-100">
-                                                <div class="d-flex gap-3 justify-content-center">
-                                                    <button class="clue_show1 my-2">Indice 1</button>
-                                                    <button class="clue_show2 my-2" disabled>indice 2</button>
-                                                        <button class="clue_show3 my-2" disabled>indice 3</button>
-                                                </div>
-                                                <div class="d-flex gap-2 justify-content-center">
-                                                    <p class="clue_show1_content dnone">${dataGlobal.furniture[i]['clue']}</p>
-                                                        <p class="clue_show2_content dnone ">${dataGlobal.furniture[i]['clue2']}</p>
-                                                        <p class="clue_show3_content dnone">${dataGlobal.furniture[i]['clue3']}</p>
-                                                </div>    
-                                            </div>
+                    // modal.innerHTML = `
+                    //         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    //             <div class="modal-content">
+                    //                 <div class="modal-header">
+                    //                     <h5 class="modal-title" id="furniture_modal_label">${filteredFurniture[i]['title']}</h5>
+                    //                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    //                 </div>
+                    //                 <div class="modal-body">
+                    //                     <p>${filteredFurniture[i]['description']}</p>
+                    //                     <div class="d-flex gap-2 clue_show">
+                    //                         <div class="d-flex flex-column w-100">
+                    //                             <div class="d-flex gap-3 justify-content-center">
+                    //                                 <button class="clue_show1 my-2">Indice 1</button>
+                    //                                 <button class="clue_show2 my-2" disabled>indice 2</button>
+                    //                                     <button class="clue_show3 my-2" disabled>indice 3</button>
+                    //                             </div>
+                    //                             <div class="d-flex gap-2 justify-content-center">
+                    //                                 <p class="clue_show1_content dnone">${dataGlobal.furniture[i]['clue']}</p>
+                    //                                     <p class="clue_show2_content dnone ">${dataGlobal.furniture[i]['clue2']}</p>
+                    //                                     <p class="clue_show3_content dnone">${dataGlobal.furniture[i]['clue3']}</p>
+                    //                             </div>    
+                    //                         </div>
+                    //                     </div>
+                    //                         <div>
+                    //                             <input type="text" class="form-control furniture_key_unlock"  placeholder="Votre réponse" aria-label="Votre réponse">
+                    //                             <p class="furniture_unlock_statut"></p>
+                    //                             <button class="btn btn-primary furniture_key_unlock_btn">Valider</button>
+                    //                         </div>
+                    //                 </div>
+                    //                 <div class="modal-footer">
+                    //                 <p class="furniture_reward"></p>
+                    //                 </div>
+                    //             </div>
+                    //         </div>
+                    //         `;
+
+                    modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content furnitureLock">
+                        <div class="modal-header">
+                        
+                                <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalLockLabel">${filteredFurniture[i]['title']}</h5>
+                          
+                            <button type="button" class="closeLock" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
+                                    </iconify-icon>
+                                </span>
+                        </div>
+                            <div class="modal-body d-flex">
+                            
+                                <div class="d-flex flex-column clue_show w-50 gap-3">
+                                  <div class="w-100">
+                                      <div class="d-flex">
+                                          <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${filteredFurniture[i]['title']}">
+                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                          </div>
+                                          <div class="d-flex align-items-center gap-5"></div>
+                                      <p class="furniture_reward dnone"></p>
+                                  </div>    
+                                        <label class="switch_try"><input class="check_try" type="checkbox" checkbox="unchecked"  disabled="disabled" />
+                                        <div class="button">
+                                            <div class="light"></div>
+                                            <div class="dots"></div>
+                                            <div class="characters"><div class="furniture_unlock_statut d-flex align-items-center flex-column"></div></div>
+                                            <div class="shine"></div>
+                                            <div class="shadow"></div>
                                         </div>
-                                            <div>
-                                                <input type="text" class="form-control furniture_key_unlock"  placeholder="Votre réponse" aria-label="Votre réponse">
-                                                <p class="furniture_unlock_statut"></p>
-                                                <button class="btn btn-primary furniture_key_unlock_btn">Valider</button>
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <p class="furniture_reward"></p>
-                                    </div>
+                                    </label>
                                 </div>
-                            </div>
-                            `;
+                                  <div class="d-flex flex-column w-50 align-items-center gap-3">
+                                      <div class="d-flex gap-3 justify-content-center w-100">
+                                          <button class="clue_show1 my-2 px-2" >Indice 1</button> 
+                                          <button id="timelaps" class="clue_show2 my-2 px-2" disabled>indice 2</button>
+                                          <button class="clue_show3 my-2 px-2" disabled>indice 3</button>
+                                      </div>
+                                      <div class="d-flex gap-2 justify-content-center align-items-center mx-auto h-100 w-100">
+                                       <p class="clue_show1_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                       <p class="clue_show2_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>  
+                                       <p class="clue_show3_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                      </div>
+                                  </div>
+                            </div>  `;
                     document.body.appendChild(modal);
                     const furniture_modal = new bootstrap.Modal(modal);
                     furniture_modal.show();
@@ -666,139 +713,149 @@ main()
                         modal.remove();
                     })
 
-                    function clue_show() {
+                    // const roomsModalLockLabel = document.getElementById('roomsModalLockLabel');
+                    switch_try = document.querySelector('.switch_try');
+                    checkTry = document.querySelector('.check_try');
 
-                        let t = 0;
-                        let tl = 0;
+                    // function clue_show() {
 
-                        const clue_show1 = document.querySelector('.clue_show1');
-                        const clue_show_content1 = document.querySelector('.clue_show1_content');
-                        const clue_show2 = document.querySelector('.clue_show2');
-                        const clue_show_content2 = document.querySelector('.clue_show2_content');
-                        const clue_show3 = document.querySelector('.clue_show3');
-                        const clue_show_content3 = document.querySelector('.clue_show3_content');
+                    //     let t = 0;
+                    //     let tl = 0;
 
-
-                        if (clue_show_content1.innerHTML == "null") {
-                            clue_show1.classList.add('dnone');
-                            clue_show2.classList.add('dnone');
-                            clue_show3.classList.add('dnone');
-                        }
-
-                        if (clue_show_content2.innerHTML == "null") {
-                            clue_show2.classList.add('dnone');
-                            clue_show3.classList.add('dnone');
-                        }
-
-                        if (clue_show_content3.innerHTML == "null") {
-                            clue_show3.classList.add('dnone');
-                        }
-
-                        clue_show1.addEventListener('click', function () {
-
-                            clue_show_content1.classList.toggle('dnone');
-                            clue_show_content2.classList.add('dnone');
-                            clue_show2.classList.add('timelaps');
-                            clue_show_content3.classList.add('dnone');
-                            if (clue_show2.classList.contains('timelaps') && tl == 0) {
-                                tl++;
-                                setTimeout(function () {
-                                    clue_show2.disabled = false;
-                                }, 5000);
-                            }
-                            if (!dataGlobalUnlock[0].furniture[i].clue1Found) {
-                                if (t == 0) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.textContent = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].furniture[i].clue1Found = "yes";
-
-                                }
-                            }
+                    //     const clue_show1 = document.querySelector('.clue_show1');
+                    //     const clue_show_content1 = document.querySelector('.clue_show1_content');
+                    //     const clue_show2 = document.querySelector('.clue_show2');
+                    //     const clue_show_content2 = document.querySelector('.clue_show2_content');
+                    //     const clue_show3 = document.querySelector('.clue_show3');
+                    //     const clue_show_content3 = document.querySelector('.clue_show3_content');
 
 
-                            if (clue_show_content1.innerHTML == "null") {
-                                clue_show_content1.innerHTML = 'Pas d\'indice';
-                            }
-                        });
+                    //     if (clue_show_content1.innerHTML == "null") {
+                    //         clue_show1.classList.add('dnone');
+                    //         clue_show2.classList.add('dnone');
+                    //         clue_show3.classList.add('dnone');
+                    //     }
+
+                    //     if (clue_show_content2.innerHTML == "null") {
+                    //         clue_show2.classList.add('dnone');
+                    //         clue_show3.classList.add('dnone');
+                    //     }
+
+                    //     if (clue_show_content3.innerHTML == "null") {
+                    //         clue_show3.classList.add('dnone');
+                    //     }
+
+                    //     clue_show1.addEventListener('click', function () {
+
+                    //         clue_show_content1.classList.toggle('dnone');
+                    //         clue_show_content2.classList.add('dnone');
+                    //         clue_show2.classList.add('timelaps');
+                    //         clue_show_content3.classList.add('dnone');
+                    //         if (clue_show2.classList.contains('timelaps') && tl == 0) {
+                    //             tl++;
+                    //             setTimeout(function () {
+                    //                 clue_show2.disabled = false;
+                    //             }, 5000);
+                    //         }
+                    //         if (!dataGlobalUnlock[0].furniture[i].clue1Found) {
+                    //             if (t == 0) {
+                    //                 t++;
+                    //                 penality.classList.add('topToBottom');
+                    //                 penality.textContent = "-30 sec";
+                    //                 countdown = countdown - 30;
+                    //                 removeToptoBottom()
+                    //                 dataGlobalUnlock[0].furniture[i].clue1Found = "yes";
+
+                    //             }
+                    //         }
 
 
-                        clue_show2.addEventListener('click', function () {
+                    //         if (clue_show_content1.innerHTML == "null") {
+                    //             clue_show_content1.innerHTML = 'Pas d\'indice';
+                    //         }
+                    //     });
 
 
-                            clue_show_content2.classList.toggle('dnone');
-                            clue_show_content1.classList.add('dnone');
-                            clue_show_content3.classList.add('dnone');
-                            clue_show3.classList.add('timelaps');
-                            if (clue_show3.classList.contains('timelaps') && tl == 1) {
-                                tl++;
-                                setTimeout(function () {
-                                    clue_show3.disabled = false;
-                                }, 5000);
-                            }
-                            if (!dataGlobalUnlock[0].furniture[i].clue2Found) {
-                                if (t == 1) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.innerHTML = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].furniture[i].clue2Found = "yes";
-                                }
-                            }
+                    //     clue_show2.addEventListener('click', function () {
 
-                            if (clue_show_content2.innerHTML == "null") {
-                                clue_show_content2.innerHTML = 'Pas d\'indice';
-                            }
-                        });
 
-                        clue_show3.addEventListener('click', function () {
+                    //         clue_show_content2.classList.toggle('dnone');
+                    //         clue_show_content1.classList.add('dnone');
+                    //         clue_show_content3.classList.add('dnone');
+                    //         clue_show3.classList.add('timelaps');
+                    //         if (clue_show3.classList.contains('timelaps') && tl == 1) {
+                    //             tl++;
+                    //             setTimeout(function () {
+                    //                 clue_show3.disabled = false;
+                    //             }, 5000);
+                    //         }
+                    //         if (!dataGlobalUnlock[0].furniture[i].clue2Found) {
+                    //             if (t == 1) {
+                    //                 t++;
+                    //                 penality.classList.add('topToBottom');
+                    //                 penality.innerHTML = "-30 sec";
+                    //                 countdown = countdown - 30;
+                    //                 removeToptoBottom()
+                    //                 dataGlobalUnlock[0].furniture[i].clue2Found = "yes";
+                    //             }
+                    //         }
 
-                            clue_show_content3.classList.toggle('dnone');
-                            clue_show_content1.classList.add('dnone');
-                            clue_show_content2.classList.add('dnone');
-                            if (!dataGlobalUnlock[0].furniture[i].clue3Found) {
-                                if (t == 2) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.innerHTML = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].furniture[i].clue3Found = "yes";
-                                }
-                            }
+                    //         if (clue_show_content2.innerHTML == "null") {
+                    //             clue_show_content2.innerHTML = 'Pas d\'indice';
+                    //         }
+                    //     });
 
-                            if (clue_show_content3.innerHTML == "null") {
-                                clue_show_content3.innerHTML = 'Pas d\'indice';
-                            }
-                        });
-                    }
-                    clue_show();
+                    //     clue_show3.addEventListener('click', function () {
+
+                    //         clue_show_content3.classList.toggle('dnone');
+                    //         clue_show_content1.classList.add('dnone');
+                    //         clue_show_content2.classList.add('dnone');
+                    //         if (!dataGlobalUnlock[0].furniture[i].clue3Found) {
+                    //             if (t == 2) {
+                    //                 t++;
+                    //                 penality.classList.add('topToBottom');
+                    //                 penality.innerHTML = "-30 sec";
+                    //                 countdown = countdown - 30;
+                    //                 removeToptoBottom()
+                    //                 dataGlobalUnlock[0].furniture[i].clue3Found = "yes";
+                    //             }
+                    //         }
+
+                    //         if (clue_show_content3.innerHTML == "null") {
+                    //             clue_show_content3.innerHTML = 'Pas d\'indice';
+                    //         }
+                    //     });
+                    // }
+                    // clue_show();
 
                     function furniture_unlock() {
-                        const furniture_key_unlock = document.querySelector('.furniture_key_unlock');
-                        const furniture_key_unlock_btn = document.querySelector('.furniture_key_unlock_btn');
+                        const furniture_key_unlock = document.querySelector('#furniture_key_unlock');
+                        const furniture_key_unlock_btn = document.querySelector('#furniture_key_unlock_btn');
                         const furniture_reward = document.querySelector('.furniture_reward');
                         const furniture_unlock_statut = document.querySelector('.furniture_unlock_statut');
                         let furniture_unlock_try = 3;
-                        furniture_unlock_statut.innerHTML = `vous avez ${furniture_unlock_try} essais avant une pénalité de 5 minutes`;
+                        // furniture_unlock_statut.innerHTML = `vous avez ${furniture_unlock_try} essais avant une pénalité de 5 minutes`;
+                        furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
 
                         furniture_key_unlock_btn.addEventListener('click', function (e) {
 
-                            if (furniture_key_unlock.value == dataGlobalUnlock[0].furniture[i].unlock_word) {
-                                furniture_unlock_statut.innerHTML = "meuble ouvert";
-                                furniture_reward.innerHTML = dataGlobalUnlock[0].furniture[i].reward;
+                            if (furniture_key_unlock.value == filteredFurniture[i].unlock_word) {
+                                furniture_key_unlock_btn.disabled = true;
+                                checkTry.checked = true;
+                                furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
+                                furniture_reward.innerHTML = filteredFurniture[i].reward;
+                                // room_control_key.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
                             } else {
                                 furniture_unlock_try--;
 
                                 furniture_key_unlock.value = "";
-                                furniture_unlock_statut.innerHTML = `code incorrect encore ${furniture_unlock_try} essais`;
+                                furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
                                 if (furniture_unlock_try == 0) {
-                                    furniture_unlock_statut.innerHTML = "Dommage vous avez une pénalité de 5 minutes ! ";
+                                    checkTry.checked = true;
+                                    furniture_unlock_statut.innerHTML = `<span class="d-flex align-items-center justify-content-center flex-column endTry"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
                                     setTimeout(function () {
-                                        furniture_unlock_statut.innerHTML = 'vous avez 3 nouveaux essais pour trouver le bon code';
+                                        furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
+                                        checkTry.checked = false;
                                     }, 2000)
                                     penality.classList.add('topToBottom');
                                     penality.innerHTML = "-5 min";
@@ -812,7 +869,7 @@ main()
 
                         document.addEventListener('keydown', function (e) {
                             if (e.key == 'Enter') {
-                                if (furniture_key_unlock.value == dataGlobal.room[i]['unlock_word']) {
+                                if (furniture_key_unlock.value == filteredFurniture[i].unlock_word) {
                                     furniture_key_unlock_btn.click();
                                     e.preventDefault;
                                     return;
