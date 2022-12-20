@@ -563,17 +563,29 @@ main()
 
             furnitureList.innerHTML = "";
 
-            dataGlobalUnlock[0].furniture.forEach(furniture => {
+
+            dataGlobal.furniture.forEach(furniture => {
                 if (furniture.room_id === roomID) {
-                    furnitureLi = document.createElement('li');
-                    furnitureLi.classList.add('furniture_list_item');
-                    furnitureLi.setAttribute('data-id', furniture.id);
-                    furnitureLi.innerHTML = furniture.title;
-                    console.log(furnitureLi);
-                    furnitureList.appendChild(furnitureLi);
+
+                    function createFurnitureList() {
+                        furnitureLi = document.createElement('li');
+                        furnitureLi.classList.add('furniture_list_item');
+                        furnitureLi.setAttribute('data-id', furniture.id);
+                        furnitureLi.innerHTML = furniture.title;
+
+                        furnitureList.appendChild(furnitureLi);
+                    }
+                    createFurnitureList();
+
+
+                    // if (furnitureLi.classList.contains('.furniture_unlock')) {
+                    //     furnitureLi.style.color = 'blue';
+                    // } else {
+                    //     furnitureLi.style.color = 'red';
                     // }
 
-                    if (furniture.padlock == "yes") {
+                    if (furniture.padlock == "yes" && !furnitureLi.classList.contains('furniture_unlock')) {
+
 
                         furnitureLi.addEventListener('click', function () {
 
@@ -753,71 +765,78 @@ main()
                             //         // }
                             //         // clue_show();
 
-                            function furniture_unlock(furnitureId) {
-                                const furniture_key_unlock = document.querySelector('#furniture_key_unlock');
-                                const furniture_key_unlock_btn = document.querySelector('#furniture_key_unlock_btn');
-                                const furniture_reward = document.querySelector('.furniture_reward');
-                                const furniture_unlock_statut = document.querySelector('.furniture_unlock_statut');
-                                let furniture_unlock_try = 3;
-                                furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
 
-                                furniture_key_unlock_btn.addEventListener('click', function (e) {
+                            const furniture_key_unlock = document.querySelector('#furniture_key_unlock');
+                            const furniture_key_unlock_btn = document.querySelector('#furniture_key_unlock_btn');
+                            const furniture_reward = document.querySelector('.furniture_reward');
+                            const furniture_unlock_statut = document.querySelector('.furniture_unlock_statut');
+                            let furniture_unlock_try = 3;
+                            furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
 
-                                    if (furniture_key_unlock.value == furniture.unlock_word) {
-                                        furniture_key_unlock_btn.disabled = true;
+                            furniture_key_unlock_btn.addEventListener('click', function (e) {
+
+                                if (furniture_key_unlock.value == furniture.unlock_word) {
+                                    checkTry.checked = true;
+                                    furniture_key_unlock_btn.disabled = true;
+                                    furniture.padlock = 'no';
+                                    furnitureLi.classList.add('furniture_unlock');
+                                    furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
+                                    furniture_reward.innerHTML = furniture.reward;
+                                    furnitureModalLockLabel.innerHTML = `${furniture.title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
+                                    dataGlobalUnlock.push(dataGlobal);
+                                    if (dataGlobalUnlock.length > 1) {
+                                        dataGlobalUnlock.pop();
+                                    }
+
+                                } else {
+                                    furniture_unlock_try--;
+
+                                    furniture_key_unlock.value = "";
+                                    furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
+                                    if (furniture_unlock_try == 0) {
                                         checkTry.checked = true;
-                                        furniture.padlock = 'no';
-                                        furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
-                                        furniture_reward.innerHTML = furniture.reward;
-                                        furnitureModalLockLabel.innerHTML = `${furniture.title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
+                                        furniture_unlock_statut.innerHTML = `<span class="d-flex align-items-center justify-content-center flex-column endTry"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
+                                        setTimeout(function () {
+                                            furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
+                                            checkTry.checked = false;
+                                        }, 2000)
+                                        penality.classList.add('topToBottom');
+                                        penality.innerHTML = "-5 min";
+                                        furniture_unlock_try = 3;
+                                        countdown = countdown - 300;
+                                        removeToptoBottom()
+
+                                    }
+                                }
+                            });
+
+                            document.addEventListener('keydown', function (e) {
+                                if (e.key == 'Enter') {
+                                    if (furniture_key_unlock.value == furniture.unlock_word) {
+                                        furniture_key_unlock_btn.click();
+                                        e.preventDefault;
+                                        return;
+                                    }
+                                    if (furniture_key_unlock.value == '') {
+                                        e.preventDefault;
+                                        return;
                                     } else {
-                                        furniture_unlock_try--;
-
-                                        furniture_key_unlock.value = "";
-                                        furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
-                                        if (furniture_unlock_try == 0) {
-                                            checkTry.checked = true;
-                                            furniture_unlock_statut.innerHTML = `<span class="d-flex align-items-center justify-content-center flex-column endTry"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
-                                            setTimeout(function () {
-                                                furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
-                                                checkTry.checked = false;
-                                            }, 2000)
-                                            penality.classList.add('topToBottom');
-                                            penality.innerHTML = "-5 min";
-                                            furniture_unlock_try = 3;
-                                            countdown = countdown - 300;
-                                            removeToptoBottom()
-
-                                        }
+                                        furniture_key_unlock_btn.click();
+                                        e.preventDefault;
+                                        return;
                                     }
-                                });
-
-                                document.addEventListener('keydown', function (e) {
-                                    if (e.key == 'Enter') {
-                                        if (furniture_key_unlock.value == furniture.unlock_word) {
-                                            furniture_key_unlock_btn.click();
-                                            e.preventDefault;
-                                            return;
-                                        }
-                                        if (furniture_key_unlock.value == '') {
-                                            e.preventDefault;
-                                            return;
-                                        } else {
-                                            furniture_key_unlock_btn.click();
-                                            e.preventDefault;
-                                            return;
-                                        }
-                                    }
-                                });
+                                }
+                            });
 
 
-                            }
-                            furniture_unlock();
+
+
 
                         });
                     }
 
                     if (furniture.padlock == 'no') {
+                        furnitureLi.classList.add('furniture_unlock');
                         furnitureLi.addEventListener('click', function () {
                             const modal = document.createElement('div');
                             modal.classList.add('modal', 'fade');
@@ -853,9 +872,10 @@ main()
                         });
                     }
 
-                }
 
+                }
             });
+
 
             if (furnitureList.childElementCount == 0) {
                 furnitureList.innerHTML = "<p>Aucun meuble à fouiller</p>";

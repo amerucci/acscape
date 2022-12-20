@@ -176,11 +176,6 @@ main()
                         element.classList.remove('activeR');
                     });
                     roomsArray[i].classList.add('activeR');
-
-
-
-
-
                     roomsArray[i].classList.add('room_unlock_open');
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
@@ -494,7 +489,6 @@ main()
                             reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
-                            dataGlobal.room[i]['unlock_word'] = null;
                             roomsArray[i].classList.add('room_unlock_open');
                             roomsArray[i].style.color = 'black';
                             padlock.remove();
