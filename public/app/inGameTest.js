@@ -778,9 +778,6 @@ main()
                                     checkTry.checked = true;
                                     furniture_key_unlock_btn.disabled = true;
                                     furniture.padlock = 'no';
-                                    if (furnitureLi.getAttribute('data-id') == furniture.id) {
-                                        furnitureLi.classList.add('caca');
-                                    }
                                     furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
                                     furniture_reward.innerHTML = furniture.reward;
                                     furnitureModalLockLabel.innerHTML = `${furniture.title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
@@ -788,6 +785,7 @@ main()
                                     if (dataGlobalUnlock.length > 1) {
                                         dataGlobalUnlock.pop();
                                     }
+                                    frisk_btn.click();
 
                                 } else {
                                     furniture_unlock_try--;
