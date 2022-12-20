@@ -567,15 +567,14 @@ main()
             dataGlobal.furniture.forEach(furniture => {
                 if (furniture.room_id === roomID) {
 
-                    function createFurnitureList() {
-                        furnitureLi = document.createElement('li');
-                        furnitureLi.classList.add('furniture_list_item');
-                        furnitureLi.setAttribute('data-id', furniture.id);
-                        furnitureLi.innerHTML = furniture.title;
 
-                        furnitureList.appendChild(furnitureLi);
-                    }
-                    createFurnitureList();
+                    furnitureLi = document.createElement('li');
+                    furnitureLi.classList.add('furniture_list_item');
+                    furnitureLi.setAttribute('data-id', furniture.id);
+                    furnitureLi.innerHTML = furniture.title;
+
+                    furnitureList.appendChild(furnitureLi);
+
 
 
                     // if (furnitureLi.classList.contains('.furniture_unlock')) {
@@ -614,7 +613,7 @@ main()
                                         <div class="d-flex flex-column clue_show w-50 gap-3">
                                           <div class="w-100">
                                               <div class="d-flex">
-                                                  <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour $${furniture.title}">
+                                                  <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
                                                   <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                   </div>
                                                   <div class="d-flex align-items-center gap-5"></div>
@@ -779,7 +778,9 @@ main()
                                     checkTry.checked = true;
                                     furniture_key_unlock_btn.disabled = true;
                                     furniture.padlock = 'no';
-                                    furnitureLi.classList.add('furniture_unlock');
+                                    if (furnitureLi.getAttribute('data-id') == furniture.id) {
+                                        furnitureLi.classList.add('caca');
+                                    }
                                     furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
                                     furniture_reward.innerHTML = furniture.reward;
                                     furnitureModalLockLabel.innerHTML = `${furniture.title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
@@ -871,6 +872,7 @@ main()
 
                         });
                     }
+
 
 
                 }
