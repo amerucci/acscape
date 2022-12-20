@@ -53,7 +53,7 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let timelaps = 5
+let timelaps = 300; // 5 minutes (temps exprimé en secondes)
 
 
 // setInterval(clueTimer, 1000);

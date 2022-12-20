@@ -53,7 +53,7 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let timelaps = 5
+let timelaps = 30;
 
 
 // setInterval(clueTimer, 1000);
@@ -91,9 +91,9 @@ const roomsList = document.querySelector('.rooms_list');
 const penality = document.querySelector('.penality');
 const navInGameTitle = document.querySelector('.room_active');
 let room_open;
+
 let switch_try;
 let checkTry;
-
 
 let li_furniture; // élément créé dynamiquement à l'ouverture d'un furniture pour le contenue d'une modal
 let furnitureLi;
@@ -102,6 +102,18 @@ const frisk_btn = document.querySelector('.frisk_btn')
 let filteredFurniture = []; // tableau filtré de furniture.room_id = roomID. Se remplit au click d'une room à l'injection de l'id dans roomID
 let filteredFurnitureLength = 0; // longueur du tableau filtré de furniture.room_id = roomID. Se remplit au click d'une room à l'injection de l'id dans roomID stocké en varaible globale sous la forme d'un number, pour éviter des problèmes de variable undefined pour les boucles for. 
 let filteredFurnitureChange = []
+
+let clue_show_content1;
+let clue_show_content2;
+let clue_show_content3;
+let clue_show_container;
+let roomsClue = [];
+let roomsClueUnique = [];
+let textarea_title_sticky;
+let textareaSticky;
+let copy;
+
+let createstickyOpac = document.querySelector('#createstickyOpac');
 
 function removeToptoBottom() {
     setTimeout(() => {
@@ -268,25 +280,28 @@ main()
                                                     </div>
                                                 </label>
                                             </div>
-                                              <div class="d-flex flex-column w-50 align-items-center gap-3">
+                                              <div id="clue_btn_content" class="d-flex flex-column w-50 align-items-center gap-3">
                                                   <div class="d-flex gap-3 justify-content-center w-100">
                                                       <button class="clue_show1 my-2 px-2" >Indice 1</button> 
-                                                      <button id="timelaps" class="clue_show2 my-2 px-2"  disabled>indice 2</button>
-                                                      <button class="clue_show3 my-2 px-2"  disabled>indice 3</button>
+                                                      <button id="timelaps" class="clue_show2 my-2 px-2" >indice 2</button>
+                                                      <button class="clue_show3 my-2 px-2" >indice 3</button>
                                                   </div>
                                                   <div class="d-flex gap-2 justify-content-center align-items-center mx-auto h-100 w-100">
-                                                   <p class="clue_show1_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
-                                                   <p class="clue_show2_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>  
-                                                   <p class="clue_show3_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                                  <div class="clue_show1_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2">
+                                                      <p class="d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                                      
                                                   </div>
+                                                  <div class="clue_show2_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2">
+                                                      <p class="d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                                    
+                                                  </div>
+                                                  <div class="clue_show3_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2">
+                                                      <p class=" d-flex justify-content-center align-items-center w-100 h-75 mx-2"></p>
+                                                     
+                                                  </div>
+                                                 </div>
                                               </div>
-                                        </div>  
-                                           
-                                              
-                                            
-                                        
-                                                        
-                                                
+                                        </div>       
                                         </div>
                                 </div>
                             </div>`;
@@ -297,10 +312,6 @@ main()
                     modal.addEventListener('hidden.bs.modal', function (modalRemove) {
                         modal.remove();
                     })
-
-                    const roomsModalLockLabel = document.getElementById('roomsModalLockLabel');
-                    switch_try = document.querySelector('.switch_try');
-                    checkTry = document.querySelector('.check_try');
 
 
                     function clueTimer() {
@@ -326,165 +337,193 @@ main()
                     }
 
 
-                    // function clue_show() {
-
+                    // CLue ************
                     let t = 0; // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
                     let tl = 0; // variable tl pour calculer l'interval entre chaque indice
-                    const clue_show1 = document.querySelector('.clue_show1');
+                    const clue_btn_content = document.querySelector('#clue_btn_content');
+
+                    let clue_show1 = document.querySelector('.clue_show1');
                     clue_show1.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
-                    const clue_show_content1 = document.querySelector('.clue_show1_content');
+                    clue_show_content1 = document.querySelector('.clue_show1_content');
 
-                    const clue_show2 = document.querySelector('.clue_show2');
+                    let clue_show2 = document.querySelector('.clue_show2');
                     clue_show2.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
-                    const clue_show_content2 = document.querySelector('.clue_show2_content');
+                    clue_show_content2 = document.querySelector('.clue_show2_content');
 
-                    const clue_show3 = document.querySelector('.clue_show3');
+                    let clue_show3 = document.querySelector('.clue_show3');
                     clue_show3.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
-                    const clue_show_content3 = document.querySelector('.clue_show3_content');
+                    clue_show_content3 = document.querySelector('.clue_show3_content');
 
 
 
-                    // function startTimer(roomLockID) {
-                    //     clearInterval(window[`intervalIdclue${roomLockID}`]);
-                    //     window[`intervalIdclue${roomLockID}`] = setInterval(clueTimer, 1000);
-                    // }
-
-                    // function onClueClick(roomLockID) {
-                    //     startTimer(roomLockID);
-                    // }
 
 
-                    if (clue_show1.getAttribute('data_id') == dataGlobal.room[i]['id'] && clue_show2.getAttribute('data_id') == dataGlobal.room[i]['id'] && clue_show3.getAttribute('data_id') == dataGlobal.room[i]['id']) {
+                    // ************************************************************************************************
+                    // ************************************************************************************************
 
-                        if (clue_show_content1.innerHTML == "null") {
-                            clue_show1.classList.add('dnone');
-                            clue_show2.classList.add('dnone');
-                            clue_show3.classList.add('dnone');
-                        }
+                    // roomsClue.push([clue_show1.getAttribute('data_id'), clue_show2.getAttribute('data_id'), clue_show3.getAttribute('data_id')]);
 
-                        if (clue_show_content2.innerHTML = dataGlobal.room[i]['clue2'] == null) {
-                            clue_show2.classList.add('dnone');
-                            clue_show3.classList.add('dnone');
-                        }
-
-                        if (clue_show_content3.innerHTML = dataGlobal.room[i]['clue3'] == null) {
-                            clue_show3.classList.add('dnone');
-                        }
-
-
-                        clue_show1.addEventListener('click', function () {
-
-
-
-                            clue_show_content1.classList.toggle('dnone');
-                            // clue_show_content1.classList.toggle('scale0');
-                            clue_show_content1.innerHTML = dataGlobal.room[i]['clue'];
-                            clue_show_content2.classList.add('dnone');
-                            clue_show_content3.classList.add('dnone');
-
-
-                            clue_show2.classList.add('timelaps');
-                            if (clue_show2.classList.contains('timelaps')) {
-                                if (tl == 0) {
-                                    if (clue_show1.getAttribute('data_id') == dataGlobal.room[i]['id']) {
-                                        // setInterval(clueTimer, 1000);
-                                        setTimeout(function () {
-                                            clue_show2.disabled = false;
-
-                                        }, 5000);
-                                    } else {
-                                        clue_show2.disabled = false;
-                                    }
-                                } else if (tl > 0) {
-                                    clue_show2.disabled = false;
-                                }
-                                tl++;
-                            }
-                            if (!dataGlobalUnlock[0].room[i].clue1Found) {
-                                if (t == 0) {
-                                    t++;
-                                    setInterval(clueTimer, 1000);
-                                    penality.classList.add('topToBottom');
-                                    penality.textContent = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].room[i].clue1Found = "yes";
-                                }
-                            }
-
-
-                            if (clue_show_content1.innerHTML == "null") {
-                                clue_show_content1.innerHTML = 'Pas d\'indice';
-                            }
-                        });
-
-
-                        clue_show2.addEventListener('click', function () {
-
-
-                            clue_show_content2.classList.toggle('dnone');
-                            clue_show_content2.innerHTML = dataGlobal.room[i]['clue2'];
-
-                            clue_show_content1.classList.add('dnone');
-                            clue_show_content3.classList.add('dnone');
-                            clue_show3.classList.add('timelaps');
-                            if (clue_show3.classList.contains('timelaps')) {
-                                tl++;
-                                setTimeout(function () {
-                                    clue_show3.disabled = false;
-                                }, 5000);
-                            } else if (tl >= 2) {
-                                clue_show3.disabled = false;
-                            }
-
-                            if (!dataGlobalUnlock[0].room[i].clue2Found) {
-                                if (t == 1) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.innerHTML = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].room[i].clue2Found = "yes";
-
-                                }
-                            }
-
-                            if (clue_show_content2.innerHTML == "null") {
-                                clue_show_content2.innerHTML = 'Pas d\'indice';
-                            }
-                        });
-
-                        clue_show3.addEventListener('click', function () {
-
-                            clue_show_content3.classList.toggle('dnone');
-                            clue_show_content3.innerHTML = dataGlobal.room[i]['clue3'];
-                            clue_show_content1.classList.add('dnone');
-                            clue_show_content2.classList.add('dnone');
-                            if (!dataGlobalUnlock[0].room[i].clue3Found) {
-                                if (t == 2) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.innerHTML = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    dataGlobalUnlock[0].room[i].clue3Found = "yes";
-                                }
-                            }
-
-                            if (clue_show_content3.innerHTML == "null") {
-                                clue_show_content3.innerHTML = 'Pas d\'indice';
-                            }
-
-                        });
+                    if (clue_show_content1.innerHTML == "null") {
+                        clue_show1.classList.add('dnone');
+                        clue_show2.classList.add('dnone');
+                        clue_show3.classList.add('dnone');
                     }
 
-                    // }
-                    // clue_show();
 
+                    if (clue_show_content2.innerHTML = dataGlobal.room[i]['clue2'] == null) {
+                        clue_show2.classList.add('dnone');
+                        clue_show3.classList.add('dnone');
+                    }
+
+                    if (clue_show_content3.innerHTML = dataGlobal.room[i]['clue3'] == null) {
+                        clue_show3.classList.add('dnone');
+                    }
+
+
+
+
+                    clue_show1.addEventListener('click', function () {
+
+                        clue_show_content1.classList.toggle('dnone');
+                        clue_show_content2.classList.add('dnone');
+                        clue_show_content3.classList.add('dnone');
+                        clue_show_content1.innerHTML = `<p>${dataGlobal.room[i]['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                        if (!dataGlobalUnlock[0].room[i].clue1Found) {
+                            if (t == 0) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.textContent = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                dataGlobalUnlock[0].room[i].clue1Found = "yes";
+                            }
+                        }
+                        copy = document.querySelectorAll('.copy');
+                        copy.forEach((copy) => {
+                            copy.addEventListener('click', function () {
+                                createstickyOpac.click()
+                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                textareaSticky = document.querySelectorAll('.textareaSticky');
+                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
+                                textareaSticky[textareaSticky.length - 1].value = `indice n°1 \n${dataGlobal.room[i]['clue']}`;
+                            })
+                        })
+
+                    });
+
+                    clue_show2.addEventListener('click', function () {
+                        clue_show_content2.classList.toggle('dnone');
+                        clue_show_content1.classList.add('dnone');
+                        clue_show_content3.classList.add('dnone');
+                        clue_show_content2.innerHTML = `${dataGlobal.room[i]['clue2']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+
+                        if (!dataGlobalUnlock[0].room[i].clue2Found) {
+                            if (t == 1) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.textContent = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                dataGlobalUnlock[0].room[i].clue2Found = "yes";
+                            }
+                        }
+                        copy = document.querySelectorAll('.copy');
+                        copy.forEach((copy) => {
+                            copy.addEventListener('click', function () {
+                                createstickyOpac.click()
+                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                textareaSticky = document.querySelectorAll('.textareaSticky');
+                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
+                                textareaSticky[textareaSticky.length - 1].value = `indice n°2 \n${dataGlobal.room[i]['clue2']}`;
+                            })
+                        })
+
+                    });
+
+
+                    clue_show3.addEventListener('click', function () {
+
+                        clue_show_content3.classList.toggle('dnone');
+                        clue_show_content1.classList.add('dnone');
+                        clue_show_content2.classList.add('dnone');
+                        clue_show_content3.innerHTML = `${dataGlobal.room[i]['clue3']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+
+                        if (!dataGlobalUnlock[0].room[i].clue3Found) {
+                            if (t == 2) {
+                                t++;
+                                penality.classList.add('topToBottom');
+                                penality.textContent = "-30 sec";
+                                countdown = countdown - 30;
+                                removeToptoBottom()
+                                dataGlobalUnlock[0].room[i].clue3Found = "yes";
+                            }
+                        }
+                        copy = document.querySelectorAll('.copy');
+                        copy.forEach((copy) => {
+                            copy.addEventListener('click', function () {
+                                createstickyOpac.click()
+                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                textareaSticky = document.querySelectorAll('.textareaSticky');
+                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
+                                textareaSticky[textareaSticky.length - 1].value = `indice n°3 \n${dataGlobal.room[i]['clue3']}`;
+                            })
+                        })
+                    });
+
+
+
+
+
+
+
+                    // ************************************************************************************************ 
+                    // clue_show1.addEventListener('click', function () {
+                    //     console.log("clue1");
+                    //     clueShow1Clicked = true;
+                    //     clue_show_content1.classList.toggle('dnone');
+                    //     clue_show_content2.classList.add('dnone');
+                    //     clue_show_content3.classList.add('dnone');
+
+                    //     clue_show_content1.innerHTML = `${dataGlobal.room[i]['clue']}`;
+                    // });
+
+                    // clue_show2.addEventListener('click', function () {
+                    //     console.log("clue2");
+                    //     if (clueShow1Clicked && !intervalCompleted) {
+                    //         clue_show_content2.classList.toggle('dnone');
+                    //         clue_show_content1.classList.add('dnone');
+                    //         clue_show_content3.classList.add('dnone');
+                    //         clueShow2Clicked = true;
+                    //     }
+
+                    //     clue_show_content2.innerHTML = `${dataGlobal.room[i]['clue2']}`;
+                    // });
+
+                    // clue_show3.addEventListener('click', function () {
+                    //     console.log("clue3");
+                    //     if (clueShow1Clicked && clueShow2Clicked && !intervalCompleted) {
+                    //         clue_show_content3.classList.toggle('dnone');
+                    //         clue_show_content1.classList.add('dnone');
+                    //         clue_show_content2.classList.add('dnone');
+                    //         clueShow3Clicked = true;
+                    //     }
+
+                    //     clue_show_content3.innerHTML = `${dataGlobal.room[i]['clue3']}`;
+                    // });
+
+
+
+
+
+
+
+                    const roomsModalLockLabel = document.getElementById('roomsModalLockLabel');
                     const rooms_unlock_key = document.querySelector('#rooms_unlock_key');
                     const room_control_key = document.querySelector('.room_control_key');
                     const rooms_unlock_btn = document.querySelector('#rooms_unlock_btn');
+                    switch_try = document.querySelector('.switch_try');
                     const reward = document.querySelector('.reward');
+                    checkTry = document.querySelector('.check_try');
                     let room_try = 3;
                     room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
 

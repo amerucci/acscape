@@ -584,3 +584,9 @@ button.button {
     right: -0.2rem;
     padding: 1%;
 }
+
+.copy {
+    position: absolute;
+    bottom: 7%;
+    right: 4%;
+}

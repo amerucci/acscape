@@ -123,4 +123,4 @@
 
 
 
-<script src="public\app\inGameTest.js"></script>
+<script src="public\app\inGame2.js"></script>
