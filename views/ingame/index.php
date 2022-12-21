@@ -12,11 +12,6 @@
         <iconify-icon icon="uil:search-alt"></iconify-icon>
         <p class="m-0 frisk_modal">fouiller</p>
     </div>
-
-    <!-- <div class="wiki d-flex justify-content-center align-items-center gap-2">
-        <iconify-icon icon="uil:search-alt"></iconify-icon>
-        <p class="m-0 frisk_modal">Wiki</p>
-    </div> -->
 </div>
 
 <!-- Modal rooms-->
@@ -123,4 +118,4 @@
 
 
 
-<script src="public\app\inGame2.js"></script>
+<script src="public\app\inGameBar.js"></script>

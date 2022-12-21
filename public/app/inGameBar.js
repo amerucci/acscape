@@ -274,15 +274,9 @@ main()
                                                       <div class="d-flex align-items-center gap-5"></div>
                                               </div>    
                                                     <div class="d-flex switch_container fade show">
-                                                        <label class="switch_try"><input class="check_try w-50" type="checkbox" checkbox="unchecked"  disabled="disabled" />
-                                                            <div class="button">
-                                                                <div class="light"></div>
-                                                                <div class="dots"></div>
-                                                                <div class="characters"><div class="room_control_key d-flex align-items-center flex-column"></div></div>
-                                                                <div class="shine"></div>
-                                                                <div class="shadow"></div>
-                                                            </div>
-                                                        </label>
+                                                        <div class="progress w-100">
+                                                            <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                                        </div>
                                                     </div>
                                             </div>
 
