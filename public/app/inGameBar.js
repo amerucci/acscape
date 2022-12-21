@@ -91,6 +91,7 @@ const roomsList = document.querySelector('.rooms_list');
 const penality = document.querySelector('.penality');
 const navInGameTitle = document.querySelector('.room_active');
 let room_open;
+let backdrop;
 
 let input_container;
 
@@ -117,7 +118,11 @@ let textarea_title_sticky;
 let textareaSticky;
 let copy;
 
+
 let createstickyOpac = document.querySelector('#createstickyOpac');
+
+let arrayMax = [];
+let max = 0
 
 function removeToptoBottom() {
     setTimeout(() => {
@@ -135,6 +140,10 @@ main()
 
 
         for (let i = 0; i < dataGlobal.room.length; i++) {
+
+
+            arrayMax.push(dataGlobal.room[i].n_room);
+            max = Math.max(...arrayMax);
 
 
 
@@ -219,13 +228,21 @@ main()
                                                                 </span>
                                                         </div>
                                                             <div class="modal-body">
-                                                                <p>${dataGlobal.room[i].reward}</p>
+                                                                <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
+                                                                <h5 class="msg_open">Salle dévérouillée voyons ce qu'elle contient.</h5>
+                                                                <p my-4>${dataGlobal.room[i].reward}</p>
+                                                                </div>
                                                             </div>
                                                     </div>
                                                 </div>`;
                     document.body.appendChild(modal);
                     const roomsOpenModal = new bootstrap.Modal(modal);
                     roomsOpenModal.show();
+
+                    let msg_open = document.querySelector('.msg_open');
+                    if (dataGlobal.room[i].n_room == "1") {
+                        msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                    }
 
                     //si une room contiens la classe activeR on injecte l'id de la room, et on opère une filtration de furniture par room_id = roomID
                     if (roomsArray[i].classList.contains('activeR') && roomID == roomID) {
@@ -263,21 +280,26 @@ main()
                                                 </iconify-icon>
                                             </span>
                                     </div>
+                                    <div class="d-flex  clue_show input_container fade show w-100 gap-1">
+                                    <p class="description_room">${dataGlobal.room[i]['description']}</p>
+                                    </div>
                                         <div class="modal-body d-flex">
-                                        
-                                            <div class="d-flex flex-column clue_show input_container fade show w-50 gap-3">
-                                              <div class="w-100">
-                                                  <div class="d-flex">
-                                                      <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
-                                                      <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
-                                                      </div>
-                                                      <div class="d-flex align-items-center gap-5"></div>
-                                              </div>    
-                                                    <div class="d-flex switch_container fade show">
-                                                        <div class="progress w-100">
-                                                            <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                                                        </div>
+                        
+                                                <div class="d-flex flex-column clue_show input_container fade show w-50 gap-1">
+                                                    <div class="w-100">
+                                                      <div class="d-flex">
+                                                          <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
+                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                          </div>
+                                                          <div class="d-flex align-items-center gap-5"></div>
                                                     </div>
+                                                        <div class="d-flex flex-column switch_container fade show">
+                                                            <div class="progress w-100">
+                                                                <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                                            </div>
+                                                            <p class="text-center penality_info"></p>
+                                                        </div>
+                                               
                                             </div>
 
                                             <p class="reward dnone w-75 d-flex justify-content-center align-items-center"></p>
@@ -472,10 +494,11 @@ main()
                     const rooms_unlock_key = document.querySelector('#rooms_unlock_key');
                     const room_control_key = document.querySelector('.room_control_key');
                     const rooms_unlock_btn = document.querySelector('#rooms_unlock_btn');
-                    switch_try = document.querySelector('.switch_try');
                     const reward = document.querySelector('.reward');
-                    checkTry = document.querySelector('.check_try');
+                    const progress_bar = document.querySelector('.progress-bar');
                     let room_try = 3;
+                    backdrop = document.querySelector('.closeLock');
+                    const penality_info = document.querySelector('.penality_info');
                     room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
 
                     // room_control_key.innerHTML = `<span class="m-0">${room_try}</span><span class="m-0">-</span><span class="m-0">3</span>`;
@@ -486,40 +509,41 @@ main()
                             e.preventDefault;
                         }
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
-                            checkTry.checked = true;
                             rooms_unlock_btn.disabled = true;
-                            room_control_key.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
-                            reward.classList.remove('dnone');
+                            // room_control_key.innerHTML = '<span>bravo</span>';
+                            // reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
-                            dataGlobal.room[i]['unlock_word'] = null;
+                            // dataGlobal.room[i]['unlock_word'] = null;
                             roomsArray[i].classList.add('room_unlock_open');
                             roomsArray[i].style.color = 'black';
                             padlock.remove();
                             padlock_open.remove();
-                            roomsModalLockLabel.innerHTML = `${dataGlobal.room[i].title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
-                            clue_btn_content.classList.add('dnone');
+                            // roomsModalLockLabel.innerHTML = `${dataGlobal.room[i].title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
+                            // clue_btn_content.classList.add('dnone');
                             roomsArray[i].appendChild(padlock_open);
                             dataGlobalUnlock.push(dataGlobal);
                             if (dataGlobalUnlock.length > 1) {
                                 dataGlobalUnlock.pop();
                             }
+                            backdrop.click();
+                            roomsArray[i].click();
+
                         } else {
                             room_try--;
+                            progress_bar.style.width = `${(room_try / 3) * 100}%`;
                             rooms_unlock_key.value = '';
                             // room_control_key.innerHTML = `Clé invalide ! ${room_try}/3 essais`;
                             // room_control_key.innerHTML = `<span class="m-0">${room_try}</span><span class="m-0">-</span><span class="m-0">3</span>`;
                             room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
                             if (room_try == 0) {
-                                room_control_key.innerHTML = `<span class="d-flex align-items-center justify-content-center flex-column endTry"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
-                                checkTry.checked = true;
-                                // room_control_key.innerHTML = `dommage <span class="d-flex align-items-center"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5 minutes</p></span>`;
-
+                                penality_info.innerHTML = `<span class="d-flex align-items-center justify-content-center endTry gap-3"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
                                 setTimeout(function () {
                                     room_try = 3;
-                                    // room_control_key.innerHTML = 'Réessayer avec 3 nouveaux essais';
-                                    room_control_key.innerHTML = `<span class="m-0">${room_try}</span><span class="m-0">-</span><span class="m-0">3</span>`;
-                                    checkTry.checked = false;
+                                    // penality_info.innerHTML = 'Réessayer avec 3 nouveaux essais';
+                                    progress_bar.style.width = `${(room_try / 3) * 100}%`;
+                                    room_control_key.innerHTML = `<span class="m-0">${room_try}</span>`;
+                                    penality_info.innerHTML = "";
                                 }, 2000)
                                 penality.classList.add('topToBottom');
                                 penality.innerHTML = "-5 min";
@@ -548,7 +572,9 @@ main()
                     });
                 }
 
-
+                if (dataGlobal.room[i].n_room == max && roomsArray[i].classList.contains('room_unlock_open')) {
+                    alert('Vous avez terminé le jeu !');
+                }
 
 
             })
@@ -575,7 +601,7 @@ main()
                     if (furniture.padlock == "yes" && !furnitureLi.classList.contains('furniture_unlock')) {
 
 
-                        furnitureLi.addEventListener('click', function () {
+                        furnitureLi.addEventListener('click', function (event) {
 
 
 
@@ -597,6 +623,9 @@ main()
                                             </iconify-icon>
                                         </span>
                                 </div>
+                                <div class="d-flex  clue_show input_container fade show w-100 gap-1">
+                                    <p class="description_room">${furniture['description']}</p>
+                                    </div>
                                     <div class="modal-body d-flex">
         
                                         <div class="d-flex flex-column clue_show w-50 gap-3">
@@ -608,15 +637,12 @@ main()
                                                   <div class="d-flex align-items-center gap-5"></div>
                                               <p class="furniture_reward dnone"></p>
                                           </div>    
-                                                <label class="switch_try"><input class="check_try" type="checkbox" checkbox="unchecked"  disabled="disabled" />
-                                                <div class="button">
-                                                    <div class="light"></div>
-                                                    <div class="dots"></div>
-                                                    <div class="characters"><div class="furniture_unlock_statut d-flex align-items-center flex-column"></div></div>
-                                                    <div class="shine"></div>
-                                                    <div class="shadow"></div>
-                                                </div>
-                                            </label>
+                                          <div class="d-flex flex-column switch_container fade show">
+                                          <div class="progress w-100">
+                                              <div class="progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                          </div>
+                                          <p class="text-center penality_info"></p>
+                                      </div>
                                         </div>
                                           <div class="d-flex flex-column w-50 align-items-center gap-3">
                                               <div class="d-flex gap-3 justify-content-center w-100">
@@ -786,21 +812,65 @@ main()
                             const furniture_unlock_statut = document.querySelector('.furniture_unlock_statut');
                             let furniture_unlock_try = 3;
                             furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
-
+                            const progress_bar = document.querySelector('.progress-bar');
+                            const penality_info = document.querySelector('.penality_info');
+                            backdrop = document.querySelector('.closeLock');
                             furniture_key_unlock_btn.addEventListener('click', function (e) {
 
+
                                 if (furniture_key_unlock.value == furniture.unlock_word) {
-                                    checkTry.checked = true;
                                     furniture_key_unlock_btn.disabled = true;
                                     furniture.padlock = 'no';
                                     furniture_unlock_statut.innerHTML = '<span>bravo</span><iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>';
                                     furniture_reward.innerHTML = furniture.reward;
+                                    if (furniture_reward.innerHTML == "" || furniture_reward.innerHTML == null) {
+                                        furniture_reward.innerHTML = "Vous avez trouvé le bon code, mais il n'y s'y trouve rien";
+                                    }
                                     furnitureModalLockLabel.innerHTML = `${furniture.title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
                                     dataGlobalUnlock.push(dataGlobal);
                                     if (dataGlobalUnlock.length > 1) {
                                         dataGlobalUnlock.pop();
                                     }
+                                    backdrop.click();
+                                    let close = document.querySelector('.close');
+
+                                    close.click();
                                     frisk_btn.click();
+                                    furnitureLi.classList.add('furniture_unlock');
+
+                                    const modal = document.createElement('div');
+                                    modal.classList.add('modal', 'fade');
+                                    modal.id = 'modalF_open';
+                                    modal.setAttribute('tabindex', '-1');
+                                    modal.setAttribute('aria-labelledby', 'modalF_open');
+                                    modal.setAttribute('aria-hidden', 'false');
+                                    modal.setAttribute('data-bs-backdrop', 'false');
+                                    modal.setAttribute("pointer-events", "auto")
+                                    modal.innerHTML = `
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalF_open">${furniture.title}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="furniture_reward">${furniture.reward}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                `;
+                                    document.body.appendChild(modal);
+                                    const myModal = new bootstrap.Modal(modal);
+                                    myModal.show();
+
+
+
+                                    modal.addEventListener('hidden.bs.modal', function () {
+                                        modal.remove();
+                                    });
 
                                 } else {
                                     furniture_unlock_try--;
@@ -822,6 +892,8 @@ main()
 
                                     }
                                 }
+
+
                             });
 
                             document.addEventListener('keydown', function (e) {
@@ -849,9 +921,10 @@ main()
                         });
                     }
 
+
                     if (furniture.padlock == 'no') {
                         furnitureLi.classList.add('furniture_unlock');
-                        furnitureLi.addEventListener('click', function () {
+                        furnitureLi.addEventListener('click', function (event) {
                             const modal = document.createElement('div');
                             modal.classList.add('modal', 'fade');
                             modal.id = 'modalF_open';
@@ -868,7 +941,7 @@ main()
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Vous avez déjà ouvert ce meuble</p>
+                                            <p class='furniture_reward">${furniture.reward}</p>                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -885,6 +958,8 @@ main()
 
                         });
                     }
+
+
 
 
 

@@ -192,7 +192,7 @@ modal {
 
 .room_control_key,
 .furniture_unlock_statut {
-    font-size: 30px;
+    font-size: 18px;
     font-family: 'montserrat';
     font-weight: 700;
     color: #ffffffd5;
@@ -308,10 +308,10 @@ modal {
 }
 
 .tryNumber {
-    font-size: 60px;
+    font-size: 22px;
     color: #ffffff;
-    /* font-family: 'Montserrat'; */
-    font-family: 'Digits';
+    font-family: 'Montserrat';
+    /* font-family: 'Digits'; */
 }
 
 
@@ -589,8 +589,8 @@ button.button {
 
 .copy {
     position: absolute;
-    bottom: 7%;
-    right: 4%;
+    bottom: 11%;
+    right: 6%;
 }
 
 /* webkit scrollbar */
@@ -604,4 +604,35 @@ button.button {
 
 iframe {
     min-height: 500px;
+}
+
+.progress-bar {
+    background-color: #d31e44;
+}
+
+.penality_info {
+    color: #d31e44;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.description_room {
+    font-family: 'montserrat';
+    font-size: 1rem;
+    overflow: auto;
+    padding: 3%;
+    max-height: 230px;
+    min-height: 100px;
+}
+
+.modal-body {
+    min-height: 200px;
+}
+
+.modal-dialog {
+    max-width: 1000px;
+}
+
+.modal {
+    font-family: 'montserrat';
 }

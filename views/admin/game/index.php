@@ -53,7 +53,7 @@ $objects = $params['objects'];
                     <h5 class="card-title"><?= $room->title ?></h5>
                     <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
                         height="100px" id="picturePreview">
-                    <p class="card-text"><?= $room->description ?></p>
+                    <p class="card-text"><?= substr($room->description ,  0, 50).'...'; ?></p>
                     <a href="room/edit/<?= $room->id ?>" class="btn btn-primary w-100">Editer</a>
                     <a href="room/delete/<?= $room->id ?>" class="btn btn-danger w-100">Supprimer</a>
                 </div>
