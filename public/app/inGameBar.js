@@ -92,7 +92,7 @@ const penality = document.querySelector('.penality');
 const navInGameTitle = document.querySelector('.room_active');
 let room_open;
 let backdrop;
-
+let modals = document.querySelectorAll('.modal');
 let input_container;
 
 let switch_container;
@@ -123,6 +123,10 @@ let createstickyOpac = document.querySelector('#createstickyOpac');
 
 let arrayMax = [];
 let max = 0
+
+let endgame_win = document.querySelector('.endgame_win');
+let buttonConfetti = document.querySelector('.buttonConfetti');
+
 
 function removeToptoBottom() {
     setTimeout(() => {
@@ -289,12 +293,12 @@ main()
                                                     <div class="w-100">
                                                       <div class="d-flex">
                                                           <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
-                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                           </div>
                                                           <div class="d-flex align-items-center gap-5"></div>
                                                     </div>
                                                         <div class="d-flex flex-column switch_container fade show">
-                                                            <div class="progress w-100">
+                                                            <div class="progress w-100 h-100">
                                                                 <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                                             </div>
                                                             <p class="text-center penality_info"></p>
@@ -537,7 +541,7 @@ main()
                             // room_control_key.innerHTML = `<span class="m-0">${room_try}</span><span class="m-0">-</span><span class="m-0">3</span>`;
                             room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
                             if (room_try == 0) {
-                                penality_info.innerHTML = `<span class="d-flex align-items-center justify-content-center endTry gap-3"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
+                                penality_info.innerHTML = `<span class="d-flex align-items-center justify-content-center endTry gap-3"><iconify-icon class="moveLr" icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
                                 setTimeout(function () {
                                     room_try = 3;
                                     // penality_info.innerHTML = 'Réessayer avec 3 nouveaux essais';
@@ -573,7 +577,13 @@ main()
                 }
 
                 if (dataGlobal.room[i].n_room == max && roomsArray[i].classList.contains('room_unlock_open')) {
-                    alert('Vous avez terminé le jeu !');
+                    endgame_win.classList.remove('dnone');
+
+                    setInterval(function () {
+                        buttonConfetti.click();
+                    }, 200)
+
+
                 }
 
 
@@ -593,9 +603,48 @@ main()
 
                     furnitureLi = document.createElement('li');
                     furnitureLi.classList.add('furniture_list_item');
+                    let title = furniture.title;
+                    if (title.length > 10) {
+                        title = title.substring(0, 10) + '...';
+                    }
                     furnitureLi.setAttribute('data-id', furniture.id);
-                    furnitureLi.innerHTML = furniture.title;
+                    furnitureLi.innerHTML = `<button class="m-0 actionFurniture">${furniture.action}</button>${title}`;
                     furnitureList.appendChild(furnitureLi);
+
+
+
+                    let padlock = document.createElement('iconify-icon');
+                    padlock.setAttribute('icon', 'uis:padlock');
+                    padlock.setAttribute('width', '60');
+                    padlock.setAttribute('height', '60');
+                    padlock.classList.add('padlock');
+
+                    let padlock_open = document.createElement('iconify-icon');
+                    padlock_open.setAttribute('icon', 'uil:unlock-alt');
+                    padlock_open.setAttribute('width', '60');
+                    padlock_open.setAttribute('height', '60');
+                    padlock_open.classList.add('padlock_open');
+
+
+
+
+                    if (furniture.padlock == "yes") {
+                        furnitureLi.style.color = "grey";
+
+                        furnitureLi.appendChild(padlock);
+
+                    } else {
+                        furnitureLi.style.color = "white";
+                        padlock.remove();
+                        furnitureLi.appendChild(padlock_open);
+                    }
+
+                    furnitureList.appendChild(furnitureLi);
+
+
+
+
+
 
 
                     if (furniture.padlock == "yes" && !furnitureLi.classList.contains('furniture_unlock')) {
@@ -628,17 +677,17 @@ main()
                                     </div>
                                     <div class="modal-body d-flex">
         
-                                        <div class="d-flex flex-column clue_show w-50 gap-3">
+                                        <div class="d-flex flex-column clue_show w-50 gap-1">
                                           <div class="w-100">
                                               <div class="d-flex">
                                                   <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
-                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                   </div>
                                                   <div class="d-flex align-items-center gap-5"></div>
                                               <p class="furniture_reward dnone"></p>
                                           </div>    
                                           <div class="d-flex flex-column switch_container fade show">
-                                          <div class="progress w-100">
+                                          <div class="progress w-100 h-100">
                                               <div class="progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                           </div>
                                           <p class="text-center penality_info"></p>
@@ -844,20 +893,15 @@ main()
                                     modal.setAttribute('tabindex', '-1');
                                     modal.setAttribute('aria-labelledby', 'modalF_open');
                                     modal.setAttribute('aria-hidden', 'false');
-                                    modal.setAttribute('data-bs-backdrop', 'false');
-                                    modal.setAttribute("pointer-events", "auto")
                                     modal.innerHTML = `
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                    <div class="modal-content">
+                                                    <div class="modal-content modalFurnitureOpen">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalF_open">${furniture.title}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="furniture_reward">${furniture.reward}</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -874,15 +918,17 @@ main()
 
                                 } else {
                                     furniture_unlock_try--;
-
+                                    progress_bar.style.width = `${(furniture_unlock_try / 3) * 100}%`;
                                     furniture_key_unlock.value = "";
                                     furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
                                     if (furniture_unlock_try == 0) {
-                                        checkTry.checked = true;
-                                        furniture_unlock_statut.innerHTML = `<span class="d-flex align-items-center justify-content-center flex-column endTry"><iconify-icon icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
+
+                                        penality_info.innerHTML = `<span class="d-flex align-items-center justify-content-center endTry gap-3"><iconify-icon class="moveLr"  icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
                                         setTimeout(function () {
+                                            furniture_unlock_try = 3;
+                                            progress_bar.style.width = `${(furniture_unlock_try / 3) * 100}%`;
                                             furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
-                                            checkTry.checked = false;
+                                            penality_info.innerHTML = "";
                                         }, 2000)
                                         penality.classList.add('topToBottom');
                                         penality.innerHTML = "-5 min";
@@ -915,9 +961,6 @@ main()
                             });
 
 
-
-
-
                         });
                     }
 
@@ -931,20 +974,17 @@ main()
                             modal.setAttribute('tabindex', '-1');
                             modal.setAttribute('aria-labelledby', 'modalF_open');
                             modal.setAttribute('aria-hidden', 'false');
-                            modal.setAttribute('data-bs-backdrop', 'false');
+                            modal.setAttribute('data-bs-backdrop', 'true');
                             modal.setAttribute("pointer-events", "auto")
                             modal.innerHTML = `
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                    <div class="modal-content">
+                                    <div class="modal-content modalFurnitureOpen">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalF_open">${furniture.title}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p class='furniture_reward">${furniture.reward}</p>                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -973,43 +1013,6 @@ main()
             if (roomID == 0) {
                 furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
             }
-
-            // filteredFurniture.forEach(function (item) {
-            //     let padlock = document.createElement('iconify-icon');
-            //     padlock.setAttribute('icon', 'uis:padlock');
-            //     padlock.setAttribute('width', '60');
-            //     padlock.setAttribute('height', '60');
-            //     padlock.classList.add('padlock');
-
-            //     let padlock_open = document.createElement('iconify-icon');
-            //     padlock_open.setAttribute('icon', 'uil:unlock-alt');
-            //     padlock_open.setAttribute('width', '60');
-            //     padlock_open.setAttribute('height', '60');
-            //     padlock_open.classList.add('padlock_open');
-
-            //     const furniture = document.createElement('li');
-            //     furniture.classList.add('furniture_list_item');
-            //     if (item.padlock == "yes") {
-            //         furniture.style.color = "red";
-            //         let title = item.title;
-            //         if (title.length > 10) {
-            //             title = title.substring(0, 10) + '...';
-            //         }
-            //         furniture.innerHTML = title
-            //         furniture.appendChild(padlock);
-            //     } else {
-            //         furniture.style.color = "green";
-            //         let title = item.title;
-            //         if (title.length > 10) {
-            //             title = title.substring(0, 10) + '...';
-            //         }
-            //         furniture.innerHTML = title
-            //         padlock.remove();
-            //         furniture.appendChild(padlock_open);
-            //     }
-            //     furnitureList.appendChild(furniture);
-
-            // });
 
         });
 
@@ -1267,4 +1270,10 @@ toolBox_btn.addEventListener('click', () => {
     espaceVoid.classList.toggle('dnone');
     toolbox_content.classList.toggle('dnone');
 
+});
+
+party.confetti(runButton, {
+    count: party.variation.range(200, 400),
+    spread: party.variation.range(200, 400),
+    zindex: 999999999999,
 });

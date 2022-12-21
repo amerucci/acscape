@@ -69,9 +69,9 @@ modal {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    width: 842px;
-    height: 317px;
+    background-color: rgb(19, 19, 19);
+    width: 90%;
+    height: 75%;
     z-index: 999999;
 }
 
@@ -80,7 +80,7 @@ modal {
     font-style: normal;
     font-weight: 700;
     font-size: 42px;
-    color: #1B1B1B;
+    color: #ffffff;
 }
 
 .endgame_text {
@@ -90,10 +90,11 @@ modal {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    color: #717171;
+    color: #ffffff;
 }
 
-.endgame_buttons>a {
+.endgame_buttons>a,
+.actionFurniture {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,10 +163,13 @@ modal {
     font-size: 1.3rem;
     position: relative;
     gap: 2%;
+    font-weight: bold;
 }
 
 .furniture_list_item {
     min-height: 200px;
+    background: #FED440;
+
 }
 
 .activeR {
@@ -227,18 +231,31 @@ modal {
     height: 100%;
 }
 
-#rooms_unlock_btn {
+#rooms_unlock_btn,
+#furniture_key_unlock_btn {
     border-radius: 0% 10% 10% 0%;
     background-color: #D31E44;
 }
 
-#rooms_unlock_btn:active {
+#rooms_unlock_btn:active,
+#furniture_key_unlock_btn:active {
     background-color: #D31E44;
     color: white;
     font-size: 20px;
+    scale: 0.8;
+    box-shadow: #0b0b0b;
 }
 
-#rooms_unlock_key {
+.key_btn:hover {
+    scale: 1.5;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+
+#rooms_unlock_key,
+#furniture_key_unlock {
     border-radius: 10px 0% 0% 10px;
 }
 
@@ -635,4 +652,34 @@ iframe {
 
 .modal {
     font-family: 'montserrat';
+}
+
+#party-js-container {
+    z-index: 999999999 !important;
+}
+
+.buttonConfetti {
+    border: none;
+    outline: none;
+    scale: 0;
+}
+
+.moveLr {
+    transform: rotate(0deg);
+    transition: transform 0.5s;
+    animation: rotate 2.5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.modalFurnitureOpen {
+    min-height: 450px;
 }

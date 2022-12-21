@@ -68,11 +68,13 @@
 
 <div class="endgame_win d-flex justify-content-center align-items-center my-auto dnone">
     <div class="endgame_content d-flex justify-content-center align-items-center flex-column">
+        <button class="buttonConfetti" onclick="party.confetti(this)"></button>
         <h1 class="endgame_title my-3">Vous avez gagné !</h1>
         <p class="endgame_text my-3">Vous êtes venu à bout de cet Escape Game</p>
         <div class="endgame_buttons d-flex justify-content-center align-items-center gap-5 my-3">
-            <a href="" class="endgame_button endgame_button-quit">Liste des jeux</a>
+            <a href="/acscape/index" class="endgame_button endgame_button-quit">Liste des jeux</a>
         </div>
+
     </div>
 </div>
 
@@ -119,3 +121,4 @@
 
 
 <script src="public\app\inGameBar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>

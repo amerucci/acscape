@@ -566,10 +566,47 @@ main()
 
             furnitureList.innerHTML = "";
 
+            filteredFurniture.forEach(function (item) {
+                let padlock = document.createElement('iconify-icon');
+                padlock.setAttribute('icon', 'uis:padlock');
+                padlock.setAttribute('width', '60');
+                padlock.setAttribute('height', '60');
+                padlock.classList.add('padlock');
+
+                let padlock_open = document.createElement('iconify-icon');
+                padlock_open.setAttribute('icon', 'uil:unlock-alt');
+                padlock_open.setAttribute('width', '60');
+                padlock_open.setAttribute('height', '60');
+                padlock_open.classList.add('padlock_open');
+
+                const furniture = document.createElement('li');
+                furniture.classList.add('furniture_list_item');
+                const action = furniture.action
+                if (item.padlock == "yes") {
+                    furniture.style.color = "red";
+                    let title = item.title;
+                    if (title.length > 10) {
+                        title = title.substring(0, 10) + '...';
+                    }
+                    furniture.innerHTML = title
+                    furniture.appendChild(padlock);
+                } else {
+                    furniture.style.color = "green";
+                    let title = item.title;
+                    if (title.length > 10) {
+                        title = title.substring(0, 10) + '...';
+                    }
+                    furniture.innerHTML = title
+                    padlock.remove();
+                    furniture.appendChild(padlock_open);
+                }
+
+                furnitureList.appendChild(furniture);
+
+            });
 
             dataGlobal.furniture.forEach(furniture => {
                 if (furniture.room_id === roomID) {
-
 
                     furnitureLi = document.createElement('li');
                     furnitureLi.classList.add('furniture_list_item');
@@ -904,43 +941,6 @@ main()
             if (roomID == 0) {
                 furnitureList.innerHTML = "<p>Veuillez sélectionner une salle</p>";
             }
-
-            // filteredFurniture.forEach(function (item) {
-            //     let padlock = document.createElement('iconify-icon');
-            //     padlock.setAttribute('icon', 'uis:padlock');
-            //     padlock.setAttribute('width', '60');
-            //     padlock.setAttribute('height', '60');
-            //     padlock.classList.add('padlock');
-
-            //     let padlock_open = document.createElement('iconify-icon');
-            //     padlock_open.setAttribute('icon', 'uil:unlock-alt');
-            //     padlock_open.setAttribute('width', '60');
-            //     padlock_open.setAttribute('height', '60');
-            //     padlock_open.classList.add('padlock_open');
-
-            //     const furniture = document.createElement('li');
-            //     furniture.classList.add('furniture_list_item');
-            //     if (item.padlock == "yes") {
-            //         furniture.style.color = "red";
-            //         let title = item.title;
-            //         if (title.length > 10) {
-            //             title = title.substring(0, 10) + '...';
-            //         }
-            //         furniture.innerHTML = title
-            //         furniture.appendChild(padlock);
-            //     } else {
-            //         furniture.style.color = "green";
-            //         let title = item.title;
-            //         if (title.length > 10) {
-            //             title = title.substring(0, 10) + '...';
-            //         }
-            //         furniture.innerHTML = title
-            //         padlock.remove();
-            //         furniture.appendChild(padlock_open);
-            //     }
-            //     furnitureList.appendChild(furniture);
-
-            // });
 
         });
 
