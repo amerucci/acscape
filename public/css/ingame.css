@@ -640,6 +640,17 @@ iframe {
     padding: 3%;
     max-height: 230px;
     min-height: 100px;
+
+}
+
+.desc_container {
+    border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+}
+
+.input_container {
+    /* border-right: 1px solid #d5c9c9; */
+    border-right: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+    padding: 2%;
 }
 
 .modal-body {

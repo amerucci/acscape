@@ -284,7 +284,7 @@ main()
                                                 </iconify-icon>
                                             </span>
                                     </div>
-                                    <div class="d-flex  clue_show input_container fade show w-100 gap-1">
+                                    <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
                                     <p class="description_room">${dataGlobal.room[i]['description']}</p>
                                     </div>
                                         <div class="modal-body d-flex">
@@ -672,9 +672,9 @@ main()
                                             </iconify-icon>
                                         </span>
                                 </div>
-                                <div class="d-flex  clue_show input_container fade show w-100 gap-1">
-                                    <p class="description_room">${furniture['description']}</p>
-                                    </div>
+                                 <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
+                                     <p class="description_room">${furniture['description']}</p>
+                                 </div>
                                     <div class="modal-body d-flex">
         
                                         <div class="d-flex flex-column clue_show w-50 gap-1">
