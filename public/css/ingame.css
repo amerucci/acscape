@@ -1,9 +1,4 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url(../../public/font/Montserrat-VariableFont_wght.ttf);
-}
-
-@font-face {
     font-family: "Virgil";
     src: url(../../public/font/Virgil.woff2) format("woff2");
 }
@@ -532,7 +527,7 @@ button.button {
     border: none;
     background-color: transparent;
     resize: none;
-    height: 30px;
+    height: 50px;
     font-size: 1.55rem;
     font-weight: bold;
 }
