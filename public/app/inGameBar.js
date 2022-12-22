@@ -121,6 +121,8 @@ let copy;
 let clue_show1;
 let clue_show2;
 let clue_show3;
+const uniqueIdsClue = new Set();
+let roomsClueId = [];
 
 
 let createstickyOpac = document.querySelector('#createstickyOpac');
@@ -388,7 +390,16 @@ main()
                     clue_show3.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content3 = document.querySelector('.clue_show3_content');
 
-                    // roomsClue.push([clue_show1.getAttribute('data_id'), clue_show2.getAttribute('data_id'), clue_show3.getAttribute('data_id')]);
+
+
+                    // uniqueIdsClue.add(clue_show1.getAttribute('data_id'));
+                    // uniqueIdsClue.add(clue_show2.getAttribute('data_id'));
+                    // uniqueIdsClue.add(clue_show3.getAttribute('data_id'));
+
+                    roomsClueId = [...uniqueIdsClue];
+                    console.log(roomsClueId);
+
+
 
                     if (clue_show_content1.innerHTML == "null") {
                         clue_show1.classList.add('dnone');
@@ -410,7 +421,8 @@ main()
 
 
                     clue_show1.addEventListener('click', function () {
-
+                        uniqueIdsClue.add(clue_show1.getAttribute('data_id'));
+                        console.log(clue_show1.getAttribute('data_id') in roomsClueId);
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
@@ -722,15 +734,15 @@ main()
                             let tl = 0; // variable tl pour calculer l'interval entre chaque indice
                             const clue_btn_content = document.querySelector('#clue_btn_content');
 
-                            let clue_show1 = document.querySelector('.clue_show1');
+                            clue_show1 = document.querySelector('.clue_show1');
                             clue_show1.setAttribute('data_id', `${furniture['id']}`);
                             clue_show_content1 = document.querySelector('.clue_show1_content');
 
-                            let clue_show2 = document.querySelector('.clue_show2');
+                            clue_show2 = document.querySelector('.clue_show2');
                             clue_show2.setAttribute('data_id', `${furniture['id']['id']}`);
                             clue_show_content2 = document.querySelector('.clue_show2_content');
 
-                            let clue_show3 = document.querySelector('.clue_show3');
+                            clue_show3 = document.querySelector('.clue_show3');
                             clue_show3.setAttribute('data_id', `${furniture['id']['id']}`);
                             clue_show_content3 = document.querySelector('.clue_show3_content');
 

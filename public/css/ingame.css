@@ -1,13 +1,14 @@
 @font-face {
-    font-family: 'Digits';
-    src: url(‘../../public/font/Digits-JR6M.ttf’) format(‘truetype’);
+    font-family: "Montserrat";
+    src: url(../../public/font/Montserrat-VariableFont_wght.ttf);
+}
 
+@font-face {
     font-family: "Virgil";
     src: url(../../public/font/Virgil.woff2) format("woff2");
-
-    font-family: 'Montserrat';
-    src: url(../../public/font/Montserrat-VariableFont_wght.ttf) format('truetype');
 }
+
+
 
 
 .in_game_nav {
