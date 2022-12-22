@@ -4,6 +4,9 @@
 
     font-family: "Virgil";
     src: url(../../public/font/Virgil.woff2) format("woff2");
+
+    font-family: 'Montserrat';
+    src: url(../../public/font/Montserrat-VariableFont_wght.ttf) format('truetype');
 }
 
 
