@@ -549,7 +549,8 @@ button.button {
     margin-right: 1%;
     margin-left: auto;
     width: 14%;
-    transform: translateY(-21%);
+    /* transform: translateY(-21%); */
+    transform: translateY(-28%);
 }
 
 .button_toolBox {
@@ -582,7 +583,8 @@ button.button {
 }
 
 .espace {
-    height: 116px;
+    /* height: 116px; */
+    height: 82px;
 }
 
 .canvas_container {

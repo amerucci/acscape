@@ -410,7 +410,7 @@ main()
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
-                        clue_show_content1.innerHTML = `<p>${dataGlobal.room[i]['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                        clue_show_content1.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
                         if (!dataGlobalUnlock[0].room[i].clue1Found) {
                             if (t == 0) {
                                 t++;
@@ -438,7 +438,7 @@ main()
                         clue_show_content2.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
-                        clue_show_content2.innerHTML = `${dataGlobal.room[i]['clue2']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                        clue_show_content2.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                         if (!dataGlobalUnlock[0].room[i].clue2Found) {
                             if (t == 1) {
@@ -469,7 +469,7 @@ main()
                         clue_show_content3.classList.toggle('dnone');
                         clue_show_content1.classList.add('dnone');
                         clue_show_content2.classList.add('dnone');
-                        clue_show_content3.innerHTML = `${dataGlobal.room[i]['clue3']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                        clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                         if (!dataGlobalUnlock[0].room[i].clue3Found) {
                             if (t == 2) {
@@ -514,17 +514,12 @@ main()
                         }
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
                             rooms_unlock_btn.disabled = true;
-                            // room_control_key.innerHTML = '<span>bravo</span>';
-                            // reward.classList.remove('dnone');
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
-                            // dataGlobal.room[i]['unlock_word'] = null;
                             roomsArray[i].classList.add('room_unlock_open');
                             roomsArray[i].style.color = 'black';
                             padlock.remove();
                             padlock_open.remove();
-                            // roomsModalLockLabel.innerHTML = `${dataGlobal.room[i].title} <iconify-icon icon="uil:unlock-alt" width="60" height="60"></iconify-icon>`;
-                            // clue_btn_content.classList.add('dnone');
                             roomsArray[i].appendChild(padlock_open);
                             dataGlobalUnlock.push(dataGlobal);
                             if (dataGlobalUnlock.length > 1) {
@@ -544,7 +539,6 @@ main()
                                 penality_info.innerHTML = `<span class="d-flex align-items-center justify-content-center endTry gap-3"><iconify-icon class="moveLr" icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">-5min</p></span>`;
                                 setTimeout(function () {
                                     room_try = 3;
-                                    // penality_info.innerHTML = 'Réessayer avec 3 nouveaux essais';
                                     progress_bar.style.width = `${(room_try / 3) * 100}%`;
                                     room_control_key.innerHTML = `<span class="m-0">${room_try}</span>`;
                                     penality_info.innerHTML = "";
@@ -611,8 +605,6 @@ main()
                     furnitureLi.innerHTML = `<button class="m-0 actionFurniture">${furniture.action}</button>${title}`;
                     furnitureList.appendChild(furnitureLi);
 
-
-
                     let padlock = document.createElement('iconify-icon');
                     padlock.setAttribute('icon', 'uis:padlock');
                     padlock.setAttribute('width', '60');
@@ -626,15 +618,13 @@ main()
                     padlock_open.classList.add('padlock_open');
 
 
-
-
                     if (furniture.padlock == "yes") {
                         furnitureLi.style.color = "grey";
 
                         furnitureLi.appendChild(padlock);
 
                     } else {
-                        furnitureLi.style.color = "white";
+                        furnitureLi.style.color = "black";
                         padlock.remove();
                         furnitureLi.appendChild(padlock_open);
                     }
@@ -642,13 +632,7 @@ main()
                     furnitureList.appendChild(furnitureLi);
 
 
-
-
-
-
-
                     if (furniture.padlock == "yes" && !furnitureLi.classList.contains('furniture_unlock')) {
-
 
                         furnitureLi.addEventListener('click', function (event) {
 
@@ -677,7 +661,7 @@ main()
                                  </div>
                                     <div class="modal-body d-flex">
         
-                                        <div class="d-flex flex-column clue_show w-50 gap-1">
+                                        <div class="d-flex flex-column clue_show w-50 gap-1 input_container ">
                                           <div class="w-100">
                                               <div class="d-flex">
                                                   <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
@@ -770,7 +754,7 @@ main()
                                 clue_show_content1.classList.toggle('dnone');
                                 clue_show_content2.classList.add('dnone');
                                 clue_show_content3.classList.add('dnone');
-                                clue_show_content1.innerHTML = `<p>${furniture['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                                clue_show_content1.innerHTML = `<p class="m-0">${furniture['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
                                 if (!furniture.clue1Found) {
                                     if (t == 0) {
                                         t++;
@@ -798,7 +782,7 @@ main()
                                 clue_show_content2.classList.toggle('dnone');
                                 clue_show_content1.classList.add('dnone');
                                 clue_show_content3.classList.add('dnone');
-                                clue_show_content2.innerHTML = `${furniture['clue2']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                                clue_show_content2.innerHTML = `<p class="m-0">${furniture['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                                 if (!furniture.clue2Found) {
                                     if (t == 1) {
@@ -829,7 +813,7 @@ main()
                                 clue_show_content3.classList.toggle('dnone');
                                 clue_show_content1.classList.add('dnone');
                                 clue_show_content2.classList.add('dnone');
-                                clue_show_content3.innerHTML = `${dataGlobal.room[i]['clue3']}<iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+                                clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                                 if (!dataGlobalUnlock[0].room[i].clue3Found) {
                                     if (t == 2) {
@@ -864,7 +848,11 @@ main()
                             const progress_bar = document.querySelector('.progress-bar');
                             const penality_info = document.querySelector('.penality_info');
                             backdrop = document.querySelector('.closeLock');
-                            furniture_key_unlock_btn.addEventListener('click', function (e) {
+                            furniture_key_unlock_btn.addEventListener('click', function () {
+
+                                if (furniture_key_unlock.value == '') {
+                                    e.preventDefault;
+                                }
 
 
                                 if (furniture_key_unlock.value == furniture.unlock_word) {

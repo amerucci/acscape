@@ -107,7 +107,7 @@
 
             <button class="button" id="createstickyOpac">Post it !</button>
         </div>
-        <div class="sticky-draw">
+        <div class="sticky-draw dnone">
             <button class="button m-0 p-0" id="createDraw">Dessin</button>
         </div>
         <div class="wiki d-flex justify-content-center align-items-center gap-2">
@@ -116,9 +116,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-<script src="public\app\inGameBar.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
