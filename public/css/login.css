@@ -118,6 +118,14 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
+    transition: background-color 0.5s, color 0.2s;
+}
+
+
+.btn_login_register:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(211, 30, 68, 1);
+    cursor: pointer;
 }
 
 .onglet_login_register {

@@ -118,6 +118,10 @@ let textarea_title_sticky;
 let textareaSticky;
 let copy;
 
+let clue_show1;
+let clue_show2;
+let clue_show3;
+
 
 let createstickyOpac = document.querySelector('#createstickyOpac');
 
@@ -372,15 +376,15 @@ main()
                     switch_container = document.querySelector('.switch_container');
                     input_container = document.querySelector('.input_container');
 
-                    let clue_show1 = document.querySelector('.clue_show1');
+                    clue_show1 = document.querySelector('.clue_show1');
                     clue_show1.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content1 = document.querySelector('.clue_show1_content');
 
-                    let clue_show2 = document.querySelector('.clue_show2');
+                    clue_show2 = document.querySelector('.clue_show2');
                     clue_show2.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content2 = document.querySelector('.clue_show2_content');
 
-                    let clue_show3 = document.querySelector('.clue_show3');
+                    clue_show3 = document.querySelector('.clue_show3');
                     clue_show3.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content3 = document.querySelector('.clue_show3_content');
 
@@ -419,6 +423,9 @@ main()
                                 countdown = countdown - 30;
                                 removeToptoBottom()
                                 dataGlobalUnlock[0].room[i].clue1Found = "yes";
+                                clue_show2.disabled = true;
+
+
                             }
                         }
                         copy = document.querySelectorAll('.copy');

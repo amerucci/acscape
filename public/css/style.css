@@ -49,7 +49,7 @@ input:-webkit-autofill:active {
     -webkit-transition-delay: 9999s;
 }
 
-@media all and (max-width: 1024px) {
+/* @media all and (max-width: 1024px) {
     .container-fluid {
         display: none;
     }
@@ -63,4 +63,4 @@ input:-webkit-autofill:active {
         font-size: 2rem;
         color: white;
     }
-}
+} */
