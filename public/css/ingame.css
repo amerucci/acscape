@@ -62,6 +62,10 @@ modal {
     transform: translate(0%, 8%);
 }
 
+.countdown_container {
+    width: max-content;
+}
+
 .endgame_lose,
 .endgame_win {
     position: absolute;
@@ -298,8 +302,21 @@ modal {
     cursor: pointer;
     border: none;
     outline: none;
-
+    transition: all 0.5s ease-in-out;
 }
+
+.clue_show1:hover,
+.clue_show2:hover,
+.clue_show3:hover {
+    transform: rotate(-5deg);
+    transition: all 0.5s ease-in-out;
+}
+
+.rotate_5deg {
+    transform: rotate(-5deg);
+    transition: all 0.5s ease-in-out;
+}
+
 
 .clue_show1_content,
 .clue_show2_content,

@@ -78,7 +78,7 @@ function intervalFunction(callback) {
                 clearInterval(intervalId);
                 console.log(interval);
             } else {
-                penalityClue.innerHTML = `${interval}s avant le prochain indice`;
+                penalityClue.innerHTML = `<iconify-icon class="moveLr mx-1"  icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">${interval}s avant le prochain indice</p>`;
             }
         }
 
@@ -473,8 +473,11 @@ main()
 
                     clue_show1.addEventListener('click', function () {
                         clue_show_content1.classList.toggle('dnone');
+                        this.classList.toggle('rotate_5deg');
                         clue_show_content2.classList.add('dnone');
+                        clue_show2.classList.remove('rotate_5deg');
                         clue_show_content3.classList.add('dnone');
+                        clue_show3.classList.remove('rotate_5deg');
                         clue_show_content1.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                         if (t == 0 && !dataGlobalUnlock[0].room[i].clue1penality) {
@@ -511,6 +514,7 @@ main()
                     });
                     // clue_show2.disabled = true;
                     clue_show2.addEventListener('click', function () {
+
                         if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
                             tooltipList[0].hide();
                             tooltipList[0].disable();
@@ -528,8 +532,12 @@ main()
                         if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
                             clue_show2.disabled = false;
                             clue_show_content2.classList.toggle('dnone');
+                            this.classList.toggle('rotate_5deg');
+                            clue_show1.classList.remove('rotate_5deg');
                             clue_show_content1.classList.add('dnone');
+                            clue_show3.classList.remove('rotate_5deg');
                             clue_show_content3.classList.add('dnone');
+
                             clue_show_content2.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                             if (!dataGlobalUnlock[0].room[i].clue2Found) {
@@ -570,8 +578,11 @@ main()
                         dataGlobalUnlock[0].room[i].clue3Found == "yes"
                         if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
                             clue_show_content3.classList.toggle('dnone');
+                            this.classList.toggle('rotate_5deg');
                             clue_show_content1.classList.add('dnone');
+                            clue_show1.classList.remove('rotate_5deg');
                             clue_show_content2.classList.add('dnone');
+                            clue_show2.classList.remove('rotate_5deg');
                             clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                             if (t == 2 && !dataGlobalUnlock[0].room[i].clue3penality) {
@@ -861,8 +872,11 @@ main()
 
                             clue_show1.addEventListener('click', function () {
                                 clue_show_content1.classList.toggle('dnone');
+                                this.classList.toggle('rotate_5deg');
                                 clue_show_content2.classList.add('dnone');
+                                clue_show2.classList.remove('rotate_5deg');
                                 clue_show_content3.classList.add('dnone');
+                                clue_show3.classList.remove('rotate_5deg');
                                 clue_show_content1.innerHTML = `<p class="m-0">${furniture['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
 
@@ -917,7 +931,10 @@ main()
                                 if (furniture.clue1Found == "yes") {
                                     clue_show2.disabled = false;
                                     clue_show_content2.classList.toggle('dnone');
+                                    this.classList.toggle('rotate_5deg');
+                                    clue_show1.classList.remove('rotate_5deg');
                                     clue_show_content1.classList.add('dnone');
+                                    clue_show3.classList.remove('rotate_5deg');
                                     clue_show_content3.classList.add('dnone');
                                     clue_show_content2.innerHTML = `<p class="m-0">${furniture['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
@@ -959,8 +976,11 @@ main()
                                 furniture.clue3Found == "yes"
                                 if (furniture.clue2Found == "yes") {
                                     clue_show_content3.classList.toggle('dnone');
+                                    this.classList.toggle('rotate_5deg');
                                     clue_show_content1.classList.add('dnone');
+                                    clue_show1.classList.remove('rotate_5deg');
                                     clue_show_content2.classList.add('dnone');
+                                    clue_show2.classList.remove('rotate_5deg');
                                     clue_show_content3.innerHTML = `<p class="m-0">${furniture['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
                                     if (t == 2 && !furniture.clue3penality) {
