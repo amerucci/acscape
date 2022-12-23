@@ -419,12 +419,17 @@ modal {
     position: absolute;
     width: 18rem;
     z-index: 55555;
+    transition: scale 0.2s ease-in-out;
 }
 
 .sticky:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    border: dashed 2px #0b0b0b;
+    scale: 1.05;
+    transition: scale 0.2s ease-in-out;
 }
+
+
+
 
 
 .sticky h3,
@@ -609,6 +614,7 @@ button.button {
     position: absolute;
     bottom: 11%;
     right: 6%;
+    cursor: pointer;
 }
 
 /* webkit scrollbar */

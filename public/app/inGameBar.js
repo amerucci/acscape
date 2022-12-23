@@ -53,10 +53,32 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let timelaps = 30;
+let interval = 30;
+// function callback countdown
+function intervalFunction(callback) {
+    if (interval === 0) {
+        callback();
+        return;
+    }
+
+    const intervalId = setInterval(tick, 1000);
+
+    function tick() {
+        interval--;
+        console.log(interval);
 
 
-// setInterval(clueTimer, 1000);
+        if (interval === 0) {
+            clearInterval(intervalId);
+            callback();
+        }
+    }
+}
+
+
+
+
+
 
 
 async function getData() {
@@ -117,6 +139,9 @@ let roomsClueUnique = [];
 let textarea_title_sticky;
 let textareaSticky;
 let copy;
+let clueInterval;
+let clue2Time;
+let clue3Time;
 
 let clue_show1;
 let clue_show2;
@@ -145,6 +170,8 @@ main()
     .then(data => {
 
         dataGlobalUnlock.push(dataGlobal); // copie de dataGlobal dans dataGlobalUnlock pour pouvoir modifier les valeurs de dataGlobalUnlock sans modifier dataGlobal
+
+
 
 
 
@@ -315,9 +342,18 @@ main()
                                             <p class="reward dnone w-75 d-flex justify-content-center align-items-center"></p>
                                               <div id="clue_btn_content" class="d-flex flex-column w-50 align-items-center gap-3">
                                                   <div class="d-flex gap-3 justify-content-center w-100">
+                                                      <div>
+                                                      <p class="text-center voidClueTime"></p>
                                                       <button class="clue_show1 my-2 px-2" >Indice 1</button> 
-                                                      <button id="timelaps" class="clue_show2 my-2 px-2" >indice 2</button>
-                                                      <button class="clue_show3 my-2 px-2" >indice 3</button>
+                                                      </div>
+                                                      <div>
+                                                      <p class="text-center Clue2Time"></p>
+                                                      <button id="timelaps" class="clue_show2 my-2 px-2">indice 2</button>
+                                                      </div>
+                                                      <div>
+                                                        <p class="text-center Clue3Time"></p>
+                                                      <button class="clue_show3 my-2 px-2">indice 3</button>
+                                                      </div>
                                                   </div>
                                                   <div class="d-flex gap-2 justify-content-center align-items-center mx-auto h-100 w-100">
                                                   <div class="clue_show1_content dnone d-flex justify-content-center align-items-center w-100 h-75 mx-2">
@@ -348,57 +384,36 @@ main()
                     })
 
 
-                    function clueTimer() {
-                        timelaps--;
+                    // ************  ROOMS Clues ************
 
-                        let minutes = Math.floor(timelaps / 60);
-                        let seconds = timelaps % 60;
-                        // Formater les minutes et les secondes avec des zéros au début (pour obtenir un format 00:00)
-                        minutes = minutes.toString().padStart(2, "0");
-                        seconds = seconds.toString().padStart(2, "0");
-
-                        if (timeLapsElement = document.getElementById("timelaps") != null) {
-                            timeLapsElement = document.getElementById("timelaps");
-
-                            if (timelaps < 0) {
-                                timeLapsElement.innerHTML = 'indice 2'
-                                return;
-                            }
-                        }
-
-                        timeLapsElement.innerHTML = seconds;
-                        return;
-                    }
-
-
-                    // CLue ************
                     let t = 0; // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
-                    let tl = 0; // variable tl pour calculer l'interval entre chaque indice
+                    let tl = interval;
+
+
                     clue_btn_content = document.querySelector('#clue_btn_content');
                     switch_container = document.querySelector('.switch_container');
                     input_container = document.querySelector('.input_container');
 
                     clue_show1 = document.querySelector('.clue_show1');
+                    clue_show1.style.cursor = 'help'
                     clue_show1.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content1 = document.querySelector('.clue_show1_content');
 
+
                     clue_show2 = document.querySelector('.clue_show2');
+                    clue_show2.style.cursor = 'not-allowed'
                     clue_show2.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content2 = document.querySelector('.clue_show2_content');
+                    clue2Time = document.querySelector('.Clue2Time');
 
                     clue_show3 = document.querySelector('.clue_show3');
+                    clue_show3.style.cursor = 'not-allowed'
                     clue_show3.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content3 = document.querySelector('.clue_show3_content');
+                    clue3Time = document.querySelector('.Clue3Time');
 
-
-
-                    // uniqueIdsClue.add(clue_show1.getAttribute('data_id'));
-                    // uniqueIdsClue.add(clue_show2.getAttribute('data_id'));
-                    // uniqueIdsClue.add(clue_show3.getAttribute('data_id'));
 
                     roomsClueId = [...uniqueIdsClue];
-                    console.log(roomsClueId);
-
 
 
                     if (clue_show_content1.innerHTML == "null") {
@@ -422,7 +437,7 @@ main()
 
                     clue_show1.addEventListener('click', function () {
                         uniqueIdsClue.add(clue_show1.getAttribute('data_id'));
-                        console.log(clue_show1.getAttribute('data_id') in roomsClueId);
+
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
@@ -434,10 +449,13 @@ main()
                                 penality.textContent = "-30 sec";
                                 countdown = countdown - 30;
                                 removeToptoBottom()
-                                dataGlobalUnlock[0].room[i].clue1Found = "yes";
-                                clue_show2.disabled = true;
-
-
+                                console.log(interval);
+                                // dataGlobalUnlock[0].room[i].clue1Found = "yes";
+                                intervalFunction(function () {
+                                    dataGlobalUnlock[0].room[i].clue1Found = "yes";
+                                    clue_show2.style.cursor = 'help'
+                                    interval = 10;
+                                });
                             }
                         }
                         copy = document.querySelectorAll('.copy');
@@ -451,65 +469,77 @@ main()
                             })
                         })
 
+                        return dataGlobalUnlock;
                     });
-
+                    // clue_show2.disabled = true;
                     clue_show2.addEventListener('click', function () {
-                        clue_show_content2.classList.toggle('dnone');
-                        clue_show_content1.classList.add('dnone');
-                        clue_show_content3.classList.add('dnone');
-                        clue_show_content2.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
-                        if (!dataGlobalUnlock[0].room[i].clue2Found) {
-                            if (t == 1) {
-                                t++;
-                                penality.classList.add('topToBottom');
-                                penality.textContent = "-30 sec";
-                                countdown = countdown - 30;
-                                removeToptoBottom()
-                                dataGlobalUnlock[0].room[i].clue2Found = "yes";
+                        if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
+                            clue_show2.disabled = false;
+                            clue_show_content2.classList.toggle('dnone');
+                            clue_show_content1.classList.add('dnone');
+                            clue_show_content3.classList.add('dnone');
+                            clue_show_content2.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+
+                            if (!dataGlobalUnlock[0].room[i].clue2Found) {
+                                if (t == 1) {
+                                    t++;
+                                    penality.classList.add('topToBottom');
+                                    penality.textContent = "-30 sec";
+                                    countdown = countdown - 30;
+                                    removeToptoBottom()
+                                    intervalFunction(function () {
+                                        dataGlobalUnlock[0].room[i].clue2Found = "yes";
+                                        clue_show2.style.cursor = 'help'
+                                        interval = 10;
+                                    });
+                                }
                             }
-                        }
-                        copy = document.querySelectorAll('.copy');
-                        copy.forEach((copy) => {
-                            copy.addEventListener('click', function () {
-                                createstickyOpac.click()
-                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                textareaSticky = document.querySelectorAll('.textareaSticky');
-                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
-                                textareaSticky[textareaSticky.length - 1].value = `indice n°2 \n${dataGlobal.room[i]['clue2']}`;
+                            copy = document.querySelectorAll('.copy');
+                            copy.forEach((copy) => {
+                                copy.addEventListener('click', function () {
+                                    createstickyOpac.click()
+                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                    textareaSticky = document.querySelectorAll('.textareaSticky');
+                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
+                                    textareaSticky[textareaSticky.length - 1].value = `indice n°2 \n${dataGlobal.room[i]['clue2']}`;
+                                })
                             })
-                        })
 
+                        }
                     });
 
 
                     clue_show3.addEventListener('click', function () {
+                        if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
+                            clue_show3.disabled = false;
+                            clue_show_content3.classList.toggle('dnone');
+                            clue_show_content1.classList.add('dnone');
+                            clue_show_content2.classList.add('dnone');
+                            clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
 
-                        clue_show_content3.classList.toggle('dnone');
-                        clue_show_content1.classList.add('dnone');
-                        clue_show_content2.classList.add('dnone');
-                        clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
-
-                        if (!dataGlobalUnlock[0].room[i].clue3Found) {
-                            if (t == 2) {
-                                t++;
-                                penality.classList.add('topToBottom');
-                                penality.textContent = "-30 sec";
-                                countdown = countdown - 30;
-                                removeToptoBottom()
-                                dataGlobalUnlock[0].room[i].clue3Found = "yes";
+                            if (!dataGlobalUnlock[0].room[i].clue3Found) {
+                                if (t == 2) {
+                                    t++;
+                                    penality.classList.add('topToBottom');
+                                    penality.textContent = "-30 sec";
+                                    countdown = countdown - 30;
+                                    removeToptoBottom()
+                                    dataGlobalUnlock[0].room[i].clue3Found = "yes";
+                                    clue_show3.style.cursor = 'help'
+                                }
                             }
-                        }
-                        copy = document.querySelectorAll('.copy');
-                        copy.forEach((copy) => {
-                            copy.addEventListener('click', function () {
-                                createstickyOpac.click()
-                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                textareaSticky = document.querySelectorAll('.textareaSticky');
-                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
-                                textareaSticky[textareaSticky.length - 1].value = `indice n°3 \n${dataGlobal.room[i]['clue3']}`;
+                            copy = document.querySelectorAll('.copy');
+                            copy.forEach((copy) => {
+                                copy.addEventListener('click', function () {
+                                    createstickyOpac.click()
+                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                    textareaSticky = document.querySelectorAll('.textareaSticky');
+                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
+                                    textareaSticky[textareaSticky.length - 1].value = `indice n°3 \n${dataGlobal.room[i]['clue3']}`;
+                                })
                             })
-                        })
+                        }
                     });
 
 
@@ -731,10 +761,13 @@ main()
 
                             // CLue ************
                             let t = 0; // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
-                            let tl = 0; // variable tl pour calculer l'interval entre chaque indice
+                            let tl = 30; // variable tl pour calculer l'interval entre chaque indice
                             const clue_btn_content = document.querySelector('#clue_btn_content');
 
                             clue_show1 = document.querySelector('.clue_show1');
+                            // clue_show1.addEventListener('mouseover', function () {
+                            //     clue_show1.style.cursor = 'help'
+                            // })
                             clue_show1.setAttribute('data_id', `${furniture['id']}`);
                             clue_show_content1 = document.querySelector('.clue_show1_content');
 
