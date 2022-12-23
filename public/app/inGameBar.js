@@ -53,27 +53,41 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-let interval = 30;
+let interval = 10;
+let intervalId;
 // function callback countdown
 function intervalFunction(callback) {
+    let interval = 10;
+    if (intervalId) {
+        clearInterval(intervalId);
+    }
     if (interval === 0) {
         callback();
         return;
     }
 
-    const intervalId = setInterval(tick, 1000);
+    intervalId = setInterval(tick, 1000);
+
 
     function tick() {
         interval--;
-        console.log(interval);
-
+        if (clue_show2.classList.contains('dnone')) {
+            penalityClue.innerHTML = ""
+            clearInterval(intervalId);
+        } else {
+            penalityClue.innerHTML = `${interval}s avant le prochain indice`;
+        }
 
         if (interval === 0) {
             clearInterval(intervalId);
+            penalityClue.innerHTML = "";
             callback();
         }
     }
 }
+
+
+
 
 
 
@@ -105,6 +119,7 @@ async function main() {
 let dataGlobal = []; // variable globale dataGlobal
 let dataGlobalUnlock = [] // variable globale dataGlobal modifié pour pouvoir dévérouiller les rooms et les furniture
 
+let penalityClue = document.querySelector('.penalityClue ');
 
 let roomID = 0; // id de la room ouverte stocké en number dans la portée globale pour pouvoir l'utiliser dans la fonction de filtrage de furniture
 let roomLockID = 0;
@@ -348,11 +363,11 @@ main()
                                                       </div>
                                                       <div>
                                                       <p class="text-center Clue2Time"></p>
-                                                      <button id="timelaps" class="clue_show2 my-2 px-2">indice 2</button>
+                                                      <button id="timelaps" class="clue_show2 my-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="30s après la découverte du 1er indice">indice 2</button>
                                                       </div>
                                                       <div>
                                                         <p class="text-center Clue3Time"></p>
-                                                      <button class="clue_show3 my-2 px-2">indice 3</button>
+                                                      <button class="clue_show3 my-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="30s après la découverte du 2nd indice">indice 3</button>
                                                       </div>
                                                   </div>
                                                   <div class="d-flex gap-2 justify-content-center align-items-center mx-auto h-100 w-100">
@@ -386,6 +401,16 @@ main()
 
                     // ************  ROOMS Clues ************
 
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+
+                    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                        return new bootstrap.Tooltip(tooltipTriggerEl)
+                    })
+
+
+
+
+
                     let t = 0; // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
                     let tl = interval;
 
@@ -402,6 +427,7 @@ main()
 
                     clue_show2 = document.querySelector('.clue_show2');
                     clue_show2.style.cursor = 'not-allowed'
+
                     clue_show2.setAttribute('data_id', `${dataGlobal.room[i]['id']}`);
                     clue_show_content2 = document.querySelector('.clue_show2_content');
                     clue2Time = document.querySelector('.Clue2Time');
@@ -432,12 +458,22 @@ main()
                         clue_show3.classList.add('dnone');
                     }
 
+                    if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
+                        tooltipList[0].hide();
+                        tooltipList[0].disable();
+                        clue_show2.style.cursor = 'help'
+                        console.log('clue2 found');
+                    }
+                    if (dataGlobalUnlock[0].room[i].clue3Found == "yes") {
+                        tooltipList[1].hide();
+                        tooltipList[1].disable();
+                        clue_show3.style.cursor = 'help'
+                    }
+
 
 
 
                     clue_show1.addEventListener('click', function () {
-                        uniqueIdsClue.add(clue_show1.getAttribute('data_id'));
-
                         clue_show_content1.classList.toggle('dnone');
                         clue_show_content2.classList.add('dnone');
                         clue_show_content3.classList.add('dnone');
@@ -450,9 +486,10 @@ main()
                                 countdown = countdown - 30;
                                 removeToptoBottom()
                                 console.log(interval);
-                                // dataGlobalUnlock[0].room[i].clue1Found = "yes";
                                 intervalFunction(function () {
                                     dataGlobalUnlock[0].room[i].clue1Found = "yes";
+                                    tooltipList[0].hide();
+                                    tooltipList[0].disable();
                                     clue_show2.style.cursor = 'help'
                                     interval = 10;
                                 });
@@ -473,6 +510,12 @@ main()
                     });
                     // clue_show2.disabled = true;
                     clue_show2.addEventListener('click', function () {
+                        if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
+                            tooltipList[0].hide();
+                            tooltipList[0].disable();
+                            clue_show2.style.cursor = 'help'
+                            console.log('clue2 found');
+                        }
 
                         if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
                             clue_show2.disabled = false;
@@ -490,7 +533,10 @@ main()
                                     removeToptoBottom()
                                     intervalFunction(function () {
                                         dataGlobalUnlock[0].room[i].clue2Found = "yes";
+                                        tooltipList[0].hide();
+                                        tooltipList[0].disable();
                                         clue_show2.style.cursor = 'help'
+                                        clue_show3.style.cursor = 'help'
                                         interval = 10;
                                     });
                                 }
@@ -512,12 +558,11 @@ main()
 
                     clue_show3.addEventListener('click', function () {
                         if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
-                            clue_show3.disabled = false;
                             clue_show_content3.classList.toggle('dnone');
                             clue_show_content1.classList.add('dnone');
                             clue_show_content2.classList.add('dnone');
                             clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
-
+                            clue_show3.style.cursor = 'help'
                             if (!dataGlobalUnlock[0].room[i].clue3Found) {
                                 if (t == 2) {
                                     t++;
@@ -526,7 +571,8 @@ main()
                                     countdown = countdown - 30;
                                     removeToptoBottom()
                                     dataGlobalUnlock[0].room[i].clue3Found = "yes";
-                                    clue_show3.style.cursor = 'help'
+                                    tooltipList[1].hide();
+                                    tooltipList[1].disable();
                                 }
                             }
                             copy = document.querySelectorAll('.copy');

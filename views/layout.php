@@ -84,6 +84,7 @@
                         <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
                         <div class="countdown_container d-flex gap-3">
                             <div class="penality d-flex align-items-center"></div>
+                            <div class="penalityClue d-flex align-items-center"></div>
                             <div class="m-0 d-flex justify-content-center align-items-center" id='countdown'></div>
                         </div>
                         <?php else : ?>
