@@ -55,6 +55,7 @@ setInterval(updateCountdown, 1000);
 
 let interval = 10;
 let intervalId;
+let roomsLock;
 // function callback countdown
 function intervalFunction(callback) {
     let interval = 10;
@@ -70,12 +71,16 @@ function intervalFunction(callback) {
 
 
     function tick() {
-        interval--;
-        if (clue_show2.classList.contains('dnone')) {
-            penalityClue.innerHTML = ""
-            clearInterval(intervalId);
-        } else {
-            penalityClue.innerHTML = `${interval}s avant le prochain indice`;
+        if (roomsLock = document.querySelector('#roomsLock') != null) {
+            penalityClue.innerHTML = "";
+
+            interval--;
+            if (clue_show2.classList.contains('dnone')) {
+                penalityClue.innerHTML = ""
+                clearInterval(intervalId);
+            } else {
+                penalityClue.innerHTML = `${interval}s avant le prochain indice`;
+            }
         }
 
         if (interval === 0) {
@@ -396,6 +401,8 @@ main()
 
                     modal.addEventListener('hidden.bs.modal', function (modalRemove) {
                         modal.remove();
+                        penalityClue.innerHTML = "";
+                        clearInterval(intervalId);
                     })
 
 
