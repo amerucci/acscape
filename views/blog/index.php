@@ -5,10 +5,10 @@
     </div>
 
 
-    <div class="all_games d-flex justify-content-center align-items-center gap-5 ">
-        <div class="d-flex justify-content-center align-items-center gap-5 flex-column">
+    <div class="all_games justify-content-center align-items-center gap-5 w-100">
+        <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
 
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-1.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-2.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -73,9 +73,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center gap-5 flex-column">
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-3.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -96,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-4.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -117,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-5.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -138,9 +136,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center gap-5 flex-column">
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-6.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -161,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-7.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">
@@ -182,7 +178,7 @@
                     </div>
                 </div>
             </div>
-            <div class="game">
+            <div class="game col-10 col-md-3">
                 <img src="assets\front\index\figure-8.jpg" alt="">
                 <div class="card_game_content">
                     <div class="title_game">

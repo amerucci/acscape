@@ -130,10 +130,6 @@
     position: relative;
 }
 
-.line_text {
-    min-width: 619px;
-}
-
 .homepage {
     background-color: rgba(27, 27, 27, 1);
     overflow-x: hidden;

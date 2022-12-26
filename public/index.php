@@ -17,6 +17,7 @@ $router = new Router($_GET['url']);
 
 // public route
 $router->get('/', 'App\Controllers\BlogController@welcome');
+$router->get('/welcomeresponsive', 'App\Controllers\BlogController@welcome2');
 $router->get('/index', 'App\Controllers\BlogController@index');
 $router->get('/show', 'App\Controllers\BlogController@show');
 

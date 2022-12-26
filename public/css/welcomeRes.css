@@ -1,0 +1,311 @@
+:root {
+    --grey: #242424;
+    --red: #D31E44;
+    --backgroundBlack: #1B1B1B;
+    --backgroundBlackClear: #222222;
+    --textGrey: #717171;
+}
+
+.homepageTop {
+    background-image: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, #1B1B1B 100%), url(../../assets/front/home/homeTop.png);
+    /* background-clip: content-box; */
+    backdrop-filter: blur(2px);
+    /* height: auto; */
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    transform: translate(0, -13%);
+    transition: background-position 0.5s ease-in-out;
+}
+
+.title {
+    font-size: clamp(3.125rem, 1.9737rem + 6.1404vw, 7.5rem);
+    font-style: normal;
+    font-weight: 700;
+}
+
+.title>div>div>span {
+    color: #D31E44;
+    font-size: clamp(1.875rem, 1.2171rem + 3.5088vw, 4.375rem);
+}
+
+.hook {
+    font-family: 'montserrat';
+    color: white;
+}
+
+.hook>p>span {
+    color: #D31E44;
+    font-size: 3rem;
+}
+
+.little_red_circle>span:nth-child(1) {
+    animation: pulsation 2s infinite;
+}
+
+.little_red_circle>span:nth-child(2) {
+    animation: pulsation 2s infinite;
+    animation-delay: 0.2s;
+}
+
+.little_red_circle>span:nth-child(3) {
+    animation: pulsation 2s infinite;
+    animation-delay: 0.4s;
+}
+
+@keyframes pulsation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.hook>div.line_text>.line {
+    width: 100px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 1);
+    display: block;
+    position: relative;
+}
+
+.line_text {
+    transform: translateY(200%);
+}
+
+.line_text>a {
+    color: white;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.subtitle {
+    font-size: clamp(1.875rem, 1.2171rem + 3.5088vw, 4.375rem);
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    user-select: none;
+}
+
+.first_game,
+.second_game {
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.content_game {
+    background-color: var(--grey);
+    height: 490px;
+    width: 387px;
+    box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+}
+
+.button_game a {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: white;
+    text-decoration: none;
+    background-color: var(--red);
+    height: 49px;
+    width: 143px;
+    border-radius: 30px;
+    display: block;
+
+}
+
+.img_game {
+    width: 534px;
+    height: 385px;
+}
+
+
+.difficulty {
+    color: white;
+}
+
+
+.title_game h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: clamp(1.625rem, 1.5068rem + 0.7563vw, 2.1875rem);
+    line-height: 35px;
+    color: white;
+}
+
+.description_game p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--textGrey);
+}
+
+.discover_all_game {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    height: 49px;
+    width: auto;
+    border: 2px solid white;
+    border-radius: 30px;
+    display: block;
+    text-align: center;
+    padding: 2%;
+}
+
+.discover_all_game:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.rules {
+    background-color: var(--backgroundBlackClear);
+    color: white;
+    font-family: 'montserrat';
+}
+
+.title_rules {
+    font-size: clamp(1.875rem, 1.5461rem + 1.7544vw, 3.125rem);
+}
+
+.card_rule {
+    background-color: transparent;
+    border: none;
+    width: 300px;
+    text-align: center;
+    min-height: 325px;
+
+}
+
+.title-card {
+    font-size: clamp(1.25rem, 1.1842rem + 0.3509vw, 1.5rem);
+    font-weight: 800;
+}
+
+.text-card {
+    color: var(--textGrey);
+    font-size: 14px;
+}
+
+.who_play_container {
+    color: white;
+    font-family: 'montserrat';
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-image: url(../../assets/front/home/for_who.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-position: center;
+    background-color: var(--backgroundBlackClear);
+
+}
+
+.rotate_who_play_game {
+    transform: rotate(-90deg);
+}
+
+.rotate_who_play_game p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.305em;
+    text-transform: uppercase;
+    color: #757575;
+    transform: translate(37%, 2%);
+    margin: 0;
+}
+
+
+.big_line {
+    background-color: #333333;
+    width: 2px;
+    height: 161px;
+    display: block;
+    transform: rotate(-90deg) translateX(50%);
+}
+
+
+/* media querrie */
+@media (max-width : 1600px) {
+    .who_play_container {
+        background-size: contain;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .navbar-nav {
+        background-color: rgba(27, 27, 27, 0.55) !important;
+    }
+
+    .img_game {
+        width: auto;
+        height: auto;
+    }
+
+
+    .content_game {
+        height: auto;
+        width: auto;
+    }
+
+    .card_rule {
+        width: 100%;
+    }
+
+    .rotate_who_play_game {
+        transform: rotate(0deg);
+    }
+
+    .rotate_who_play_game p {
+        transform: translate(0, 0);
+    }
+
+    .big_line {
+        width: 161px;
+        height: 2px;
+        display: block;
+        transform: rotate(0deg) translateX(0%);
+    }
+
+    .who_play_container {
+        background-position: 42%;
+        min-height: 75vh;
+        background-size: cover;
+
+    }
+}
+
+
+@media (max-width: 768px) {
+    .homepageTop {
+        background-position: 49% 70%;
+    }
+}

@@ -23,8 +23,10 @@ if (window.location.href.includes("ingame")) {
     document.querySelector('body').style.backgroundPosition = "center";
     document.querySelector('.footer_acs').style.background = "transparent";
     document.querySelector('.footer_acs').style.height = "auto";
+    document.querySelector('footer').style.marginBottom = "2%";
 } else {
     document.querySelector('.navbar-nav').classList.remove("navbar-navInGame");
+    document.querySelector('footer').style.marginBottom = "0";
 }
 
 const legals_mentions = document.querySelector('.legals_mentions');
