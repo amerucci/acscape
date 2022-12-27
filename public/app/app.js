@@ -9,6 +9,8 @@ if (window.location.href.includes("admin")) {
     document.querySelector('footer').style.display = "none";
 }
 
+let screen = window.screen;
+
 if (window.location.href.includes("ingame")) {
     document.querySelector('.navbar').style.color = "white";
     document.querySelector('.navLog').style.marginRight = "5%";
@@ -23,10 +25,12 @@ if (window.location.href.includes("ingame")) {
     document.querySelector('body').style.backgroundPosition = "center";
     document.querySelector('.footer_acs').style.background = "transparent";
     document.querySelector('.footer_acs').style.height = "auto";
-    document.querySelector('footer').style.marginBottom = "2%";
+    document.querySelector('footer').setAttribute('data-footer', "none")
+
+
 } else {
     document.querySelector('.navbar-nav').classList.remove("navbar-navInGame");
-    document.querySelector('footer').style.marginBottom = "0";
+
 }
 
 const legals_mentions = document.querySelector('.legals_mentions');

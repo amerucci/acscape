@@ -14,6 +14,37 @@
     </div>
 </div>
 
+<!-- sticky it -->
+
+<div class="toolbox d-flex flex-column justify-content-center align-items-center">
+    <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
+    <div id="espaceVoid" class="espace"></div>
+    <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
+        <div class="sticky-form">
+            <div>
+                <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
+                <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
+                <label for="stickytext" class="dnone">Ecrire quelque chose</label>
+                <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+            </div>
+
+            <button class="button" id="createstickyOpac">Post it !</button>
+        </div>
+        <div class="sticky-draw dnone">
+            <button class="button m-0 p-0" id="createDraw">Dessin</button>
+        </div>
+        <div class="wiki d-flex justify-content-center align-items-center gap-2">
+            <iconify-icon icon="uil:search-alt"></iconify-icon>
+            <p class="m-0 frisk_modal">Wiki</p>
+        </div>
+    </div>
+</div>
+
+<div id="stickies-container"></div>
+
+
+
+
 <!-- Modal rooms-->
 <div class="modal fade modal-lg" id="roomsModal" tabindex="-1" role="dialog" aria-labelledby="roomsModalLabel"
     aria-hidden="true">
@@ -25,9 +56,6 @@
                     <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
                     <p class="m-0 rooms_modal">les salles</p>
                 </div>
-
-
-
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
@@ -36,7 +64,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="m-0 rooms_list d-flex justify-content-center align-items-center gap-5">
+                <div class="m-0 rooms_list d-flex justify-content-center align-items-center flex-wrap ">
                     <!-- injection en js des salles -->
                 </div>
 
@@ -60,7 +88,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="d-flex justify-content-center align-items-center flex-wrap gap-5 furniture_list"></div>
+                <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 furniture_list"></div>
             </div>
         </div>
     </div>
@@ -87,32 +115,6 @@
         <div class="endgame_buttons d-flex justify-content-center align-items-center gap-5 my-3">
             <a href="" class="endgame_button endgame_button-continue">Continuer</a>
             <a href="" class="endgame_button endgame_button-quit">Abandonner</a>
-        </div>
-    </div>
-</div>
-
-<!-- sticky it -->
-<div id="stickies-container"></div>
-<div class="toolbox d-flex flex-column justify-content-center align-items-center">
-    <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
-    <div id="espaceVoid" class="espace"></div>
-    <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
-        <div class="sticky-form">
-            <div>
-                <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
-                <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
-                <label for="stickytext" class="dnone">Ecrire quelque chose</label>
-                <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
-            </div>
-
-            <button class="button" id="createstickyOpac">Post it !</button>
-        </div>
-        <div class="sticky-draw dnone">
-            <button class="button m-0 p-0" id="createDraw">Dessin</button>
-        </div>
-        <div class="wiki d-flex justify-content-center align-items-center gap-2">
-            <iconify-icon icon="uil:search-alt"></iconify-icon>
-            <p class="m-0 frisk_modal">Wiki</p>
         </div>
     </div>
 </div>

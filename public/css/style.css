@@ -10,13 +10,15 @@ body {
     flex-direction: column;
     background-color: #1B1B1B;
     justify-content: space-between;
+    scroll-behavior: smooth;
 }
 
 .dnone {
     display: none !important;
 }
 
-ul {
+ul,
+li {
     list-style: none;
 }
 

@@ -1,11 +1,12 @@
 <div class="all_games_container d-flex d-flex justify-content-center align-items-center flex-column">
 
-    <div class="index_top d-flex d-flex justify-content-center align-items-center">
+    <div class="index_top d-flex d-flex justify-content-center align-items-center container-fluid">
         <h1 class="m-0">nos escapes games<span>&#x25CF;</span></h1>
     </div>
 
 
-    <div class="all_games justify-content-center align-items-center gap-5 w-100">
+    <div class="all_games w-100" id="all_games">
+        <h3 class="text-center subtitle my-3 py-2">Tout nos jeux</h3>
         <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
 
             <div class="game col-10 col-md-3">
@@ -209,3 +210,14 @@
     </div>
 
 </div>
+
+<script>
+    let firstScroll = true;
+
+    window.addEventListener('scroll', function () {
+        if (firstScroll) {
+            window.location.hash = '#all_games';
+            firstScroll = false;
+        }
+    });
+</script>

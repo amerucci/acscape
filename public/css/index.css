@@ -1,4 +1,4 @@
-.index_top {
+/* .index_top {
     background-image: url(../../assets/front/index/background_top.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -8,15 +8,22 @@
     position: relative;
     top: -4%;
     z-index: -1;
-}
+} */
 
-.index_top::before {
-    content: url(../../assets/front/home/flou.png);
-    position: absolute;
+.index_top {
+    background-image: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, #1B1B1B 100%), url(../../assets/front/index/background_top.png);
+    /* background-clip: content-box; */
+    backdrop-filter: blur(2px);
+    /* height: auto; */
     width: 100%;
-    z-index: 1;
-    bottom: -33%;
-    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    min-height: 450px;
+    position: relative;
+    transform: translate(0, -13%);
+    transition: background-position 0.5s ease-in-out;
 }
 
 .index_top h1 {
@@ -38,12 +45,13 @@
 
 
 .all_games {
-    min-height: 110vh;
+    min-height: 100vh;
     margin-top: 10%;
     margin-bottom: 3%;
     position: relative;
     overflow-x: hidden;
     transition: all 0.4s ease-in-out;
+    max-width: 1440px;
 }
 
 .game {
@@ -52,7 +60,7 @@
     cursor: pointer;
     overflow: hidden;
     max-width: 390px;
-    min-width: 275px;
+    min-width: 300px;
     transition: all 0.4s ease-in-out;
 }
 

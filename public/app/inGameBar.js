@@ -3,7 +3,6 @@ function modalFixed() {
     const frisk = document.querySelector('.frisk');
 
 
-
     the_rooms.addEventListener('click', function () {
         document.querySelector('#roomsModal').classList.add('show');
         document.querySelector('#roomsModal').style.display = 'block';
@@ -1346,11 +1345,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function positionSticky(sticky) {
-        sticky.style.left =
-            window.innerWidth / 2 -
-            sticky.clientWidth / 2 +
-            (650 + Math.round(Math.random() * 50)) +
-            'px';
+        sticky.style.left = 0 + Math.round(Math.random() * 50) + 'px';
+
         sticky.style.top =
             sticky.clientHeight / 2 +
             (0 + Math.round(Math.random() * 50)) +
