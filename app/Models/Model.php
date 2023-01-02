@@ -134,14 +134,14 @@ abstract class Model {
         }
 
         // Check file size
-        if ($file["size"] > 500000) {
+        if ($file["size"] > 5000000) {
             $uploadOk = 0;
         }
 
         // Allow certain file formats
         if (
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif"
+            && $imageFileType != "gif" && $imageFileType != "svg"
         ) {
             $uploadOk = 0;
         }

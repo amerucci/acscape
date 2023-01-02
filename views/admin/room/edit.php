@@ -149,16 +149,30 @@ $title = "Modifier la salle {$room->title}";
         }
 
         picture.onchange = evt => {
-            const [file] = picture.files
+            // Récupérez le fichier sélectionné
+            const [file] = picture.files;
             if (file) {
-                let picturePreview = document.getElementById('picturePreview');
-                picturePreview.remove();
-                picturePreviewTemp.src = URL.createObjectURL(file);
-                picturePreviewTemp.width = 100;
-                picturePreviewTemp.height = 100;
+                // Récupérez l'élément img existant, ou créez-en un nouveau s'il n'existe pas
+                let img = document.getElementById('picturePreview');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.id = 'picturePreview';
+                }
+                // Configurez l'attribut src de l'élément img avec l'URL de l'objet File
+                img.src = URL.createObjectURL(file);
+                // Configurez l'attribut width et height de l'élément img
+                img.width = 100;
+                img.height = 100;
+                // Récupérez l'élément parent de la miniature
+                const parent = img.parentNode;
+                // Ajoutez l'élément img à l'élément parent, ou remplacez-le s'il existe déjà
+                if (!parent) {
+                    parent.appendChild(img);
+                } else {
+                    parent.replaceChild(img, img);
+                }
             }
         }
-
     });
 
 
@@ -172,8 +186,9 @@ $title = "Modifier la salle {$room->title}";
                 newClue.setAttribute('id', 'clue' + c);
                 newClue.setAttribute('placeholder', 'Indice ' + c);
                 newClue.setAttribute('class', 'form-control mt-2');
-                document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
-                    'addClue'));
+                document.getElementById('clue').parentNode.insertBefore(newClue, document
+                    .getElementById(
+                        'addClue'));
             }
             if (c === 3) {
                 document.getElementById('addClue').setAttribute('disabled', 'disabled');

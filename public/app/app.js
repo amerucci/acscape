@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('loader').style.display = 'none';
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.getElementById('loader').style.display = 'none';
+// });
 
 
 if (window.location.href == "http://localhost/acscape/" || window.location.href ==

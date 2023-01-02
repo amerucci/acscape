@@ -12,6 +12,8 @@
             <div class="form-group d-flex justify-content-center align-items-center flex-column form_picture w-100">
                 <label for="picture">Image</label>
                 <input type="file" name="picture" id="picture" class="form-control">
+                <img src="" alt="" id="picturePreview">
+                <img src="" alt="" id="picturePreviewTemp">
             </div>
             <div class="form-group d-flex justify-content-center align-items-center flex-column form_desc w-100">
                 <label for="description">Description</label>
@@ -77,6 +79,32 @@
             document.getElementById('addClue').style.cursor = 'not-allowed';
         }
     });
+
+    picture.onchange = evt => {
+        // Récupérez le fichier sélectionné
+        const [file] = picture.files;
+        if (file) {
+            // Récupérez l'élément img existant, ou créez-en un nouveau s'il n'existe pas
+            let img = document.getElementById('picturePreview');
+            if (!img) {
+                img = document.createElement('img');
+                img.id = 'picturePreview';
+            }
+            // Configurez l'attribut src de l'élément img avec l'URL de l'objet File
+            img.src = URL.createObjectURL(file);
+            // Configurez l'attribut width et height de l'élément img
+            img.width = 100;
+            img.height = 100;
+            // Récupérez l'élément parent de la miniature
+            const parent = img.parentNode;
+            // Ajoutez l'élément img à l'élément parent, ou remplacez-le s'il existe déjà
+            if (!parent) {
+                parent.appendChild(img);
+            } else {
+                parent.replaceChild(img, img);
+            }
+        }
+    }
 
     function padlock() {
 

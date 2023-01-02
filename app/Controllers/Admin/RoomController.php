@@ -118,10 +118,10 @@ class RoomController extends Controller {
             $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
             $pictureName = time() . '_' . pathinfo($picture, PATHINFO_FILENAME) . '.' . $pictureExtension;
             $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
-            $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
+            $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
             $pictureSize = $_FILES['picture']['size'];
             $isAllowedExtension = in_array($pictureExtension, $pictureExtensionAllowed) ? true : false;
-            $isAllowedSize = $pictureSize < 1000000 ? true : false;
+            $isAllowedSize = $pictureSize < 5000000 ? true : false;
           
             if ($isAllowedExtension && $isAllowedSize) {
               move_uploaded_file($picturePath, $pictureDestination);
@@ -134,6 +134,8 @@ class RoomController extends Controller {
               }
             }
           }
+
+       
        
     }
 

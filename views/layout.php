@@ -126,9 +126,6 @@ return header('Location: /acscape/login?error=session_expired');
     </nav>
 
     <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
-        <!-- <div id="loader">
-            <h1>toto</h1>
-        </div> -->
         <?= $content ?>
     </div>
 
