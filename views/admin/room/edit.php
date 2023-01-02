@@ -2,6 +2,7 @@
 $title = "Modifier la salle {$room->title}";
 ?>
 
+
 <div class="container admin_container">
     <h1 class="text-center">editer votre salle</h1>
 

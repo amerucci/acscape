@@ -1,3 +1,4 @@
+<?php $title = "jeu"; ?>
 <div class="show_container d-flex align-items-center flex-column">
     <div class="show_img_top d-flex align-items-center flex-column justify-content-center">
         <h3>Le développeur perdu</h3>
@@ -136,6 +137,7 @@
     window.addEventListener('scroll', function () {
         if (firstScroll) {
             window.location.hash = '#description';
+            window.history.replaceState({}, document.title, "/" + "acscape/show");
             firstScroll = false;
         }
     });

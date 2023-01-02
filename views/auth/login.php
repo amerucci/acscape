@@ -1,10 +1,6 @@
-<?= $title = "Se connecter"; ?>
+<?php $title = "Se connecter"; ?>
 
-
-
-
-
-<?php session_destroy(); ?>
+<!-- <?php session_destroy(); ?> -->
 
 
 <div class="background_login_register"></div>
@@ -21,6 +17,11 @@
         <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
         <div class="alert alert-danger">
             <li>Le mot de passe ou le pseudo est incorrect</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'session_expired'): ?>
+        <div class="alert alert-danger">
+            <li>La session a expirée</li>
         </div>
         <?php endif ?>
 
@@ -53,7 +54,9 @@
                 <input type="password" name="password" required="" autocomplete="off">
                 <label>Mot de passe</label>
             </div>
+            <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
             <button type="submit" class="btn_login_register">Se connecter</button>
+
         </form>
 
     </div>

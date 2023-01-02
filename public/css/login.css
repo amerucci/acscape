@@ -32,7 +32,7 @@
 
 .titleLogin {
     color: white;
-    font-size: 71px;
+    font-size: clamp(1.875rem, 1.2171rem + 3.5088vw, 4.375rem);
 }
 
 .titleLogin span {
@@ -48,7 +48,9 @@
 }
 
 .login-box {
-    width: 730px;
+    max-width: 730px;
+    width: 100%;
+    min-width: 316px;
     height: 400px;
     /* padding: 40px; */
     background: rgba(36, 36, 36, 1);
@@ -81,10 +83,11 @@
 
 .login-box .user-box label {
     position: absolute;
-    top: 0;
+    /* top: 0; */
+    top: -15px;
     left: 0;
     padding: 10px 0;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(108, 108, 108, 1);
     pointer-events: none;
     transition: .5s;
@@ -142,7 +145,7 @@
 }
 
 #onglet_login {
-    width: 25%;
+    padding: 0 5%;
     height: 100%;
     /* background-color: rgba(32, 32, 32, 1); */
     display: flex;
@@ -153,7 +156,6 @@
 }
 
 .onglet_login_register_item_active {
-    width: 25%;
     height: 100%;
     background-color: rgba(32, 32, 32, 1);
     color: white;
@@ -161,7 +163,7 @@
 }
 
 #onglet_register {
-    width: 25%;
+    padding: 0 5%;
     height: 100%;
     /* background-color: rgba(25, 25, 25, 1); */
     display: flex;

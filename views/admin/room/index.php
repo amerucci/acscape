@@ -1,4 +1,5 @@
 <?php $title = "Administration des salles"; ?>
+
 <div class="container admin_container">
     <a href="room/create">Créer une salle</a>
 

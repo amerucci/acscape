@@ -1,9 +1,10 @@
 {
-    "name": "33642/localhost",
+   
+    "name": "33642/acscape",
     "authors": [
         {
-            "name": "John Smith",
-            "email": "john@example.com"
+            "name": "gamerbike",
+            "email": "champidub@gmail.com"
         }
     ],
     "autoload": {

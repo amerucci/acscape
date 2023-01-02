@@ -39,7 +39,11 @@
 
 .hook>p>span {
     color: #D31E44;
-    font-size: 3rem;
+    font-size: 2.5rem;
+}
+
+.little_red_circle>span {
+    font-size: 2rem;
 }
 
 .little_red_circle>span:nth-child(1) {

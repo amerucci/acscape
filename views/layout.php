@@ -1,3 +1,10 @@
+<?php  if (strpos($_SERVER['REQUEST_URI'], 'admin') == true) : ?>
+<?php if (!isset($_COOKIE['csrf_token'])) {
+// Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
+return header('Location: /acscape/login?error=session_expired');
+} ?>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,7 +30,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
-    <title>Document</title>
+    <title><?= $title ?></title>
 </head>
 
 <body>
@@ -47,7 +54,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2 w-100 px-3">
 
                     <?php
                         if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
@@ -63,9 +70,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">contact</a>
                     </li>
-                    <li>
-                        <?php if ($_SESSION) : ?>
-                    <li class="nav-item dropdown col-1">
+                    <?php if (isset($_SESSION['user_id'])) : ?>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Création de jeu
@@ -78,10 +84,12 @@
                     <?php endif; ?>
                     </li>
                     <?php endif; ?>
-                </ul>
+                    <!-- </ul> -->
 
-                <div class="navLog">
-                    <li class="">
+
+
+
+                    <li class="navLog">
                         <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
                         <div class="countdown_container d-flex gap-3">
                             <div class="penality d-flex align-items-center"></div>
@@ -89,7 +97,7 @@
                             <div class="m-0 d-flex justify-content-center align-items-center" id='countdown'></div>
                         </div>
                         <?php else : ?>
-                        <?php if (!$_SESSION): ?>
+                        <?php if (!isset($_SESSION['user_id'])): ?>
                         <a alt="" href="login">
                             <?php else : ?>
                             <a alt="" href="/acscape/logout">
@@ -103,7 +111,7 @@
                                         d="M10 1.54688C8.26942 1.54687 6.57769 2.06005 5.13876 3.02152C3.69983 3.98298 2.57832 5.34954 1.91606 6.9484C1.25379 8.54725 1.08051 10.3066 1.41813 12.0039C1.75575 13.7012 2.58911 15.2603 3.81282 16.4841C5.03653 17.7078 6.59563 18.5411 8.29296 18.8787C9.9903 19.2164 11.7496 19.0431 13.3485 18.3808C14.9473 17.7186 16.3139 16.597 17.2754 15.1581C18.2368 13.7192 18.75 12.0275 18.75 10.2969C18.7474 7.97704 17.8246 5.75298 16.1843 4.11261C14.5439 2.47224 12.3198 1.54952 10 1.54688ZM14.995 15.8756C14.9825 15.0558 14.6485 14.2737 14.0649 13.6979C13.4814 13.122 12.6949 12.7984 11.875 12.7969H8.125C7.30512 12.7984 6.51865 13.122 5.93506 13.6979C5.35147 14.2737 5.01746 15.0558 5.005 15.8756C3.87161 14.8636 3.07234 13.5312 2.71303 12.0548C2.35372 10.5784 2.45132 9.02771 2.9929 7.60804C3.53449 6.18836 4.49452 4.96667 5.74586 4.10473C6.99721 3.24279 8.48084 2.78127 10.0003 2.78127C11.5198 2.78127 13.0034 3.24279 14.2548 4.10473C15.5061 4.96667 16.4661 6.18836 17.0077 7.60804C17.5493 9.02771 17.6469 10.5784 17.2876 12.0548C16.9283 13.5312 16.129 14.8636 14.9956 15.8756H14.995Z"
                                         fill="white" />
                                 </svg>
-                                <?php if ($_SESSION): ?>
+                                <?php if (isset($_SESSION['user_id'])): ?>
                                 DECONNEXION
                                 <?php else : ?>
                                 SE CONNECTER
@@ -111,15 +119,19 @@
                             </a>
                             <?php endif ?>
                     </li>
-                </div>
+
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative">
+    <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
+        <!-- <div id="loader">
+            <h1>toto</h1>
+        </div> -->
         <?= $content ?>
     </div>
+
     <footer class="container-fluid gx-0">
         <div class="footer_acs d-flex justify-content-center flex-column align-items-center py-2">
             <svg class="my-1" width="161" height="42" viewBox="0 0 161 42" fill="none"
@@ -143,26 +155,27 @@
     </footer>
     </div>
 
+    <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
+    <iconify-icon class="toTop" icon="iconoir:fast-top-circle"></iconify-icon>
+    <?php endif; ?>
 
 </body>
 
 <script src="\acscape\public\app\app.js"></script>
+<?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+<script src="public\app\inGameBar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+<?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
-<?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-<script src="public\app\inGameBar.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
-<?php endif; ?>
 
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
 <script src="public\app\splide.min.js"></script>
 <?php endif; ?>
-
-
 
 
 

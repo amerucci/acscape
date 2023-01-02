@@ -1,10 +1,13 @@
+<?php $title = "ACScape Accueil"; ?>
+
 <section class="container-fluid homepageTop d-flex align-items-center">
     <div class="hook container">
         <div class="title d-flex flex-column mb-3">
             <p class="m-0">L'Horloge </p>
             <div class="d-flex">
                 <p class="m-0">Tourne</p>
-                <div class="d-flex align-items-end"><span>&#x25CF;</span><span>&#x25CF;</span><span>&#x25CF;</span>
+                <div class="d-flex align-items-end little_red_circle">
+                    <span>&#x25CF;</span><span>&#x25CF;</span><span>&#x25CF;</span>
                 </div>
             </div>
         </div>

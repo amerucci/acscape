@@ -28,13 +28,13 @@ $scripts = $params['scripts']; ?>
     </div>
     <a class="create_script my-5" href='script/create'> Ajouter un scénario </a>
 
-    <div class="d-flex flex-wrap w-100 my-3">
+    <div class="d-flex flex-wrap w-100 justify-content-center align-items-center my-3 gap-3">
         <?php foreach ($scripts as $script) : ?>
         <?php if ($script->user_id == $_SESSION['user_id']): ?>
-        <div class="card my-2 d-flex mx-1 ">
+        <div class="card gap-2 d-flex mx-1 flex-column flex-md-row card_container">
             <div class="card-body card_script d-flex justify-content-center align-items-center flex-column">
                 <img src="../assets/pictures/scripts/<?= $script->picture ?>" alt="<?= $script->title ?>"
-                    class="card-img-top">
+                    class="card-img-top w-25">
                 <h5 class="card-title"><?= $script->title ?></h5>
                 <p class="card-text"><?= $script->description ?></p>
                 <div class="d-flex justify-content-center align-items-center flex-column gap-1 w-100">

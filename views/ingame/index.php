@@ -1,4 +1,5 @@
 <?php $_SESSION['test'] = '54'; ?>
+<?php $title = "ACScape"; ?>
 
 <div class="tools d-flex gap-5">
     <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"

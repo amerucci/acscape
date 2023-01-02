@@ -17,6 +17,23 @@ abstract class Controller {
         $this->db = $db;
     }
 
+    public function generateCsrfToken() {
+        $random_id = bin2hex(random_bytes(32));
+        $csrf_token = hash_hmac('sha256', $random_id, 'secret_key');
+        return $csrf_token;
+    }
+
+    public function validateCsrfToken($csrf_token) {
+        $stored_token = $_COOKIE['csrf_token'];
+        if ($csrf_token === $stored_token) {
+            return true;
+        } else {
+          return false;
+        }
+    }   
+
+  
+
     protected function view(string $path, array $params = null)
     {
         ob_start();
@@ -50,6 +67,5 @@ abstract class Controller {
         }
     }
 
-    
 
 }

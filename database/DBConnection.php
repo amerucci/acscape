@@ -1,9 +1,7 @@
 <?php
 
 namespace Database;
-
 use PDO;
-
 class DBConnection {
 
     private $dbname;

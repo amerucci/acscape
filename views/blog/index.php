@@ -1,3 +1,4 @@
+<?php $title = "Liste des jeux"; ?>
 <div class="all_games_container d-flex d-flex justify-content-center align-items-center flex-column">
 
     <div class="index_top d-flex d-flex justify-content-center align-items-center container-fluid">
@@ -217,6 +218,7 @@
     window.addEventListener('scroll', function () {
         if (firstScroll) {
             window.location.hash = '#all_games';
+            window.history.replaceState({}, document.title, "/" + "acscape/index");
             firstScroll = false;
         }
     });

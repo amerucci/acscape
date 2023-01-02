@@ -17,32 +17,32 @@ abstract class Model {
 
     public function all()
     {
-        return $this->query("SELECT * FROM {$this->table} ORDER BY id DESC");
+        return $this->query("SELECT * FROM {$this->table}  ORDER BY id DESC");
     }
 
     public function allByScriptId(int $id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id ORDER BY id ASC");
+        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY id ASC");
     }
     public function allByScriptIdByNroom(int $id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id ORDER BY n_room ASC");
+        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY n_room ASC");
     }
 
     public function allByFurnitureId(int $id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id ORDER BY id DESC");
+        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY id DESC");
     }
 
 
     public function allByRoomId(int $id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE room_id = $id ORDER BY id DESC");
+        return $this->query("SELECT * FROM {$this->table} WHERE room_id = $id   ORDER BY id DESC");
     }
 
     public function findById(int $id): Model
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
+        return $this->query("SELECT * FROM {$this->table} WHERE id = ? ", [$id], true);
     }
 
     public function create(array $data, ?array $relations = null)
@@ -75,12 +75,12 @@ abstract class Model {
 
         $data['id'] = $id;
 
-        return $this->query("UPDATE {$this->table} SET {$sqlRequestPart} WHERE id = :id", $data);
+        return $this->query("UPDATE {$this->table} SET {$sqlRequestPart} WHERE id = :id AND user_id = {$_SESSION['user_id']} ", $data);
     }
 
     public function destroy(int $id): bool
     {
-        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+        return $this->query("DELETE FROM {$this->table}  WHERE id = ? AND user_id = {$_SESSION['user_id']} " , [$id]);
     }
 
     public function query(string $sql, array $param = null, bool $single = null)
@@ -161,6 +161,12 @@ abstract class Model {
     public function lastInsertId()
     {
         return $this->db->getPDO()->lastInsertId();
+    }
+
+    public function generateCsrfToken() {
+        $random_id = bin2hex(random_bytes(32));
+        $csrf_token = hash_hmac('sha256', $random_id, 'secret_key');
+        return $csrf_token;
     }
 
    

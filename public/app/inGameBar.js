@@ -1,3 +1,20 @@
+let ingame_background = document.querySelector('.ingame_container_background')
+
+let navbar = document.querySelector('.navbar');
+navbar.classList.remove('navbar-expand-lg');
+navbar.classList.add('navbar-expand');
+window.addEventListener('resize', function (event) {
+    if (window.innerWidth < 992) {
+        navbar.classList.add('flex-wrap');
+        navbar.classList.remove('navbar-expand-lg');
+        navbar.classList.add('navbar-expand');
+    } else {
+        navbar.classList.remove('flex-wrap');
+        navbar.classList.remove('navbar-expand');
+        navbar.classList.add('navbar-expand-lg');
+    }
+});
+
 function modalFixed() {
     const the_rooms = document.querySelector('.the_rooms');
     const frisk = document.querySelector('.frisk');
@@ -203,10 +220,18 @@ main()
             roomsList.appendChild(li_room);
 
 
+
+
             let roomsArray = [];
             for (let j = 3; j < roomsList.childNodes.length; j++) {
                 roomsArray.push(roomsList.childNodes[j]);
             }
+
+            roomsArray[i].style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+            roomsArray[i].style.backgroundSize = 'contain';
+            roomsArray[i].style.backgroundRepeat = 'no-repeat';
+            roomsArray[i].style.backgroundPosition = 'center';
+
 
             let padlock = document.createElement('iconify-icon');
             padlock.setAttribute('icon', 'uis:padlock');
@@ -243,7 +268,18 @@ main()
                 roomLockID = dataGlobal.room[i].id;
                 padlock_img();
 
+
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+
+                    ingame_background.style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+                    ingame_background.style.backgroundSize = 'contain';
+                    ingame_background.style.backgroundRepeat = 'no-repeat';
+                    ingame_background.style.backgroundPosition = 'center';
+                    if (ingame_background.style.backgroundImage) {
+                        document.querySelector('body').style.backdropFilter = 'blur(5px)';
+                    } else {
+                        document.querySelector('body').style.backdropFilter = 'none';
+                    }
 
                     navInGameTitle.innerHTML = dataGlobalUnlock[0].room[i].title;
 
@@ -280,7 +316,7 @@ main()
                                                             <div class="modal-body">
                                                                 <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
                                                                 <h5 class="msg_open">Salle dévérouillée voyons ce qu'elle contient.</h5>
-                                                                <p my-4>${dataGlobal.room[i].reward}</p>
+                                                                <p class="reward_container">${dataGlobal.room[i].reward}</p>
                                                                 </div>
                                                             </div>
                                                     </div>
@@ -292,6 +328,7 @@ main()
                     let msg_open = document.querySelector('.msg_open');
                     if (dataGlobal.room[i].n_room == "1") {
                         msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                        document.querySelector('.reward_container').style = "display: none";
                     }
 
                     //si une room contiens la classe activeR on injecte l'id de la room, et on opère une filtration de furniture par room_id = roomID
@@ -333,7 +370,7 @@ main()
                                     <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
                                     <p class="description_room">${dataGlobal.room[i]['description']}</p>
                                     </div>
-                                        <div class="modal-body d-flex">
+                                        <div class="modal-body d-flex flex-column flex-md-row w-100">
                         
                                                 <div class="d-flex flex-column clue_show input_container fade show w-50 gap-1">
                                                     <div class="w-100">
@@ -353,18 +390,18 @@ main()
                                             </div>
 
                                             <p class="reward dnone w-75 d-flex justify-content-center align-items-center"></p>
-                                              <div id="clue_btn_content" class="d-flex flex-column w-50 align-items-center gap-3">
-                                                  <div class="d-flex gap-3 justify-content-center w-100">
-                                                      <div>
-                                                      <p class="text-center voidClueTime"></p>
+                                              <div id="clue_btn_content" class="d-flex flex-column w-50 align-items-center clue_container gap-2">
+                                                  <div class="d-flex justify-content-center w-100 gap-1 ">
+                                                      <div >
+                                                      <p class="text-center voidClueTime dnone m-0"></p>
                                                       <button class="clue_show1 my-2 px-2" >Indice 1</button> 
                                                       </div>
                                                       <div>
-                                                      <p class="text-center Clue2Time"></p>
+                                                      <p class="text-center Clue2Time dnone m-0"></p>
                                                       <button id="timelaps" class="clue_show2 my-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="30s après la découverte du 1er indice">indice 2</button>
                                                       </div>
                                                       <div>
-                                                        <p class="text-center Clue3Time"></p>
+                                                        <p class="text-center Clue3Time dnone m-0"></p>
                                                       <button class="clue_show3 my-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="30s après la découverte du 2nd indice">indice 3</button>
                                                       </div>
                                                   </div>
@@ -769,7 +806,7 @@ main()
                                  <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
                                      <p class="description_room">${furniture['description']}</p>
                                  </div>
-                                    <div class="modal-body d-flex">
+                                    <div class="modal-body d-flex flex-column flex-md-row">
         
                                         <div class="d-flex flex-column clue_show w-50 gap-1 input_container ">
                                           <div class="w-100">
@@ -787,7 +824,7 @@ main()
                                           <p class="text-center penality_info"></p>
                                       </div>
                                         </div>
-                                          <div class="d-flex flex-column w-50 align-items-center gap-3">
+                                          <div class="d-flex flex-column w-50 align-items-center gap-3 clue_container">
                                               <div class="d-flex gap-3 justify-content-center w-100">
                                                   <button class="clue_show1 my-2 px-2" >Indice 1</button> 
                                                   <button id="timelaps" class="clue_show2 my-2 px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="30s après la découverte du 1er indice">indice 2</button>
@@ -1058,7 +1095,7 @@ main()
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p class="furniture_reward">${furniture.reward}</p>
+                                                            <p class="furniture_reward  reward_container">${furniture.reward}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1141,7 +1178,7 @@ main()
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class='furniture_reward">${furniture.reward}</p>                                            
+                                            <p class='furniture_reward reward_container'>${furniture.reward}</p>                                            
                                         </div>
                                     </div>
                                 </div>

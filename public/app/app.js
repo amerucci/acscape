@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('loader').style.display = 'none';
+});
+
+
 if (window.location.href == "http://localhost/acscape/" || window.location.href ==
     "http://localhost/acscape/index" || window.location.href == "http://localhost/acscape/show") {
     document.querySelector('.navbar').style.position = "absolute";
@@ -14,13 +19,23 @@ let screen = window.screen;
 if (window.location.href.includes("ingame")) {
     document.querySelector('.navbar').style.color = "white";
     document.querySelector('.navLog').style.marginRight = "5%";
+    document.querySelector('.navLog').style.background = "transparent";
+    // document.querySelector('.ingame_container_background').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
     document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
     document.querySelector('.navbar-nav').classList.add("navbar-navInGame");
+    document.querySelector('.navbar-nav').style.marginLeft = "2%";
+    document.querySelector('.navbar-nav').style.width = "50% !important";
     if (screen.width < 1440) {
+        document.querySelector('.ingame_container_background').style.backgroundSize = "contain";
         document.querySelector('body').style.backgroundSize = "contain";
+        document.querySelector('.navbar-nav').style.marginLeft = "0%";
     } else {
+        document.querySelector('.ingame_container_background').style.backgroundSize = "cover";
         document.querySelector('body').style.backgroundSize = "cover";
     }
+
+    document.querySelector('.ingame_container_background').style.backgroundRepeat = "no-repeat";
+    document.querySelector('.ingame_container_background').style.backgroundPosition = "center";
     document.querySelector('body').style.backgroundRepeat = "no-repeat";
     document.querySelector('body').style.backgroundPosition = "center";
     document.querySelector('.footer_acs').style.background = "transparent";
@@ -32,6 +47,7 @@ if (window.location.href.includes("ingame")) {
     document.querySelector('.navbar-nav').classList.remove("navbar-navInGame");
 
 }
+
 
 const legals_mentions = document.querySelector('.legals_mentions');
 // create modal boostrap5 for mentions légales
@@ -88,3 +104,11 @@ legals_mentions.addEventListener('click', () => {
         });
     });
 });
+
+// scroll to top
+if (document.querySelector('.toTop')) {
+    const toTop = document.querySelector('.toTop');
+    toTop.addEventListener('click', () => {
+        window.scrollTo(0, 0);
+    });
+}

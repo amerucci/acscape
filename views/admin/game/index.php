@@ -6,6 +6,7 @@ $objects = $params['objects'];
 ?>
 
 
+
 <div class="container admin_container d-flex justify-content-center align-items-center flex-column gap-5">
     <div class="d-flex justify-content-center align-items-center flex-column w-75">
 
@@ -48,14 +49,19 @@ $objects = $params['objects'];
         <a class="my-2" href="room/create">Créer une salle</a>
         <div class="d-flex justify-content-center align-items-center gap-2 row mb-5">
             <?php foreach ($rooms as $room) : ?>
-            <div class="card col-2 mx-2">
+            <div class="card col-2 mx-2 bgcard card_container ">
                 <div class="card-body card_rooms d-flex justify-content-center align-items-center flex-column gap-2">
                     <h5 class="card-title"><?= $room->title ?></h5>
                     <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
                         height="100px" id="picturePreview">
                     <p class="card-text"><?= substr($room->description ,  0, 50).'...'; ?></p>
-                    <a href="room/edit/<?= $room->id ?>" class="btn btn-primary w-100">Editer</a>
-                    <a href="room/delete/<?= $room->id ?>" class="btn btn-danger w-100">Supprimer</a>
+                    <div class="d-flex flex-column align-items-end gap-2 w-100">
+                        <a href="room/edit/<?= $room->id ?>" class="btn btn-primary w-100">Editer</a>
+                        <form action="room/delete/<?= $room->id ?>" method="post" class="w-100">
+                            <input type="hidden" name="id" value="<?= $room->id ?>">
+                            <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <?php endforeach; ?>

@@ -1,6 +1,7 @@
 <?php
 
 use Router\Router;
+
 use App\Exceptions\NotFoundException;
 
 require '../vendor/autoload.php';
@@ -51,7 +52,7 @@ $router->post('/admin/script/edit/:id', 'App\Controllers\Admin\ScriptController@
 $router->get('/admin/script/show/:id', 'App\Controllers\Admin\ScriptController@show');
 
 // gestion des rooms
-$router->get('/admin/room', 'App\Controllers\Admin\RoomController@index');
+// $router->get('/admin/room', 'App\Controllers\Admin\RoomController@index');
 $router->get('/admin/room/create', 'App\Controllers\Admin\RoomController@create');
 $router->post('/admin/room/create', 'App\Controllers\Admin\RoomController@createRoom');
 $router->post('/admin/room/delete/:id', 'App\Controllers\Admin\RoomController@destroy');

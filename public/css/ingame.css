@@ -16,7 +16,8 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 42px;
+    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
+    padding-right: 5%;
 }
 
 .the_rooms,
@@ -58,14 +59,14 @@ modal {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 42px;
+    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
 }
 
 #countdown {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 42px;
+    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
     transform: translate(0%, 8%);
 }
 
@@ -375,7 +376,7 @@ modal {
 
 
 .penality {
-    font-size: 32px;
+    font-size: clamp(0.875rem, 0.6667rem + 1.1111vw, 2rem);
     color: #D31E44;
     font-family: 'Montserrat';
     /* transform: translateY(8%); */
@@ -404,7 +405,7 @@ modal {
 }
 
 .modalRoomOpen {
-    min-height: 350px;
+    min-height: 470px;
 }
 
 .wiki {
@@ -693,6 +694,7 @@ iframe {
 
 .modal {
     font-family: 'montserrat';
+    min-width: 300px;
 }
 
 #party-js-container {
@@ -725,6 +727,26 @@ iframe {
     min-height: 450px;
 }
 
+.furnitureLock {
+    min-height: 549px;
+}
+
+.reward_container {
+    background: url(../../assets/front/ingame/paper.jpg);
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    border-radius: 48% 39% 38% 47% / 48% 37% 44% 45%;
+    color: black;
+    font-family: 'montserrat';
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+
 @media (max-width: 1000px) {
     footer[data-footer="none"] {
         display: none;
@@ -744,4 +766,35 @@ iframe {
     .toolbox {
         display: none !important;
     }
+
+    .navbar-navInGame {
+        flex-direction: column !important;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .input_container {
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 1px solid #d5c9c9;
+    }
+
+    .clue_container {
+        width: 100% !important;
+    }
+
+    .logoNav>a:nth-child(1)>svg:nth-child(1) {
+        height: 50%;
+        width: 85%;
+    }
+
+    .navbar-nav {
+        width: 100%;
+    }
+
+
+
+
 }
