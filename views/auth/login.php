@@ -62,9 +62,6 @@
     </div>
 </div>
 
-<!-- https://learn.microsoft.com/en-us/answers/questions/974921/edge-bug-autocomplete34off34-still-displays-previo.html -->
-<!-- https://www-anoopcnair-com.translate.goog/disable-enable-edge-browser-autofill-inputs/?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr -->
-
 
 <script>
     const onglet_login = document.getElementById('onglet_login');

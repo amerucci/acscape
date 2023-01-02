@@ -19,4 +19,24 @@ class User extends Model {
     {
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
     }
+
+    public function getByUserMail(string $email)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE email = ?", [$email]);
+    }
+
+    public function getTokenUserByMail()
+    {
+        return $this->query("SELECT token FROM {$this->table} WHERE email = ?", [$_POST['email']]);
+    }
+
+    public function getByEmailAndTokenUser(string $email, string $token)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE email = ? AND token = ?", [$email, $token]);
+    }
+
+    public function getByToken(string $token)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE token = ?", [$token]);
+    }
 }

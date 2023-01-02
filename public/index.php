@@ -28,6 +28,10 @@ $router->post('/login', 'App\Controllers\UserController@loginPost');
 $router->get('/logout', 'App\Controllers\UserController@logout');
 $router->get('/register', 'App\Controllers\UserController@register');
 $router->post('/register', 'App\Controllers\UserController@registerPost');
+$router->get('/forgot', 'App\Controllers\UserController@forgot');
+$router->post('/forgot', 'App\Controllers\UserController@forgotPost');
+$router->get('/reset', 'App\Controllers\UserController@reset');
+$router->post('/reset', 'App\Controllers\UserController@resetPost');
 
 // in game route
 $router->get('/ingame', 'App\Controllers\InGameController@index');
