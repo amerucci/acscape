@@ -39,4 +39,9 @@ class User extends Model {
     {
         return $this->query("SELECT * FROM {$this->table} WHERE token = ?", [$token]);
     }
+
+    public function updatePassword($token_user, $password){
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $this->query("UPDATE {$this->table} SET password = ? WHERE token = ?", [$password, $_GET['u']]);
+    }
 }

@@ -56,6 +56,7 @@
             </div>
             <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
             <button type="submit" class="btn_login_register">Se connecter</button>
+            <a class="forgot" href="/acscape/forgot">mot de passe oublié</a>
 
         </form>
 
@@ -69,12 +70,14 @@
     const formLogin = document.getElementById('formLogin');
     const btn_login_register = document.getElementsByClassName('btn_login_register');
     const titleLogin = document.getElementsByClassName('titleLogin');
+    const forgot = document.querySelector('.forgot');
 
 
     onglet_login.addEventListener('click', function () {
         onglet_login.classList.add('onglet_login_register_item_active');
         onglet_register.classList.remove('onglet_login_register_item_active');
         if (onglet_login.classList.contains('onglet_login_register_item_active')) {
+            forgot.style.display = 'block';
             formLogin.action = 'login';
             formLogin.style.padding = "8% 8%";
             btn_login_register[0].style.marginTop = "15px"
@@ -92,6 +95,7 @@
         onglet_login.classList.remove('onglet_login_register_item_active');
         formLogin.action = 'register';
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
+            forgot.style.display = 'none';
             btn_login_register[0].innerHTML = 'S\'inscrire';
             titleLogin[0].innerHTML = 's\'inscrire<span>&#x25CF;</span>';
             formLogin.style.padding = "4% 8%";

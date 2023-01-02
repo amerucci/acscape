@@ -10,16 +10,16 @@
 
     <div class="forgot-box">
 
-        <form action="forgot" method="POST" id="formForgot" autocomplete="off">
-
+        <form action="forgot" method="POST" id="formForgot" autocomplete="off"
+            class="d-flex flex-column justify-content-center align-items-center">
+            <legend>Adresse mail</legend>
             <input type="email" name="email" id="email" required="" autocomplete="off" class="no-autofill-bkg">
-            <label>Adresse mail</label>
 
-            <button type="submit" class="btn_login_register">Envoyer</button>
+
+            <button type="submit" class="btn">Envoyer</button>
 
         </form>
 
 
     </div>
-
-    <?= var_dump($params) ?>
+</div>

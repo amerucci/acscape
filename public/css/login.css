@@ -180,3 +180,13 @@
     color: #D31E44;
     font-weight: bold;
 }
+
+.forgot {
+    display: block;
+    position: absolute;
+    bottom: 20%;
+    left: 8%;
+    text-decoration: none;
+    color: rgba(108, 108, 108, 1);
+    font-family: "montserrat", sans-serif;
+}

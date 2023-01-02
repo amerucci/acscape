@@ -120,17 +120,21 @@ class UserController extends Controller {
         
         if ($user) {
             $token = bin2hex(random_bytes(32));
+            $token_user = $user[0]->token;
             $recover = new PassRecover($this->getDB());
             $recover->create([
-                'token_user' => $user[0]->token,
+                'token_user' => $token_user,
                 'token' => $token
             ]);
+            $link = "http://localhost/acscape/reset?token=".$token."&u=".$token_user;
             $to = $_POST['email'];
             $subject = "Réinitialisation de votre mot de passe";
-            $message = "Bonjour, vous avez demandé à réinitialiser votre mot de passe. Pour ce faire, veuillez cliquer sur le lien suivant : http://localhost/acscape/reset?token=$token";
+            $message = "Bonjour, vous avez demandé à réinitialiser votre mot de passe. Pour ce faire, veuillez cliquer sur le lien suivant : ".$link;
             $headers = "From: ACScape";
-            mail($to, $subject, $message, $headers);
-            return header('Location: login?success=success');
+            // mail($to, $subject, $message, $headers);
+            echo "<a href='$link'>Cliquez ici pour réinitialiser votre mot de passe</a>";
+            // return header('Location: login?success=success');
+            $recover->deleteOldTokens(1); // Supprime les anciens tokens après 1h
         } else {
             return header('Location: forgot?error=error');
         }
@@ -138,36 +142,57 @@ class UserController extends Controller {
 
     public function reset()
     {
-        // $token = $_GET['token'];
-        // $recover = (new PassRecover($this->getDB()))->getByToken($token);
-        // if ($recover) {
-        //     return $this->view('auth.reset');
-        // } else {
-        //     return header('Location: login?error=error');
-        // }
+        $token = $_GET['token'];
+        $recover = (new PassRecover($this->getDB()))->getByToken($token);
+        if ($recover) {
+            return $this->view('auth.reset');
+        } else {
+            return header('Location: login?error=error');
+        }
 
         return $this->view('auth.reset');
     }
 
     public function resetPost()
     {
+        // Vérifiez si le formulaire a été soumis
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return header('Location: reset?error=error');
+        }
+    
+        // Validez les champs du formulaire
         $validator = new Validator($_POST);
         $errors = $validator->validate([
-            'password' => ['required', 'min:6'],
+            'password' => ['required', 'min:6', 'max:255'],
+            'password_confirmation' => ['required', 'matches:password'],
         ]);
-
+    
+        // Si des erreurs sont détectées, redirigez vers la page de réinitialisation du mot de passe
+        // et affichez les erreurs
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: reset?token='.$_POST['token']);
-            exit;
+            return header('Location: reset?error=error');
         }
+        // Récupérez les données du formulaire
+        $password = $_POST['password'];
 
-        $recover = (new PassRecover($this->getDB()))->getByToken($_POST['token']);
-        $user = (new User($this->getDB()))->getByToken($recover->token_user);
-        $user->update([
-            'password' => password_hash($_POST['password'], PASSWORD_BCRYPT)
-        ]);
-        $recover->delete();
+        $token = $_GET['token'];
+        $token_user = $_GET['u'];
+    
+        // Vérifiez que le token de réinitialisation de mot de passe est valide
+        $recover = (new PassRecover($this->getDB()))->getByToken($token);
+        if (!$recover) {
+            return header('Location: login?error=error');
+        }
+        // Réinitialisez le mot de passe de l'utilisateur
+        $user = new User($this->getDB());
+        $user->updatePassword($token_user, $password);
+    
+        
+        // Supprimez le token de réinitialisation de mot de passe
+        $deleteToken = new PassRecover($this->getDB());
+        $deleteToken->deleteByToken($recover[0]->token);
+        // Redirigez l'utilisateur vers la page de connexion avec un message de succès
         return header('Location: login?success=success');
     }
 }
