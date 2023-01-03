@@ -479,6 +479,7 @@ main()
                     clue_show_content3 = document.querySelector('.clue_show3_content');
                     clue3Time = document.querySelector('.Clue3Time');
 
+                    const titleElems = document.querySelectorAll('.textarea_title_sticky');
 
                     roomsClueId = [...uniqueIdsClue];
 
@@ -506,144 +507,92 @@ main()
 
                     t = 0;
 
+                    clue_show1.addEventListener('click', () => {
+                        toggleContent(clue_show_content1, this);
+                        togglePenality(t, dataGlobalUnlock[0].room[i].clue1penality, penality, countdown);
+                        updateClue(dataGlobal.room[i]['clue'], clue_show_content1, copy, dataGlobal, i, textarea_title_sticky, textareaSticky, titleElems);
+                        updateFoundStatus(dataGlobalUnlock[0].room[i].clue1Found, intervalFunction, interval, t);
+                        return dataGlobalUnlock;
+                    });
 
-                    clue_show1.addEventListener('click', function () {
-                        clue_show_content1.classList.toggle('dnone');
-                        this.classList.toggle('rotate_5deg');
-                        clue_show_content2.classList.add('dnone');
-                        clue_show2.classList.remove('rotate_5deg');
-                        clue_show_content3.classList.add('dnone');
-                        clue_show3.classList.remove('rotate_5deg');
-                        clue_show_content1.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
-
-                        if (t == 0 && !dataGlobalUnlock[0].room[i].clue1penality) {
-                            dataGlobalUnlock[0].room[i].clue1penality = "yes";
-                            t++;
-                            penality.classList.add('topToBottom');
-                            penality.textContent = "-30 sec";
-                            countdown = countdown - 30;
-                            removeToptoBottom()
+                    clue_show2.addEventListener('click', () => {
+                        if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
+                            hideAndDisable(tooltipList[0]);
                         }
 
-                        if (!dataGlobalUnlock[0].room[i].clue1Found) {
-                            intervalFunction(function () {
-                                dataGlobalUnlock[0].room[i].clue1Found = "yes";
-                                tooltipList[0].hide();
-                                tooltipList[0].disable();
+                        togglePenality(t, dataGlobalUnlock[0].room[i].clue2penality, penality, countdown);
 
+                        if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
+                            toggleContent(clue_show_content2, this);
+                            resetToggles(clue_show1, clue_show3, clue_show_content1, clue_show_content3);
+                            updateClue(dataGlobal.room[i]['clue2'], clue_show_content2, copy, dataGlobal, i, textarea_title_sticky, textareaSticky);
+                            updateFoundStatus(dataGlobalUnlock[0].room[i].clue2Found, intervalFunction, interval, t);
+                        }
+                    });
+
+                    clue_show3.addEventListener('click', () => {
+                        if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
+                            hideAndDisable(tooltipList[1]);
+                        }
+
+                        togglePenality(t, dataGlobalUnlock[0].room[i].clue3penality, penality, countdown);
+
+                        if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
+                            toggleContent(clue_show_content3, this);
+                            resetToggles(clue_show1, clue_show2, clue_show_content1, clue_show_content2);
+                            updateClue(dataGlobal.room[i]['clue3'], clue_show_content3, copy, dataGlobal, i, textarea_title_sticky, textareaSticky);
+                            updateFoundStatus(dataGlobalUnlock[0].room[i].clue3Found, intervalFunction, interval, t);
+                        }
+                    });
+
+                    const toggleContent = (content, btn) => {
+                        content.classList.toggle('dnone');
+                        btn.classList.toggle('rotate_5deg');
+                    }
+                    const togglePenality = (currentT, penalityFound, penalityElem, countdown) => {
+                        if (currentT == 0 && !penalityFound) {
+                            dataGlobalUnlock[0].room[i][`clue${currentT + 1}penality`] = "yes";
+                            currentT++;
+                            penalityElem.classList.add('topToBottom');
+                            penalityElem.textContent = "-30 sec";
+                            countdown -= 30;
+                            removeToptoBottom();
+                        }
+                    }
+
+                    const updateClue = (clue, contentElem, copyBtns, data, index, titleElems, stickyElems) => {
+                        contentElem.innerHTML = `<p class="m-0">${clue}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
+
+                        copyBtns.forEach((copyBtn) => {
+                            copyBtn.addEventListener('click', () => {
+                                createstickyOpac.click();
+                                titleElems[titleElems.length - 1].value = `${data.room[index]['title']}`;
+                                stickyElems[stickyElems.length - 1].value = `indice n°1 \n${clue}`;
+                            })
+                        });
+                    }
+
+
+                    const updateFoundStatus = (foundStatus, func, interval, currentT) => {
+                        if (!foundStatus) {
+                            func(() => {
+                                dataGlobalUnlock[0].room[i][`clue${currentT + 1}Found`] = "yes";
                                 interval = 10;
                             });
                         }
+                    }
 
-                        copy = document.querySelectorAll('.copy');
-                        copy.forEach((copy) => {
-                            copy.addEventListener('click', function () {
-                                createstickyOpac.click()
-                                textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                textareaSticky = document.querySelectorAll('.textareaSticky');
-                                textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
-                                textareaSticky[textareaSticky.length - 1].value = `indice n°1 \n${dataGlobal.room[i]['clue']}`;
-                            })
-                        })
+                    const resetToggles = (btn1, btn2, content1, content2) => {
+                        btn1.classList.remove('rotate_5deg');
+                        content1.classList.add('dnone');
+                        btn2.classList.remove('rotate_5deg');
+                        content2.classList.add('dnone');
+                    }
 
-                        return dataGlobalUnlock;
-                    });
-                    // clue_show2.disabled = true;
-                    clue_show2.addEventListener('click', function () {
-
-                        if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
-                            tooltipList[0].hide();
-                            tooltipList[0].disable();
-                        }
-
-                        if (t == 1 && !dataGlobalUnlock[0].room[i].clue2penality) {
-                            dataGlobalUnlock[0].room[i].clue2penality = "yes";
-                            t++
-                            penality.classList.add('topToBottom');
-                            penality.textContent = "-30 sec";
-                            countdown = countdown - 30;
-                            removeToptoBottom()
-                        }
-
-                        if (dataGlobalUnlock[0].room[i].clue1Found == "yes") {
-                            clue_show2.disabled = false;
-                            clue_show_content2.classList.toggle('dnone');
-                            this.classList.toggle('rotate_5deg');
-                            clue_show1.classList.remove('rotate_5deg');
-                            clue_show_content1.classList.add('dnone');
-                            clue_show3.classList.remove('rotate_5deg');
-                            clue_show_content3.classList.add('dnone');
-
-                            clue_show_content2.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue2']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
-
-                            if (!dataGlobalUnlock[0].room[i].clue2Found) {
-                                if (t == 1) {
-                                    t++;
-                                    penality.classList.add('topToBottom');
-                                    penality.textContent = "-30 sec";
-                                    countdown = countdown - 30;
-                                    removeToptoBottom()
-                                    tooltipList[1].hide();
-                                    tooltipList[1].disable();
-                                }
-                                intervalFunction(function () {
-                                    dataGlobalUnlock[0].room[i].clue2Found = "yes";
-                                    tooltipList[1].hide();
-                                    tooltipList[1].disable();
-
-                                    interval = 10;
-                                });
-
-                            }
-                            copy = document.querySelectorAll('.copy');
-                            copy.forEach((copy) => {
-                                copy.addEventListener('click', function () {
-                                    createstickyOpac.click()
-                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                    textareaSticky = document.querySelectorAll('.textareaSticky');
-                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
-                                    textareaSticky[textareaSticky.length - 1].value = `indice n°2 \n${dataGlobal.room[i]['clue2']}`;
-                                })
-                            })
-
-                        }
-                    });
-
-
-                    clue_show3.addEventListener('click', function () {
-                        dataGlobalUnlock[0].room[i].clue3Found == "yes"
-                        if (dataGlobalUnlock[0].room[i].clue2Found == "yes") {
-                            clue_show_content3.classList.toggle('dnone');
-                            this.classList.toggle('rotate_5deg');
-                            clue_show_content1.classList.add('dnone');
-                            clue_show1.classList.remove('rotate_5deg');
-                            clue_show_content2.classList.add('dnone');
-                            clue_show2.classList.remove('rotate_5deg');
-                            clue_show_content3.innerHTML = `<p class="m-0">${dataGlobal.room[i]['clue3']}</p><iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon></button>`;
-
-                            if (t == 2 && !dataGlobalUnlock[0].room[i].clue3penality) {
-                                dataGlobalUnlock[0].room[i].clue3penality = "yes";
-                                t++
-                                penality.classList.add('topToBottom');
-                                penality.textContent = "-30 sec";
-                                countdown = countdown - 30;
-                                removeToptoBottom()
-                                tooltipList[1].hide();
-                                tooltipList[1].disable();
-                            }
-
-                            copy = document.querySelectorAll('.copy');
-                            copy.forEach((copy) => {
-                                copy.addEventListener('click', function () {
-                                    createstickyOpac.click()
-                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                    textareaSticky = document.querySelectorAll('.textareaSticky');
-                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${dataGlobal.room[i]['title']}`;
-                                    textareaSticky[textareaSticky.length - 1].value = `indice n°3 \n${dataGlobal.room[i]['clue3']}`;
-                                })
-                            })
-                        }
-                    });
+                    const hideAndDisable = (tooltip) => {
+                        tooltip.hide();
+                        tooltip.disable();
+                    }
 
 
                     const roomsModalLockLabel = document.getElementById('roomsModalLockLabel');

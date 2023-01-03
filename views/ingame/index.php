@@ -1,6 +1,17 @@
 <?php $_SESSION['test'] = '54'; ?>
 <?php $title = "ACScape"; ?>
 
+<div id='loader' class="loadingspinner d-flex flex-column justify-content-center align-items-center">
+    <div class="container_square">
+        <div id="square1"></div>
+        <div id="square2"></div>
+        <div id="square3"></div>
+        <div id="square4"></div>
+        <div id="square5"></div>
+    </div>
+    <h2>Chargement du jeu</h2>
+</div>
+
 <div class="tools d-flex gap-5">
     <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
         data-target="#roomsModal">

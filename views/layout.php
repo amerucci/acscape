@@ -17,7 +17,6 @@ return header('Location: /acscape/login?error=session_expired');
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
-    <!-- <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'home.css' ?>"> -->
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'show.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
@@ -34,6 +33,8 @@ return header('Location: /acscape/login?error=session_expired');
 </head>
 
 <body>
+
+
 
     <nav class="navbar navbar-expand-lg  gx-0">
         <div class="container-fluid gx-0">
@@ -126,6 +127,7 @@ return header('Location: /acscape/login?error=session_expired');
     </nav>
 
     <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
+
         <?= $content ?>
     </div>
 
