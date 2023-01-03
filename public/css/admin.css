@@ -219,6 +219,11 @@ label {
     min-height: 65px;
 }
 
+.card-title {
+    min-height: 70px;
+}
+
+
 @media (max-width: 1000px) {
     #accordionExample {
         width: 100% !important;

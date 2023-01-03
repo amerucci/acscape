@@ -102,7 +102,7 @@ $title = "Modifier la salle {$room->title}";
         <h3 class="m-0">Liste des meubles</h3>
         <div class="d-flex justify-content-center align-items-center flex-column">
             <a href="/acscape/admin/furniture/create" class="btn btn-primary my-3">Ajouter un meuble</a>
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-3">
                 <?php foreach ($params['furnitures'] as $furniture) : ?>
                 <?php if ($furniture->room_id == $_SESSION['room_id']) : ?>
                 <div class="card mx-2 card_furniture">
