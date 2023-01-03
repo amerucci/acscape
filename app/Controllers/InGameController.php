@@ -10,9 +10,9 @@ class InGameController extends Controller {
     public function index()
     {
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(54);
+        $room = $room->allByScriptIdByNroom(57);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(54);
+        $furniture = $furniture->allByFurnitureId(57);
 
         $data =  [
             'room' => $room,
@@ -31,9 +31,9 @@ class InGameController extends Controller {
     {
         
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(54);
+        $room = $room->allByScriptIdByNroom(57);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(54);
+        $furniture = $furniture->allByFurnitureId(57);
 
         $data =  [
             'room' => $room,

@@ -52,29 +52,28 @@ class RoomController extends Controller {
 
         ]);
 
-        if (is_uploaded_file($_FILES['picture']['tmp_name']) && $result) {
-            $picture = $_FILES['picture']['name'];
-            $picturePath = $_FILES['picture']['tmp_name'];
-            $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
-            $pictureName = time() . '_' . pathinfo($picture, PATHINFO_FILENAME) . '.' . $pictureExtension;
-            $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
-            $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
-            $pictureSize = $_FILES['picture']['size'];
-            $isAllowedExtension = in_array($pictureExtension, $pictureExtensionAllowed) ? true : false;
-            $isAllowedSize = $pictureSize < 1000000 ? true : false;
-          
-            if ($isAllowedExtension && $isAllowedSize) {
-              move_uploaded_file($picturePath, $pictureDestination);
-              header('Location: /acscape/admin/game');
-            } else {
-              if (!$isAllowedExtension) {
-                echo "Votre fichier n'est pas une image";
-              } elseif (!$isAllowedSize) {
-                echo "Votre fichier est trop volumineux";
+        if ($result) {
+          if (!empty($_FILES['picture']['name'])) {
+              $picture = $_FILES['picture']['name'];
+              $picturePath = $_FILES['picture']['tmp_name'];
+              $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
+              $pictureName = pathinfo($picture, PATHINFO_FILENAME);
+              $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
+              $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
+              $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
+              $pictureSize = $_FILES['picture']['size'];
+              if (in_array($pictureExtension, $pictureExtensionAllowed)) {
+                  if ($pictureSize < 5000000) {
+                      move_uploaded_file($picturePath, $pictureDestination);
+                  } else {
+                      echo "Votre fichier est trop volumineux";
+                  }
+              } else {
+                  echo "Votre fichier n'est pas une image";
               }
-            }
-            header('Location: /acscape/admin/game');
-        }
+          }
+          return header('Location: /acscape/admin/game');
+      }
 
 
     }
@@ -112,32 +111,36 @@ class RoomController extends Controller {
             'script_id' => $_POST['script_id'],
         ]);
 
-        if (is_uploaded_file($_FILES['picture']['tmp_name']) && $result) {
-            $picture = $_FILES['picture']['name'];
-            $picturePath = $_FILES['picture']['tmp_name'];
-            $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
-            $pictureName = time() . '_' . pathinfo($picture, PATHINFO_FILENAME) . '.' . $pictureExtension;
-            $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
-            $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
-            $pictureSize = $_FILES['picture']['size'];
-            $isAllowedExtension = in_array($pictureExtension, $pictureExtensionAllowed) ? true : false;
-            $isAllowedSize = $pictureSize < 5000000 ? true : false;
-          
-            if ($isAllowedExtension && $isAllowedSize) {
-              move_uploaded_file($picturePath, $pictureDestination);
-              header('Location: /acscape/admin/game');
-            } else {
-              if (!$isAllowedExtension) {
-                echo "Votre fichier n'est pas une image";
-              } elseif (!$isAllowedSize) {
-                echo "Votre fichier est trop volumineux";
+        if ($result) {
+          if (!empty($_FILES['picture']['name'])) {
+              $picture = $_FILES['picture']['name'];
+              $picturePath = $_FILES['picture']['tmp_name'];
+              $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
+              $pictureName = pathinfo($picture, PATHINFO_FILENAME);
+              $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
+              $pictureDestination = '../assets/pictures/rooms/' . $pictureName;
+              $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
+              $pictureSize = $_FILES['picture']['size'];
+              if (in_array($pictureExtension, $pictureExtensionAllowed)) {
+                  if ($pictureSize < 5000000) {
+                      move_uploaded_file($picturePath, $pictureDestination);
+                  } else {
+                      echo "Votre fichier est trop volumineux";
+                  }
+              } else {
+                  echo "Votre fichier n'est pas une image";
               }
-            }
           }
+          if ($_POST['object_id'] == 0){
+              $_POST['object_id'] = null;
+          }
+          return header('Location: /acscape/admin/game');
+      }
+  
 
-       
-       
     }
+       
+    
 
     public function destroy(int $id)
     {

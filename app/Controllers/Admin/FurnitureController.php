@@ -64,7 +64,7 @@ class FurnitureController extends Controller {
                     $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                     $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                     $pictureDestination = '../assets/pictures/furnitures/' . $pictureName;
-                    $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
+                    $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
                     $pictureSize = $_FILES['picture']['size'];
                     if (in_array($pictureExtension, $pictureExtensionAllowed)) {
                         if ($pictureSize < 5000000) {

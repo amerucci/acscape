@@ -26,8 +26,8 @@
                 <div class="form-group form_padlock d-flex justify-content-center align-items-center flex-column">
                     <label for="padlock">Serrure</label>
                     <select name="padlock" id="padlock" class="form-control">
-                        <option value="no">Non</option>
                         <option value="yes">Oui</option>
+                        <option value="no">Non</option>
                     </select>
                 </div>
                 <div
@@ -87,11 +87,21 @@
         <?php $rooms = $params['json']; echo '<script>const rooms = ' . $rooms . '</script>'; ?>
 
         <script>
+            let padLock = document.getElementById('padlock');
             const nbrooms = Object.values(rooms)[0];
+            if (nbrooms < 1) {
+                padlock.value = 'no';
+                document.querySelector('.form_padlock').classList.add('dnone');
+            } else {
+                document.querySelector('.form_padlock').classList.remove('dnone');
+                padlock();
+            }
             const numeRoom = document.getElementById('n-room');
             const nbroomsNumber = parseInt(nbrooms);
             numeRoom.min = nbroomsNumber + 1;
             numeRoom.value = nbroomsNumber + 1;
+
+
 
 
 
@@ -143,19 +153,19 @@
 
             function padlock() {
 
-                let padlock = document.getElementById('padlock');
+
                 let padlockParams = document.querySelector('.padlock_params');
-                if (padlock.value === 'yes') {
+                if (padLock.value === 'yes') {
                     padlockParams.classList.remove('dnone');
                 }
 
-                padlock.addEventListener('change', function () {
-                    if (padlock.value === 'yes') {
+                padLock.addEventListener('change', function () {
+                    if (padLock.value === 'yes') {
                         padlockParams.classList.remove('dnone');
                     } else {
                         padlockParams.classList.add('dnone');
                     }
                 });
             }
-            padlock();
+            // padlock();
         </script>

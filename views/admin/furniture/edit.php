@@ -117,23 +117,26 @@ $title = "Modification du meuble"; ?>
 
 
 <script>
-    let i = 1;
-    document.getElementById('addClue').addEventListener('click', function () {
-        if (i < 3) {
-            i++;
-            let newClue = document.createElement('textarea');
-            newClue.setAttribute('name', 'clue' + i);
-            newClue.setAttribute('id', 'clue' + i);
-            newClue.setAttribute('placeholder', 'Indice ' + i);
-            newClue.setAttribute('class', 'form-control mt-2');
-            document.getElementById('clue').parentNode.insertBefore(newClue, document.getElementById(
-                'addClue'));
-        }
-        if (i === 3) {
-            document.getElementById('addClue').setAttribute('disabled', 'disabled');
-            document.getElementById('addClue').style.cursor = 'not-allowed';
-        }
-    });
+    let c = 1;
+    if (document.getElementById('addClue') != null) {
+        document.getElementById('addClue').addEventListener('click', function () {
+            if (c < 3) {
+                c++;
+                let newClue = document.createElement('textarea');
+                newClue.setAttribute('name', 'clue' + c);
+                newClue.setAttribute('id', 'clue' + c);
+                newClue.setAttribute('placeholder', 'Indice ' + c);
+                newClue.setAttribute('class', 'form-control mt-2');
+                document.getElementById('clue').parentNode.insertBefore(newClue, document
+                    .getElementById(
+                        'addClue'));
+            }
+            if (c === 3) {
+                document.getElementById('addClue').setAttribute('disabled', 'disabled');
+                document.getElementById('addClue').style.cursor = 'not-allowed';
+            }
+        });
+    }
 
     let addPicture = document.getElementById('addPicture');
     let picture = document.getElementById('picture');

@@ -2,6 +2,14 @@ let ingame_background = document.querySelector('.ingame_container_background')
 
 let modal_title = document.querySelector('.modal-title');
 const penality = document.querySelector('.penality');
+let penality_info
+
+function function_penality_info() {
+    setTimeout(function () {
+        penality_info.style.fontSize = "1rem";
+        penality_info.textContent = "-30 sec pour avoir ouvert l'énigme ";
+    }, 200);
+}
 
 
 let navbar = document.querySelector('.navbar');
@@ -91,19 +99,21 @@ function intervalFunction(callback) {
 
     function tick() {
         if (roomsLock = document.querySelector('#roomsLock') != null) {
-            penalityClue.innerHTML = "";
+            penality_info.innerHTML = "";
             interval--;
             if (clue_show2.classList.contains('dnone')) {
-                penalityClue.innerHTML = ""
+                penality_info.innerHTML = ""
                 clearInterval(intervalId);
                 console.log(interval);
             } else {
-                penalityClue.innerHTML = `<iconify-icon class="moveLr mx-1"  icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">${interval}s avant le prochain indice</p>`;
+                penality_info.innerHTML = `<iconify-icon class="moveLr mx-1"  icon="fluent-mdl2:chronos-logo"></iconify-icon><p class="m-0">${interval}s avant le prochain indice</p>`;
+
             }
         }
 
         if (interval === 0) {
             clearInterval(intervalId);
+            penality_info.classList.add('fade');
             penalityClue.innerHTML = "";
             callback();
         }
@@ -220,7 +230,7 @@ main()
 
             li_room = document.createElement('li');
             li_room.classList.add('rooms_list_item', `nb-${i}`);
-            li_room.innerHTML = dataGlobalUnlock[0].room[i].title;
+            // li_room.innerHTML = dataGlobalUnlock[0].room[i].title;
             roomsList.appendChild(li_room);
 
 
@@ -310,7 +320,7 @@ main()
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content modalRoomOpen">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalOpenLabel">${this.innerHTML}</h5>
+                                                            <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalOpenLabel">${dataGlobalUnlock[0].room[i].title}</h5>
                                                             <button type="button" class="closeOpen" data-bs-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">
                                                                     <iconify-icon icon="akar-icons:cross" style="color: #d31e44;" width="35" height="35">
@@ -363,7 +373,7 @@ main()
                                 <div class="modal-content modalRoomLock">
                                     <div class="modal-header">
                                     
-                                            <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalLockLabel">${this.innerHTML}</h5>
+                                            <h5 class="modal-title mx-auto d-flex align-items-center gap-3" id="roomsModalLockLabel">${dataGlobalUnlock[0].room[i].title}</h5>
                                       
                                         <button type="button" class="closeLock" data-bs-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">
@@ -388,7 +398,7 @@ main()
                                                             <div class="progress w-100 h-100">
                                                                 <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                                             </div>
-                                                            <p class="text-center penality_info"></p>
+                                                            <p class="text-center penality_info my-2"></p>
                                                         </div>
                                                
                                             </div>
@@ -456,6 +466,8 @@ main()
                     let tl = interval;
 
 
+
+
                     clue_btn_content = document.querySelector('#clue_btn_content');
                     switch_container = document.querySelector('.switch_container');
                     input_container = document.querySelector('.input_container');
@@ -508,6 +520,7 @@ main()
 
 
                     clue_show1.addEventListener('click', function () {
+
                         clue_show_content1.classList.toggle('dnone');
                         this.classList.toggle('rotate_5deg');
                         clue_show_content2.classList.add('dnone');
@@ -521,8 +534,11 @@ main()
                             t++;
                             penality.classList.add('topToBottom');
                             penality.textContent = "-30 sec";
+                            penality_info.textContent = '';
+                            penality_info.classList.remove('fade');
+                            function_penality_info()
                             countdown = countdown - 30;
-                            removeToptoBottom()
+                            removeToptoBottom();
                         }
 
                         if (!dataGlobalUnlock[0].room[i].clue1Found) {
@@ -561,6 +577,9 @@ main()
                             t++
                             penality.classList.add('topToBottom');
                             penality.textContent = "-30 sec";
+                            penality_info.textContent = '';
+                            penality_info.classList.remove('fade');
+                            function_penality_info()
                             countdown = countdown - 30;
                             removeToptoBottom()
                         }
@@ -627,6 +646,9 @@ main()
                                 penality.classList.add('topToBottom');
                                 penality.textContent = "-30 sec";
                                 countdown = countdown - 30;
+                                penality_info.textContent = '';
+                                penality_info.classList.remove('fade');
+                                function_penality_info()
                                 removeToptoBottom()
                                 tooltipList[1].hide();
                                 tooltipList[1].disable();
@@ -654,7 +676,7 @@ main()
                     const progress_bar = document.querySelector('.progress-bar');
                     let room_try = 3;
                     backdrop = document.querySelector('.closeLock');
-                    const penality_info = document.querySelector('.penality_info');
+                    penality_info = document.querySelector('.penality_info');
                     room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
 
                     rooms_unlock_btn.addEventListener('click', function () {
@@ -723,8 +745,6 @@ main()
                     setInterval(function () {
                         buttonConfetti.click();
                     }, 200)
-
-
                 }
 
 
@@ -1093,6 +1113,7 @@ main()
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="modalF_open">${furniture.title}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon>  
                                                         </div>
                                                         <div class="modal-body">
                                                             <p class="furniture_reward  reward_container">${furniture.reward}</p>
@@ -1104,6 +1125,17 @@ main()
                                     const myModal = new bootstrap.Modal(modal);
                                     myModal.show();
 
+                                    copy = document.querySelectorAll('.copy');
+                                    copy.forEach((copy) => {
+                                        copy.addEventListener('click', function () {
+                                            console.log('copy');
+                                            createstickyOpac.click()
+                                            textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                            textareaSticky = document.querySelectorAll('.textareaSticky');
+                                            textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
+                                            textareaSticky[textareaSticky.length - 1].value = `${furniture['reward']}`;
+                                        })
+                                    })
 
 
                                     modal.addEventListener('hidden.bs.modal', function () {
@@ -1175,10 +1207,12 @@ main()
                                     <div class="modal-content modalFurnitureOpen">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalF_open">${furniture.title}</h5>
+                                            <iconify-icon class="copy" icon="clarity:copy-to-clipboard-line"></iconify-icon>  
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
+                                                                            
                                         <div class="modal-body">
-                                            <p class='furniture_reward reward_container'>${furniture.reward}</p>                                            
+                                            <p class='furniture_reward reward_container'>${furniture.reward}</p>     
                                         </div>
                                     </div>
                                 </div>
@@ -1189,6 +1223,19 @@ main()
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
                             });
+
+
+                            copy = document.querySelectorAll('.copy');
+                            copy.forEach((copy) => {
+                                copy.addEventListener('click', function () {
+                                    console.log('copy');
+                                    createstickyOpac.click()
+                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+                                    textareaSticky = document.querySelectorAll('.textareaSticky');
+                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
+                                    textareaSticky[textareaSticky.length - 1].value = `${furniture['reward']}`;
+                                })
+                            })
 
                         });
                     }
@@ -1215,6 +1262,9 @@ main()
     .catch(error => {
         console.error(error);
     });
+
+
+
 
 
 const wiki = document.querySelector('.wiki');

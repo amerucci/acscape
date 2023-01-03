@@ -169,13 +169,14 @@ modal {
     flex-direction: column-reverse;
     flex-wrap: wrap;
     padding: 10px 0;
-    min-height: 150px;
-    min-width: 20%;
+    min-height: 200px;
+    min-width: 30%;
     font-family: 'Montserrat';
     font-size: 1.3rem;
     position: relative;
     gap: 2%;
     font-weight: bold;
+    margin: 2% 2%;
 }
 
 .furniture_list_item {
@@ -559,7 +560,7 @@ button.button {
     border: none;
     background-color: transparent;
     resize: none;
-    height: 50px;
+    min-height: 50px;
     font-size: 1.55rem;
     font-weight: bold;
 }
@@ -639,6 +640,7 @@ button.button {
     bottom: 11%;
     right: 6%;
     cursor: pointer;
+    z-index: 9999999;
 }
 
 /* webkit scrollbar */
@@ -754,7 +756,7 @@ iframe {
 
     .rooms_list_item,
     .furniture_list_item {
-        min-width: 25%;
+        min-width: 70%;
         padding: 3%;
     }
 
