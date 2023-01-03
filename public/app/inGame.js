@@ -84,6 +84,7 @@ setInterval(updateCountdown, 1000);
 let interval = 10;
 let intervalId;
 let roomsLock;
+let furniture_modal;
 // function callback countdown
 function intervalFunction(callback) {
     interval = 10;
@@ -98,7 +99,7 @@ function intervalFunction(callback) {
     intervalId = setInterval(tick, 1000);
 
     function tick() {
-        if (roomsLock = document.querySelector('#roomsLock') != null) {
+        if ((roomsLock = document.querySelector('#roomsLock') != null) || (furniture_modal = document.querySelector('#furniture_modal') != null)) {
             penality_info.innerHTML = "";
             interval--;
             if (clue_show2.classList.contains('dnone')) {
@@ -877,9 +878,15 @@ main()
                             switch_try = document.querySelector('.switch_try');
                             checkTry = document.querySelector('.check_try');
 
-                            // CLue ************
+                            // CLue furniture ************
                             let t = 0; // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
                             const clue_btn_content = document.querySelector('#clue_btn_content');
+
+                            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+
+                            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                                return new bootstrap.Tooltip(tooltipTriggerEl)
+                            })
 
                             clue_show1 = document.querySelector('.clue_show1');
 
@@ -941,6 +948,9 @@ main()
                                     t++;
                                     penality.classList.add('topToBottom');
                                     penality.textContent = "-30 sec";
+                                    penality_info.classList.remove('fade');
+                                    penality_info.textContent = "Vous avez ouvert un indice";
+                                    function_penality_info()
                                     countdown = countdown - 30;
                                     removeToptoBottom()
                                 }
@@ -958,19 +968,19 @@ main()
                                 copy = document.querySelectorAll('.copy');
                                 copy.forEach((copy) => {
                                     copy.addEventListener('click', function () {
-                                        createstickyOpac.click()
-                                        textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                        textareaSticky = document.querySelectorAll('.textareaSticky');
-                                        textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
-                                        textareaSticky[textareaSticky.length - 1].value = `indice n°1 \n${furniture['clue']}`;
+                                        console.log('copy');
+                                        let copyclue1 = `indice 1: ${furniture['clue']}`;
+                                        copyFurniture(furniture['title'], copyclue1);
                                     })
-                                })
+                                });
 
 
                             });
                             // clue_show2.disabled = true;
                             clue_show2.addEventListener('click', function () {
+                                console.log('clue_show2 1ok');
                                 if (furniture.clue1Found == "yes") {
+                                    clue_show2.disabled = false;
                                     tooltipList[0].hide();
                                     tooltipList[0].disable();
                                 }
@@ -980,12 +990,15 @@ main()
                                     t++
                                     penality.classList.add('topToBottom');
                                     penality.textContent = "-30 sec";
+                                    penality_info.classList.remove('fade');
+                                    function_penality_info()
                                     countdown = countdown - 30;
                                     removeToptoBottom()
                                 }
 
                                 if (furniture.clue1Found == "yes") {
                                     clue_show2.disabled = false;
+                                    console.log('clue_show2 2ok');
                                     clue_show_content2.classList.toggle('dnone');
                                     this.classList.toggle('rotate_5deg');
                                     clue_show1.classList.remove('rotate_5deg');
@@ -1016,14 +1029,11 @@ main()
                                     copy = document.querySelectorAll('.copy');
                                     copy.forEach((copy) => {
                                         copy.addEventListener('click', function () {
-                                            createstickyOpac.click()
-                                            textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                            textareaSticky = document.querySelectorAll('.textareaSticky');
-                                            textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
-                                            textareaSticky[textareaSticky.length - 1].value = `indice n°2 \n${furniture['clue2']}`;
+                                            console.log('copy');
+                                            let copyclue2 = `indice 2: ${furniture['clue2']}`;
+                                            copyFurniture(furniture['title'], copyclue2);
                                         })
-                                    })
-
+                                    });
                                 }
                             });
 
@@ -1053,13 +1063,11 @@ main()
                                     copy = document.querySelectorAll('.copy');
                                     copy.forEach((copy) => {
                                         copy.addEventListener('click', function () {
-                                            createstickyOpac.click()
-                                            textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                            textareaSticky = document.querySelectorAll('.textareaSticky');
-                                            textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
-                                            textareaSticky[textareaSticky.length - 1].value = `indice n°3 \n${furniture['clue3']}`;
+                                            console.log('copy');
+                                            let copyclue3 = `indice 3: ${furniture['clue3']}`;
+                                            copyFurniture(furniture['title'], copyclue3);
                                         })
-                                    })
+                                    });
                                 }
                             });
 
@@ -1072,7 +1080,7 @@ main()
                             let furniture_unlock_try = 3;
                             furniture_unlock_statut.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${furniture_unlock_try}</span>`;
                             const progress_bar = document.querySelector('.progress-bar');
-                            const penality_info = document.querySelector('.penality_info');
+                            penality_info = document.querySelector('.penality_info');
                             backdrop = document.querySelector('.closeLock');
                             furniture_key_unlock_btn.addEventListener('click', function () {
 
@@ -1128,14 +1136,9 @@ main()
                                     copy = document.querySelectorAll('.copy');
                                     copy.forEach((copy) => {
                                         copy.addEventListener('click', function () {
-                                            console.log('copy');
-                                            createstickyOpac.click()
-                                            textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                            textareaSticky = document.querySelectorAll('.textareaSticky');
-                                            textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
-                                            textareaSticky[textareaSticky.length - 1].value = `${furniture['reward']}`;
+                                            copyFurniture(furniture['title'], furniture['reward']);
                                         })
-                                    })
+                                    });
 
 
                                     modal.addEventListener('hidden.bs.modal', function () {
@@ -1229,13 +1232,11 @@ main()
                             copy.forEach((copy) => {
                                 copy.addEventListener('click', function () {
                                     console.log('copy');
-                                    createstickyOpac.click()
-                                    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
-                                    textareaSticky = document.querySelectorAll('.textareaSticky');
-                                    textarea_title_sticky[textarea_title_sticky.length - 1].value = `${furniture['title']}`;
-                                    textareaSticky[textareaSticky.length - 1].value = `${furniture['reward']}`;
+                                    copyFurniture(furniture['title'], furniture['reward']);
                                 })
-                            })
+                            });
+
+
 
                         });
                     }
@@ -1264,7 +1265,13 @@ main()
     });
 
 
-
+function copyFurniture(title, reward) {
+    createstickyOpac.click()
+    textarea_title_sticky = document.querySelectorAll('.textarea_title_sticky');
+    textareaSticky = document.querySelectorAll('.textareaSticky');
+    textarea_title_sticky[textarea_title_sticky.length - 1].value = title;
+    textareaSticky[textareaSticky.length - 1].value = reward;
+}
 
 
 const wiki = document.querySelector('.wiki');
