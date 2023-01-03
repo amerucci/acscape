@@ -1,13 +1,3 @@
-// document.onreadystatechange = function () {
-//     if (document.readyState == "complete") {
-//         document.getElementById('loader').style.display = 'none';
-//     } else {
-//         document.getElementById('loader').style.display = 'block';
-//     }
-// }
-
-
-
 if (window.location.href == "http://localhost/acscape/" || window.location.href ==
     "http://localhost/acscape/index" || window.location.href == "http://localhost/acscape/show") {
     document.querySelector('.navbar').style.position = "absolute";
@@ -27,8 +17,9 @@ if (window.location.href.includes("ingame")) {
             setTimeout(function () {
                 document.getElementById('loader').classList.add('fade');
             }, 2000);
-        } else {
-            document.getElementById('loader').classList.remove('fade');
+            setTimeout(function () {
+                document.getElementById('loader').remove();
+            }, 2100);
         }
     }
     document.querySelector('.navbar').style.color = "white";
