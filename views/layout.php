@@ -160,7 +160,7 @@ return header('Location: /acscape/login?error=session_expired');
 
 <script src="\acscape\public\app\app.js"></script>
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-<script src="public\app\inGameBar.js"></script>
+<script src="public\app\inGame.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
 <?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
