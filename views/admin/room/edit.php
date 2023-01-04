@@ -1,6 +1,9 @@
 <?php $room = $params['room'];
 $title = "Modifier la salle {$room->title}";
 ?>
+<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 
 <div class="container admin_container">
@@ -130,9 +133,6 @@ $title = "Modifier la salle {$room->title}";
 
 <?php $n_room = json_encode($params['room']->n_room); ?>
 <?php echo '<script>const Nrooms = ' . json_decode($n_room). '</script>'; ?>
-
-
-
 
 <script>
     let padlockContainer = document.querySelector('.form_padlock');

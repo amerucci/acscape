@@ -1,6 +1,7 @@
 <?php $title = "Se connecter"; ?>
 
-<!-- <?php session_destroy(); ?> -->
+<?php $_SESSION['csrf'] = $params["csrf_token"]; ?>
+
 
 
 <div class="background_login_register"></div>
@@ -67,11 +68,11 @@
             <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
             <button type="submit" class="btn_login_register">Se connecter</button>
             <a class="forgot" href="/acscape/forgot">mot de passe oublié</a>
-
         </form>
 
     </div>
 </div>
+
 
 
 <script>

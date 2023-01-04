@@ -1,6 +1,9 @@
 <?php
 $title = "modifier le scénario " . $params['script']->title;
  $script = $params['script'] ?>
+<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 <div class="container admin_container my-5">
     <div class="d-flex justify-content-center align-items-center gap-2 flex-column">

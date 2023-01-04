@@ -17,6 +17,7 @@ class UserController extends Controller {
             'samesite' => 'None',
             'secure' => true
             ]);
+   
         return $this->view('auth.login',compact('csrf_token'));
        
     }

@@ -3,7 +3,10 @@
 // Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+
 <?php endif; ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">

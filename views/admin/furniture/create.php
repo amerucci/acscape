@@ -1,4 +1,7 @@
 <?php $title = "Creation d'un meuble"; ?>
+<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 <div class="container admin_container">
     <div class="d-flex justify-content-center align-items-center flex-column w-100 my-5">

@@ -1,5 +1,8 @@
 <?php $furniture = $params['furniture'];
 $title = "Modification du meuble"; ?>
+<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 <div class="container admin_container">
     <h1 class="text-center">Modification du meuble</h1>

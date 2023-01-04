@@ -1,5 +1,8 @@
 <?php $title = "Creation des scripts"; ?>
 <?php unset($_SESSION['script_id']); ?>
+<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 <div class="container admin_container">
 
