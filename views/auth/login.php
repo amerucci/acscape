@@ -58,9 +58,11 @@
                 <input type="text" name="username" id="username" required="" autocomplete="off" class="no-autofill-bkg">
                 <label>Nom d'utilisateur</label>
             </div>
-            <div class="user-box">
+            <div class="user-box position-relative">
                 <input type="password" name="password" required="" autocomplete="off" class="password">
                 <label>Mot de passe</label>
+                <iconify-icon class="pass_to_text" icon="mdi:form-textbox-password" width="30" height="30">
+                </iconify-icon>
             </div>
             <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
             <button type="submit" class="btn_login_register">Se connecter</button>
@@ -82,10 +84,22 @@
     let passwordRegist = document.querySelector('.password');
     let passwordRegister;
     const labelpassword = document.querySelector('.password').nextElementSibling;
+    const pass_to_text = document.querySelector('.pass_to_text');
+
+    pass_to_text.addEventListener('click', function () {
+        if (passwordRegist.getAttribute('type') === 'password') {
+            passwordRegist.setAttribute('type', 'text');
+            pass_to_text.setAttribute('icon', 'mdi:form-textbox');
+        } else {
+            passwordRegist.setAttribute('type', 'password');
+            pass_to_text.setAttribute('icon', 'mdi:form-textbox-password');
+        }
+    });
+
 
     onglet_login.addEventListener('click', function () {
         labelpassword.textContent = "Mot de passe";
-        labelpassword.style.color = "rgb(184, 184, 184)";
+        labelpassword.style.color = "rgba(108, 108, 108, 1)";
         onglet_login.classList.add('onglet_login_register_item_active');
         onglet_register.classList.remove('onglet_login_register_item_active');
         passwordRegist.classList.remove('passwordRegister');
@@ -110,8 +124,6 @@
         formLogin.action = 'register';
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
             passwordRegist.setAttribute('data-action', 'passwordRegister');
-            console.log('ok');
-
             forgot.style.display = 'none';
             btn_login_register[0].innerHTML = 'S\'inscrire';
             titleLogin[0].innerHTML = 's\'inscrire<span>&#x25CF;</span>';
@@ -146,15 +158,15 @@
             const password = this.value;
             console.log(password);
             const isValid = isPasswordValid(password);
-
-
             if (isValid) {
                 labelpassword.textContent = 'Mot de passe valide';
-                labelpassword.style.color = "rgb(184, 184, 184)";
+                labelpassword.style.color = "rgba(108, 108, 108, 1)";
+                btn_login_register[0].disabled = false;
             } else {
                 labelpassword.textContent =
                     'le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre';
                 labelpassword.style.color = 'red';
+                btn_login_register[0].disabled = true;
             }
         }
     });

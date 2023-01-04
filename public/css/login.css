@@ -190,3 +190,9 @@
     color: rgba(108, 108, 108, 1);
     font-family: "montserrat", sans-serif;
 }
+
+.pass_to_text {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}
