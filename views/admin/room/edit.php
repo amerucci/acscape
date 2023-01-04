@@ -108,7 +108,7 @@ $title = "Modifier la salle {$room->title}";
                 <div class="card mx-2 card_furniture">
                     <div class="card-body d-flex justify-content-center align-items-center flex-column gap-5">
                         <h5 class="card-title"><?= $furniture->title ?></h5>
-                        <p class="card-text"><?= $furniture->description ?></p>
+                        <p class="card-text"><?=  substr($furniture->description,  0, 50).'...' ?></p>
                         <div class="d-flex flex-column w-100">
                             <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>"
                                 class="btn btn-primary my-1 w-100">Editer</a>
@@ -128,8 +128,20 @@ $title = "Modifier la salle {$room->title}";
 
 </div>
 
+<?php $n_room = json_encode($params['room']->n_room); ?>
+<?php echo '<script>const Nrooms = ' . json_decode($n_room). '</script>'; ?>
+
+
+
 
 <script>
+    let padlockContainer = document.querySelector('.form_padlock');
+    if (Nrooms == 1) {
+        console.log('ok');
+        padlockContainer.classList.add('dnone')
+    }
+
+
     let addPicture = document.getElementById('addPicture');
     let picture = document.getElementById('picture');
     let i = 0;
