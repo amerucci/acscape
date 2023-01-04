@@ -4,6 +4,11 @@ $title = "Modifier la salle {$room->title}";
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+<?php if ((int) $params['room']->user_id != $_SESSION['user_id']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
+
+
 
 
 <div class="container admin_container">

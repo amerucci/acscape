@@ -2,8 +2,9 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\Furniture;
+use App\models\User;
 use App\Models\Objects;
+use App\Models\Furniture;
 use App\Controllers\Controller;
 
 
@@ -28,9 +29,8 @@ class FurnitureController extends Controller {
         public function create()
         {
             $this->isAdmin();
-            $objects = (new Objects($this->getDB()))->all();
-        
-            return $this->view('admin.furniture.create', compact('objects'));
+            $users = (new User($this->getDB()))->getByUserId($_SESSION['user_id']);
+            return $this->view('admin.furniture.create', compact('users'));
         }
     
         public function createFurniture()

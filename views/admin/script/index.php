@@ -5,6 +5,9 @@ $scripts = $params['scripts']; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+<?php if ((int)$params['scripts'][0]->user_id != $_SESSION['user_id']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 
 <div class="container admin_container d-flex justify-content-center align-items-center flex-column ">

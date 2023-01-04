@@ -2,6 +2,13 @@
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+<!-- <?php var_dump((int) $params['users'][0]->id); ?>
+<?php var_dump($_SESSION['user_id']); ?>
+<?php var_dump($_SESSION['user_id'] == (int) $params['users'][0]->id); ?> -->
+<?php if ($_SESSION['user_id'] != (int) $params['users'][0]->id) {
+return header('Location: /acscape/login?error=error');
+} ?>
+
 
 <div class="container admin_container">
     <div class="d-flex justify-content-center align-items-center flex-column w-100 my-5">

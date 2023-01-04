@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\models\User;
 use App\Models\Script;
 use App\Controllers\Controller;
 
@@ -27,8 +28,8 @@ class ScriptController extends Controller {
     public function create()
     {
         $this->isAdmin();
-    
-        return $this->view('admin.script.create');
+        $users = (new User($this->getDB()))->getByUserId($_SESSION['user_id']);    
+        return $this->view('admin.script.create', compact('users'));
     }
 
     public function createScript()

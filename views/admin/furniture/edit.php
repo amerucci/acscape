@@ -3,6 +3,9 @@ $title = "Modification du meuble"; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+<?php if ($_SESSION['user_id'] != (int) $params['furniture']->user_id) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
 
 <div class="container admin_container">
     <h1 class="text-center">Modification du meuble</h1>
@@ -90,32 +93,6 @@ return header('Location: /acscape/login?error=session_expired');
         </form>
     </div>
 
-
-
-    <!-- <div class="d-flex justify-content-center align-items-center flex-column mb-5">
-
-        <h2 class="mt-5">objet lié à ce meuble</h2>
-        <a href="/acscape/admin/objects/create" class="btn btn-primary my-2">Créer un objet</a>
-        <div class="d-flex mx-2 justify-content-center align-items-center flex-column gap-2">
-            <?php foreach ($params['object'] as $object) : ?>
-            <?php if ($furniture->object_id == $object->id) : ?>
-            <div class="card" style="width: 12rem;">
-                <div class="card-body card_objects d-flex justify-content-center align-items-center flex-column">
-                    <img src="/acscape/assets/pictures/objects/<?= $object->picture ?>" class="card-img-top" alt="...">
-                    <h5 class="card-title"><?= $object->title ?></h5>
-                    <p class="card-text"><?= $object->description ?></p>
-                    <div class="d-flex justify-content-center align-items-center flex-column gap-2">
-                        <a href="/acscape/admin/objects/edit/<?= $object->id ?>" class="btn btn-primary">Modifier</a>
-                        <form action="/acscape/admin/objects/destroy/<?= $object->id ?>" method="post">
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    </div> -->
 </div>
 
 

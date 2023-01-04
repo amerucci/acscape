@@ -5,6 +5,10 @@ $title = "modifier le scénario " . $params['script']->title;
 return header('Location: /acscape/login?error=session_expired');
 } ?>
 
+<?php if ((int)$params['script']->user_id != $_SESSION['user_id']) {
+return header('Location: /acscape/login?error=session_expired');
+} ?>
+
 <div class="container admin_container my-5">
     <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
         <a href='/acscape/admin/game' class='btn btn-primary create_game_script my-3'>création du jeu</a>

@@ -3,6 +3,10 @@
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /acscape/login?error=session_expired');
 } ?>
+<?php if ((int)$params['users'][0]->id != $_SESSION['user_id']) {
+return header('Location: /acscape/login?error=error');
+} ?>
+
 
 <div class="container admin_container">
 

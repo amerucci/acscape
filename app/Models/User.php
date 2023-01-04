@@ -15,7 +15,7 @@ class User extends Model {
         }
     }
 
-    public function getByUserId(int $id): User
+    public function getByUserId(int $id)
     {
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id]);
     }

@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Room;
+use App\models\User;
 use App\Models\Furniture;
 use App\Controllers\Controller;
 
@@ -28,7 +29,8 @@ class RoomController extends Controller {
         $this->isAdmin();
         $rooms = (new Room($this->getDB()))->countByRoomScriptID($_SESSION['script_id']);
         $json = json_encode($rooms);
-        return $this->view('admin.room.create', compact('json'));
+        $users = (new User($this->getDB()))->getByUserId($_SESSION['user_id']);
+        return $this->view('admin.room.create', compact('json', 'users'));
     }
 
     public function createRoom()
