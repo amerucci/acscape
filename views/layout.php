@@ -25,11 +25,10 @@ return header('Location: /acscape/login?error=session_expired');
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'admin.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/style.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-
-    <!--link font -->
-
-
+    <!-- custom cursor -> https://github.com/guillaume-rygn/MS-Cursor -->
+    <!-- caroussel -> https://splidejs.com/ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <title><?= $title ?></title>
@@ -178,7 +177,7 @@ return header('Location: /acscape/login?error=session_expired');
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
 <script src="public\app\splide.min.js"></script>
 <?php endif; ?>
-
+<script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script>
 
 
 </html>

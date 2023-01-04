@@ -22,10 +22,10 @@
 </section>
 
 
-<section class="enigmes container d-flex flex-column gap-5 justify-content-evenly" id='first_section'>
+<section class="enigmes container d-flex flex-column gap-5 justify-content-evenly my-5" id='first_section'>
     <h3 class="text-center subtitle">Nos Escape Games</h3>
 
-    <div class="first_game d-flex flex-column flex-lg-row justify-content-center">
+    <div class="first_game d-flex flex-column flex-lg-row justify-content-center my-3">
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
 
 
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center">
+    <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center my-3">
         <div class="img_game my-auto col-lg-8 row">
             <img src="assets\front\img_game\img_game.jpg" class="img-fluid" alt="">
         </div>
