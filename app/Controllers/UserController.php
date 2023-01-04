@@ -11,7 +11,12 @@ class UserController extends Controller {
     public function login()
     {
         $csrf_token = $this->generateCsrfToken();
-        setcookie('csrf_token', $csrf_token, time() + 7200 );
+        // setcookie('csrf_token', $csrf_token, time() + 7200 );
+        setcookie('csrf_token', $csrf_token, [
+            'expires' => time() + 7200,
+            'samesite' => 'None',
+            'secure' => true
+            ]);
         return $this->view('auth.login',compact('csrf_token'));
        
     }
@@ -78,25 +83,61 @@ class UserController extends Controller {
         'email' => ['required', 'email'],
         'password' => ['required', 'min:6'],
         ]);
-    
+
         if ($errors) {
          $_SESSION['errors'][] = $errors;
          header('Location: login');
          exit;
             }
     
-        $user = new User($this->getDB());
+    
+
+     
+            $user = new User ($this->getDB());
+            $email = $user->getByUserMail($_POST['email']);
+            $username = $user->getByUsername($_POST['username']);
+            if ($email) {
+                $_SESSION['errorMail'][] = 'Cet email est déjà utilisé';
+                header('Location: login?error=email');
+                exit;
+            }
+            if ($username) {
+                $_SESSION['errorUsername'][] = 'Ce nom d\'utilisateur est déjà utilisé';
+                header('Location: login?error=username');
+                exit;
+            }
+
+
+            // if ($errors) {
+            //     $_SESSION['errors'][] = $errors;
+            //     header('Location: login');
+            //     exit;
+            //        }
+
+
         $user->create([
         'username' => $_POST['username'],
         'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
         'role' => 1,
         'email' => $_POST['email'],
         'token' => $token
-                
             ]);
     
+    
+            // if ($username) {
+            //     $_SESSION['errors'][] = 'Ce nom d\'utilisateur est déjà utilisé';
+            //     header('Location: register');
+            //     exit;
+            // }
+    
+          
+
+
         return header('Location: login');
     }
+
+
+
 
     public function forgot()
     {

@@ -24,9 +24,17 @@
             <li>La session a expirée</li>
         </div>
         <?php endif ?>
-
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'email'): ?>
+        <div class="alert alert-danger">
+            <li>Cet email existe déjà</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'username'): ?>
+        <div class="alert alert-danger">
+            <li>Ce nom d'utilisateur existe déjà</li>
+        </div>
+        <?php endif ?>
         <?php if (isset($_SESSION['errors'])): ?>
-
         <?php foreach($_SESSION['errors'] as $errorsArray): ?>
         <?php foreach($errorsArray as $errors): ?>
         <div class="alert alert-danger">
@@ -51,7 +59,7 @@
                 <label>Nom d'utilisateur</label>
             </div>
             <div class="user-box">
-                <input type="password" name="password" required="" autocomplete="off">
+                <input type="password" name="password" required="" autocomplete="off" class="password">
                 <label>Mot de passe</label>
             </div>
             <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
@@ -71,12 +79,18 @@
     const btn_login_register = document.getElementsByClassName('btn_login_register');
     const titleLogin = document.getElementsByClassName('titleLogin');
     const forgot = document.querySelector('.forgot');
-
+    let passwordRegist = document.querySelector('.password');
+    let passwordRegister;
+    const labelpassword = document.querySelector('.password').nextElementSibling;
 
     onglet_login.addEventListener('click', function () {
+        labelpassword.textContent = "Mot de passe";
+        labelpassword.style.color = "rgb(184, 184, 184)";
         onglet_login.classList.add('onglet_login_register_item_active');
         onglet_register.classList.remove('onglet_login_register_item_active');
+        passwordRegist.classList.remove('passwordRegister');
         if (onglet_login.classList.contains('onglet_login_register_item_active')) {
+            passwordRegist.setAttribute('data-action', 'passwordLogin');
             forgot.style.display = 'block';
             formLogin.action = 'login';
             formLogin.style.padding = "8% 8%";
@@ -95,6 +109,9 @@
         onglet_login.classList.remove('onglet_login_register_item_active');
         formLogin.action = 'register';
         if (onglet_register.classList.contains('onglet_login_register_item_active')) {
+            passwordRegist.setAttribute('data-action', 'passwordRegister');
+            console.log('ok');
+
             forgot.style.display = 'none';
             btn_login_register[0].innerHTML = 'S\'inscrire';
             titleLogin[0].innerHTML = 's\'inscrire<span>&#x25CF;</span>';
@@ -119,17 +136,26 @@
         }
     }, 2000);
 
-
-    // regex password
-    const password = document.querySelectorAll('input[type="password"]');
-    for (let i = 0; i < password.length; i++) {
-        password[i].addEventListener('keyup', function () {
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-            if (regex.test(password[i].value)) {
-                password[i].style.borderBottom = "2px solid #00ff00";
-            } else {
-                password[i].style.borderBottom = "2px solid #ff0000";
-            }
-        });
+    // Fonction de vérification de mot de passe
+    function isPasswordValid(password) {
+        return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
     }
+
+    document.querySelector('.password').addEventListener('keyup', function () {
+        if (passwordRegist.getAttribute('data-action') === 'passwordRegister') {
+            const password = this.value;
+            console.log(password);
+            const isValid = isPasswordValid(password);
+
+
+            if (isValid) {
+                labelpassword.textContent = 'Mot de passe valide';
+                labelpassword.style.color = "rgb(184, 184, 184)";
+            } else {
+                labelpassword.textContent =
+                    'le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre';
+                labelpassword.style.color = 'red';
+            }
+        }
+    });
 </script>

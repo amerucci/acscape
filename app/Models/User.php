@@ -25,6 +25,16 @@ class User extends Model {
         return $this->query("SELECT * FROM {$this->table} WHERE email = ?", [$email]);
     }
 
+    public function isExistUserMail(string $email)
+    {
+        return $this->query("SELECT EXISTS (SELECT 1  {$this->table} WHERE email = :email, true", ['email' => $email]);
+    }
+
+    public function isExistUsername(string $username)
+    {
+        return $this->query("SELECT EXISTS (SELECT 1  {$this->table} WHERE username = :username, true", ['username' => $username]);
+    }
+
     public function getTokenUserByMail()
     {
         return $this->query("SELECT token FROM {$this->table} WHERE email = ?", [$_POST['email']]);

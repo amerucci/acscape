@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Validation;
-
+use App\models\User;
 class Validator {
 
     private $data;
@@ -23,8 +23,8 @@ class Validator {
                             break;
                         case substr($rule, 0, 3) === 'min':
                             $this->min($name, $this->data[$name], $rule);
-                        default:
-                            # code...
+                        // default:
+                        //     # code...
                             break;
                     }
                 }
@@ -52,6 +52,7 @@ class Validator {
             $this->errors[$name][] = " Le {$name} doit comprendre un minimum de {$limit} caractères";
         }
     }
+
 
     private function getErrors(): ?array
     {
