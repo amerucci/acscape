@@ -22,7 +22,7 @@ abstract class Model {
 
     public function allByScriptId(int $id)
     {
-        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY id ASC");
+        return $this->query("SELECT * FROM {$this->table} WHERE id = $id  ORDER BY id ASC");
     }
     public function allByScriptIdByNroom(int $id)
     {

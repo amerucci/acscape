@@ -1,5 +1,7 @@
-<?php $_SESSION['test'] = '54'; ?>
-<?php $title = "ACScape"; ?>
+<?php $title = "ACScape"; 
+$gameTitle = $params["script"][0]->title;
+?>
+
 
 <div id='loader' class="loadingspinner d-flex flex-column justify-content-center align-items-center">
     <div class="container_square">

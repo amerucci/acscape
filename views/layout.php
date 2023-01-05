@@ -61,7 +61,8 @@ return header('Location: /login?error=session_expired');
 
                     <?php
                         if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                    <li class="nav-item in_game_nav"> Le développeur perdu</li>
+                    <!-- <li class="nav-item in_game_nav"> Le développeur perdu</li> -->
+                    <li class="nav-item in_game_nav"><?= $gameTitle ?></li>
                     <li class="nav-item in_game_nav room_active"></li>
                     <?php else : ?>
                     <li class="nav-item">

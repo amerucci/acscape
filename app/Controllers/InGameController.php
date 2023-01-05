@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\models\room;
+use App\Models\Script;
 use App\models\furniture;
 
 class InGameController extends Controller {
@@ -10,16 +11,13 @@ class InGameController extends Controller {
     public function index()
     {
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(57);
+        $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(57);
+        $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
+        $script = new Script($this->getDB());
+        $script = $script->allByScriptId($_SESSION['scriptId']);
 
-        $data =  [
-            'room' => $room,
-            'furniture' => $furniture]; 
-
-        $json = json_encode($data);
-        $this-> view('ingame.index', compact('json'));        
+        $this-> view('ingame.index', compact('room', 'furniture', 'script'));        
     }
 
     public function show()
@@ -31,13 +29,16 @@ class InGameController extends Controller {
     {
         
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(57);
+        $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(57);
+        $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
+        $script = new Script($this->getDB());
+        $script = $script->allByScriptId($_SESSION['scriptId']);
 
         $data =  [
             'room' => $room,
-            'furniture' => $furniture];
+            'furniture' => $furniture,
+            'script' => $script];
 
         return $this->json('ingame.data', compact('data'));
        

@@ -20,7 +20,7 @@ $router = new Router($_GET['url']);
 $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/welcomeresponsive', 'App\Controllers\BlogController@welcome2');
 $router->get('/index', 'App\Controllers\BlogController@index');
-$router->get('/show', 'App\Controllers\BlogController@show');
+$router->get('/show/:id', 'App\Controllers\BlogController@show');
 
 // user login, register, logout route
 $router->get('/login', 'App\Controllers\UserController@login');

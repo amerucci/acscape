@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Script;
+
 
 class BlogController extends Controller {
 
@@ -11,32 +12,21 @@ class BlogController extends Controller {
     {
         return $this->view('blog.welcome');
     }
-    // public function welcome2()
-    // {
-    //     return $this->view('blog.welcomeresponsive');
-    // }
 
     public function index()
     {
-        // $post = new Post($this->getDB());
-        // $posts = $post->all();
-        // return $this->view('blog.index', compact('posts'));
-        return $this->view('blog.index');
+        $script = new Script($this->getDB());
+        $script = $script->all();
+        return $this->view('blog.index', compact('script'));
     }
 
-    // public function show(int $id)
-    public function show()
+    public function show(int $id)
+    // public function show()
     {
-        // $post = new Post($this->getDB());
-        // $post = $post->findById($id);
-        // return $this->view('blog.show', compact('post'));
-        return $this->view('blog.show');
+        $script = new Script($this->getDB());
+        $script = $script->findById($id);
+        $scriptAll = $script->all();
+        return $this->view('blog.show', compact('script', 'scriptAll'));
     }
 
-    public function tag(int $id)
-    {
-        $tag = (new Tag($this->getDB()))->findById($id);
-
-        return $this->view('blog.tag', compact('tag'));
-    }
 }

@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+.description_one_game {
+    min-width: 70%;
+}
+
 .description_one_game p {
     font-family: 'Montserrat';
     font-style: normal;
@@ -32,6 +36,7 @@
     color: rgba(113, 113, 113, 1);
     width: 84%;
 }
+
 
 .description_one_game h3 {
     font-family: 'Montserrat';

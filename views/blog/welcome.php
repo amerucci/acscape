@@ -13,7 +13,7 @@
         </div>
         <div class="line_text d-flex align-items-center gap-5">
             <span class="line"></span>
-            <a href="/acscape/index">
+            <a href="/index">
                 voir nos escapes games
             </a>
         </div>
@@ -55,7 +55,7 @@
                     l’entreprise...</p>
             </div>
             <div class="button_game mt-5 pt-3 mb-3">
-                <a class='d-flex justify-content-center align-items-center' href="/acscape/show">Jouer</a>
+                <a class='d-flex justify-content-center align-items-center' href="/show">Jouer</a>
             </div>
         </div>
         <div class="img_game my-auto col-lg-8 row">
@@ -96,14 +96,14 @@
                     l’entreprise...</p>
             </div>
             <div class="button_game mt-5 pt-3 mb-3">
-                <a class='d-flex justify-content-center align-items-center' href="/acscape/show">Jouer</a>
+                <a class='d-flex justify-content-center align-items-center' href="/show">Jouer</a>
             </div>
         </div>
 
     </div>
 
     <a class="discover_all_game px-3 my-5 d-flex justify-content-center align-items-center mx-auto"
-        href="/acscape/index">Découvrir Tous Nos Escape Games</a>
+        href="/index">Découvrir Tous Nos Escape Games</a>
 
 </section>
 
