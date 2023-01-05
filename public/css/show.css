@@ -22,6 +22,7 @@
 
 .content_one_game {
     width: 100%;
+    min-height: 400px;
 }
 
 .description_one_game {
@@ -119,6 +120,8 @@
 .slide_game_index {
     gap: 20px;
 }
+
+
 
 @media (max-width : 765px) {
 

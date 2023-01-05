@@ -14,7 +14,17 @@ return header('Location: /login?error=session_expired');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Content-Language" content="fr">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description"
+        content="Découvrez notre sélection d'escape games uniques et immersifs. Créez votre propre aventure et challengez vos amis ou votre famille.">
+    <meta name="Copyright" content="ACS">
+    <meta name="Author" content="gamerBike">
+    <meta name="Revisit-After" content="15 days">
+    <meta name="Robots" content="all">
+    <meta name="Rating" content="general">
+    <meta name="Distribution" content="global">
+    <meta name="Category" content="games">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">

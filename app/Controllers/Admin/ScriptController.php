@@ -19,9 +19,7 @@ class ScriptController extends Controller {
     public function show(int $id)
     {
         $this->isAdmin();
-
         $script = (new Script($this->getDB()))->findById($id);
-
         return $this->view('admin.script.show', compact('script'));
     }
 

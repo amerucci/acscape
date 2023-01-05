@@ -24,6 +24,10 @@ abstract class Model {
     {
         return $this->query("SELECT * FROM {$this->table} WHERE id = $id  ORDER BY id ASC");
     }
+    public function allByScriptIdAdmin(int $id)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY id ASC");
+    }
     public function allByScriptIdByNroom(int $id)
     {
         return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY n_room ASC");
