@@ -59,13 +59,13 @@
             </div>
         </div>
         <div class="img_game my-auto col-lg-8 row">
-            <img src="assets\front\img_game\img_game.jpg" class="img-fluid" alt="">
+            <img src="assets\front\img_game\img_game.webp" class="img-fluid" alt="">
         </div>
     </div>
 
     <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center my-3">
         <div class="img_game my-auto col-lg-8 row">
-            <img src="assets\front\img_game\img_game.jpg" class="img-fluid" alt="">
+            <img src="assets\front\img_game\img_game.webp" class="img-fluid" alt="">
         </div>
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
 
@@ -122,7 +122,7 @@
                     class="card_rule d-flex justify-content-center align-items-center flex-column mx-auto gap-4 my-lg-0 my-5">
                     <img src="assets/front/icons/circle_padlock.svg" class="img" alt="...">
                     <div class="card-body d-flex  align-items-center flex-column gap-3">
-                        <h5 class="title-card my-2">Vous êtes Enfermé</h5>
+                        <h3 class="title-card my-2">Vous êtes Enfermé</h3>
                         <p class="text-card">Une escape room remplie d'objets utiles et parfois sans intérêt.
                             Saurez-vous trouver les solutions pour vous échapper?</p>
                     </div>
@@ -131,7 +131,7 @@
                     class="card_rule d-flex justify-content-center align-items-center flex-column mx-auto gap-4 my-lg-0 my-5">
                     <img src="assets/front/icons/circle_clock.svg" class="img" alt="...">
                     <div class="card-body d-flex  align-items-center flex-column gap-3">
-                        <h5 class="title-card my-2">L'horloge Tourne...</h5>
+                        <h3 class="title-card my-2">L'horloge Tourne...</h3>
                         <p class="text-card">Pourrez-vous résoude les énigmes qui vous font face en 60 minutes ?</p>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     class="card_rule d-flex justify-content-center align-items-center flex-column mx-auto my-lg-0 my-5 gap-4">
                     <img src="assets/front/icons/circle_heart.svg" class="img" alt="...">
                     <div class="card-body d-flex align-items-center flex-column gap-3">
-                        <h5 class="title-card my-2">Ressentez L'ambiance</h5>
+                        <h3 class="title-card my-2">Ressentez L'ambiance</h3>
                         <p class="text-card">Des énigmes conçues avec une atmosphère amusante et une attention
                             particulière aux détails.</p>
                     </div>

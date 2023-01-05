@@ -87,6 +87,10 @@ logoNav {
     width: 49%;
 }
 
+.logoNav>a {
+    font-size: 0;
+}
+
 
 
 @media (max-width: 1000px) {
