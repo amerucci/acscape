@@ -73,14 +73,14 @@ class ScriptController extends Controller {
                             echo "Votre fichier n'est pas une image";
                         }
                     }
-                    return header('Location: /acscape/admin/script');
+                    return header('Location: /admin/script');
                 }
         
             }
            
             
             $_SESSION['script_id'] = $script->lastInsertId();
-            return header('Location: /acscape/admin/game');
+            return header('Location: /admin/game');
         }
     }
 
@@ -133,7 +133,7 @@ class ScriptController extends Controller {
                     echo "Votre fichier n'est pas une image";
                 }
             }
-            return header('Location: /acscape/admin/game');
+            return header('Location: /admin/game');
         }
 
     }
@@ -147,7 +147,7 @@ class ScriptController extends Controller {
         $result = $script->destroy($id);
 
         if ($result) {
-            return header('Location: /acscape/admin/game');
+            return header('Location: /admin/game');
         }
     }
 

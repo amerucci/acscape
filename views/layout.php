@@ -1,7 +1,7 @@
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'admin') == true) : ?>
 <?php if (!isset($_COOKIE['csrf_token'])) {
 // Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <?php endif; ?>
@@ -41,7 +41,7 @@ return header('Location: /acscape/login?error=session_expired');
     <nav class="navbar navbar-expand-lg  gx-0">
         <div class="container-fluid gx-0">
             <div class="logoNav">
-                <a href="/acscape"><svg width="215" height="80" viewBox="0 0 215 80" fill="none"
+                <a href="/"><svg width="215" height="80" viewBox="0 0 215 80" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="215" height="80" fill="#D31E44" />
                         <path
@@ -65,10 +65,10 @@ return header('Location: /acscape/login?error=session_expired');
                     <li class="nav-item in_game_nav room_active"></li>
                     <?php else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/acscape">accueil</a>
+                        <a class="nav-link" href="/">accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/acscape/index">nos escape games</a>
+                        <a class="nav-link" href="/index">nos escape games</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">contact</a>
@@ -80,8 +80,8 @@ return header('Location: /acscape/login?error=session_expired');
                             Création de jeu
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/acscape/admin/posts">Créer</a></li>
-                            <li><a class="dropdown-item" href="/acscape/admin/script">Liste de vos jeux</a></li>
+                            <li><a class="dropdown-item" href="/admin/posts">Créer</a></li>
+                            <li><a class="dropdown-item" href="/admin/script">Liste de vos jeux</a></li>
                         </ul>
                     </li>
                     <?php endif; ?>
@@ -103,7 +103,7 @@ return header('Location: /acscape/login?error=session_expired');
                         <?php if (!isset($_SESSION['user_id'])): ?>
                         <a alt="" href="login">
                             <?php else : ?>
-                            <a alt="" href="/acscape/logout">
+                            <a alt="" href="/logout">
                                 <?php endif ?>
                                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -162,9 +162,9 @@ return header('Location: /acscape/login?error=session_expired');
 
 </body>
 
-<script src="\acscape\public\app\app.js"></script>
+<script src="\public\app\app.js"></script>
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-<script src="public\app\inGame.js"></script>
+<script src="\public\app\inGame.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
 <?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -175,7 +175,7 @@ return header('Location: /acscape/login?error=session_expired');
 </script>
 
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
-<script src="public\app\splide.min.js"></script>
+<script src="\public\app\splide.min.js"></script>
 <?php endif; ?>
 <script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script>
 

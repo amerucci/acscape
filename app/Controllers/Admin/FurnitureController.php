@@ -79,7 +79,7 @@ class FurnitureController extends Controller {
                 if ($_POST['object_id'] == 0){
                     $_POST['object_id'] = null;
                 }
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
         }
     
@@ -135,7 +135,7 @@ class FurnitureController extends Controller {
                         echo "Votre fichier n'est pas une image";
                     }
                 }
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
 
         }
@@ -148,7 +148,7 @@ class FurnitureController extends Controller {
             $result = $furniture->destroy($id);
     
             if ($result) {
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
         }
 

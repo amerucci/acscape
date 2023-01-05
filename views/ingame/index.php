@@ -112,7 +112,7 @@
         <h1 class="endgame_title my-3">Vous avez gagné !</h1>
         <p class="endgame_text my-3">Vous êtes venu à bout de cet Escape Game</p>
         <div class="endgame_buttons d-flex justify-content-center align-items-center gap-5 my-3">
-            <a href="/acscape/index" class="endgame_button endgame_button-quit">Liste des jeux</a>
+            <a href="/index" class="endgame_button endgame_button-quit">Liste des jeux</a>
         </div>
 
     </div>

@@ -11,10 +11,10 @@ class BlogController extends Controller {
     {
         return $this->view('blog.welcome');
     }
-    public function welcome2()
-    {
-        return $this->view('blog.welcomeresponsive');
-    }
+    // public function welcome2()
+    // {
+    //     return $this->view('blog.welcomeresponsive');
+    // }
 
     public function index()
     {

@@ -2,10 +2,10 @@
 $title = "Modifier la salle {$room->title}";
 ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 <?php if ((int) $params['room']->user_id != $_SESSION['user_id']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 
@@ -15,7 +15,7 @@ return header('Location: /acscape/login?error=session_expired');
     <h1 class="text-center">editer votre salle</h1>
 
     <div class="d-flex justify-content-center align-items-center flex-column my-3">
-        <form action="/acscape/admin/room/edit/<?= $room->id ?>" method="post" enctype="multipart/form-data"
+        <form action="/admin/room/edit/<?= $room->id ?>" method="post" enctype="multipart/form-data"
             class="d-flex justify-content-center align-items-center flex-column gap-2 w-50">
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Titre</label>
@@ -31,7 +31,7 @@ return header('Location: /acscape/login?error=session_expired');
                 <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
                     <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
                     <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
-                    <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
+                    <img src="/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
                         height="100px" id="picturePreview">
                     <img id="picturePreviewTemp">
                 </div>
@@ -109,7 +109,7 @@ return header('Location: /acscape/login?error=session_expired');
         <p>---------------------------</p>
         <h3 class="m-0">Liste des meubles</h3>
         <div class="d-flex justify-content-center align-items-center flex-column">
-            <a href="/acscape/admin/furniture/create" class="btn btn-primary my-3">Ajouter un meuble</a>
+            <a href="/admin/furniture/create" class="btn btn-primary my-3">Ajouter un meuble</a>
             <div class="d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-3">
                 <?php foreach ($params['furnitures'] as $furniture) : ?>
                 <?php if ($furniture->room_id == $_SESSION['room_id']) : ?>
@@ -118,10 +118,9 @@ return header('Location: /acscape/login?error=session_expired');
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?=  substr($furniture->description,  0, 50).'...' ?></p>
                         <div class="d-flex flex-column w-100">
-                            <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>"
+                            <a href="/admin/furniture/edit/<?= $furniture->id ?>"
                                 class="btn btn-primary my-1 w-100">Editer</a>
-                            <form action="/acscape/admin/furniture/delete/<?= $furniture->id ?>" method="post"
-                                class="w-100">
+                            <form action="/admin/furniture/delete/<?= $furniture->id ?>" method="post" class="w-100">
                                 <input type="hidden" name="id" value="<?= $furniture->id ?>">
                                 <button type="submit" class="btn btn-danger w-100">Supprimer</button>
                             </form>

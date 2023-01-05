@@ -4,6 +4,8 @@
 
 
 
+
+
 <div class="background_login_register"></div>
 <div class="imageHeaderTop">
     <img class='imageHeaderTop_img' src="assets/front/login/login_register_top2.png" alt="">
@@ -67,7 +69,7 @@
             </div>
             <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
             <button type="submit" class="btn_login_register">Se connecter</button>
-            <a class="forgot" href="/acscape/forgot">mot de passe oublié</a>
+            <a class="forgot" href="/forgot">mot de passe oublié</a>
         </form>
 
     </div>
@@ -145,7 +147,7 @@
         const alerteDanger = document.querySelectorAll('.alert-danger');
         for (let i = 0; i < alerteDanger.length; i++) {
             alerteDanger[i].remove();
-            window.history.replaceState({}, document.title, "/" + "acscape/login");
+            window.history.replaceState({}, document.title, "/" + "login");
         }
     }, 2000);
 

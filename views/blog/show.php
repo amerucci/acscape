@@ -34,7 +34,7 @@
                     <p class="m-0">MINUTES</p>
                 </div>
                 <div class="play_now">
-                    <a href="/acscape/ingame">JOUER MAINTENANT</a>
+                    <a href="/ingame">JOUER MAINTENANT</a>
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
     window.addEventListener('scroll', function () {
         if (firstScroll) {
             window.location.hash = '#description';
-            window.history.replaceState({}, document.title, "/" + "acscape/show");
+            window.history.replaceState({}, document.title, "/" + "show");
             firstScroll = false;
         }
     });

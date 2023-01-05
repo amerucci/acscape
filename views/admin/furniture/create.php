@@ -1,12 +1,12 @@
 <?php $title = "Creation d'un meuble"; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 <!-- <?php var_dump((int) $params['users'][0]->id); ?>
 <?php var_dump($_SESSION['user_id']); ?>
 <?php var_dump($_SESSION['user_id'] == (int) $params['users'][0]->id); ?> -->
 <?php if ($_SESSION['user_id'] != (int) $params['users'][0]->id) {
-return header('Location: /acscape/login?error=error');
+return header('Location: /login?error=error');
 } ?>
 
 

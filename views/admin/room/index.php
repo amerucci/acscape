@@ -1,6 +1,6 @@
 <?php $title = "Administration des salles"; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <div class="container admin_container">
@@ -16,9 +16,9 @@ return header('Location: /acscape/login?error=session_expired');
             echo "<div class='card-body'>";
             echo "<h5 class='card-title'>{$room->title}</h5>";
             echo "<p class='card-text'>{$room->getExcerpt()}</p>";
-            echo "image : <img src='/acscape/assets/pictures/rooms/{$room->picture}' alt='image de la salle' width='100px' height='100px'>";
-            echo "<a href='/acscape/admin/room/show/{$room->id}' class='btn btn-primary'>Voir</a>";
-            echo "<a href='/acscape/admin/room/edit/{$room->id}' class='btn btn-primary mx-3'>editer</a>";
+            echo "image : <img src='/assets/pictures/rooms/{$room->picture}' alt='image de la salle' width='100px' height='100px'>";
+            echo "<a href='/admin/room/show/{$room->id}' class='btn btn-primary'>Voir</a>";
+            echo "<a href='/admin/room/edit/{$room->id}' class='btn btn-primary mx-3'>editer</a>";
             echo "</div>";
             echo "</div>";
     }

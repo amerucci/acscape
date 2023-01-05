@@ -2,16 +2,16 @@
 $title = "modifier le scénario " . $params['script']->title;
  $script = $params['script'] ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <?php if ((int)$params['script']->user_id != $_SESSION['user_id']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <div class="container admin_container my-5">
     <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
-        <a href='/acscape/admin/game' class='btn btn-primary create_game_script my-3'>création du jeu</a>
+        <a href='/admin/game' class='btn btn-primary create_game_script my-3'>création du jeu</a>
         <h1 class="modif_script">Modifier le scénario</h1>
     </div>
 
@@ -47,8 +47,8 @@ return header('Location: /acscape/login?error=session_expired');
                     class="form-group d-flex justify-content-center align-items-center flex-column gap-1 my-5 form_picture w-100">
                     <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
                     <input type="hidden" name="picture" id="picture" value="<?= $script->picture ?>">
-                    <img src="/acscape/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script"
-                        width="100px" height="100px" id="picturePreview">
+                    <img src="/assets/pictures/scripts/<?= $script->picture ?>" alt="image du script" width="100px"
+                        height="100px" id="picturePreview">
                     <img id="picturePreviewTemp">
                 </div>
                 <div class="d-flex gap-5">

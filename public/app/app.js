@@ -1,5 +1,5 @@
-if (window.location.href == "http://localhost/acscape/" || window.location.href ==
-    "http://localhost/acscape/index" || window.location.href == "http://localhost/acscape/show") {
+if (window.location.href == "http://acscape/" || window.location.href ==
+    "http://acscape/index" || window.location.href == "http://acscape/show") {
     document.querySelector('.navbar').style.position = "absolute";
 } else {
     document.querySelector('.navbar').style.position = "relative";

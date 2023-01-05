@@ -29,7 +29,7 @@
                             <p class="m-0">60</p>
                         </div>
                     </div>
-                    <a class="link_game" href="/acscape/show"></a>
+                    <a class="link_game" href="/show"></a>
                 </div>
 
             </div>
@@ -218,7 +218,7 @@
     window.addEventListener('scroll', function () {
         if (firstScroll) {
             window.location.hash = '#all_games';
-            window.history.replaceState({}, document.title, "/" + "acscape/index");
+            window.history.replaceState({}, document.title, "/" + "index");
             firstScroll = false;
         }
     });

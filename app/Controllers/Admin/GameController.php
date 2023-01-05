@@ -21,7 +21,7 @@ class GameController extends Controller {
                 $objects = $object->allByScriptId($_SESSION['script_id']);
                 $this->view('admin.game.index', compact('rooms', 'furnitures', 'objects'));            
             } else {
-                return header('Location: /acscape');
+                return header('Location: /');
             }        
 
         }

@@ -74,7 +74,7 @@ class RoomController extends Controller {
                   echo "Votre fichier n'est pas une image";
               }
           }
-          return header('Location: /acscape/admin/game');
+          return header('Location: /admin/game');
       }
 
 
@@ -136,7 +136,7 @@ class RoomController extends Controller {
           if ($_POST['object_id'] == 0){
               $_POST['object_id'] = null;
           }
-          return header('Location: /acscape/admin/game');
+          return header('Location: /admin/game');
       }
   
 
@@ -152,7 +152,7 @@ class RoomController extends Controller {
         $result = $room->destroy($id);
 
         if ($result) {
-            header('Location: /acscape/admin/game');
+            header('Location: /admin/game');
         }
 
     }

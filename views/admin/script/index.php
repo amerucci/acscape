@@ -3,7 +3,7 @@
 <?php 
 $scripts = $params['scripts']; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 

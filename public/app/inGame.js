@@ -125,7 +125,7 @@ function intervalFunction(callback) {
 
 async function getData() {
     try {
-        const response = await fetch('/acscape/ingame/data');
+        const response = await fetch('/ingame/data');
         if (response.ok) {
             const data = await response.json();
             dataGlobal = data.data; // les données global formaté pour éviter le dataGlobal[0]....
@@ -242,7 +242,7 @@ main()
                 roomsArray.push(roomsList.childNodes[j]);
             }
 
-            roomsArray[i].style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+            roomsArray[i].style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
             roomsArray[i].style.backgroundSize = 'contain';
             roomsArray[i].style.backgroundRepeat = 'no-repeat';
             roomsArray[i].style.backgroundPosition = 'center';
@@ -286,7 +286,7 @@ main()
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
 
-                    ingame_background.style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+                    ingame_background.style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
                     ingame_background.style.backgroundSize = 'contain';
                     ingame_background.style.backgroundRepeat = 'no-repeat';
                     ingame_background.style.backgroundPosition = 'center';

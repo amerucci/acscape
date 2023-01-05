@@ -1,10 +1,10 @@
 <?php $furniture = $params['furniture'];
 $title = "Modification du meuble"; ?>
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 <?php if ($_SESSION['user_id'] != (int) $params['furniture']->user_id) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <div class="container admin_container">
