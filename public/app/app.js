@@ -26,7 +26,7 @@ if (window.location.href.includes("ingame")) {
     document.querySelector('.navLog').style.marginRight = "5%";
     document.querySelector('.navLog').style.background = "transparent";
     // document.querySelector('.ingame_container_background').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
-    document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
+    document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.webp)";
     document.querySelector('.navbar-nav').classList.add("navbar-navInGame");
     document.querySelector('.navbar-nav').style.marginLeft = "2%";
     document.querySelector('.navbar-nav').style.width = "50% !important";
