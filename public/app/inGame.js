@@ -880,6 +880,8 @@ main()
                             furniture_modal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
+                                penalityClue.innerHTML = "";
+                                clearInterval(intervalId);
                             })
 
                             const furnitureModalLockLabel = document.getElementById('furnitureModalLockLabel');
@@ -1233,8 +1235,7 @@ main()
                             myModal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
-                                penalityClue.innerHTML = "";
-                                clearInterval(intervalId);
+
                             });
 
 
