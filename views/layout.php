@@ -37,7 +37,7 @@ return header('Location: /login?error=session_expired');
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'admin.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/style.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/style.min.css" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <!-- custom cursor -> https://github.com/guillaume-rygn/MS-Cursor -->
     <!-- caroussel -> https://splidejs.com/ -->
@@ -190,7 +190,10 @@ return header('Location: /login?error=session_expired');
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
 <script src="\public\app\splide.min.js"></script>
 <?php endif; ?>
-<script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script>
+
+
+
+<!-- <script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script> -->
 
 
 </html>

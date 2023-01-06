@@ -336,7 +336,7 @@ modal {
     background-size: cover;
     background-position: center;
     width: 100%;
-    min-height: 100%;
+    min-height: 120px;
     color: white;
     font-family: 'montserrat';
     padding: 5%;
@@ -658,6 +658,7 @@ iframe {
 
 .progress-bar {
     background-color: #d31e44;
+    transition: all 0.5s ease-in-out;
 }
 
 .penality_info {
@@ -748,6 +749,21 @@ iframe {
     text-align: center;
 }
 
+.zoom {
+    height: 105%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999999999999;
+    object-fit: contain;
+    backdrop-filter: blur(5px) saturate(100%) brightness(20%);
+    transition: backdrop-filter 0.2s ease-in-out;
+}
+
+
+
 
 @media (max-width: 1000px) {
     footer[data-footer="none"] {
@@ -762,6 +778,11 @@ iframe {
 
     .navbar {
         z-index: 99;
+    }
+
+    .penality,
+    .penalityClue {
+        display: none !important;
     }
 
     .copy,
@@ -793,12 +814,23 @@ iframe {
     }
 
     .navbar-nav {
-        width: 100%;
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 2%;
     }
 
     .ingame_container_background {
         background-size: 60% 60% !important;
-        background-position: top !important;
+        background-position-y: top 12% !important;
     }
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+
+
+
+
 
 }

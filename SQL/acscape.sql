@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 03 jan. 2023 à 08:04
+-- Généré le : ven. 06 jan. 2023 à 13:35
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -49,26 +49,16 @@ CREATE TABLE IF NOT EXISTS `furnitures` (
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `room_id` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `furnitures`
 --
 
 INSERT INTO `furnitures` (`id`, `title`, `picture`, `description`, `action`, `clue`, `clue2`, `clue3`, `padlock`, `unlock_word`, `reward`, `object_id`, `user_id`, `script_id`, `room_id`) VALUES
-(1, 'jhjf', NULL, 'hjfghj', 'fouiller', NULL, NULL, NULL, 'no', NULL, NULL, NULL, 14, NULL, NULL),
-(2, 'tre', '', 'fgd', 'fgd', '', NULL, NULL, 'yes', NULL, NULL, NULL, 14, NULL, NULL),
-(19, 'xwxxw', '1669714514_jorge.png', 'az', 'secouer', 'je suis un indice                    ', 'qsq', NULL, 'yes', NULL, NULL, 9, 18, 52, 10),
-(21, 'hjgf', '1669716746_', 'ghjfg', 'hjgf', 'ghf', NULL, NULL, 'yes', NULL, NULL, 9, 18, 52, 10),
-(25, 'hgdfhg', '1669719301_antoine.png', 'ghfd', 'secouer', '', NULL, NULL, 'yes', NULL, NULL, 10, 18, 52, 10),
-(37, 'fgds', '1669718272_', 'dsfgs', 'fgds', 'fgdsfgdsfddfdddfdffd', NULL, NULL, 'yes', NULL, NULL, 0, 18, 52, 10),
-(38, 'dfs', '1669718488_hamza.png', 'dfs', 'secouer', '', NULL, NULL, 'yes', NULL, NULL, 10, 18, 52, 10),
-(40, 'popo', '1670410645_Capture d\'écran_20221114_200901.png', 'titi', 'fouiller', 'premier indice', NULL, NULL, 'yes', 'toto', '', 0, 14, 54, 14),
-(41, 'meuble 2', '1670489842_', 'je suis le second meuble', 'fouiller', '', NULL, NULL, 'yes', 'toto', '', 0, 14, 54, 14),
-(42, 'toto', NULL, 'toto', 'fouiller', 'pouet', NULL, NULL, 'no', NULL, NULL, NULL, 14, 54, 14),
-(43, 'je suis le meuble de la salle 14', '1672591717_furnitures.png', ' meubles salle14', 'fouiller', 'trouve moi', NULL, NULL, 'yes', 'toto', '', 0, 14, 54, 14),
-(45, 'meuble salle 3', '1670918578_', 'je suis un super meuble', 'fouiller', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, 'yes', 'toto', 'je suis la récompense ', NULL, 14, 54, 12),
-(46, 'meuble du matin', '1670919132_', 'je suis un meuble du matin, créé pendant une période de révolution.\r\nJe suis un meuble associé à un astre royal. Mais de qui ?', 'fouiller', 'célèbre personnage de blague', 'vraiment famous', 'mais si la tête à ', 'yes', 'toto', 'couleur de la voiture de Toto', NULL, 14, 54, 16);
+(47, 'éprouvette', '1672759797_eprouvette.jpg', 'une éprouvette est posé sur son bureau, on dirait qu\'elle contient quelque chose, mais un verrou empêche de voir ce que c\'est.\r\nApparemment il s\'en sert pour des travaux qui portent son nom.', 'examiner', 'c\'est un procédé de conservation des aliments', 'a commencé ses travaux sur la stabilisation des vins au 19e siècle', 'autre nom de la débactérisation thermocontrôlée', 'yes', 'pasteurisation', 'Les températures de pasteurisation commence à 62 \r\nHum que faire de cette information, peut-être devrais je la noter quelques part.', NULL, 32, 57, 22),
+(48, 'bière', '1672760715_biere.jpg', 'Un verre de bière est posé sur le bureau, je devrais l\'examiner de plus prêt, mince un couvercle avec des lettres dans le désordre et certaines effacées ferme le verre et empêche de déguster ce précieux nectar.\r\n\r\nOn peut y apercevoir : OHNBO, qu\'est ce que ça peut bien vouloir dire, on dirait un ingrédient.\r\n', 'boire', 'plante grimpante', 'la lettre manquante est le \"U\"', 'le mot commence par Ho*****', 'yes', 'houblon', 'pour avoir trouvé le houblon, un chiffre apparaît et vous pouvez enfin déguster la bière, enfin personne ne sait depuis combien de temps elle est ici...\r\n\r\nCe chiffre est : 1602', NULL, 32, 57, 22),
+(49, 'hiéroglyphe', '1672998806_hieroglyphe.jpg', 'Vous trouvez devant vous des hiéroglyphes, ils sont surement utiles pour quitter cette pièce.\r\nPlus loin dans la pièce vous apercevez plusieurs dessins mis en valeurs, un serpent, un oiseau et une jambe.\r\nSerait-ce un indice\r\n', 'examiner', 'Il y a des lettres qui me sont familières au dessus des hiéroglyphes', 'et si les associés était la solution', NULL, 'yes', 'jab', 'vous avez déchiffrez les hiéroglyphes, vous avez un sentiment étrange qui vous fait penser à la nature. Que signifie t\'il ? Serait-ce la couleur ?', NULL, 32, 58, 25);
 
 -- --------------------------------------------------------
 
@@ -118,10 +108,7 @@ INSERT INTO `objects` (`id`, `title`, `description`, `picture`, `user_id`, `scri
 (2, 'sdq', 'sdq', '', 14, NULL),
 (3, 'sdq', 'sdq', 'karolos.png', 14, NULL),
 (4, 'hghf', 'hghg', 'jorge.png', 14, NULL),
-(5, 'aaaaa', 'hghg', 'natan.png', 14, NULL),
-(9, 'qxxq', 'qxxq', '1669716017_natan.png', 18, 52),
-(10, 'aaa', 'azerty', '1669718338_leo.png', 18, 52),
-(11, 'sdq', 'sdq', '1670320621_natan.png', 14, 54);
+(5, 'aaaaa', 'hghg', 'natan.png', 14, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,13 +124,6 @@ CREATE TABLE IF NOT EXISTS `password_recover` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `password_recover`
---
-
-INSERT INTO `password_recover` (`id`, `token_user`, `token`, `created_at`) VALUES
-(63, '4fc5f3b5b206a2ac5006e7b98218050b869ee9a9cf9162d8', '388f07a8df801a192f30b7050158db6944e30c9afabe2ab55e517834f5e94953', '2023-01-02 14:55:13');
 
 -- --------------------------------------------------------
 
@@ -170,29 +150,18 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rooms`
 --
 
 INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `n_room`, `unlock_word`, `clue`, `clue2`, `clue3`, `reward`, `user_id`, `script_id`) VALUES
-(1, 'bnbn', 'bnvbnv', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
-(2, 'popo', 'popopo', 'convention.jpg', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
-(3, 'popopo', 'popopo', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
-(4, 'opiuopuipoiu', 'jkghjkghjkhgjhg', 'jorge.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
-(5, 'scqcsq', 'hgjjjjjjjjjjjjjjjjjjjjj', 'pauline.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 0),
-(6, 'ghfd', 'sdsdsd', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 43),
-(7, 'hgf', 'hgfgh', '', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 42),
-(8, 'ghfd22', 'ghfdg', '', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 42),
-(9, 'rte', 'rte', '', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 14, 44),
-(10, 'ghfd', 'ghdf', '1669714253_jorge.png', 'yes', 0, NULL, NULL, NULL, NULL, NULL, 18, 52),
-(11, 'salle de départ', 'rte', '1670336925_for_who.png', 'no', 0, NULL, NULL, NULL, NULL, NULL, 14, 45),
-(12, 'salle 3', 'un deux un deux', '1672595373_figure-1.jpg', 'yes', 3, 'toto', 'je suis le premier indice', 'je suis un second indice', 'je suis le troisième indice', 'additionne les indices ', 14, 54),
-(13, 'salle 2', 'Vous entrez dans une pièce sombre et humide, remplie de toiles d\'araignée. Au centre se trouve une grande table en bois sur laquelle sont posés plusieurs objets étranges : un livre poussiéreux, un crâne de rat, un bol de sang séché, et un vieil échiquier en marbre. Dans un coin, une horloge est suspendue au mur, dont les aiguilles indiquent minuit.\r\n\r\nVous remarquez une porte close sur le mur opposé, verrouillée par un cadenas. Pour l\'ouvrir, vous devez résoudre une énigme qui se trouve quelque part dans la pièce. Vous commencez à fouiller et à examiner chaque objet de plus près. Soudain, vous entendez un bruit derrière vous. Vous vous retournez et apercevez un petit singe en peluche, qui semble vous regarder avec un air malicieux.\r\n\r\nVous avez alors une idée : vous prenez le singe et le serrez contre votre poitrine, et vous prononcez le mot magique : \"toto\". Aussitôt, le cadenas s\'ouvre et la porte s\'ouvre toute grande, vous révélant la suite de votre aventure.', '1669727042_julien.png', 'yes', 2, 'toto', 'célèbre personnage de blague', NULL, NULL, 'le code pour la salle suivante est l\'année de naissance de ToTo', 14, 54),
-(14, 'salle 1', 'rtez', '1672595396_figure.jpg', 'no', 1, '', '', NULL, NULL, '', 14, 54),
-(15, 'première salle', 'je suis la première salle', '1670497769_chris.png', 'no', 1, 'toto', 'je suis le nom d\'un célèbre personnage de blague', NULL, NULL, NULL, 14, 56),
-(16, 'salle 4', 'je suis la salle 4', '1670579031_chris.png', 'yes', 4, 'titi', 'c\'est le nom d\'un oiseau de dessin animé', NULL, NULL, 'coucou', 14, 54);
+(22, 'Le Laboratoire de Louis Pasteur', 'Vous êtes coincé à l\'intérieur du labo de Louis Pasteur, il va falloir trouvé des indices pour ouvrir la porte bloquée par un étrange mécanisme.', '1672758477_bureau.jpg', 'no', 1, '', '', NULL, NULL, '', 32, 57),
+(23, 'Le Laboratoire de Louis Pasteur', 'Pensant être sortie du bureau de Louis Pasteur, vous voilà de nouveaux coincé dans cette salle, il y a surement des choses à fouiller.\r\nVous êtes dans un labo de Chimie, ', '1672758843_pasteur.jpg', 'yes', 2, '1664', 'marque de bière', 'addition', 'et si je faisais la somme de ce que m\'ont appris les indices.', 'youpi c\'était ça, mais vous voilà à nouveau dans une pièce fermée, diantre.\r\n', 32, 57),
+(25, 'tombeau', 'vous vous trouvez dans le tombeau du Pharaon. La pièce est sombre et silencieuse, et vous êtes entouré de statues de dieux et de sarcophages en pierre. Vous sentez une présence oppressante dans l\'air, comme si les esprits des morts veillaient sur vous. Vous devez trouver un moyen de sortir de cette pièce avant qu\'il ne soit trop tard.\r\n\r\nVous inspectez les alentours et vous remarquez plusieurs objets étranges : une grande plaque de pierre gravée de hiéroglyphes, un vase en forme de tête de lion, et une étagère couverte de jarres et de pots en terre cuite. Vous pouvez également entendre un faible grondement qui semble provenir de derrière l\'une des statues.\r\n\r\nIl y a une porte en bois qui mène vers une autre pièce, mais elle est verrouillée. Pour la déverrouiller, vous devrez résoudre l\'énigme cachée dans cette pièce. Faites attention, car il ne vous reste que peu de temps avant que les gardiens ne reviennent', '1672995606_tombeau.jpg', 'yes', 1, '', '', NULL, NULL, '', 32, 58),
+(26, 'Le Labyrinthe de la Tombe', 'Un étrange mécanisme est gravé sur la porte, on dirait un labyrinthe.\r\nDes chemins de couleurs différentes sont déjà tracés, lequel prendre ?\r\nEst-ce la solution pour déverrouiller cette porte ?', '1672996865_labyrinthe.jpg', 'yes', 2, 'chlorophylle', 'la solution semble être la couleur, mais quelque chose ne va pas', 'ce vert est d\'une couleur naturel ', 'serait-ce le vert de la nature ? Mais d\'où vient-t\'il déjà, comment est-il fabriqué ?', 'Vous venez de pénétrer dans le Labyrinthe de la Tombe, une pièce sombre et sinueuse remplie de couloirs et de passages secrets. Le sol est couvert de poussière et de débris, et vous avez l\'impression de vous enfoncer de plus en plus profondément dans les entrailles de la pyramide, mais grâce à votre perspicacité, vous avez trouvé la sortie\r\n\r\nVous avancez avec prudence, attentif aux pièges qui pourraient se cacher dans les ombres. Les murs sont couverts de hiéroglyphes et de fresques qui racontent l\'histoire du Pharaon et de ses exploits. \r\n\r\nSoudain, vous entendez un grondement qui semble provenir de la salle suivante. Vous hésitez un instant, puis vous prenez votre courage à deux mains et vous avancez vers la porte verrouillée. Pour la déverrouiller, vous devrez résoudre l\'énigme cachée dans cette pièce.', 32, 58),
+(27, 'la sortie', 'Vous voilà face à la dernière porte, arriverez vous enfin à sortir de cette pyramide ?\r\nRien n\'est moins sûr.\r\nOn dirait qu\'il y avait quelque chose avant cette pyramide, comme si elle avait été construite par dessus une ancienne structure.\r\nSerait-ce une sépulture des souverains de l\'ancien empire égyptien\r\n\r\n', '1673000469_Mastaba.jpg', 'yes', 3, 'mastaba', 'nom des anciennes sépultures', ' édifice funéraire égyptien servant de sépulture aux rois des deux premières dynasties', NULL, 'bravo', 32, 58);
 
 -- --------------------------------------------------------
 
@@ -213,18 +182,15 @@ CREATE TABLE IF NOT EXISTS `scripts` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `scripts`
 --
 
 INSERT INTO `scripts` (`id`, `title`, `difficulty`, `description`, `winner_msg`, `lost_msg`, `picture`, `duration`, `user_id`) VALUES
-(49, 'scénario de toto', 5, 'toto part en voiture mais ne sait plus où elle est, aide le à la retrouver', 'Bravo vous avez trouvé la voiture de Toto', 'Dommage la voiture de Toto est perdue à tout jamais', 'vincent.png', 60, 18),
-(52, 'gg', 1, 'fdgh', 'fdghd', 'ghdf', 'bernard.png', 60, 18),
-(54, 'scenario test', 1, 'sdqsd', 'bravo', 'dqsdq', '1672154160_jorge.png', 60, 14),
-(55, 'ml', 1, 'kljh', 'jklh', 'kljh', '1669713069_', 60, 13),
-(56, 'popo', 1, 'popo s\'en va tester des forms', 'bravo popo', 't\'es nul popo', '1672591500_figure.jpg', 60, 14);
+(57, 'Le Laboratoire de Louis Pasteur', 3, 'Vous êtes un groupe de scientifiques qui avez été invités à visiter le célèbre laboratoire de Louis Pasteur. Cependant, lorsque vous arrivez, vous découvrez que le laboratoire est verrouillé et que vous êtes coincés à l\'intérieur! Vous devez maintenant résoudre les énigmes et trouver les mots de passe cachés dans le laboratoire pour vous échapper avant que le temps ne s\'écoule', 'Bravo, vous avez permis aux scientifiques d\'accomplir leur mission, grâce à vous, le monde est sauvé', 'Dommage, vous n\'avez pas pu libérer les scientifiques à temps, le virus va se propager et éliminer toute vie sur terre.', '1672756200_pasteur.jpg', 60, 32),
+(58, 'échapper à la tombe du Pharaon', 3, 'Vous êtes un archéologue qui a réussi à pénétrer dans la tombe du Pharaon, mais vous vous êtes fait surprendre par des gardiens qui ont verrouillé les portes derrière vous. Vous devez maintenant trouver un moyen de sortir avant qu\'il ne soit trop tard. Explorez les différentes pièces et résolvez les énigmes pour déverrouiller les portes et vous échapper de la tombe.', 'Bravo vous avez réussi à vous échapper ! ', 'Vous avez succomber aux pièges de la pyramide.', '1672995121_scriptBg.jpg', 60, 32);
 
 -- --------------------------------------------------------
 
@@ -244,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -254,8 +220,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `token`, `role`, `cr
 (13, 'test', 'toto@toto.com', '$2y$10$9/ZqiBv3t1hmjw7poJl0Ou2AjSeRBiozVRxyroyYAZd0Z44RGbyES', NULL, 1, '2023-01-02 15:25:14'),
 (14, 'alain', 'test@test.com', '$2y$10$ynWz9L88hlcb1W1IoFVzLuGwuhNwZb6GOVZJxGULWkLDNs0lmaLg.', NULL, 1, '2023-01-02 15:25:14'),
 (18, 'toto', 'toto@tata.com', '$2y$10$bSKol5vM9Zkb2GL4mkp5rOmBZBhEW2CFjhvl1PhW5LhQ218r6J652', '08f70c85349c7e1ba955b03688f7d80e8e01c534d5cb1426e9a51c1', 1, '2023-01-02 15:25:14'),
-(20, 'azerty', 'champidub@gmail.com', '$2y$10$bqmIkoir/nC//HmlVs1bq.8Fcb9xkzzSc1gY2CV2aWbO1Vom8IM/m', '5cb1426e9a51c1', 1, '2023-01-02 15:25:14'),
-(30, 'token', 'aaaa@jjj.com', '$2y$10$FVfMeM.PycvmHIgRsag5y.1A5K2hZu4hMnEGjiDLDZgJu5DlOKUba', '4fc5f3b5b206a2ac5006e7b98218050b869ee9a9cf9162d8', 1, '2023-01-02 15:25:14');
+(30, 'token', 'aaaa@jjj.com', '$2y$10$FVfMeM.PycvmHIgRsag5y.1A5K2hZu4hMnEGjiDLDZgJu5DlOKUba', '4fc5f3b5b206a2ac5006e7b98218050b869ee9a9cf9162d8', 1, '2023-01-02 15:25:14'),
+(32, 'gamerbike', 'champidub@gmail.com', '$2y$10$V9cq.lcX7QZWXDiTvmq22OtT5J1E8UcJ1F6m2XxDYMlj7m9tio94a', '15aff1fd0d47872fda64cc0895400b1bdea72dde1319af81906193ddead8abc0', 1, '2023-01-03 14:23:58');
 
 --
 -- Contraintes pour les tables déchargées

@@ -2,6 +2,21 @@
 $gameTitle = $params["script"][0]->title;
 ?>
 
+<?php if(!$_SESSION["scriptId"]): ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <h1 class="text-center">Vous n'avez pas accès à cette page</h1>
+                <a href="/scripts" class="btn btn-primary">Retour aux scénarios</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+
+
 
 <div id='loader' class="loadingspinner d-flex flex-column justify-content-center align-items-center">
     <div class="container_square">

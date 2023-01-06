@@ -184,7 +184,7 @@
     window.addEventListener('scroll', function () {
         if (firstScroll) {
             window.location.hash = '#first_section';
-            window.history.replaceState({}, document.title, "/" + "acscape");
+            window.history.replaceState({}, document.title, "/");
             firstScroll = false;
         }
     });

@@ -5,12 +5,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #fff;
     color: rgb(255, 243, 243);
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     text-align: center;
-    overflow: hidden;
+}
+
+body {
     background-image: url('../../assets/pictures/background/404.png');
     background-repeat: no-repeat;
     background-position: right;

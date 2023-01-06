@@ -10,12 +10,17 @@ class InGameController extends Controller {
 
     public function index()
     {
+        if (!isset($_SESSION['scriptId'])) {
+            session_destroy();
+            require VIEWS . 'errors/404.php';
+        }
         $room = new Room($this->getDB());
         $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
         $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
         $script = new Script($this->getDB());
         $script = $script->allByScriptId($_SESSION['scriptId']);
+
 
         $this-> view('ingame.index', compact('room', 'furniture', 'script'));        
     }

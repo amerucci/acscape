@@ -27,25 +27,11 @@
     gap: 3%;
 }
 
-/* .navLog li>a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 150px;
-    padding: 0 10px;
-    gap: 10px;
-    background-color: rgba(211, 30, 68, 1);
-    border-radius: 20px;
-    font-size: 11px;
-    margin-right: 25px;
-
-} */
 
 .navLog {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     height: 40px;
     width: 150px;
     padding: 0 10px;

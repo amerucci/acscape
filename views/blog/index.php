@@ -30,7 +30,7 @@ $scripts = $params['script'];
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
                             <img src="assets/front/icons/clock.svg" alt="">
-                            <p class="m-0"><?= $game->duration?></p>
+                            <p class="m-0 white"><?= $game->duration?></p>
                         </div>
                     </div>
                     <a class="link_game" href="/show/<?= $game->id ?>"></a>
@@ -235,9 +235,9 @@ $scripts = $params['script'];
 
         </div>
 
-        <div class="pagination d-flex justify-content-center align-items-center my-5">
+        <!-- <div class="pagination d-flex justify-content-center align-items-center my-5">
             <p> pagination </p>
-        </div>
+        </div> -->
 
     </div>
 

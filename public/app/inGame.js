@@ -15,19 +15,19 @@ function function_penality_info() {
 
 
 let navbar = document.querySelector('.navbar');
-navbar.classList.remove('navbar-expand-lg');
-navbar.classList.add('navbar-expand');
-window.addEventListener('resize', function (event) {
-    if (window.innerWidth < 992) {
-        navbar.classList.add('flex-wrap');
-        navbar.classList.remove('navbar-expand-lg');
-        navbar.classList.add('navbar-expand');
-    } else {
-        navbar.classList.remove('flex-wrap');
-        navbar.classList.remove('navbar-expand');
-        navbar.classList.add('navbar-expand-lg');
-    }
-});
+// navbar.classList.remove('navbar-expand-lg');
+// navbar.classList.add('navbar-expand');
+// window.addEventListener('resize', function (event) {
+if (window.innerWidth < 992) {
+    navbar.classList.add('flex-wrap');
+    navbar.classList.remove('navbar-expand-lg');
+    navbar.classList.add('navbar-expand');
+} else {
+    navbar.classList.remove('flex-wrap');
+    navbar.classList.remove('navbar-expand');
+    navbar.classList.add('navbar-expand-lg');
+}
+// });
 
 function modalFixed() {
     const the_rooms = document.querySelector('.the_rooms');
@@ -389,7 +389,7 @@ main()
                                             </span>
                                     </div>
                                     <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
-                                    <img src="/assets/pictures/rooms/${dataGlobal.room[i]['picture']}" class="img_room" alt="" width="100%" height="100%">
+                                    <img src="/assets/pictures/rooms/${dataGlobal.room[i]['picture']}" class="img_room" alt="" width="373" height="100%">
                                     <p class="description_room">${dataGlobal.room[i]['description']}</p>
                                     </div>
                                         <div class="modal-body d-flex flex-column flex-md-row w-100">
@@ -397,14 +397,14 @@ main()
                                                 <div class="d-flex flex-column clue_show input_container fade show w-50 gap-1">
                                                     <div class="w-100">
                                                       <div class="d-flex">
-                                                          <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
-                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                          <input type="text" class="form-control w-100" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
+                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon class="key_btn white" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                           </div>
                                                           <div class="d-flex align-items-center gap-5"></div>
                                                     </div>
                                                         <div class="d-flex flex-column switch_container fade show">
                                                             <div class="progress w-100 h-100">
-                                                                <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                                                <div class=" text-center progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                                             </div>
                                                             <p class="text-center penality_info my-2"></p>
                                                         </div>
@@ -458,6 +458,11 @@ main()
                         clearInterval(intervalId);
                     })
 
+
+                    const zoomImg = document.querySelector(' .desc_container>img');
+                    zoomImg.addEventListener('click', function () {
+                        zoomImg.classList.toggle('zoom');
+                    });
 
                     // ************  ROOMS Clues ************
 
@@ -812,7 +817,7 @@ main()
 
                         furnitureLi.addEventListener('click', function (event) {
 
-
+                            friskModal.classList.remove('show')
 
                             const modal = document.createElement('div');
                             modal.classList.add('modal', 'fade', 'modal-lg');
@@ -833,6 +838,7 @@ main()
                                         </span>
                                 </div>
                                  <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
+                                 <img src="/assets/pictures/furnitures/${furniture['picture']}" class="img_furniture" alt="" width="373" height="100%">
                                      <p class="description_room">${furniture['description']}</p>
                                  </div>
                                     <div class="modal-body d-flex flex-column flex-md-row">
@@ -840,17 +846,17 @@ main()
                                         <div class="d-flex flex-column clue_show w-50 gap-1 input_container ">
                                           <div class="w-100">
                                               <div class="d-flex">
-                                                  <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
-                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                  <input type="text" class="form-control w-100" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
+                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon class="key_btn white" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                   </div>
                                                   <div class="d-flex align-items-center gap-5"></div>
                                               <p class="furniture_reward dnone"></p>
                                           </div>    
                                           <div class="d-flex flex-column switch_container fade show">
                                           <div class="progress w-100 h-100">
-                                              <div class="progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                              <div class="text-center progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                           </div>
-                                          <p class="text-center penality_info"></p>
+                                          <p class="text-center penality_info mt-2"></p>
                                       </div>
                                         </div>
                                           <div class="d-flex flex-column w-50 align-items-center gap-3 clue_container">
@@ -880,9 +886,15 @@ main()
                             furniture_modal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
+                                friskModal.classList.add('show');
                                 penalityClue.innerHTML = "";
                                 clearInterval(intervalId);
                             })
+
+                            const zoomImgFurniture = document.querySelector(' .img_furniture');
+                            zoomImgFurniture.addEventListener('click', function () {
+                                this.classList.toggle('zoom');
+                            });
 
                             const furnitureModalLockLabel = document.getElementById('furnitureModalLockLabel');
                             switch_try = document.querySelector('.switch_try');

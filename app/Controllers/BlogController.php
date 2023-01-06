@@ -21,7 +21,6 @@ class BlogController extends Controller {
     }
 
     public function show(int $id)
-    // public function show()
     {
         $script = new Script($this->getDB());
         $script = $script->findById($id);

@@ -17,6 +17,10 @@ body {
     display: none !important;
 }
 
+.w-50 {
+    width: 50%;
+}
+
 ul,
 li {
     list-style: none;
