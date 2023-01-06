@@ -1,4 +1,6 @@
 let ingame_background = document.querySelector('.ingame_container_background')
+const roomModal = document.querySelector('#roomsModal');
+const friskModal = document.querySelector('#friskModal');
 
 let modal_title = document.querySelector('.modal-title');
 const penality = document.querySelector('.penality');
@@ -214,6 +216,7 @@ function removeToptoBottom() {
 main()
     .then(data => {
 
+        dataGlobal.room[0].padlock = "no"; // dévérouillage de la room 1
         dataGlobalUnlock.push(dataGlobal); // copie de dataGlobal dans dataGlobalUnlock pour pouvoir modifier les valeurs de dataGlobalUnlock sans modifier dataGlobal
 
 
@@ -285,9 +288,10 @@ main()
 
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
-
+                    roomModal.classList.remove('show');
                     ingame_background.style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
-                    ingame_background.style.backgroundSize = 'contain';
+                    ingame_background.style.backgroundSize = '30%, 30%';
+                    ingame_background.classList.add('ingame_background_responsive');
                     ingame_background.style.backgroundRepeat = 'no-repeat';
                     ingame_background.style.backgroundPosition = 'center';
                     if (ingame_background.style.backgroundImage) {
@@ -342,7 +346,8 @@ main()
 
                     let msg_open = document.querySelector('.msg_open');
                     if (dataGlobal.room[i].n_room == "1") {
-                        msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                        // msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                        msg_open.textContent = dataGlobal.room[i].description;
                         document.querySelector('.reward_container').style = "display: none";
                     }
 
@@ -355,13 +360,14 @@ main()
 
                     modal.addEventListener('hidden.bs.modal', function () {
                         modal.remove();
+                        roomModal.classList.add('show');
                     });
 
                 }
 
                 if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
 
-
+                    roomModal.classList.remove('show');
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'roomsLock');
@@ -383,6 +389,7 @@ main()
                                             </span>
                                     </div>
                                     <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
+                                    <img src="/assets/pictures/rooms/${dataGlobal.room[i]['picture']}" class="img_room" alt="" width="100%" height="100%">
                                     <p class="description_room">${dataGlobal.room[i]['description']}</p>
                                     </div>
                                         <div class="modal-body d-flex flex-column flex-md-row w-100">
@@ -446,6 +453,7 @@ main()
 
                     modal.addEventListener('hidden.bs.modal', function (modalRemove) {
                         modal.remove();
+                        roomModal.classList.add('show');
                         penalityClue.innerHTML = "";
                         clearInterval(intervalId);
                     })
@@ -1225,6 +1233,8 @@ main()
                             myModal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
+                                penalityClue.innerHTML = "";
+                                clearInterval(intervalId);
                             });
 
 

@@ -7,9 +7,7 @@ $objects = $params['objects'];
 <?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
 return header('Location: /login?error=session_expired');
 } ?>
-<?php if ((int)$rooms[0]->user_id != $_SESSION['user_id']) {
-return header('Location: /login?error=session_expired');
-} ?>
+
 
 
 

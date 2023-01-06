@@ -796,6 +796,11 @@ iframe {
         width: 100%;
     }
 
+    .ingame_container_background {
+        background-size: 60% 60% !important;
+        background-position: top !important;
+    }
+
 
 
 
