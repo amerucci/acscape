@@ -1,5 +1,5 @@
 if (window.location.href == "http://acscape/" || window.location.href ==
-    "http://acscape/index" || window.location.href == "http://acscape/show") {
+    "http://acscape/index" || window.location.href == "http://acscape/show" || window.location.href == "http://acscape/login") {
     document.querySelector('.navbar').style.position = "absolute";
 } else {
     document.querySelector('.navbar').style.position = "relative";
@@ -116,4 +116,10 @@ if (document.querySelector('.toTop')) {
     toTop.addEventListener('click', () => {
         window.scrollTo(0, 0);
     });
+}
+
+function deleteRecord() {
+    if (confirm("Voulez-vous vraiment supprimer cet enregistrement ? Cette action est irréversible.")) {
+        document.getElementById("deleteForm").submit();
+    }
 }

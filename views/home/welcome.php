@@ -25,7 +25,10 @@ $script = $params['script'];
 
 
 <section class="enigmes container d-flex flex-column gap-5 justify-content-evenly my-5" id='first_section'>
-    <h3 class="text-center subtitle">Nos Escape Games</h3>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <span class="mini_line"></span>
+        <h3 class="text-center subtitle">Nos Escape Games</h3>
+    </div>
 
     <div class="first_game d-flex flex-column flex-lg-row justify-content-center my-3">
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
@@ -58,12 +61,14 @@ $script = $params['script'];
         </div>
         <div class="img_game my-auto col-lg-8 row">
             <img src="\assets\pictures\scripts\<?= $script[0]->picture ?>" class="img-fluid" alt="">
+            <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[0]->id?>">Jouer</a>
         </div>
     </div>
 
     <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center my-3">
         <div class="img_game my-auto col-lg-8 row">
             <img src="\assets\pictures\scripts\<?= $script[1]->picture ?>" class="img-fluid" alt="">
+            <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[1]->id?>"> </a>
         </div>
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
 

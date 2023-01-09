@@ -121,7 +121,8 @@ return header('Location: /login?error=session_expired');
                                 class="btn btn-primary my-1 w-100">Editer</a>
                             <form action="/admin/furniture/delete/<?= $furniture->id ?>" method="post" class="w-100">
                                 <input type="hidden" name="id" value="<?= $furniture->id ?>">
-                                <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+                                <button type="submit" class="btn btn-danger w-100"
+                                    onclick="deleteRecord()">Supprimer</button>
                             </form>
                         </div>
                     </div>
@@ -220,9 +221,10 @@ return header('Location: /login?error=session_expired');
         editPlus.classList.add('dnone');
     });
 
-
     const description = document.getElementById('description');
     const reward = document.getElementById('reward');
+    const clue = document.getElementById('clue');
+    const unlock_word = document.getElementById('unlock_word');
 
     function padlock() {
 
@@ -230,6 +232,9 @@ return header('Location: /login?error=session_expired');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+            reward.setAttribute('required', 'required');
+            clue.setAttribute('required', 'required');
+            unlock_word.setAttribute('required', 'required');
         } else {
             reward.value = description.value
         }
@@ -238,8 +243,14 @@ return header('Location: /login?error=session_expired');
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
                 reward.value = '';
+                reward.setAttribute('required', 'required');
+                clue.setAttribute('required', 'required');
+                unlock_word.setAttribute('required', 'required');
             } else {
                 padlockParams.classList.add('dnone');
+                reward.removeAttribute('required');
+                clue.removeAttribute('required');
+                unlock_word.removeAttribute('required');
             }
         });
     }

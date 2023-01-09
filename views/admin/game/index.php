@@ -59,7 +59,8 @@ $objects = $params['objects'];
                         <a href="room/edit/<?= $room->id ?>" class="btn btn-primary w-100">Editer</a>
                         <form action="room/delete/<?= $room->id ?>" method="post" class="w-100">
                             <input type="hidden" name="id" value="<?= $room->id ?>">
-                            <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+                            <button type="submit" class="btn btn-danger w-100"
+                                onclick="deleteRecord()">Supprimer</button>
                         </form>
                     </div>
                 </div>

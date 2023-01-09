@@ -40,7 +40,7 @@ return header('Location: /login?error=error');
                 <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="title">Solution pour le dévérouillage</label>
                     <input type="text" name="unlock_word" id="unlock_word" class="form-control"
-                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required>
+                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce">
                 </div>
                 <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
                     <label for="clue">Indice</label>
@@ -112,6 +112,8 @@ return header('Location: /login?error=error');
 
     const description = document.getElementById('description');
     const reward = document.getElementById('reward');
+    const clue = document.getElementById('clue');
+    const unlock_word = document.getElementById('unlock_word');
 
     function padlock() {
 
@@ -119,6 +121,9 @@ return header('Location: /login?error=error');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+            reward.setAttribute('required', 'required');
+            clue.setAttribute('required', 'required');
+            unlock_word.setAttribute('required', 'required');
         } else {
             reward.value = description.value
         }
@@ -127,8 +132,14 @@ return header('Location: /login?error=error');
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
                 reward.value = '';
+                reward.setAttribute('required', 'required');
+                clue.setAttribute('required', 'required');
+                unlock_word.setAttribute('required', 'required');
             } else {
                 padlockParams.classList.add('dnone');
+                reward.removeAttribute('required');
+                clue.removeAttribute('required');
+                unlock_word.removeAttribute('required');
             }
         });
     }

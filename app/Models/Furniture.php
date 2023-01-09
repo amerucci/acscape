@@ -21,5 +21,7 @@ class Furniture extends Model {
         return $this->query("SELECT * FROM {$this->table} WHERE furniture_id = ?", [$furnitureId], true);
     }
 
+
+
     
 }

@@ -223,7 +223,7 @@ main()
 
             arrayMax.push(dataGlobal.room[i].n_room);
             max = Math.max(...arrayMax);
-            dataGlobalUnlock[i].unlock_word.text - lowercase();
+
 
 
             li_room = document.createElement('li');
@@ -505,10 +505,11 @@ main()
                     roomsClueId = [...uniqueIdsClue];
 
 
-                    if (clue_show_content1.innerHTML == "null") {
-                        clue_show1.classList.add('dnone');
+                    if (clue_show_content1.innerHTML = dataGlobal.room[i]['clue'] == "") {
                         clue_show2.classList.add('dnone');
                         clue_show3.classList.add('dnone');
+                        clue_show1.disabled = true;
+                        clue_show1.textContent = "Pas d'indice pour cette salle";
                     }
                     if (clue_show_content2.innerHTML = dataGlobal.room[i]['clue2'] == null) {
                         clue_show2.classList.add('dnone');
@@ -530,6 +531,7 @@ main()
 
 
                     clue_show1.addEventListener('click', function () {
+
 
                         clue_show_content1.classList.toggle('dnone');
                         this.classList.toggle('rotate_5deg');
