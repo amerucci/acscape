@@ -1,4 +1,6 @@
-<?php $title = "ACScape Accueil"; ?>
+<?php $title = "ACScape Accueil"; 
+$script = $params['script'];
+?>
 
 <section class="container-fluid homepageTop d-flex align-items-center">
     <div class="hook container">
@@ -29,7 +31,7 @@
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
 
 
-            <div class="difficulty my-2">
+            <div class="diffuclty my-2" data-difficulty="<?= $script[0]->difficulty ?>">
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
@@ -39,38 +41,35 @@
 
 
             <div class="title_game">
-                <h3>Le Développeur Perdu</h3>
+                <h3><?= $script[0]->title ?></h3>
             </div>
 
             <div class="time_game d-flex gap-2 align-items-center mb-3 mt-2">
                 <img src="assets/front/icons/clock.svg" alt="">
-                <p class="m-0">60</p>
+                <p class="m-0"><?= $script[0]->duration ?></p>
             </div>
 
             <div class="description_game">
-                <p>Vous êtes un développeur en herbe et vous avez été recruté par une entreprise de renom. Vous
-                    avez
-                    été
-                    embauché pour développer un jeu vidéo. Mais voilà, vous êtes bloqué dans les locaux de
-                    l’entreprise...</p>
+                <p><?= substr($script[0]->description, 0, 200) . '...'?></p>
             </div>
             <div class="button_game mt-5 pt-3 mb-3">
-                <a class='d-flex justify-content-center align-items-center' href="/show">Jouer</a>
+                <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[0]->id?>">Jouer</a>
             </div>
         </div>
         <div class="img_game my-auto col-lg-8 row">
-            <img src="assets\front\img_game\img_game.webp" class="img-fluid" alt="">
+            <img src="\assets\pictures\scripts\<?= $script[0]->picture ?>" class="img-fluid" alt="">
         </div>
     </div>
 
     <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center my-3">
         <div class="img_game my-auto col-lg-8 row">
-            <img src="assets\front\img_game\img_game.webp" class="img-fluid" alt="">
+            <img src="\assets\pictures\scripts\<?= $script[1]->picture ?>" class="img-fluid" alt="">
         </div>
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">
 
 
-            <div class="difficulty my-2">
+
+            <div class="diffuclty my-2" data-difficulty="<?= $script[1]->difficulty ?>">
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
                 <iconify-icon icon="ri:lock-line"></iconify-icon>
@@ -80,23 +79,19 @@
 
 
             <div class="title_game">
-                <h3>Le Développeur Perdu</h3>
+                <h3><?= $script[1]->title ?></h3>
             </div>
 
             <div class="time_game d-flex gap-2 align-items-center mb-3 mt-2">
                 <img src="assets/front/icons/clock.svg" alt="">
-                <p class="m-0">60</p>
+                <p class="m-0"><?= $script[0]->duration ?></p>
             </div>
 
             <div class="description_game">
-                <p>Vous êtes un développeur en herbe et vous avez été recruté par une entreprise de renom. Vous
-                    avez
-                    été
-                    embauché pour développer un jeu vidéo. Mais voilà, vous êtes bloqué dans les locaux de
-                    l’entreprise...</p>
+                <p><?= substr($script[1]->description, 0, 200) . '...'?></p>
             </div>
             <div class="button_game mt-5 pt-3 mb-3">
-                <a class='d-flex justify-content-center align-items-center' href="/show">Jouer</a>
+                <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[1]->id?>">Jouer</a>
             </div>
         </div>
 
@@ -188,4 +183,17 @@
             firstScroll = false;
         }
     });
+
+    const difficultyDivs = document.querySelectorAll('.diffuclty');
+
+    for (const difficultyDiv of difficultyDivs) {
+        const icons = difficultyDiv.querySelectorAll('iconify-icon');
+        const difficulty = difficultyDiv.getAttribute('data-difficulty');
+        for (let i = 0; i < difficulty; i++) {
+            icons[i].classList.add('red');
+        }
+        for (let i = difficulty; i < icons.length; i++) {
+            icons[i].classList.add('white');
+        }
+    }
 </script>

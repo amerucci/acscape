@@ -77,7 +77,6 @@ class RoomController extends Controller {
           return header('Location: /admin/game');
       }
 
-
     }
        
         

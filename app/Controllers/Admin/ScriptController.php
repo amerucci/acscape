@@ -54,7 +54,7 @@ class ScriptController extends Controller {
                         $picture = $_FILES['picture']['name'];
                         $picturePath = $_FILES['picture']['tmp_name'];
                         $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
-                        if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
+                        if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png' || $pictureExtension == 'gif' || $pictureExtension == 'svg' || $pictureExtension == 'webp') {
                         $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                         $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
                         $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
@@ -62,7 +62,7 @@ class ScriptController extends Controller {
                         $pictureSize = $_FILES['picture']['size'];
                     }
                         if (in_array($pictureExtension, $pictureExtensionAllowed)) {
-                            if ($pictureSize < 5000000) {
+                            if ($pictureSize < 2000000) {
                                 move_uploaded_file($picturePath, $pictureDestination);
                             } else {
                                 echo "Votre fichier est trop volumineux";
@@ -113,16 +113,15 @@ class ScriptController extends Controller {
                 $picture = $_FILES['picture']['name'];
                 $picturePath = $_FILES['picture']['tmp_name'];
                 $pictureExtension = pathinfo($picture, PATHINFO_EXTENSION);
-                if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png') {
+                if ($pictureExtension == 'jpg' || $pictureExtension == 'jpeg' || $pictureExtension == 'png' || $pictureExtension == 'gif' || $pictureExtension == 'svg' || $pictureExtension == 'webp') {
                 $pictureName = pathinfo($picture, PATHINFO_FILENAME);
                 $pictureName = time() . '_' . $pictureName . '.' . $pictureExtension;
-                // $pictureName = $pictureName . "." . $pictureExtension;
                 $pictureDestination = '../assets/pictures/scripts/' . $pictureName;
-                $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif'];
+                $pictureExtensionAllowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
                 $pictureSize = $_FILES['picture']['size'];
             }
                 if (in_array($pictureExtension, $pictureExtensionAllowed)) {
-                    if ($pictureSize < 1000000) {
+                    if ($pictureSize < 2000000) {
                         move_uploaded_file($picturePath, $pictureDestination);
                     } else {
                         echo "Votre fichier est trop volumineux";

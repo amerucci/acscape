@@ -1,8 +1,5 @@
 <?php $title = "Creation des scripts"; ?>
 <?php unset($_SESSION['script_id']); ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 <?php if ((int)$params['users'][0]->id != $_SESSION['user_id']) {
 return header('Location: /login?error=error');
 } ?>

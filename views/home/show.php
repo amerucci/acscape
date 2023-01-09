@@ -33,8 +33,8 @@ $_SESSION['scriptId'] = $script->id;
                     <p class="m-0"><?= $script->duration?></p>
                     <p class="m-0">MINUTES</p>
                 </div>
-                <div class="play_now">
-                    <a href="/ingame">JOUER MAINTENANT</a>
+                <div class="play_now button_game ">
+                    <a class="d-flex justify-content-center align-items-center" href="/ingame">JOUER MAINTENANT</a>
                 </div>
             </div>
         </div>

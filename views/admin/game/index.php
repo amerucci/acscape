@@ -4,10 +4,6 @@ $rooms = $params['rooms'];
 $furnitures = $params['furnitures'];
 $objects = $params['objects'];
 ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
-
 
 
 

@@ -1,6 +1,5 @@
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'admin') == true) : ?>
 <?php if (!isset($_COOKIE['csrf_token'])) {
-// Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
 return header('Location: /login?error=session_expired');
 } ?>
 
@@ -25,9 +24,10 @@ return header('Location: /login?error=session_expired');
     <meta name="Rating" content="general">
     <meta name="Distribution" content="global">
     <meta name="Category" content="games">
+    <!-- <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'main.min.css' ?>"> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app2.css' ?>">
+    <link rel="stylesheet" async href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.min.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
@@ -42,7 +42,7 @@ return header('Location: /login?error=session_expired');
     <!-- custom cursor -> https://github.com/guillaume-rygn/MS-Cursor -->
     <!-- caroussel -> https://splidejs.com/ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <script async src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <title><?= $title ?></title>
 </head>
 
@@ -73,7 +73,6 @@ return header('Location: /login?error=session_expired');
 
                     <?php
                         if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                    <!-- <li class="nav-item in_game_nav"> Le développeur perdu</li> -->
                     <li class="nav-item in_game_nav"><?= $gameTitle ?></li>
                     <li class="nav-item in_game_nav room_active"></li>
                     <?php else : ?>
@@ -142,11 +141,10 @@ return header('Location: /login?error=session_expired');
     </nav>
 
     <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
-
         <?= $content ?>
     </div>
 
-    <footer class="container-fluid gx-0">
+    <footer class="container-fluid gx-0 mt-3">
         <div class="footer_acs d-flex justify-content-center flex-column align-items-center py-2">
             <svg class="my-1" width="161" height="42" viewBox="0 0 161 42" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -175,7 +173,7 @@ return header('Location: /login?error=session_expired');
 
 </body>
 
-<script src="\public\app\app.js"></script>
+<script async src="\public\app\app.js"></script>
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
 <script src="\public\app\inGame.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
@@ -183,7 +181,7 @@ return header('Location: /login?error=session_expired');
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
 

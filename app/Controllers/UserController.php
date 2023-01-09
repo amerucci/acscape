@@ -11,26 +11,16 @@ class UserController extends Controller {
     public function login()
     {
         $csrf_token = $this->generateCsrfToken();
-        // setcookie('csrf_token', $csrf_token, time() + 7200 );
         setcookie('csrf_token', $csrf_token, [
             'expires' => time() + 7200,
             'samesite' => 'strict',
             // 'secure' => true
             ]);
         return $this->view('auth.login',compact('csrf_token'));
-
-        // en étant sur le virtualHost acscape et en ayant mis le cookie en secure et samesite none le cookie est rejetté par le navigateur. Histoire d'https.
-        // en étant sur le localhost le cookie est accepté par le navigateur.
-       
     }
 
     public function loginPost()
     {
-
-        // if (!isset($_COOKIE['csrf_token'])) {
-        //     // Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
-        //     return header('Location: /acscape/login?error=session_expired');
-        // }
 
         if (!$this->validateCsrfToken($_POST['csrf_token'])) {
             return header('Location: /login?error=invalid_csrf_token');
@@ -59,8 +49,6 @@ class UserController extends Controller {
         } else {
             return header('Location: /login?error=error');
         }
-
-
     }
 
     public function logout()
@@ -77,7 +65,6 @@ class UserController extends Controller {
 
     public function registerPost()
     {
-
         $token = bin2hex(random_bytes(32));
 
         $validator = new Validator($_POST);
@@ -91,11 +78,8 @@ class UserController extends Controller {
          $_SESSION['errors'][] = $errors;
          header('Location: login');
          exit;
-            }
+        }
     
-    
-
-     
             $user = new User ($this->getDB());
             $email = $user->getByUserMail($_POST['email']);
             $username = $user->getByUsername($_POST['username']);
@@ -110,14 +94,6 @@ class UserController extends Controller {
                 exit;
             }
 
-
-            // if ($errors) {
-            //     $_SESSION['errors'][] = $errors;
-            //     header('Location: login');
-            //     exit;
-            //        }
-
-
         $user->create([
         'username' => $_POST['username'],
         'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
@@ -126,16 +102,6 @@ class UserController extends Controller {
         'token' => $token
             ]);
     
-    
-            // if ($username) {
-            //     $_SESSION['errors'][] = 'Ce nom d\'utilisateur est déjà utilisé';
-            //     header('Location: register');
-            //     exit;
-            // }
-    
-          
-
-
         return header('Location: login');
     }
 

@@ -1,10 +1,4 @@
 <?php $title = "Creation d'un meuble"; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
-<!-- <?php var_dump((int) $params['users'][0]->id); ?>
-<?php var_dump($_SESSION['user_id']); ?>
-<?php var_dump($_SESSION['user_id'] == (int) $params['users'][0]->id); ?> -->
 <?php if ($_SESSION['user_id'] != (int) $params['users'][0]->id) {
 return header('Location: /login?error=error');
 } ?>
@@ -116,17 +110,23 @@ return header('Location: /login?error=error');
         }
     }
 
+    const description = document.getElementById('description');
+    const reward = document.getElementById('reward');
+
     function padlock() {
 
         let padlock = document.getElementById('padlock');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+        } else {
+            reward.value = description.value
         }
 
         padlock.addEventListener('change', function () {
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
+                reward.value = '';
             } else {
                 padlockParams.classList.add('dnone');
             }

@@ -1,7 +1,4 @@
 <?php $title = "Administration des meubles"; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 <div class="container admin_container">
     <a href="furniture/create">Créer un meuble</a>
 

@@ -1,3 +1,4 @@
+const endgame_text = document.querySelector('.endgame_text');
 let ingame_background = document.querySelector('.ingame_container_background')
 const roomModal = document.querySelector('#roomsModal');
 const friskModal = document.querySelector('#friskModal');
@@ -15,9 +16,6 @@ function function_penality_info() {
 
 
 let navbar = document.querySelector('.navbar');
-// navbar.classList.remove('navbar-expand-lg');
-// navbar.classList.add('navbar-expand');
-// window.addEventListener('resize', function (event) {
 if (window.innerWidth < 992) {
     navbar.classList.add('flex-wrap');
     navbar.classList.remove('navbar-expand-lg');
@@ -27,7 +25,6 @@ if (window.innerWidth < 992) {
     navbar.classList.remove('navbar-expand');
     navbar.classList.add('navbar-expand-lg');
 }
-// });
 
 function modalFixed() {
     const the_rooms = document.querySelector('.the_rooms');
@@ -161,6 +158,7 @@ let room_open;
 let backdrop;
 let modals = document.querySelectorAll('.modal');
 let input_container;
+const tools = document.querySelector('.tools');
 
 let switch_container;
 let switch_try;
@@ -220,16 +218,12 @@ main()
         dataGlobalUnlock.push(dataGlobal); // copie de dataGlobal dans dataGlobalUnlock pour pouvoir modifier les valeurs de dataGlobalUnlock sans modifier dataGlobal
 
 
-
-
-
-
         for (let i = 0; i < dataGlobal.room.length; i++) {
 
 
             arrayMax.push(dataGlobal.room[i].n_room);
             max = Math.max(...arrayMax);
-
+            dataGlobalUnlock[i].unlock_word.text - lowercase();
 
 
             li_room = document.createElement('li');
@@ -237,18 +231,19 @@ main()
             // li_room.innerHTML = dataGlobalUnlock[0].room[i].title;
             roomsList.appendChild(li_room);
 
-
-
-
             let roomsArray = [];
             for (let j = 3; j < roomsList.childNodes.length; j++) {
                 roomsArray.push(roomsList.childNodes[j]);
+
             }
+
 
             roomsArray[i].style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
             roomsArray[i].style.backgroundSize = 'contain';
             roomsArray[i].style.backgroundRepeat = 'no-repeat';
             roomsArray[i].style.backgroundPosition = 'center';
+
+
 
 
             let padlock = document.createElement('iconify-icon');
@@ -276,15 +271,20 @@ main()
                     roomsArray[i].style.color = 'black';
                     padlock.remove();
                     roomsArray[i].appendChild(padlock_open);
+
                 }
             }
             padlock_img();
+
+
+
 
 
             roomsArray[i].addEventListener('click', function (roomClick) { // ouverture de la modal room ouverte(padlock='no') ou fermé(padlock='yes') et l'ensemble des fonctions permettant les actions sur les salles
 
                 roomLockID = dataGlobal.room[i].id;
                 padlock_img();
+
 
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
@@ -294,6 +294,7 @@ main()
                     ingame_background.classList.add('ingame_background_responsive');
                     ingame_background.style.backgroundRepeat = 'no-repeat';
                     ingame_background.style.backgroundPosition = 'center';
+                    tools.classList.add('backdrop_for_img')
                     if (ingame_background.style.backgroundImage) {
                         document.querySelector('body').style.backdropFilter = 'blur(5px)';
                     } else {
@@ -362,10 +363,11 @@ main()
                         modal.remove();
                         roomModal.classList.add('show');
                     });
-
                 }
 
                 if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
+
+
 
                     roomModal.classList.remove('show');
                     const modal = document.createElement('div');
@@ -473,14 +475,8 @@ main()
                     })
 
 
-
-
-
                     // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
                     let tl = interval;
-
-
-
 
                     clue_btn_content = document.querySelector('#clue_btn_content');
                     switch_container = document.querySelector('.switch_container');
@@ -698,6 +694,7 @@ main()
                             e.preventDefault;
                         }
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
+
                             rooms_unlock_btn.disabled = true;
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
@@ -712,6 +709,7 @@ main()
                             }
                             backdrop.click();
                             roomsArray[i].click();
+
 
                         } else {
                             room_try--;
@@ -751,18 +749,22 @@ main()
                             }
                         }
                     });
+
                 }
 
                 if (dataGlobal.room[i].n_room == max && roomsArray[i].classList.contains('room_unlock_open')) {
                     endgame_win.classList.remove('dnone');
+                    endgame_text.textContent = dataGlobal.script[0].winner_msg;
+
 
                     setInterval(function () {
                         buttonConfetti.click();
-                    }, 200)
+                    }, 1000)
                 }
 
 
             })
+
 
         }
 

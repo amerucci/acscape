@@ -59,7 +59,7 @@ const legals_mentions = document.querySelector('.legals_mentions');
 // fetch from public/app/mentions.json
 
 async function fetchMentions() {
-    const response = await fetch('public/app/mentions.json');
+    const response = await fetch('/public/app/mentions.json');
     const data = await response.json();
     return data;
 };

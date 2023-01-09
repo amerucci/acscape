@@ -1,7 +1,4 @@
 <?php $title = "création de salles"; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 <?php if ($_SESSION['user_id'] != (int)$params['users'][0]->id) {
 return header('Location: /login?error=session_expired');
 } ?>
@@ -157,21 +154,27 @@ return header('Location: /login?error=session_expired');
                 }
             });
 
+            const description = document.getElementById('description');
+            const reward = document.getElementById('reward');
+
             function padlock() {
 
-
+                let padlock = document.getElementById('padlock');
                 let padlockParams = document.querySelector('.padlock_params');
-                if (padLock.value === 'yes') {
+                if (padlock.value === 'yes') {
                     padlockParams.classList.remove('dnone');
+                } else {
+                    reward.value = description.value
                 }
 
-                padLock.addEventListener('change', function () {
-                    if (padLock.value === 'yes') {
+                padlock.addEventListener('change', function () {
+                    if (padlock.value === 'yes') {
                         padlockParams.classList.remove('dnone');
+                        reward.value = '';
                     } else {
                         padlockParams.classList.add('dnone');
                     }
                 });
             }
-            // padlock();
+            padlock();
         </script>

@@ -1,8 +1,5 @@
 <?php $furniture = $params['furniture'];
 $title = "Modification du meuble"; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 <?php if ($_SESSION['user_id'] != (int) $params['furniture']->user_id) {
 return header('Location: /login?error=session_expired');
 } ?>
@@ -11,7 +8,7 @@ return header('Location: /login?error=session_expired');
     <h1 class="text-center">Modification du meuble</h1>
 
     <div class="d-flex justify-content-center align-items-center flex-column gap-5 w-100">
-        <form action="/acscape/admin/furniture/edit/<?= $furniture->id ?>" method="post" enctype="multipart/form-data"
+        <form action="/admin/furniture/edit/<?= $furniture->id ?>" method="post" enctype="multipart/form-data"
             class="d-flex justify-content-center align-items-center flex-column gap-3 w-50">
             <div class="form-group form_name w-100 d-flex justify-content-center align-items-center flex-column">
                 <label for="title">Titre</label>
@@ -21,8 +18,8 @@ return header('Location: /login?error=session_expired');
             <div class="form-group form_picture w-100 d-flex justify-content-center align-items-center flex-column">
                 <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
                 <input type="hidden" name="picture" id="picture" value="<?= $furniture->picture ?>">
-                <img src="/acscape/assets/pictures/furnitures/<?= $furniture->picture ?>" alt="image du script"
-                    width="100px" height="100px" id="picturePreview">
+                <img src="/assets/pictures/furnitures/<?= $furniture->picture ?>" alt="image du script" width="100px"
+                    height="100px" id="picturePreview">
                 <img id="picturePreviewTemp">
             </div>
             <div class="form-group form_desc w-100 d-flex justify-content-center align-items-center flex-column">
@@ -165,17 +162,23 @@ return header('Location: /login?error=session_expired');
 
     });
 
+    const description = document.getElementById('description');
+    const reward = document.getElementById('reward');
+
     function padlock() {
 
         let padlock = document.getElementById('padlock');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+        } else {
+            reward.value = description.value
         }
 
         padlock.addEventListener('change', function () {
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
+                reward.value = '';
             } else {
                 padlockParams.classList.add('dnone');
             }

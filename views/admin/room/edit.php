@@ -1,9 +1,6 @@
 <?php $room = $params['room'];
 $title = "Modifier la salle {$room->title}";
 ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 <?php if ((int) $params['room']->user_id != $_SESSION['user_id']) {
 return header('Location: /login?error=session_expired');
 } ?>
@@ -114,7 +111,9 @@ return header('Location: /login?error=session_expired');
                 <?php foreach ($params['furnitures'] as $furniture) : ?>
                 <?php if ($furniture->room_id == $_SESSION['room_id']) : ?>
                 <div class="card mx-2 card_furniture">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column gap-5">
+                    <div class="card-body d-flex justify-content-center align-items-center flex-column gap-1">
+                        <img src="/assets/pictures/furnitures/<?= $furniture->picture ?>" alt="<?= $furniture->title ?>"
+                            class="card-img-top object-fit-contain" width="100" height="100">
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?=  substr($furniture->description,  0, 50).'...' ?></p>
                         <div class="d-flex flex-column w-100">
@@ -222,17 +221,23 @@ return header('Location: /login?error=session_expired');
     });
 
 
+    const description = document.getElementById('description');
+    const reward = document.getElementById('reward');
+
     function padlock() {
 
         let padlock = document.getElementById('padlock');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+        } else {
+            reward.value = description.value
         }
 
         padlock.addEventListener('change', function () {
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
+                reward.value = '';
             } else {
                 padlockParams.classList.add('dnone');
             }

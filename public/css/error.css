@@ -20,6 +20,7 @@ body {
 
 .error {
     overflow: hidden;
+    margin: 0;
 }
 
 a {

@@ -55,8 +55,8 @@
 
 
 .all_games {
-    min-height: 100vh;
-    margin-top: 8%;
+    /* min-height: 80vh; */
+    margin-top: 1%;
     margin-bottom: 3%;
     position: relative;
     overflow-x: hidden;
@@ -84,9 +84,10 @@
 
 .link_game {
     position: absolute;
-    height: 316px;
-    width: 500px;
-    top: -178px;
+    height: 412px;
+    width: 391px;
+    top: -267px;
+    overflow: hidden;
 }
 
 

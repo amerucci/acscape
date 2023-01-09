@@ -93,11 +93,8 @@
 
 
 .play_now>a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 57px;
-    width: 227px;
+    height: 57px !important;
+    width: 227px !important;
     padding: 0 10px;
     gap: 10px;
     background-color: rgba(211, 30, 68, 1);
@@ -106,7 +103,7 @@
     margin-right: 25px;
     color: white;
     font-family: 'montserrat';
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 .other_games>h3 {

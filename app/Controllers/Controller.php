@@ -65,7 +65,10 @@ abstract class Controller {
         } else {
             return header('Location: login');
         }
-    }
+        if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+            return header('Location: /login?error=session_expired');
+            } 
 
+    }
 
 }

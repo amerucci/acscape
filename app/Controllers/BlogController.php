@@ -10,14 +10,16 @@ class BlogController extends Controller {
 
     public function welcome()
     {
-        return $this->view('blog.welcome');
+        $script = new Script($this->getDB());
+        $script = $script->all();
+        return $this->view('home.welcome' , compact('script'));
     }
 
     public function index()
     {
         $script = new Script($this->getDB());
         $script = $script->all();
-        return $this->view('blog.index', compact('script'));
+        return $this->view('home.index', compact('script'));
     }
 
     public function show(int $id)
@@ -25,7 +27,7 @@ class BlogController extends Controller {
         $script = new Script($this->getDB());
         $script = $script->findById($id);
         $scriptAll = $script->all();
-        return $this->view('blog.show', compact('script', 'scriptAll'));
+        return $this->view('home.show', compact('script', 'scriptAll'));
     }
 
 }

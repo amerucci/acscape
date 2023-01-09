@@ -1,9 +1,6 @@
 <?php
 $title = "modifier le scénario " . $params['script']->title;
  $script = $params['script'] ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /login?error=session_expired');
-} ?>
 
 <?php if ((int)$params['script']->user_id != $_SESSION['user_id']) {
 return header('Location: /login?error=session_expired');

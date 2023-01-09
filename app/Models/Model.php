@@ -4,7 +4,6 @@ namespace App\Models;
 
 use PDO;
 use Database\DBConnection;
-
 abstract class Model {
 
     protected $db;
