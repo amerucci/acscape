@@ -60,14 +60,16 @@ $script = $params['script'];
             </div>
         </div>
         <div class="img_game my-auto col-lg-8 row">
-            <img src="\assets\pictures\scripts\<?= $script[0]->picture ?>" class="img-fluid" alt="">
+            <img src="\assets\pictures\scripts\<?= $script[0]->picture ?>" class="img-fluid" alt="" width="510"
+                height="534">
             <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[0]->id?>">Jouer</a>
         </div>
     </div>
 
     <div class="second_game d-flex flex-column-reverse flex-lg-row justify-content-center my-3">
         <div class="img_game my-auto col-lg-8 row">
-            <img src="\assets\pictures\scripts\<?= $script[1]->picture ?>" class="img-fluid" alt="">
+            <img src="\assets\pictures\scripts\<?= $script[1]->picture ?>" class="img-fluid" alt="" width="510"
+                height="534">
             <a class='d-flex justify-content-center align-items-center' href="/show/<?= $script[1]->id?>"> </a>
         </div>
         <div class="content_game col-lg-4 flex-lg-column d-lg-flex justify-content-evenly">

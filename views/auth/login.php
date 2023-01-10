@@ -6,78 +6,82 @@
 
 
 
-<div class="background_login_register"></div>
-<div class="imageHeaderTop">
-    <img class='imageHeaderTop_img' src="assets/front/login/login_register_top2.png" alt="">
-</div>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+    <div class="background_login_register"></div>
 
-<div class='login_register'>
+    <div class='login_register w-100'>
 
-    <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
+        <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
 
-    <div class="login-box">
+        <div class="login-box w-100">
 
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
-        <div class="alert alert-danger">
-            <li>Le mot de passe ou le pseudo est incorrect</li>
-        </div>
-        <?php endif ?>
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'session_expired'): ?>
-        <div class="alert alert-danger">
-            <li>La session a expirée</li>
-        </div>
-        <?php endif ?>
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'email'): ?>
-        <div class="alert alert-danger">
-            <li>Cet email existe déjà</li>
-        </div>
-        <?php endif ?>
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'username'): ?>
-        <div class="alert alert-danger">
-            <li>Ce nom d'utilisateur existe déjà</li>
-        </div>
-        <?php endif ?>
-        <?php if (isset($_SESSION['errors'])): ?>
-        <?php foreach($_SESSION['errors'] as $errorsArray): ?>
-        <?php foreach($errorsArray as $errors): ?>
-        <div class="alert alert-danger">
-            <?php foreach($errors as $error): ?>
-            <li><?= $error ?></li>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
+            <div class="alert alert-danger">
+                <li>Le mot de passe ou le pseudo est incorrect</li>
+            </div>
+            <?php endif ?>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'session_expired'): ?>
+            <div class="alert alert-danger">
+                <li>La session a expirée</li>
+            </div>
+            <?php endif ?>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'email'): ?>
+            <div class="alert alert-danger">
+                <li>Cet email existe déjà</li>
+            </div>
+            <?php endif ?>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'username'): ?>
+            <div class="alert alert-danger">
+                <li>Ce nom d'utilisateur existe déjà</li>
+            </div>
+            <?php endif ?>
+            <?php if (isset($_SESSION['errors'])): ?>
+            <?php foreach($_SESSION['errors'] as $errorsArray): ?>
+            <?php foreach($errorsArray as $errors): ?>
+            <div class="alert alert-danger">
+                <?php foreach($errors as $error): ?>
+                <li><?= $error ?></li>
+                <?php endforeach ?>
+            </div>
             <?php endforeach ?>
+            <?php endforeach ?>
+
+            <?php endif ?>
+
+            <div class="onglet_login_register">
+                <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
+                </div>
+                <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
+            </div>
+
+            <form action="login" method="POST" id="formLogin" autocomplete="off">
+                <div class="user-box">
+                    <input type="text" name="username" id="username" required="" autocomplete="off"
+                        class="no-autofill-bkg">
+                    <label>Nom d'utilisateur</label>
+                </div>
+                <div class="user-box position-relative">
+                    <input type="password" name="password" required="" autocomplete="off" class="password">
+                    <label>Mot de passe</label>
+                    <iconify-icon class="pass_to_text" icon="mdi:form-textbox-password" width="30" height="30">
+                    </iconify-icon>
+                </div>
+                <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
+                <button type="submit" class="btn_login_register">Se connecter</button>
+                <a class="forgot" href="/forgot">mot de passe oublié</a>
+            </form>
+
         </div>
-        <?php endforeach ?>
-        <?php endforeach ?>
-
-        <?php endif ?>
-
-        <div class="onglet_login_register">
-            <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
-            </div>
-            <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
-        </div>
-
-        <form action="login" method="POST" id="formLogin" autocomplete="off">
-            <div class="user-box">
-                <input type="text" name="username" id="username" required="" autocomplete="off" class="no-autofill-bkg">
-                <label>Nom d'utilisateur</label>
-            </div>
-            <div class="user-box position-relative">
-                <input type="password" name="password" required="" autocomplete="off" class="password">
-                <label>Mot de passe</label>
-                <iconify-icon class="pass_to_text" icon="mdi:form-textbox-password" width="30" height="30">
-                </iconify-icon>
-            </div>
-            <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
-            <button type="submit" class="btn_login_register">Se connecter</button>
-            <a class="forgot" href="/forgot">mot de passe oublié</a>
-        </form>
-
     </div>
 </div>
 
 
 
+
 <script>
+    document.querySelector('.navbar').classList.add("navbarLogin")
+
+
     const onglet_login = document.getElementById('onglet_login');
     const onglet_register = document.getElementById('onglet_register');
     const formLogin = document.getElementById('formLogin');

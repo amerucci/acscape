@@ -1,8 +1,11 @@
 .background_login_register {
     background-color: rgba(27, 27, 27, 1);
+    background-image: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, #1B1B1B 100%), url(../../assets/front/login/login_register_top2.png);
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
 }
 
 .imageHeaderTop {
@@ -10,6 +13,7 @@
     top: 0;
     width: 100%;
 }
+
 
 .imageHeaderTop_img {
     width: 100%;
@@ -183,15 +187,65 @@
 .forgot {
     display: block;
     position: absolute;
-    bottom: 20%;
+    bottom: -12%;
     left: 8%;
     text-decoration: none;
     color: rgba(108, 108, 108, 1);
     font-family: "montserrat", sans-serif;
+    transition: color 0.2s ease-in-out;
+}
+
+.forgot:hover {
+    color: rgba(211, 30, 68, 1);
 }
 
 .pass_to_text {
     position: absolute;
     right: 0px;
     top: 10px;
+}
+
+.btn-send-forgot {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #D31E44;
+    padding: 3%;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-send-forgot:hover {
+    background-color: #fff;
+    color: #D31E44;
+    transition: 0.2s ease-in-out;
+}
+
+#email {
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .navbarLogin {
+        position: relative !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .btn_login_register {
+        bottom: -15%;
+    }
+
+    .titleLogin {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+}
+
+@media (max-width: 456px) {
+    .forgot {
+        bottom: -49%;
+        left: 26%;
+    }
 }

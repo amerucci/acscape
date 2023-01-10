@@ -1,8 +1,10 @@
 if (window.location.href == "http://acscape/" || window.location.href ==
     "http://acscape/index" || window.location.href == "http://acscape/show" || window.location.href == "http://acscape/login") {
-    document.querySelector('.navbar').style.position = "absolute";
+    document.querySelector('.navbar').classList.remove('position-relative');
+    document.querySelector('.navbar').classList.add('position-absolute');
 } else {
-    document.querySelector('.navbar').style.position = "relative";
+    document.querySelector('.navbar').classList.remove('position-absolute');
+    document.querySelector('.navbar').classList.add('position-relative');
 }
 
 if (window.location.href.includes("admin")) {

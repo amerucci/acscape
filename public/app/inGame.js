@@ -210,12 +210,26 @@ function removeToptoBottom() {
     }, 2000);
 }
 
+function lowerCase() {
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function () {
+            input.value = input.value.toLowerCase();
+        });
+    });
+}
 
 main()
     .then(data => {
 
         dataGlobal.room[0].padlock = "no"; // dévérouillage de la room 1
         dataGlobalUnlock.push(dataGlobal); // copie de dataGlobal dans dataGlobalUnlock pour pouvoir modifier les valeurs de dataGlobalUnlock sans modifier dataGlobal
+
+        for (let i = 0; i < dataGlobalUnlock.length; i++) {
+            for (let j = 0; j < dataGlobalUnlock[i].room.length; j++) {
+                dataGlobalUnlock[i].room[j]['unlock_word'] = dataGlobalUnlock[i].room[j]['unlock_word'].toLowerCase();
+            }
+        }
+
 
 
         for (let i = 0; i < dataGlobal.room.length; i++) {
@@ -284,6 +298,7 @@ main()
 
                 roomLockID = dataGlobal.room[i].id;
                 padlock_img();
+
 
 
 
@@ -690,7 +705,7 @@ main()
                     backdrop = document.querySelector('.closeLock');
                     penality_info = document.querySelector('.penality_info');
                     room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
-
+                    lowerCase();
                     rooms_unlock_btn.addEventListener('click', function () {
                         if (rooms_unlock_key.value == '') {
                             e.preventDefault;
@@ -777,6 +792,7 @@ main()
 
 
             dataGlobal.furniture.forEach(furniture => {
+                furniture.unlock_word = furniture.unlock_word.toLowerCase();
                 if (furniture.room_id === roomID) {
 
 
@@ -1108,6 +1124,7 @@ main()
                             const progress_bar = document.querySelector('.progress-bar');
                             penality_info = document.querySelector('.penality_info');
                             backdrop = document.querySelector('.closeLock');
+                            lowerCase();
                             furniture_key_unlock_btn.addEventListener('click', function () {
 
                                 if (furniture_key_unlock.value == '') {

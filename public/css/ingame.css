@@ -164,7 +164,13 @@ modal {
     font-weight: 400;
     font-size: 16px;
     color: #717171;
+    white-space: pre-line;
 
+}
+
+.msg_open,
+.furniture_reward {
+    white-space: pre-line;
 }
 
 .rooms_list_item,
@@ -680,6 +686,7 @@ iframe {
     padding: 3%;
     max-height: 230px;
     min-height: 100px;
+    white-space: pre-line;
 
 }
 
