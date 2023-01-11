@@ -1,15 +1,24 @@
-if (window.location.href == "http://acscape/" || window.location.href ==
-    "http://acscape/index" || window.location.href == "http://acscape/show" || window.location.href == "http://acscape/login") {
-    document.querySelector('.navbar').classList.remove('position-relative');
-    document.querySelector('.navbar').classList.add('position-absolute');
-} else {
-    document.querySelector('.navbar').classList.remove('position-absolute');
-    document.querySelector('.navbar').classList.add('position-relative');
-}
+// if (window.location.href == "http://acscape/" || window.location.href ==
+//     "http://acscape/index" || window.location.href.includes("show") || window.location.href == "http://acscape/login") {
+//     document.querySelector('.navbar').classList.remove('position-relative');
+//     document.querySelector('.navbar').classList.add('position-absolute');
+// } else {
+//     document.querySelector('.navbar').classList.remove('position-absolute');
+//     document.querySelector('.navbar').classList.add('position-relative');
+// }
 
 if (window.location.href.includes("admin")) {
     document.querySelector('footer').style.display = "none";
 }
+
+// const menuMobile = document.querySelector('.navbarNavDropdown');
+// const btnMenuMobile = document.querySelector('#btn_menu_mobile');
+
+// btnMenuMobile.addEventListener('click', () => {
+//     menuMobile.classList.toggle('mobile_menu');
+// });
+
+
 
 let screen = window.screen;
 
@@ -18,28 +27,36 @@ if (window.location.href.includes("ingame")) {
         if (document.readyState == "complete") {
             setTimeout(function () {
                 document.getElementById('loader').classList.add('fade');
+
             }, 2000);
             setTimeout(function () {
                 document.getElementById('loader').remove();
+                document.querySelector('.nb-0').click();
             }, 2100);
         }
     }
-    document.querySelector('.navbar').style.color = "white";
-    document.querySelector('.navLog').style.marginRight = "5%";
-    document.querySelector('.navLog').style.background = "transparent";
+    // document.querySelector('.navbar').style.color = "white";
+    // document.querySelector('.navLog').style.marginRight = "5%";
+    // document.querySelector('.navLog').style.background = "transparent";
     // document.querySelector('.ingame_container_background').style.backgroundImage = "url(assets/front/ingame/bg_ingame.jpg)";
-    document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.webp)";
+    // document.querySelector('body').style.backgroundImage = "url(assets/front/ingame/bg_ingame.webp)";
     document.querySelector('.navbar-nav').classList.add("navbar-navInGame");
-    document.querySelector('.navbar-nav').style.marginLeft = "2%";
-    document.querySelector('.navbar-nav').style.width = "50% !important";
-    if (screen.width < 1440) {
-        document.querySelector('.ingame_container_background').style.backgroundSize = "contain";
-        document.querySelector('body').style.backgroundSize = "contain";
-        document.querySelector('.navbar-nav').style.marginLeft = "0%";
-    } else {
-        document.querySelector('.ingame_container_background').style.backgroundSize = "cover";
-        document.querySelector('body').style.backgroundSize = "cover";
-    }
+    document.querySelector('.nav-links').classList.add("nav-links-InGame");
+    document.querySelector('.nav-header').classList.add("nav-header-InGame");
+    document.querySelector('.nav-logo > img:nth-child(1)').classList.add("nav-logo-InGame");
+    document.querySelector('.nav > .nav-btn').classList.add("nav-btn-InGame");
+    document.querySelector('.navLog').classList.add("navnavLog-InGame");
+
+    // document.querySelector('.navbar-nav').style.marginLeft = "2%";
+    // document.querySelector('.navbar-nav').style.width = "50% !important";
+    // if (screen.width < 1440) {
+    //     document.querySelector('.ingame_container_background').style.backgroundSize = "contain";
+    //     document.querySelector('body').style.backgroundSize = "contain";
+    //     document.querySelector('.navbar-nav').style.marginLeft = "0%";
+    // } else {
+    //     document.querySelector('.ingame_container_background').style.backgroundSize = "cover";
+    //     document.querySelector('body').style.backgroundSize = "cover";
+    // }
 
     document.querySelector('.ingame_container_background').style.backgroundRepeat = "no-repeat";
     document.querySelector('.ingame_container_background').style.backgroundPosition = "center";
@@ -51,14 +68,12 @@ if (window.location.href.includes("ingame")) {
 
 
 } else {
-    document.querySelector('.navbar-nav').classList.remove("navbar-navInGame");
+    // document.querySelector('.navbar-nav').classList.remove("navbar-navInGame");
 
 }
 
 
 const legals_mentions = document.querySelector('.legals_mentions');
-// create modal boostrap5 for mentions légales
-// fetch from public/app/mentions.json
 
 async function fetchMentions() {
     const response = await fetch('/public/app/mentions.json');

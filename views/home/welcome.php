@@ -48,8 +48,8 @@ $script = $params['script'];
             </div>
 
             <div class="time_game d-flex gap-2 align-items-center mb-3 mt-2">
-                <img src="assets/front/icons/clock.svg" alt="">
-                <p class="m-0"><?= $script[0]->duration ?></p>
+                <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;"></iconify-icon>
+                <p class="m-0 duration_color"><?= $script[0]->duration ?></p>
             </div>
 
             <div class="description_game">
@@ -90,8 +90,8 @@ $script = $params['script'];
             </div>
 
             <div class="time_game d-flex gap-2 align-items-center mb-3 mt-2">
-                <img src="assets/front/icons/clock.svg" alt="">
-                <p class="m-0"><?= $script[0]->duration ?></p>
+                <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;"></iconify-icon>
+                <p class="m-0 duration_color"><?= $script[0]->duration ?></p>
             </div>
 
             <div class="description_game">

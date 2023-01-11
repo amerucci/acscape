@@ -37,6 +37,7 @@
 .titleLogin {
     color: white;
     font-size: clamp(1.875rem, 1.2171rem + 3.5088vw, 4.375rem);
+    font-weight: 700;
 }
 
 .titleLogin span {

@@ -10,15 +10,34 @@
     z-index: -1;
 }
 
+.ingame_container_background {
+    z-index: 55;
+}
+
+.modal {
+    z-index: 999999;
+}
 
 
 .in_game_nav {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
+    font-size: clamp(1rem, 0.7801rem + 1.1728vw, 2.1875rem);
     padding-right: 5%;
+    color: white;
+    width: 100% !important;
 }
+
+
+
+li.in_game_nav:nth-child(2) {
+    /* width: 52% !important; */
+    text-align: left !important;
+}
+
+
+
 
 .the_rooms,
 .inventories,
@@ -74,6 +93,8 @@ modal {
     font-weight: 700;
     font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
     transform: translate(0%, 8%);
+    color: white;
+    font-weight: bold;
 }
 
 .countdown_container {
@@ -779,6 +800,40 @@ iframe {
 
 
 @media (max-width: 1000px) {
+
+    .li.in_game_nav:nth-child(1),
+    .li.in_game_nav:nth-child(2) {
+        width: 100%;
+    }
+
+    .nav-links-InGame {
+        height: 110px !important;
+        align-items: first baseline !important;
+        top: 40px !important;
+        background: transparent !important;
+    }
+
+    .navnavLog-InGame {
+        transform: translateY(0px) !important;
+        background-color: transparent !important;
+    }
+
+    .nav-btn-InGame {
+        top: -4px !important;
+    }
+
+    .nav-header-InGame {
+        height: 40px !important;
+    }
+
+    .nav-logo-InGame {
+        height: 37px;
+        width: 94px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
     footer[data-footer="none"] {
         display: none;
     }
@@ -805,6 +860,8 @@ iframe {
 
     .navbar-navInGame {
         flex-direction: column !important;
+        align-items: flex-start !important;
+        transform: translateY(0) !important;
     }
 
 
@@ -830,12 +887,25 @@ iframe {
         margin-left: 0 !important;
         margin-bottom: 0 !important;
         padding-bottom: 2%;
+        padding-left: 5px !important;
+        padding-top: 5px !important;
     }
 
-    .ingame_container_background {
+    /* .navLog {
+        margin-right: 5%;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto !important;
+    } */
+
+
+    /* .ingame_container_background {
         background-size: 60% 60% !important;
         background-position-y: top 12% !important;
-    }
+    } */
 
     .navbar {
         flex-wrap: wrap;

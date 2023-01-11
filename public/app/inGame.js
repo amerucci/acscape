@@ -1,7 +1,12 @@
+// setTimeout(() => {
+//     document.querySelector('.nb-0').click();
+// }, 1000);
+
 const endgame_text = document.querySelector('.endgame_text');
 let ingame_background = document.querySelector('.ingame_container_background')
 const roomModal = document.querySelector('#roomsModal');
 const friskModal = document.querySelector('#friskModal');
+
 
 let modal_title = document.querySelector('.modal-title');
 const penality = document.querySelector('.penality');
@@ -15,16 +20,16 @@ function function_penality_info() {
 }
 
 
-let navbar = document.querySelector('.navbar');
-if (window.innerWidth < 992) {
-    navbar.classList.add('flex-wrap');
-    navbar.classList.remove('navbar-expand-lg');
-    navbar.classList.add('navbar-expand');
-} else {
-    navbar.classList.remove('flex-wrap');
-    navbar.classList.remove('navbar-expand');
-    navbar.classList.add('navbar-expand-lg');
-}
+// let navbar = document.querySelector('.navbar');
+// if (window.innerWidth < 992) {
+//     navbar.classList.add('flex-wrap');
+//     navbar.classList.remove('navbar-expand-lg');
+//     navbar.classList.add('navbar-expand');
+// } else {
+//     navbar.classList.remove('flex-wrap');
+//     navbar.classList.remove('navbar-expand');
+//     navbar.classList.add('navbar-expand-lg');
+// }
 
 function modalFixed() {
     const the_rooms = document.querySelector('.the_rooms');
@@ -260,6 +265,7 @@ main()
 
 
 
+
             let padlock = document.createElement('iconify-icon');
             padlock.setAttribute('icon', 'uis:padlock');
             padlock.setAttribute('width', '60');
@@ -304,8 +310,10 @@ main()
 
                 if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
                     roomModal.classList.remove('show');
-                    ingame_background.style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
-                    ingame_background.style.backgroundSize = '30%, 30%';
+                    // ingame_background.style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+                    document.querySelector('body').style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+                    document.querySelector('body').style.backgroundSize = `cover`;
+                    // ingame_background.style.backgroundSize = '30%, 30%';
                     ingame_background.classList.add('ingame_background_responsive');
                     ingame_background.style.backgroundRepeat = 'no-repeat';
                     ingame_background.style.backgroundPosition = 'center';
@@ -319,6 +327,7 @@ main()
                     navInGameTitle.innerHTML = dataGlobalUnlock[0].room[i].title;
 
                     const rooms_list_item = document.querySelectorAll('.rooms_list_item');
+
                     rooms_list_item.forEach(element => {
                         element.classList.remove('activeR');
                     });

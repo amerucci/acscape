@@ -9,28 +9,31 @@ $scripts = $params['script'];
 
 
     <div class="all_games w-100" id="all_games">
-        <h3 class="text-center subtitle mb-5 pb-2">Tout nos jeux</h3>
+        <h3 class="text-center subtitle mb-5 pb-2">Tous nos jeux</h3>
 
         <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
 
             <?php foreach ($scripts as $game) : ?>
             <div class="game col-10 col-md-3">
                 <img src="/assets/pictures/scripts/<?= $game->picture ?>" alt="">
+                <span class="filter"></span>
                 <div class="card_game_content">
-                    <div class="title_game">
-                        <p class="m-0"><?= $game->title ?></p>
-                    </div>
-                    <div class="parameters_game d-flex align-items-center">
-                        <div class="diffuclty" data-difficulty="<?= $game->difficulty ?>">
-                            <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
-                            <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
-                            <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
-                            <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
-                            <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                    <div class="d-flex align-items-end h-100 justify-content-between p7">
+                        <div class="d-flex flex-column ">
+                            <div class="title_game_index">
+                                <p class="m-0"><?= $game->title ?></p>
+                            </div>
+                            <div class="diffuclty" data-difficulty="<?= $game->difficulty ?>">
+                                <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                                <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                                <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                                <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                                <iconify-icon data-id="<?= $game->id ?>" icon="ri:lock-line"></iconify-icon>
+                            </div>
                         </div>
                         <div class="time_game d-flex justify-content-center align-items-center gap-3">
-                            <img src="assets/front/icons/clock.svg" alt="">
-                            <p class="m-0 white"><?= $game->duration?></p>
+                            <iconify-icon icon="mdi:clock-time-three-outline" style="color: #717171;"></iconify-icon>
+                            <p class="m-0 duration_color"><?= $game->duration?></p>
                         </div>
                     </div>
                     <a class="link_game" href="/show/<?= $game->id ?>"></a>
