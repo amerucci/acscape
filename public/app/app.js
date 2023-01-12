@@ -35,6 +35,7 @@ function displayNoneAllContainer() {
     const container = document.querySelectorAll('.container-fluid');
     container.forEach(el => {
         el.classList.add('dnone');
+        el.classList.add('fade');
     });
 }
 
@@ -42,14 +43,19 @@ function removeDisplayNoneAllContainer() {
     const container = document.querySelectorAll('.container-fluid');
     container.forEach(el => {
         el.classList.remove('dnone');
+        el.classList.remove('fade');
     });
 }
 
 
 if (window.location.href == "http://acscape/") {
     displayNoneAllContainer();
-    document.getElementById('loader').classList.remove('dnone');
-    document.getElementById('loader').classList.add('show');
+    if (document.getElementById('loader') != null) {
+        setTimeout(function () {
+            document.getElementById('loader').classList.add('show');
+            document.getElementById('loader').classList.remove('dnone');
+        }, 200);
+    }
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
             let storedValue = JSON.parse(sessionStorage.getItem("oneLoad"));
