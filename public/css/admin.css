@@ -5,6 +5,33 @@
     padding: 2%;
 }
 
+.navbar-navAdmin {
+    position: relative !important;
+}
+
+.btn-primary {
+    background: var(--red);
+    color: white;
+    border: none;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    border: none;
+    color: white;
+    scale: 1.1;
+    transition: all 0.3s ease;
+}
+
+.btn-danger {
+    background: transparent;
+    color: white;
+    border: none;
+}
+
 label {
     padding-bottom: 1%;
 }

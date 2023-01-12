@@ -107,13 +107,13 @@ input:-webkit-autofill:active {
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 30px;
-    position: relative;
+    position: absolute;
     top: -2%;
     /*! left: 0%; */
     height: 100vh;
     width: 100vw;
     background: #0d0e0e42;
-    z-index: 9996;
+    z-index: -19999;
     backdrop-filter: blur(5px);
     position: fixed;
 }

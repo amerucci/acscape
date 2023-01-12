@@ -2,6 +2,18 @@
 $script = $params['script'];
 ?>
 
+<!-- <div id='loader' class="loadingspinner d-flex flex-column justify-content-center align-items-center dnone">
+    <div class="container_square">
+        <div id="square1"></div>
+        <div id="square2"></div>
+        <div id="square3"></div>
+        <div id="square4"></div>
+        <div id="square5"></div>
+    </div>
+    <img class="logoLoader" src="/assets/front/nav/logo.svg" alt="">
+    <p class="textLoading">chargement</p>
+</div> -->
+
 <section class="container-fluid homepageTop d-flex align-items-center">
     <div class="hook container">
         <div class="title d-flex flex-column mb-3">

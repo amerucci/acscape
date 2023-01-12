@@ -82,7 +82,7 @@ class UserController extends Controller {
     
             $user = new User ($this->getDB());
             $email = $user->getByUserMail($_POST['email']);
-            $username = $user->getByUsername($_POST['username']);
+            $username = $user->isExistUsername($_POST['username']);
             if ($email) {
                 $_SESSION['errorMail'][] = 'Cet email est déjà utilisé';
                 header('Location: login?error=email');

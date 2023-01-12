@@ -28,21 +28,23 @@ return header('Location: /login?error=session_expired');
     <!-- <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'main.min.css' ?>"> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" async href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.min.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.min.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'show.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
+    <?php if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
+    <?php endif; ?>
+    <?php if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) : ?>
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'admin.css' ?>">
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/style.min.css" /> -->
+    <?php endif; ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <!-- custom cursor -> https://github.com/guillaume-rygn/MS-Cursor -->
     <!-- caroussel -> https://splidejs.com/ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <script async src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <title><?= $title ?></title>
 </head>
@@ -65,20 +67,29 @@ return header('Location: /login?error=session_expired');
         </div>
 
         <div class="nav-links">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2 w-100 px-3">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 px-3">
 
                 <?php
                  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
                 <li class="nav-item in_game_nav"><?= $gameTitle ?></li>
                 <li class="nav-item in_game_nav room_active"></li>
                 <?php else : ?>
-                <li class="nav-item">
+                <li class="nav-item d-flex gap-5 flex-column text-center flex-lg-row">
                     <a class="nav-link" href="/">accueil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/index">nos escape games</a>
+                    <?php if (isset($_SESSION['user_id'])) : ?>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        création de jeu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/admin/posts">Créer</a></li>
+                        <li><a class="dropdown-item" href="/admin/script">Liste de vos jeux</a></li>
+                    </ul>
+                    <?php endif; ?>
                 </li>
-                <?php if (isset($_SESSION['user_id'])) : ?>
+                </li>
+                <!-- <?php if (isset($_SESSION['user_id'])) : ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,7 +101,7 @@ return header('Location: /login?error=session_expired');
                     </ul>
                 </li>
                 <?php endif; ?>
-                </li>
+                </li> -->
                 <?php endif; ?>
                 <!-- </ul> -->
                 <li class="navLog">
@@ -128,8 +139,17 @@ return header('Location: /login?error=session_expired');
         </div>
     </nav>
 
-
-
+    <div id='loader' class="fade loadingspinner d-flex flex-column justify-content-center align-items-center dnone">
+        <div class="container_square">
+            <div id="square1"></div>
+            <div id="square2"></div>
+            <div id="square3"></div>
+            <div id="square4"></div>
+            <div id="square5"></div>
+        </div>
+        <img class="logoLoader" src="/assets/front/nav/logo.svg" alt="">
+        <p class="textLoading">chargement</p>
+    </div>
 
     <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
         <?= $content ?>
@@ -179,6 +199,10 @@ return header('Location: /login?error=session_expired');
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
 <script src="\public\app\splide.min.js"></script>
 <?php endif; ?>
+
+<script>
+
+</script>
 
 
 

@@ -25,45 +25,18 @@ function updateCountdown() {
 
     countdownElement.innerHTML = minutes + ":" + seconds;
 }
-
-
-oneLoad = {
-    value: true
-};
-
-function displayNoneAllContainer() {
-    const container = document.querySelectorAll('.container-fluid');
-    container.forEach(el => {
-        el.classList.add('dnone');
-    });
-}
-
-function removeDisplayNoneAllContainer() {
-    const container = document.querySelectorAll('.container-fluid');
-    container.forEach(el => {
-        el.classList.remove('dnone');
-    });
-}
-
-
 if (window.location.href == "http://acscape/") {
-    displayNoneAllContainer();
-    document.getElementById('loader').classList.remove('dnone');
-    document.getElementById('loader').classList.add('show');
+    let oneLoad = true
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
-            let storedValue = JSON.parse(sessionStorage.getItem("oneLoad"));
-            if (storedValue === null || storedValue) {
+            if (oneLoad == true) {
                 setTimeout(function () {
-                    document.getElementById('loader').classList.remove('show');
+                    document.getElementById('loader').classList.add('fade');
                     document.getElementById('loader').remove();
-                    oneLoad.value = false;
-                    sessionStorage.setItem("oneLoad", oneLoad.value);
-                    removeDisplayNoneAllContainer()
+                    oneLoad = false
                 }, 2000);
             } else {
-                removeDisplayNoneAllContainer()
-                document.getElementById('loader').remove();
+                document.getElementById('loader').classList.add('fade');
             }
         }
     }
@@ -79,7 +52,7 @@ if (window.location.href.includes("ingame")) {
         if (document.readyState == "complete") {
             setTimeout(function () {
                 document.getElementById('loader').classList.add('fade');
-                document.getElementById('loader').remove();
+
             }, 2000);
             setTimeout(function () {
                 document.getElementById('loader').remove();

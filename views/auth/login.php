@@ -5,7 +5,7 @@
 
 
 
-
+<span class="void"></span>
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
     <div class="background_login_register"></div>
 
@@ -13,40 +13,40 @@
 
         <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
 
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
+        <div class="alert alert-danger">
+            <li>Le mot de passe ou le pseudo est incorrect</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'session_expired'): ?>
+        <div class="alert alert-danger">
+            <li>La session a expirée</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'email'): ?>
+        <div class="alert alert-danger">
+            <li>Cet email existe déjà</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'username'): ?>
+        <div class="alert alert-danger">
+            <li>Ce nom d'utilisateur existe déjà</li>
+        </div>
+        <?php endif ?>
+        <?php if (isset($_SESSION['errors'])): ?>
+        <?php foreach($_SESSION['errors'] as $errorsArray): ?>
+        <?php foreach($errorsArray as $errors): ?>
+        <div class="alert alert-danger">
+            <?php foreach($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach ?>
+        </div>
+        <?php endforeach ?>
+        <?php endforeach ?>
+
+        <?php endif ?>
         <div class="login-box w-100">
 
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
-            <div class="alert alert-danger">
-                <li>Le mot de passe ou le pseudo est incorrect</li>
-            </div>
-            <?php endif ?>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'session_expired'): ?>
-            <div class="alert alert-danger">
-                <li>La session a expirée</li>
-            </div>
-            <?php endif ?>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'email'): ?>
-            <div class="alert alert-danger">
-                <li>Cet email existe déjà</li>
-            </div>
-            <?php endif ?>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'username'): ?>
-            <div class="alert alert-danger">
-                <li>Ce nom d'utilisateur existe déjà</li>
-            </div>
-            <?php endif ?>
-            <?php if (isset($_SESSION['errors'])): ?>
-            <?php foreach($_SESSION['errors'] as $errorsArray): ?>
-            <?php foreach($errorsArray as $errors): ?>
-            <div class="alert alert-danger">
-                <?php foreach($errors as $error): ?>
-                <li><?= $error ?></li>
-                <?php endforeach ?>
-            </div>
-            <?php endforeach ?>
-            <?php endforeach ?>
-
-            <?php endif ?>
 
             <div class="onglet_login_register">
                 <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
@@ -67,8 +67,10 @@
                     </iconify-icon>
                 </div>
                 <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
-                <button type="submit" class="btn_login_register">Se connecter</button>
-                <a class="forgot" href="/forgot">mot de passe oublié</a>
+                <div class="d-flex flex-column gap-5 boutonSendAndForgot">
+                    <button type="submit" class="btn_login_register">Se connecter</button>
+                    <a class="forgot" href="/forgot">mot de passe oublié</a>
+                </div>
             </form>
 
         </div>
@@ -79,7 +81,7 @@
 
 
 <script>
-    document.querySelector('.navbar').classList.add("navbarLogin")
+    // document.querySelector('.navbar').classList.add("navbarLogin")
 
 
     const onglet_login = document.getElementById('onglet_login');
@@ -147,31 +149,42 @@
         }
     });
 
-    setTimeout(function () {
-        const alerteDanger = document.querySelectorAll('.alert-danger');
-        for (let i = 0; i < alerteDanger.length; i++) {
-            alerteDanger[i].remove();
-            window.history.replaceState({}, document.title, "/" + "login");
-        }
-    }, 2000);
-
-    // Fonction de vérification de mot de passe
-    function isPasswordValid(password) {
-        return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
+    const alerteDanger = document.querySelectorAll('.alert-danger');
+    const crossClose =
+        `<iconify-icon class="closeAlert" icon="maki:cross" style="color: #d31e44;" width="30" height="30"></iconify-icon>`;
+    for (let i = 0; i < alerteDanger.length; i++) {
+        alerteDanger[i].innerHTML += crossClose;
     }
+    const closeAlert = document.querySelector('.closeAlert');
+    closeAlert.addEventListener('click', function () {
+        alerteDanger[0].remove();
+        window.history.replaceState({}, document.title, "/" + "login");
+    });
 
     document.querySelector('.password').addEventListener('keyup', function () {
         if (passwordRegist.getAttribute('data-action') === 'passwordRegister') {
             const password = this.value;
-            console.log(password);
-            const isValid = isPasswordValid(password);
-            if (isValid) {
+            let errors = [];
+
+            labelpassword.textContent = 'le mot de passe doit contenir:';
+            if (password.length < 8) {
+                errors.push('au moins 8 caractères');
+            }
+            if (!/[A-Z]/.test(password)) {
+                errors.push('au moins une majuscule');
+            }
+            if (!/[a-z]/.test(password)) {
+                errors.push('au moins une minuscule');
+            }
+            if (!/[0-9]/.test(password)) {
+                errors.push('au moins un chiffre');
+            }
+            if (errors.length === 0) {
                 labelpassword.textContent = 'Mot de passe valide';
                 labelpassword.style.color = "rgba(108, 108, 108, 1)";
                 btn_login_register[0].disabled = false;
             } else {
-                labelpassword.textContent =
-                    'le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre';
+                labelpassword.textContent += " " + errors.join(', ');
                 labelpassword.style.color = 'red';
                 btn_login_register[0].disabled = true;
             }

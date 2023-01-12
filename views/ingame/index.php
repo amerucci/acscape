@@ -29,23 +29,24 @@ $gameTitle = $params["script"][0]->title;
     <h2>Chargement du jeu</h2>
 </div>
 
-<div class="tools d-flex gap-5">
-    <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
-        data-target="#roomsModal">
-        <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
-        <p class="m-0 rooms_modal">les salles</p>
-    </div>
-
-    <div class="frisk d-flex justify-content-center align-items-center gap-2 frisk_btn" data-toggle=" modal"
-        data-target="#friskModal">
-        <iconify-icon icon="uil:search-alt"></iconify-icon>
-        <p class="m-0 frisk_modal">fouiller</p>
+<div class="tools d-flex gap-1 flex-column">
+    <div class="d-flex gap-3">
+        <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
+            data-target="#roomsModal">
+            <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
+            <p class="m-0 rooms_modal">les salles</p>
+        </div>
+        <div class="frisk d-flex justify-content-center align-items-center gap-2 frisk_btn" data-toggle=" modal"
+            data-target="#friskModal">
+            <iconify-icon icon="uil:search-alt"></iconify-icon>
+            <p class="m-0 frisk_modal">fouiller</p>
+        </div>
     </div>
 </div>
 
 <!-- sticky it -->
 
-<div class="toolbox d-flex flex-column justify-content-center align-items-center">
+<!-- <div class="toolbox d-flex flex-column justify-content-center align-items-center">
     <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
     <div id="espaceVoid" class="espace"></div>
     <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
@@ -67,9 +68,8 @@ $gameTitle = $params["script"][0]->title;
             <p class="m-0 frisk_modal">Wiki</p>
         </div>
     </div>
-</div>
+</div> -->
 
-<div id="stickies-container"></div>
 
 
 
@@ -147,3 +147,16 @@ $gameTitle = $params["script"][0]->title;
         </div>
     </div>
 </div>
+
+<div class="sticky-form">
+    <div>
+        <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
+        <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
+        <label for="stickytext" class="dnone">Ecrire quelque chose</label>
+        <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+    </div>
+
+    <button class="button" id="createstickyOpac">Post it !</button>
+</div>
+
+<div id="stickies-container"></div>
