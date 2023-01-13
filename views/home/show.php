@@ -32,7 +32,8 @@ $_SESSION['scriptId'] = $script->id;
                     <p class="m-0">MINUTES</p>
                 </div>
                 <div class="play_now button_game ">
-                    <a class="d-flex justify-content-center align-items-center" href="/ingame">JOUER MAINTENANT</a>
+                    <a class="d-flex justify-content-center align-items-center" href="/ingame/<?= $script->id ?>">JOUER
+                        MAINTENANT</a>
                 </div>
             </div>
         </div>
@@ -45,26 +46,6 @@ $_SESSION['scriptId'] = $script->id;
                     <?php foreach ($games as $game) : ?>
                     <?php if ($game->id != $_SESSION['scriptId']) : ?>
                     <li class="game splide__slide">
-                        <!-- <img src="/assets/pictures/scripts/<?= $game->picture ?>" alt="">
-                        <div class="card_game_content">
-                            <div class="title_game">
-                                <p class="m-0"><?= $game->title?></p>
-                            </div>
-                            <div class="parameters_game d-flex  align-items-center">
-                                <div class="diffuclty difficulty_one_game" data-difficulty="<?= $game->difficulty ?>">
-                                    <iconify-icon icon="ri:lock-line"></iconify-icon>
-                                    <iconify-icon icon="ri:lock-line"></iconify-icon>
-                                    <iconify-icon icon="ri:lock-line"></iconify-icon>
-                                    <iconify-icon icon="ri:lock-line"></iconify-icon>
-                                    <iconify-icon icon="ri:lock-line"></iconify-icon>
-                                </div>
-                                <div class="time_game d-flex justify-content-center align-items-center gap-3">
-                                    <img src="/assets/front/icons/clock.svg" alt="">
-                                    <p class="m-0">60</p>
-                                </div>
-                            </div>
-                            <a class="link_game" href="/show/<?= $game->id ?>"></a>
-                        </div> -->
                         <img src="/assets/pictures/scripts/<?= $game->picture ?>" alt="">
                         <span class="filter"></span>
                         <div class="card_game_content d-flex">

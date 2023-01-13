@@ -33,9 +33,9 @@ $router->get('/reset', 'App\Controllers\UserController@reset');
 $router->post('/reset', 'App\Controllers\UserController@resetPost');
 
 // in game route
-$router->get('/ingame', 'App\Controllers\InGameController@index');
+$router->get('/ingame/:id', 'App\Controllers\InGameController@index');
 $router->get('/ingame/show', 'App\Controllers\InGameController@show');
-$router->get('/ingame/data', 'App\Controllers\InGameController@jsonGame');
+$router->get('/json/data', 'App\Controllers\InGameController@jsonGame');
 
 
 // **********************************************************************************************************

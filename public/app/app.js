@@ -48,7 +48,7 @@ function removeDisplayNoneAllContainer() {
 }
 
 
-if (window.location.href == "http://acscape/") {
+if (window.location.href == "http://juldev.fr/" || window.location.href == "https://juldev.fr/") {
     displayNoneAllContainer();
     if (document.getElementById('loader') != null) {
         setTimeout(function () {

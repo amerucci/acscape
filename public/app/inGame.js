@@ -148,7 +148,8 @@ function intervalFunction(callback) {
 
 async function getData() {
     try {
-        const response = await fetch('/ingame/data');
+        const response = await fetch('/json/data');
+        console.log(response);
         if (response.ok) {
             const data = await response.json();
             dataGlobal = data.data; // les données global formaté pour éviter le dataGlobal[0]....
@@ -237,7 +238,7 @@ function removeToptoBottom() {
 function lowerCase() {
     document.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', function () {
-            input.value = input.value.toLowerCase();
+            input.value = input.value.replace(/[éè]/g, "e").replace(/[àâ]/g, "a").replace(/[ùû]/g, "u").toLowerCase();
         });
     });
 }

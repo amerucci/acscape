@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-use App\models\room;
+use App\Models\Room;
 use App\Models\Script;
-use App\models\furniture;
+use App\Models\Furniture;
 
 class InGameController extends Controller {
 
-    public function index()
+    public function index($id)
     {
         if (!isset($_SESSION['scriptId'])) {
             session_destroy();
@@ -20,7 +20,6 @@ class InGameController extends Controller {
         $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
         $script = new Script($this->getDB());
         $script = $script->allByScriptId($_SESSION['scriptId']);
-
 
         $this-> view('ingame.index', compact('room', 'furniture', 'script'));        
     }
@@ -45,7 +44,7 @@ class InGameController extends Controller {
             'furniture' => $furniture,
             'script' => $script];
 
-        return $this->json('ingame.data', compact('data'));
+        return $this->json('json.data', compact('data'));
        
 
     }

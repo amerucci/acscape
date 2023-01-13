@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\models\User;
+use App\Models\User;
 use App\Validation\Validator;
-use App\models\PassRecover;
+use App\Models\PassRecover;
 
 class UserController extends Controller {
 
