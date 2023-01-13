@@ -17,7 +17,7 @@ $scripts = $params['script'];
             <div class="game col-10 col-md-3">
                 <img src="/assets/pictures/scripts/<?= $game->picture ?>" alt="">
                 <span class="filter"></span>
-                <div class="card_game_content">
+                <div class="card_game_content d-flex">
                     <div class="d-flex align-items-end h-100 justify-content-between p7">
                         <div class="d-flex flex-column ">
                             <div class="title_game_index">

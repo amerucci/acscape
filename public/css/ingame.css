@@ -477,7 +477,8 @@ modal {
 
 .sticky {
     font-family: "Virgil", sans-serif;
-    background: linear-gradient(to left bottom, #d4fc78, #99e5a2);
+    /* background: linear-gradient(to left bottom, #d4fc78, #99e5a2); */
+    background: whitesmoke;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     color: #00243f;
     /* 0 0 150px rgba(0, 0, 0, 0.2); */
@@ -521,7 +522,7 @@ modal {
 }
 
 .sticky .deletesticky {
-    color: #0085e8;
+    color: var(--red);
     cursor: pointer;
     font-size: 2rem;
     position: absolute;

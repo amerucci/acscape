@@ -1072,6 +1072,18 @@ legend+* {
     margin: 0 !important
 }
 
+.ms-auto {
+    margin-left: auto !important
+}
+
+.me-auto {
+    margin-right: auto !important
+}
+
+.p-2 {
+    padding: .5rem !important
+}
+
 .mx-auto {
     margin-right: auto !important;
     margin-left: auto !important

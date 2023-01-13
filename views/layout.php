@@ -28,7 +28,7 @@ return header('Location: /login?error=session_expired');
     <!-- <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'main.min.css' ?>"> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.min.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app2.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
@@ -55,7 +55,11 @@ return header('Location: /login?error=session_expired');
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
             <div class="nav-logo">
+                <?php if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
                 <img src="/assets/front/nav/logo.svg" alt="">
+                <?php else : ?>
+                <a href="/"><img src="/assets/front/nav/logo.svg" alt=""></a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="nav-btn">
@@ -89,21 +93,7 @@ return header('Location: /login?error=session_expired');
                     <?php endif; ?>
                 </li>
                 </li>
-                <!-- <?php if (isset($_SESSION['user_id'])) : ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        création de jeu
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/admin/posts">Créer</a></li>
-                        <li><a class="dropdown-item" href="/admin/script">Liste de vos jeux</a></li>
-                    </ul>
-                </li>
                 <?php endif; ?>
-                </li> -->
-                <?php endif; ?>
-                <!-- </ul> -->
                 <li class="navLog">
                     <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
                     <div class="countdown_container d-flex gap-3">

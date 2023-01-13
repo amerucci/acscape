@@ -15,12 +15,11 @@ window.addEventListener('load', function () {
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Quitter la partie ?</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <p>Vous êtes sur le point de quitter la partie en cours. Êtes-vous sûr de vouloir quitter ?</p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer ms-auto p-2">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             <button type="button" class="btn btn-danger" id="leaveGame">Quitter</button>
         </div>
@@ -1433,7 +1432,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span>`
         newSticky.classList.add('drag', 'sticky');
         newSticky.innerHTML = html;
-        newSticky.style.backgroundColor = randomColor();
+        // newSticky.style.backgroundColor = randomColor();
+        newSticky.style.backgroundColor = "rgb(255, 255, 255)";
+
         stickyArea.append(newSticky);
         positionSticky(newSticky);
         if (document.querySelectorAll('.sticky').length > 0) {

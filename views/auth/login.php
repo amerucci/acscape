@@ -67,7 +67,7 @@
                     </iconify-icon>
                 </div>
                 <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
-                <div class="d-flex flex-column gap-5 boutonSendAndForgot">
+                <div class="d-flex flex-column gap-3 boutonSendAndForgot">
                     <button type="submit" class="btn_login_register">Se connecter</button>
                     <a class="forgot" href="/forgot">mot de passe oublié</a>
                 </div>
@@ -149,17 +149,22 @@
         }
     });
 
+
     const alerteDanger = document.querySelectorAll('.alert-danger');
     const crossClose =
         `<iconify-icon class="closeAlert" icon="maki:cross" style="color: #d31e44;" width="30" height="30"></iconify-icon>`;
     for (let i = 0; i < alerteDanger.length; i++) {
         alerteDanger[i].innerHTML += crossClose;
     }
-    const closeAlert = document.querySelector('.closeAlert');
-    closeAlert.addEventListener('click', function () {
-        alerteDanger[0].remove();
-        window.history.replaceState({}, document.title, "/" + "login");
-    });
+    let closeAlert;
+    if (document.querySelector('.closeAlert')) {
+        closeAlert = document.querySelector('.closeAlert');
+        closeAlert.addEventListener('click', function () {
+            alerteDanger[0].remove();
+            window.history.replaceState({}, document.title, "/" + "login");
+        });
+    }
+
 
     document.querySelector('.password').addEventListener('keyup', function () {
         if (passwordRegist.getAttribute('data-action') === 'passwordRegister') {
