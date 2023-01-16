@@ -162,10 +162,12 @@ return header('Location: /login?error=session_expired');
 
     });
 
-    const description = document.getElementById('description');
-    const reward = document.getElementById('reward');
-    const clue = document.getElementById('clue');
-    const unlock_word = document.getElementById('unlock_word');
+    document.addEventListener('DOMContentLoaded', () => {
+        const description = document.getElementById('description');
+        const reward = document.getElementById('reward');
+        const clue = document.getElementById('clue');
+        const unlock_word = document.getElementById('unlock_word');
+    });
 
     function padlock() {
 
@@ -194,6 +196,6 @@ return header('Location: /login?error=session_expired');
                 unlock_word.removeAttribute('required');
             }
         });
-    }
+    };
     padlock();
 </script>

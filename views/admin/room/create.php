@@ -9,7 +9,7 @@ return header('Location: /login?error=session_expired');
 
     <div class="d-flex justify-content-center align-items-center flex-column my-3">
         <form action="create" method="post" enctype="multipart/form-data"
-            class="d-flex justify-content-center align-items-center flex-column gap-2 w-50">
+            class="d-flex justify-content-center align-items-center flex-column gap-2 w-75">
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Titre</label>
                 <input type="text" name="title" id="title" class="form-control" required>
@@ -154,10 +154,12 @@ return header('Location: /login?error=session_expired');
                 }
             });
 
-            const description = document.getElementById('description');
-            const reward = document.getElementById('reward');
-            const clue = document.getElementById('clue');
-            const unlock_word = document.getElementById('unlock_word');
+            document.addEventListener('DOMContentLoaded', () => {
+                const description = document.getElementById('description');
+                const reward = document.getElementById('reward');
+                const clue = document.getElementById('clue');
+                const unlock_word = document.getElementById('unlock_word');
+            });
 
             function padlock() {
 
@@ -186,6 +188,6 @@ return header('Location: /login?error=session_expired');
                         unlock_word.removeAttribute('required');
                     }
                 });
-            }
+            };
             padlock();
         </script>

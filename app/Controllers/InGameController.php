@@ -31,7 +31,6 @@ class InGameController extends Controller {
 
     public function jsonGame()
     {
-        
         $room = new Room($this->getDB());
         $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
@@ -45,8 +44,6 @@ class InGameController extends Controller {
             'script' => $script];
 
         return $this->json('json.data', compact('data'));
-       
-
     }
 
 }

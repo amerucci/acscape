@@ -111,7 +111,7 @@ label {
 
 .form_win,
 .form_lose {
-    width: 50%;
+    width: 100%;
     height: 230px;
     /* background-color: rgba(51, 51, 51, 1); */
     /* padding: 1%; */

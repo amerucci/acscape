@@ -45,7 +45,6 @@ abstract class Controller {
 
     protected function json(string $path, array $data)
     {
-        
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
         require VIEWS . $path . '.php';
         header('Content-Type: application/json');

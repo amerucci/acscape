@@ -24,7 +24,7 @@ return header('Location: /login?error=error');
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description" rows="9" required></textarea>
             </div>
-            <div class="d-flex justify-content-center align-items-center gap-5 my-5">
+            <div class="d-flex justify-content-center align-items-center gap-5 my-5 flex-column flex-lg-row">
                 <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
                     <label for=" content">Message de victoire</label>
                     <textarea class="form-control" name="winner_msg" id="content" rows="6" required></textarea>
@@ -47,9 +47,9 @@ return header('Location: /login?error=error');
                 <img src="" alt="" id="picturePreview">
                 <img src="" alt="" id="picturePreviewTemp">
             </div>
-            <div class="d-flex gap-5">
+            <div class="d-flex gap-3 flex-column align-items-center justify-content-center flex-lg-row">
                 <div
-                    class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-50 form_difficulty">
+                    class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 form_difficulty">
                     <label class="d-flex justify-content-center align-items-center gap-1" for="difficulty">Difficulté
                         <iconify-icon icon="ri:lock-line"></iconify-icon> </label>
                     <select class="form-control" name="difficulty" id="difficulty">

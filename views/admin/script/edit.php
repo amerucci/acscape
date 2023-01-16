@@ -13,7 +13,7 @@ return header('Location: /login?error=session_expired');
     </div>
 
     <div class="d-flex justify-content-center align-items-center gap-1 flex-column my-4">
-        <form action=<?= $script->id,'upload' ?> method="POST" enctype="multipart/form-data" runat="server"
+        <form action="/admin/script/edit/<?= $script->id ?>" method="POST" enctype="multipart/form-data" runat="server"
             class="w-75">
             <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_name">
                 <label for="name">Nom du scénario</label>
@@ -27,7 +27,7 @@ return header('Location: /login?error=session_expired');
                     <textarea class="form-control" name="description" id="description" rows="6"
                         required><?= htmlspecialchars($script->description) ?></textarea>
                 </div>
-                <div class="d-flex justify-content-center align-items-center gap-5 my-5">
+                <div class="d-flex justify-content-center align-items-center gap-3 my-5 flex-column flex-lg-row">
                     <div class="form-group d-flex justify-content-center align-items-center flex-column gap-1 form_win">
                         <label for=" content">Message de victoire</label>
                         <textarea class="form-control" name="winner_msg" id="content" rows="3"
@@ -48,9 +48,9 @@ return header('Location: /login?error=session_expired');
                         height="100px" id="picturePreview">
                     <img id="picturePreviewTemp">
                 </div>
-                <div class="d-flex gap-5">
+                <div class="d-flex gap-2">
                     <div
-                        class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-50 form_difficulty">
+                        class="form-group d-flex justify-content-center align-items-center flex-column gap-1 w-100 form_difficulty">
                         <label class="d-flex justify-content-center align-items-center gap-1"
                             for="difficulty">Difficulté
                             <iconify-icon icon="ri:lock-line"></iconify-icon> </label>
