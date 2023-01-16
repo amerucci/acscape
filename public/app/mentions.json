@@ -1,0 +1,47 @@
+{
+    "mentions_legales": {
+      "iframe": {
+        "description": "Ce site Web utilise une iframe pour afficher du contenu de Wikipedia, l'encyclopédie libre. Le contenu de l'iframe est fourni par Wikipedia et nous n'avons aucun contrôle sur ce contenu. Nous sommes responsables de la sécurité et de la performance de notre site Web, mais nous ne sommes pas responsables du contenu de l'iframe.",
+        "licence": {
+          "nom": "Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)",
+          "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+        },
+        "attribution": "Lorsque vous utilisez du contenu de Wikipedia, vous devez citer la source de l'article et le nom de l'auteur de l'article. Si vous modifiez ou adaptez le contenu de Wikipedia, vous devez partager vos modifications ou adaptations sous la même licence que le contenu original.",
+        "respect_des_droits": "Nous respectons les licences et les conditions d'utilisation de Wikipedia et nous nous engageons à respecter les droits d'auteur et les marques déposées de Wikipedia. Si vous avez des questions ou si vous avez besoin de plus d'aide, n'hésitez pas à nous contacter."
+      },
+      "propriete": {
+        "nom_du_site": "Nom de votre site Web",
+        "editeur": "Nom de l'entreprise ou de la personne responsable de l'édition du site",
+        "contact": {
+          "email": "adresse@email.com",
+          "telephone": "numéro de téléphone"
+        },
+        "directeur_de_publication": "Nom de la personne responsable de la publication du site"
+      },
+      "hebergement": {
+        "nom_de_l_hebergeur": "Nom de l'entreprise qui héberge votre site",
+        "adresse": "Adresse de l'entreprise"
+      },
+      "protection_des_donnees": {
+        "declaration_cnil": "Numéro de déclaration auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés)",
+        "responsable_de_la_protection_des_donnees": "Nom de la personne responsable de la protection des données sur votre site",
+        "politique_de_confidentialite": "Lien vers votre politique de confidentialité"
+      },
+      "cookies": {
+        "description": "Description de l'utilisation des cookies sur votre site",
+        "gestion_des_cookies": "Lien vers la page de gestion des cookies de votre site"
+      },
+      "liens": {
+        "description": "Description de l'utilisation de liens vers d'autres sites sur votre site",
+        "responsabilite": "Précision sur la responsabilité de l'éditeur du site concernant les liens vers d'autres sites"
+      },
+      "propriete_intelectuelle": {
+        "description": "Description des droits d'auteur et des marques déposées sur votre site",
+        "utilisation_des_contenus": "Indication des conditions d'utilisation des contenus de votre site"
+      },
+      "limitation_de_responsabilite": {
+        "description": "Description de la responsabilité de l'éditeur du site en cas de problèmes sur le site",
+        "modifications": "Précision sur la possibilité pour l'éditeur de modifier le contenu du site à tout moment et sans préavis"
+      }
+    }
+  }

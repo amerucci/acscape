@@ -1,0 +1,18 @@
+{
+   
+    "name": "33642/acscape",
+    "authors": [
+        {
+            "name": "gamerbike",
+            "email": "champidub@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Router\\": "routes/",
+            "App\\": "app/",
+            "Database\\": "database/"
+        }
+    },
+    "require": {}
+}

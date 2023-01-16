@@ -1,0 +1,934 @@
+@font-face {
+    font-family: "Virgil";
+    src: url(../../public/font/Virgil.woff2) format("woff2");
+}
+
+.background_game {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.ingame_container_background {
+    z-index: 55;
+}
+
+.modal {
+    z-index: 9999;
+}
+
+
+.in_game_nav {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.8958rem + 0.5556vw, 1.5625rem);
+    padding-right: 5%;
+    color: white;
+    width: 100% !important;
+}
+
+/* li.in_game_nav:nth-child(1) {
+    transform: translateY(-15%);
+} */
+
+.navnavLog-InGame {
+    background: none;
+    width: 10%;
+    justify-content: flex-end;
+}
+
+li.in_game_nav:nth-child(2) {
+    /* width: 52% !important; */
+    text-align: left !important;
+}
+
+
+
+
+.the_rooms,
+.inventories,
+.frisk {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    cursor: pointer;
+    width: 110px;
+}
+
+
+.tools {
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.backdrop_for_img {
+    background: #0009;
+    padding: 0.5%;
+    backdrop-filter: blur(5px);
+}
+
+.close,
+.closeLock,
+.closeOpen {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+}
+
+modal {
+    pointer-events: auto
+}
+
+.modal-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
+}
+
+#countdown {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
+    transform: translate(0%, 8%);
+    color: white;
+    font-weight: bold;
+}
+
+.countdown_container {
+    width: max-content;
+}
+
+.endgame_lose,
+.endgame_win {
+    position: absolute;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    background-color: rgb(19, 19, 19);
+    width: 100%;
+    height: 100vh;
+    z-index: 99999999;
+}
+
+.endgame_title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1.125rem, 0.9004rem + 1.4371vw, 2.625rem);
+    color: #ffffff;
+}
+
+.endgame_text {
+    width: 55%;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.endgame_buttons>a,
+.actionFurniture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    color: white;
+    outline: none;
+    border: none;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* in modal*/
+
+.furnitures {
+    position: relative;
+}
+
+.frisk_content {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    color: white;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+.rooms_list,
+.furniture_desc {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #717171;
+    white-space: pre-line;
+
+}
+
+.msg_open,
+.furniture_reward {
+    white-space: pre-line;
+}
+
+.rooms_list_item,
+.furniture_list_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    min-height: 200px;
+    min-width: 25%;
+    font-family: 'Montserrat';
+    font-size: 1.3rem;
+    position: relative;
+    gap: 2%;
+    font-weight: bold;
+    margin: 2% 2%;
+}
+
+.furniture_list_item {
+    min-height: 200px;
+    background: #FED440;
+
+}
+
+.activeR {
+    border: 2px dashed #D31E44;
+    animation: dashed 3s ease-in-out infinite;
+}
+
+@keyframes dashed {
+    0% {
+        border: 2px dashed #D31E44;
+        border-radius: 5%;
+    }
+
+    50% {
+        border: 2px dashed #D31E44;
+        border-radius: 10%;
+    }
+
+    100% {
+        border: 2px dashed #D31E44;
+        border-radius: 5%;
+    }
+}
+
+.room_control_key,
+.furniture_unlock_statut {
+    font-size: 18px;
+    font-family: 'montserrat';
+    font-weight: 700;
+    color: #ffffffd5;
+    height: 100%;
+
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+    transition: display 0.5s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        display: none !important;
+        opacity: 0;
+    }
+}
+
+.room_control_key>span:nth-child(1),
+.furniture_unlock_statut>span:nth-child(1) {
+    animation: typing 0.4s steps(5, end), blink-caret .5s step-end infinite;
+    transition: all 0.5s ease-in-out;
+}
+
+.room_control_key>span.endTry,
+.furniture_unlock_statut>span.endTry {
+    height: 100%;
+}
+
+#rooms_unlock_btn,
+#furniture_key_unlock_btn {
+    border-radius: 0% 10% 10% 0%;
+    background-color: #D31E44;
+}
+
+#rooms_unlock_btn:active,
+#furniture_key_unlock_btn:active {
+    background-color: #D31E44;
+    color: white;
+    font-size: 20px;
+    scale: 0.8;
+    box-shadow: #0b0b0b;
+}
+
+.key_btn:hover {
+    scale: 1.5;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+
+#rooms_unlock_key,
+#furniture_key_unlock {
+    border-radius: 10px 0% 0% 10px;
+}
+
+
+
+/* .padlock {} */
+
+.furniture_desc_action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 10px;
+    background-color: rgba(211, 30, 68, 1);
+    border-radius: 32px;
+    color: white;
+    outline: none;
+    border: none;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modalRoomLock {
+    min-height: 40vh;
+}
+
+.clue_show1,
+.clue_show2,
+.clue_show3 {
+    background-image: url(../../assets/front/ingame/clue.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 1%;
+    border-radius: 5%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.clue_show1:hover,
+.clue_show2:hover,
+.clue_show3:hover {
+    transform: rotate(-5deg);
+    transition: all 0.5s ease-in-out;
+}
+
+.rotate_5deg {
+    transform: rotate(-5deg);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.clue_show1_content,
+.clue_show2_content,
+.clue_show3_content {
+    background-image: url(../../assets/front/ingame/clue.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 120px;
+    color: white;
+    font-family: 'montserrat';
+    padding: 5%;
+    transition: all 0.5s ease-in-out;
+}
+
+.scale0 {
+    /* transform: scale(0); */
+    animation: scale1to0 0.4s ease-in-out forwards;
+
+
+}
+
+.tryNumber {
+    font-size: 22px;
+    color: #ffffff;
+    font-family: 'Montserrat';
+    /* font-family: 'Digits'; */
+}
+
+
+.scale0to1 {
+    /* transform: scale(0); */
+    animation: scale0to1 0.7s ease-in-out forwards;
+}
+
+@keyframes scale0to1 {
+    0% {
+        /* transform: scale(0); */
+        height: 0%;
+    }
+
+    100% {
+
+        min-height: 100%;
+    }
+}
+
+
+.penality {
+    font-size: clamp(0.875rem, 0.6667rem + 1.1111vw, 2rem);
+    color: #D31E44;
+    font-family: 'Montserrat';
+    /* transform: translateY(8%); */
+    opacity: 0;
+}
+
+.topToBottom {
+    animation: topToBottom 2s ease-in-out 1s forwards;
+}
+
+@keyframes topToBottom {
+    0% {
+        transform: translateY(-8%);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(12%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+}
+
+.modalRoomOpen {
+    min-height: 470px;
+}
+
+.wiki {
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.wiki_modal {
+    min-height: 40vh;
+}
+
+/* sticky */
+#stickies-container {
+    padding: 1rem;
+}
+
+.drag {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sticky {
+    font-family: "Virgil", sans-serif;
+    /* background: linear-gradient(to left bottom, #d4fc78, #99e5a2); */
+    background: whitesmoke;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    color: #00243f;
+    /* 0 0 150px rgba(0, 0, 0, 0.2); */
+    cursor: grab;
+    display: inline-block;
+    padding: 1.3rem;
+    position: absolute;
+    width: 18rem;
+    z-index: 555;
+    transition: scale 0.2s ease-in-out;
+    resize: both;
+}
+
+/* .sticky:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    scale: 1.05;
+    transition: scale 0.2s ease-in-out;
+} */
+
+
+
+
+
+.sticky h3,
+.sticky p {
+    color: #0065b3;
+    color: #00243f;
+    pointer-events: none;
+}
+
+.sticky h3 {
+    border-bottom: dashed 2px #0085e8;
+    margin: 0 0 1rem;
+    min-height: 1.3rem;
+    padding: 0 1.5rem 0.25rem 0;
+}
+
+.sticky p {
+    margin: 0;
+    min-height: 9rem;
+}
+
+.sticky .deletesticky {
+    color: var(--red);
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    right: 0.8rem;
+    top: -0.6rem;
+}
+
+.sticky-form {
+    /* top: 5rem; */
+    position: absolute;
+    right: 6%;
+    /* z-index: 5555; */
+    /* width: 120px; */
+    /* padding-top: 1%;
+    border-top: 1px dashed; */
+}
+
+.sticky-form label,
+.sticky-form input,
+.sticky-form textarea {
+    color: #fff;
+    display: block;
+}
+
+.sticky-form input,
+.sticky-form textarea {
+    background-color: #f0f9ff44;
+    background-clip: padding-box;
+    border: 2px dashed #0065b3;
+    border-radius: 0.25rem;
+    color: #00243f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    width: calc(100% - 1.5rem);
+}
+
+.sticky-form input:focus,
+.sticky-form textarea:focus {
+    border: 2px dashed #ffffff;
+    outline: none;
+}
+
+button.button {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    color: white;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+}
+
+.textareaSticky {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 1.25rem;
+}
+
+.textarea_title_sticky {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    min-height: 50px;
+    font-size: 1.55rem;
+    font-weight: bold;
+}
+
+.dashedLine {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    width: 100%;
+    border-top: 1px dashed;
+    height: 10px;
+}
+
+.drawing-canvas {
+    border: 2px dashed #D31E44;
+}
+
+.toolbox {
+    position: absolute;
+    right: 3%;
+    top: 10.5%;
+}
+
+.button_toolBox {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: 'montserrat';
+    background-color: #2424249a;
+    min-width: 100%;
+}
+
+#toolbox_content {
+    background-color: #2424249a;
+    width: 100%;
+    padding: 1%;
+}
+
+#createstickyOpac {
+    padding-bottom: 0;
+    padding-top: 5%;
+    width: 100%;
+    /* border-top: dashed 1px; */
+}
+
+.sticky-draw {
+    padding-bottom: 2%;
+}
+
+.espace {
+    /* height: 116px; */
+    height: 82px;
+}
+
+.canvas_container {
+    position: absolute;
+    background-color: #ffffff69;
+    padding: 1%;
+}
+
+.drawing-canvas {
+    border: 2px dashed #D31E44;
+    background: #ffffffc9;
+}
+
+.canva_delete {
+    position: absolute;
+    top: -1.55rem;
+    font-size: 2.4rem;
+    right: -0.2rem;
+    padding: 1%;
+}
+
+.copy {
+    position: absolute;
+    bottom: 11%;
+    right: 6%;
+    cursor: pointer;
+    z-index: 9999999;
+}
+
+/* webkit scrollbar */
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-resizer {
+    display: none;
+}
+
+iframe {
+    min-height: 500px;
+}
+
+.progress-bar {
+    background-color: #d31e44;
+    transition: all 0.5s ease-in-out;
+}
+
+.penality_info {
+    color: #d31e44;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.description_room {
+    font-family: 'montserrat';
+    font-size: 1rem;
+    overflow: auto;
+    padding: 3%;
+    max-height: 230px;
+    min-height: 100px;
+    white-space: pre-line;
+
+}
+
+.desc_container {
+    border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+}
+
+.input_container {
+    /* border-right: 1px solid #d5c9c9; */
+    border-right: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+    padding: 2%;
+}
+
+.modal-body {
+    min-height: 200px;
+}
+
+.modal-dialog {
+    max-width: 1000px;
+}
+
+.modal {
+    font-family: 'montserrat';
+    min-width: 300px;
+}
+
+#party-js-container {
+    z-index: 999999999 !important;
+}
+
+.buttonConfetti {
+    border: none;
+    outline: none;
+    scale: 0;
+}
+
+.moveLr {
+    transform: rotate(0deg);
+    transition: transform 0.5s;
+    animation: rotate 2.5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.modalFurnitureOpen {
+    min-height: 450px;
+}
+
+.furnitureLock {
+    min-height: 549px;
+}
+
+.reward_container {
+    /* background: url(../../assets/front/ingame/paper.jpg); */
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'montserrat';
+    font-size: 1.5rem;
+    white-space: pre-line;
+}
+
+.zoom {
+    height: 105% !important;
+    width: 100% !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999999999999;
+    object-fit: contain;
+    backdrop-filter: blur(5px) saturate(100%) brightness(20%);
+    transition: backdrop-filter 0.2s ease-in-out;
+}
+
+#leaveGame {
+    background: var(--red);
+    color: white;
+}
+
+
+
+@media (max-width: 1000px) {
+
+    .li.in_game_nav:nth-child(1),
+    .li.in_game_nav:nth-child(2) {
+        width: 100%;
+    }
+
+    .nav-links-InGame {
+        height: 110px !important;
+        align-items: first baseline !important;
+        top: 40px !important;
+        background: transparent !important;
+    }
+
+    .navnavLog-InGame {
+        transform: translateY(0px) !important;
+        background-color: transparent !important;
+    }
+
+    .nav-btn-InGame {
+        top: 4px !important;
+    }
+
+    .nav-header-InGame {
+        height: 40px !important;
+    }
+
+    .nav-logo-InGame {
+        height: 37px;
+        width: 94px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .sticky-form {
+        display: none !important;
+    }
+
+    footer[data-footer="none"] {
+        display: none;
+    }
+
+    .rooms_list_item,
+    .furniture_list_item {
+        min-width: 70%;
+        padding: 3%;
+    }
+
+    .navbar {
+        z-index: 99;
+    }
+
+    .penality,
+    .penalityClue {
+        display: none !important;
+    }
+
+    .copy,
+    .toolbox {
+        display: none !important;
+    }
+
+    .navbar-navInGame {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        transform: translateY(0) !important;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .input_container {
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 1px solid #d5c9c9;
+    }
+
+
+    .clue_container {
+        width: 100% !important;
+    }
+
+    .logoNav>a:nth-child(1)>svg:nth-child(1) {
+        height: 50%;
+        width: 85%;
+    }
+
+    .navbar-nav {
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 2%;
+        padding-left: 5px !important;
+        padding-top: 5px !important;
+    }
+
+    .navnavLog-InGame {
+        width: auto;
+        justify-content: center;
+    }
+
+
+    /* .ingame_container_background {
+        background-size: 60% 60% !important;
+        background-position-y: top 12% !important;
+    } */
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .img_room,
+    .img_furniture {
+        width: 126px;
+    }
+
+
+
+
+
+
+}
