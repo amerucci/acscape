@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 06 jan. 2023 à 13:35
+-- Généré le : lun. 16 jan. 2023 à 12:18
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `furnitures` (
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `room_id` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `furnitures`
@@ -58,7 +58,8 @@ CREATE TABLE IF NOT EXISTS `furnitures` (
 INSERT INTO `furnitures` (`id`, `title`, `picture`, `description`, `action`, `clue`, `clue2`, `clue3`, `padlock`, `unlock_word`, `reward`, `object_id`, `user_id`, `script_id`, `room_id`) VALUES
 (47, 'éprouvette', '1672759797_eprouvette.jpg', 'une éprouvette est posé sur son bureau, on dirait qu\'elle contient quelque chose, mais un verrou empêche de voir ce que c\'est.\r\nApparemment il s\'en sert pour des travaux qui portent son nom.', 'examiner', 'c\'est un procédé de conservation des aliments', 'a commencé ses travaux sur la stabilisation des vins au 19e siècle', 'autre nom de la débactérisation thermocontrôlée', 'yes', 'pasteurisation', 'Les températures de pasteurisation commence à 62 \r\nHum que faire de cette information, peut-être devrais je la noter quelques part.', NULL, 32, 57, 22),
 (48, 'bière', '1672760715_biere.jpg', 'Un verre de bière est posé sur le bureau, je devrais l\'examiner de plus prêt, mince un couvercle avec des lettres dans le désordre et certaines effacées ferme le verre et empêche de déguster ce précieux nectar.\r\n\r\nOn peut y apercevoir : OHNBO, qu\'est ce que ça peut bien vouloir dire, on dirait un ingrédient.\r\n', 'boire', 'plante grimpante', 'la lettre manquante est le \"U\"', 'le mot commence par Ho*****', 'yes', 'houblon', 'pour avoir trouvé le houblon, un chiffre apparaît et vous pouvez enfin déguster la bière, enfin personne ne sait depuis combien de temps elle est ici...\r\n\r\nCe chiffre est : 1602', NULL, 32, 57, 22),
-(49, 'hiéroglyphe', '1672998806_hieroglyphe.jpg', 'Vous trouvez devant vous des hiéroglyphes, ils sont surement utiles pour quitter cette pièce.\r\nPlus loin dans la pièce vous apercevez plusieurs dessins mis en valeurs, un serpent, un oiseau et une jambe.\r\nSerait-ce un indice\r\n', 'examiner', 'Il y a des lettres qui me sont familières au dessus des hiéroglyphes', 'et si les associés était la solution', NULL, 'yes', 'jab', 'vous avez déchiffrez les hiéroglyphes, vous avez un sentiment étrange qui vous fait penser à la nature. Que signifie t\'il ? Serait-ce la couleur ?', NULL, 32, 58, 25);
+(49, 'hiéroglyphe', '1672998806_hieroglyphe.jpg', 'Vous trouvez devant vous des hiéroglyphes, ils sont surement utiles pour quitter cette pièce.\r\nPlus loin dans la pièce vous apercevez plusieurs dessins mis en valeurs, un serpent, un oiseau à grandes pattes et une jambe.\r\nSerait-ce un indice\r\n', 'examiner', 'Il y a des lettres qui me sont familières au dessus des hiéroglyphes', 'et si les associés était la solution', NULL, 'yes', 'jab', 'vous avez déchiffrez les hiéroglyphes, vous avez un sentiment étrange qui vous fait penser à la nature.\r\nQue signifie t\'il ? Serait-ce la couleur ?\r\nNature -> végétal, humm...', NULL, 32, 58, 25),
+(50, 'chaine', '1673255635_chaine.jpg', 'Humm pourquoi cette chaîne, a t\'elle une signification particulière ?', 'examiner', '', NULL, NULL, 'no', '', 'Humm pourquoi cette chaîne, a t\'elle une signification particulière ?', NULL, 32, 60, 28);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `objects` (
   PRIMARY KEY (`id`),
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `objects`
@@ -123,7 +124,14 @@ CREATE TABLE IF NOT EXISTS `password_recover` (
   `token` varchar(64) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `password_recover`
+--
+
+INSERT INTO `password_recover` (`id`, `token_user`, `token`, `created_at`) VALUES
+(64, '15aff1fd0d47872fda64cc0895400b1bdea72dde1319af81906193ddead8abc0', '61eadb69691e8b7c099791af56396f28ba41b7bd7e6ba370d5ee1b828ea56669', '2023-01-12 13:41:11');
 
 -- --------------------------------------------------------
 
@@ -150,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   KEY `users` (`user_id`),
   KEY `scripts` (`script_id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rooms`
@@ -160,8 +168,11 @@ INSERT INTO `rooms` (`id`, `title`, `description`, `picture`, `padlock`, `n_room
 (22, 'Le Laboratoire de Louis Pasteur', 'Vous êtes coincé à l\'intérieur du labo de Louis Pasteur, il va falloir trouvé des indices pour ouvrir la porte bloquée par un étrange mécanisme.', '1672758477_bureau.jpg', 'no', 1, '', '', NULL, NULL, '', 32, 57),
 (23, 'Le Laboratoire de Louis Pasteur', 'Pensant être sortie du bureau de Louis Pasteur, vous voilà de nouveaux coincé dans cette salle, il y a surement des choses à fouiller.\r\nVous êtes dans un labo de Chimie, ', '1672758843_pasteur.jpg', 'yes', 2, '1664', 'marque de bière', 'addition', 'et si je faisais la somme de ce que m\'ont appris les indices.', 'youpi c\'était ça, mais vous voilà à nouveau dans une pièce fermée, diantre.\r\n', 32, 57),
 (25, 'tombeau', 'vous vous trouvez dans le tombeau du Pharaon. La pièce est sombre et silencieuse, et vous êtes entouré de statues de dieux et de sarcophages en pierre. Vous sentez une présence oppressante dans l\'air, comme si les esprits des morts veillaient sur vous. Vous devez trouver un moyen de sortir de cette pièce avant qu\'il ne soit trop tard.\r\n\r\nVous inspectez les alentours et vous remarquez plusieurs objets étranges : une grande plaque de pierre gravée de hiéroglyphes, un vase en forme de tête de lion, et une étagère couverte de jarres et de pots en terre cuite. Vous pouvez également entendre un faible grondement qui semble provenir de derrière l\'une des statues.\r\n\r\nIl y a une porte en bois qui mène vers une autre pièce, mais elle est verrouillée. Pour la déverrouiller, vous devrez résoudre l\'énigme cachée dans cette pièce. Faites attention, car il ne vous reste que peu de temps avant que les gardiens ne reviennent', '1672995606_tombeau.jpg', 'yes', 1, '', '', NULL, NULL, '', 32, 58),
-(26, 'Le Labyrinthe de la Tombe', 'Un étrange mécanisme est gravé sur la porte, on dirait un labyrinthe.\r\nDes chemins de couleurs différentes sont déjà tracés, lequel prendre ?\r\nEst-ce la solution pour déverrouiller cette porte ?', '1672996865_labyrinthe.jpg', 'yes', 2, 'chlorophylle', 'la solution semble être la couleur, mais quelque chose ne va pas', 'ce vert est d\'une couleur naturel ', 'serait-ce le vert de la nature ? Mais d\'où vient-t\'il déjà, comment est-il fabriqué ?', 'Vous venez de pénétrer dans le Labyrinthe de la Tombe, une pièce sombre et sinueuse remplie de couloirs et de passages secrets. Le sol est couvert de poussière et de débris, et vous avez l\'impression de vous enfoncer de plus en plus profondément dans les entrailles de la pyramide, mais grâce à votre perspicacité, vous avez trouvé la sortie\r\n\r\nVous avancez avec prudence, attentif aux pièges qui pourraient se cacher dans les ombres. Les murs sont couverts de hiéroglyphes et de fresques qui racontent l\'histoire du Pharaon et de ses exploits. \r\n\r\nSoudain, vous entendez un grondement qui semble provenir de la salle suivante. Vous hésitez un instant, puis vous prenez votre courage à deux mains et vous avancez vers la porte verrouillée. Pour la déverrouiller, vous devrez résoudre l\'énigme cachée dans cette pièce.', 32, 58),
-(27, 'la sortie', 'Vous voilà face à la dernière porte, arriverez vous enfin à sortir de cette pyramide ?\r\nRien n\'est moins sûr.\r\nOn dirait qu\'il y avait quelque chose avant cette pyramide, comme si elle avait été construite par dessus une ancienne structure.\r\nSerait-ce une sépulture des souverains de l\'ancien empire égyptien\r\n\r\n', '1673000469_Mastaba.jpg', 'yes', 3, 'mastaba', 'nom des anciennes sépultures', ' édifice funéraire égyptien servant de sépulture aux rois des deux premières dynasties', NULL, 'bravo', 32, 58);
+(26, 'Le Labyrinthe de la Tombe', 'Un étrange mécanisme est gravé sur la porte, on dirait un labyrinthe.\r\nDes chemins de couleurs différentes sont déjà tracés, lequel prendre ?\r\nEst-ce la solution pour déverrouiller cette porte ?', '1672996865_labyrinthe.jpg', 'yes', 2, 'chlorophylle', 'la solution semble être la couleur, mais quelque chose ne va pas', 'Pigment caractéristique des plantes', 'peut-être le parfum de chewing-gum', 'Vous venez de pénétrer dans le Labyrinthe de la Tombe, une pièce sombre et sinueuse remplie de couloirs et de passages secrets. Le sol est couvert de poussière et de débris, et vous avez l\'impression de vous enfoncer de plus en plus profondément dans les entrailles de la pyramide, mais grâce à votre perspicacité, vous avez trouvé la sortie\r\n\r\nVous avancez avec prudence, attentif aux pièges qui pourraient se cacher dans les ombres. Les murs sont couverts de hiéroglyphes et de fresques qui racontent l\'histoire du Pharaon et de ses exploits. \r\n\r\nSoudain, vous entendez un grondement qui semble provenir de la salle suivante. Vous hésitez un instant, puis vous prenez votre courage à deux mains et vous avancez vers la porte verrouillée. Pour la déverrouiller, vous devrez résoudre l\'énigme cachée dans cette pièce.', 32, 58),
+(27, 'la sortie', 'Vous voilà face à la dernière porte, arriverez vous enfin à sortir de cette pyramide ?\r\nRien n\'est moins sûr.\r\nOn dirait qu\'il y avait quelque chose avant cette pyramide, comme si elle avait été construite par dessus une ancienne structure.\r\nSerait-ce une sépulture des souverains de l\'ancien empire égyptien\r\n\r\n', '1673000469_Mastaba.jpg', 'yes', 3, 'mastaba', 'nom des anciennes sépultures', ' édifice funéraire égyptien servant de sépulture aux rois des deux premières dynasties', NULL, 'bravo', 32, 58),
+(28, 'salle de formation', 'Alors que vous sortiez des toilettes et que tout semblait normal, de retour dans votre salle, les portes se ferment et vous êtes seul dans la pièce.\r\nHeureusement pour vous, les portes ont un cadenas équipés d\'écran et de clavier, vous devriez arriver à vous en sortir.', '1673254063_salleinfo.jpg', 'yes', 1, '', '', NULL, NULL, '', 32, 60),
+(29, 'couloir', 'Cette porte doit mener à la sortie, mais comment faire pour l\'ouvrir.\r\nSi seulement vous vous rappeliez ce que vous disais le coach pendant la formation.\r\nAvant de vous retrouvez dans cette situation vous étiez en train d\'étudier Javascript, et une particularité étonnante pour un néophyte.\r\nAlors qu\'une mystérieuse chaîne pend devant vous, vous tirez dessus et derrière se cache un tableau.\r\nSur celui-ci, vous apercevez un étrange calcul, comment se résultat a t\'il pu arriver. Qu\'est ce qui permet une telle sorcellerie ?\r\n\r\n', '1673254977_calcul.jpg', 'yes', 2, 'concatenation', 'si les variables étaient les deux des nombres, le résultat serait différent', 'ça ressemble fort à un enchaînement de terme', NULL, 'Vous avez réussi à ouvrir cette porte, maintenant que vous êtes arriver dans le couloir, vous n\'avez plus qu\'une porte à franchir pour sortir du bâtiment et retrouvez vos collègues.\r\nCependant vous faite face à une nouvelle porte, encore une fois bloqué par un cadenas relié à un pc. Encore une nouvelle énigme', 32, 60),
+(30, 'la sortie', 'Comment faire ouvrir cette porte, vous avez réussi la première énigme, mais celle-ci paraît très compliqué. Et d\'ailleurs pourquoi un éléphant ? \r\nOn dirait que cet éléphant se sent seul, quel est l\'autre animal qui l\'accompagne la plupart du temps ? ', '1673255451_elephant.jpg', 'yes', 3, 'dauphin', 'SGBDR', 'maj.?s.ky.?l', 'mascotte', 'Bravo vous avez réussi à ouvrir la dernière porte et retrouvez vos collègues maintenant, il est temps de découvrir ce qu\'il s\'est passé ?\r\nN\'était ce qu\'une épreuve ? Le monde est-il en danger ?', 32, 60);
 
 -- --------------------------------------------------------
 
@@ -182,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `scripts` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `scripts`
@@ -190,7 +201,8 @@ CREATE TABLE IF NOT EXISTS `scripts` (
 
 INSERT INTO `scripts` (`id`, `title`, `difficulty`, `description`, `winner_msg`, `lost_msg`, `picture`, `duration`, `user_id`) VALUES
 (57, 'Le Laboratoire de Louis Pasteur', 3, 'Vous êtes un groupe de scientifiques qui avez été invités à visiter le célèbre laboratoire de Louis Pasteur. Cependant, lorsque vous arrivez, vous découvrez que le laboratoire est verrouillé et que vous êtes coincés à l\'intérieur! Vous devez maintenant résoudre les énigmes et trouver les mots de passe cachés dans le laboratoire pour vous échapper avant que le temps ne s\'écoule', 'Bravo, vous avez permis aux scientifiques d\'accomplir leur mission, grâce à vous, le monde est sauvé', 'Dommage, vous n\'avez pas pu libérer les scientifiques à temps, le virus va se propager et éliminer toute vie sur terre.', '1672756200_pasteur.jpg', 60, 32),
-(58, 'échapper à la tombe du Pharaon', 3, 'Vous êtes un archéologue qui a réussi à pénétrer dans la tombe du Pharaon, mais vous vous êtes fait surprendre par des gardiens qui ont verrouillé les portes derrière vous. Vous devez maintenant trouver un moyen de sortir avant qu\'il ne soit trop tard. Explorez les différentes pièces et résolvez les énigmes pour déverrouiller les portes et vous échapper de la tombe.', 'Bravo vous avez réussi à vous échapper ! ', 'Vous avez succomber aux pièges de la pyramide.', '1672995121_scriptBg.jpg', 60, 32);
+(58, 'échapper à la tombe du Pharaon', 3, 'Vous êtes un archéologue qui a réussi à pénétrer dans la tombe du Pharaon, mais vous vous êtes fait surprendre par des gardiens qui ont verrouillé les portes derrière vous. Vous devez maintenant trouver un moyen de sortir avant qu\'il ne soit trop tard. Explorez les différentes pièces et résolvez les énigmes pour déverrouiller les portes et vous échapper de la tombe.', 'Bravo vous avez réussi à vous échapper ! ', 'Vous avez succomber aux pièges de la pyramide.', '1672995121_scriptBg.jpg', 60, 32),
+(60, 'Le développeur perdu', 4, 'Vous êtes un développeur,  envoyé en stage pour améliorer vos compétences. Malheureusement vous êtes perdu, après vos retour des toilettes, vous vous apercevez que tout vos collègues ont disparu. Vous décidez de menez l\'enquête, mais très vite vous êtes pris au piège, les portes ne s\'ouvrent plus. \r\nHeureusement pour vous, les portes ont des cadenas que vous hacker avec vos nouvelles compétences.\r\nÉchappez vous et retrouver vos collègues pour élucider ce mystère.', 'Vous avez réussi à vous échapper et retrouver vos collègue. Vous êtes voué à un très grand avenir, à la vue de compétence pour déjouer les pièges.', 'Dommage, il fallait mieux suivre les cours de la formation, vous auriez surement réussi à hacker le système.', '1673253343_img_game.webp', 60, 32);
 
 -- --------------------------------------------------------
 
@@ -210,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
