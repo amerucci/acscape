@@ -2,9 +2,6 @@
 
 <?php 
 $scripts = $params['scripts']; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
-} ?>
 
 
 
@@ -40,14 +37,14 @@ return header('Location: /acscape/login?error=session_expired');
         <div class="card gap-2 d-flex mx-1 flex-column flex-md-row card_container">
             <div class="card-body card_script d-flex justify-content-center align-items-center flex-column">
                 <img src="../assets/pictures/scripts/<?= $script->picture ?>" alt="<?= $script->title ?>"
-                    class="card-img-top w-25">
-                <h5 class="card-title"><?= $script->title ?></h5>
-                <p class="card-text"><?= $script->description ?></p>
-                <div class="d-flex justify-content-center align-items-center flex-column gap-1 w-100">
+                    class="card-img-top object-fit-contain" width="100" height="100">
+                <h5 class="card-title py-2"><?= $script->title ?></h5>
+                <p class="card-text"><?= substr($script->description, 0, 150) . '...' ?></p>
+                <div class="d-flex justify-content-center align-items-center flex-column gap-1 w-100 btn_card_edit">
                     <a href="script/edit/<?= $script->id ?>" class="btn btn-primary w-100">Editer</a>
                     <form action="script/delete/<?= $script->id ?>" method="post" class="w-100">
                         <input type="hidden" name="id" value="<?= $script->id ?>">
-                        <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+                        <button type="submit" class="btn btn-danger w-100" onclick="deleteRecord()">Supprimer</button>
                     </form>
                 </div>
             </div>

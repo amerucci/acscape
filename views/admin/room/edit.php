@@ -1,11 +1,8 @@
 <?php $room = $params['room'];
 $title = "Modifier la salle {$room->title}";
 ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
-} ?>
 <?php if ((int) $params['room']->user_id != $_SESSION['user_id']) {
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 
@@ -15,8 +12,8 @@ return header('Location: /acscape/login?error=session_expired');
     <h1 class="text-center">editer votre salle</h1>
 
     <div class="d-flex justify-content-center align-items-center flex-column my-3">
-        <form action="/acscape/admin/room/edit/<?= $room->id ?>" method="post" enctype="multipart/form-data"
-            class="d-flex justify-content-center align-items-center flex-column gap-2 w-50">
+        <form action="/admin/room/edit/<?= $room->id ?>" method="post" enctype="multipart/form-data"
+            class="d-flex justify-content-center align-items-center flex-column gap-2 w-75">
             <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                 <label for="title">Titre</label>
                 <input type="text" name="title" id="title" class="form-control"
@@ -31,7 +28,7 @@ return header('Location: /acscape/login?error=session_expired');
                 <div class="form-group form_picture d-flex justify-content-center align-items-center flex-column w-100">
                     <button type="button" class="btn btn-primary" id="addPicture">modifier l'image</button>
                     <input type="hidden" name="picture" id="picture" value="<?= $room->picture ?>">
-                    <img src="/acscape/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
+                    <img src="/assets/pictures/rooms/<?= $room->picture ?>" alt="image du script" width="100px"
                         height="100px" id="picturePreview">
                     <img id="picturePreviewTemp">
                 </div>
@@ -109,21 +106,23 @@ return header('Location: /acscape/login?error=session_expired');
         <p>---------------------------</p>
         <h3 class="m-0">Liste des meubles</h3>
         <div class="d-flex justify-content-center align-items-center flex-column">
-            <a href="/acscape/admin/furniture/create" class="btn btn-primary my-3">Ajouter un meuble</a>
+            <a href="/admin/furniture/create" class="btn btn-primary my-3">Ajouter un meuble</a>
             <div class="d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-3">
                 <?php foreach ($params['furnitures'] as $furniture) : ?>
                 <?php if ($furniture->room_id == $_SESSION['room_id']) : ?>
                 <div class="card mx-2 card_furniture">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column gap-5">
+                    <div class="card-body d-flex justify-content-center align-items-center flex-column gap-1">
+                        <img src="/assets/pictures/furnitures/<?= $furniture->picture ?>" alt="<?= $furniture->title ?>"
+                            class="card-img-top object-fit-contain" width="100" height="100">
                         <h5 class="card-title"><?= $furniture->title ?></h5>
                         <p class="card-text"><?=  substr($furniture->description,  0, 50).'...' ?></p>
                         <div class="d-flex flex-column w-100">
-                            <a href="/acscape/admin/furniture/edit/<?= $furniture->id ?>"
+                            <a href="/admin/furniture/edit/<?= $furniture->id ?>"
                                 class="btn btn-primary my-1 w-100">Editer</a>
-                            <form action="/acscape/admin/furniture/delete/<?= $furniture->id ?>" method="post"
-                                class="w-100">
+                            <form action="/admin/furniture/delete/<?= $furniture->id ?>" method="post" class="w-100">
                                 <input type="hidden" name="id" value="<?= $furniture->id ?>">
-                                <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+                                <button type="submit" class="btn btn-danger w-100"
+                                    onclick="deleteRecord()">Supprimer</button>
                             </form>
                         </div>
                     </div>
@@ -222,6 +221,12 @@ return header('Location: /acscape/login?error=session_expired');
         editPlus.classList.add('dnone');
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const description = document.getElementById('description');
+        const reward = document.getElementById('reward');
+        const clue = document.getElementById('clue');
+        const unlock_word = document.getElementById('unlock_word');
+    });
 
     function padlock() {
 
@@ -229,15 +234,27 @@ return header('Location: /acscape/login?error=session_expired');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+            reward.setAttribute('required', 'required');
+            clue.setAttribute('required', 'required');
+            unlock_word.setAttribute('required', 'required');
+        } else {
+            reward.value = description.value
         }
 
         padlock.addEventListener('change', function () {
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
+                reward.value = '';
+                reward.setAttribute('required', 'required');
+                clue.setAttribute('required', 'required');
+                unlock_word.setAttribute('required', 'required');
             } else {
                 padlockParams.classList.add('dnone');
+                reward.removeAttribute('required');
+                clue.removeAttribute('required');
+                unlock_word.removeAttribute('required');
             }
         });
-    }
+    };
     padlock();
 </script>

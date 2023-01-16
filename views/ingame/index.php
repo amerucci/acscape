@@ -1,5 +1,22 @@
-<?php $_SESSION['test'] = '54'; ?>
-<?php $title = "ACScape"; ?>
+<?php $title = "ACScape"; 
+$gameTitle = $params["script"][0]->title;
+?>
+
+<?php if(!$_SESSION["scriptId"]): ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <h1 class="text-center">Vous n'avez pas accès à cette page</h1>
+                <a href="/scripts" class="btn btn-primary">Retour aux scénarios</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+
+
 
 <div id='loader' class="loadingspinner d-flex flex-column justify-content-center align-items-center">
     <div class="container_square">
@@ -12,23 +29,24 @@
     <h2>Chargement du jeu</h2>
 </div>
 
-<div class="tools d-flex gap-5">
-    <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
-        data-target="#roomsModal">
-        <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
-        <p class="m-0 rooms_modal">les salles</p>
-    </div>
-
-    <div class="frisk d-flex justify-content-center align-items-center gap-2 frisk_btn" data-toggle=" modal"
-        data-target="#friskModal">
-        <iconify-icon icon="uil:search-alt"></iconify-icon>
-        <p class="m-0 frisk_modal">fouiller</p>
+<div class="tools d-flex gap-1 flex-column">
+    <div class="d-flex gap-3">
+        <div class="the_rooms d-flex justify-content-center align-items-center gap-2" data-toggle="modal"
+            data-target="#roomsModal">
+            <iconify-icon icon="material-symbols:meeting-room-outline"></iconify-icon>
+            <p class="m-0 rooms_modal">les salles</p>
+        </div>
+        <div class="frisk d-flex justify-content-center align-items-center gap-2 frisk_btn" data-toggle=" modal"
+            data-target="#friskModal">
+            <iconify-icon icon="uil:search-alt"></iconify-icon>
+            <p class="m-0 frisk_modal">fouiller</p>
+        </div>
     </div>
 </div>
 
 <!-- sticky it -->
 
-<div class="toolbox d-flex flex-column justify-content-center align-items-center">
+<!-- <div class="toolbox d-flex flex-column justify-content-center align-items-center">
     <button class="button_toolBox" id="toolBox_btn">Boîte à outils</button>
     <div id="espaceVoid" class="espace"></div>
     <div class="dnone d-flex justify-content-center align-items-center gap-2 flex-column" id="toolbox_content">
@@ -50,9 +68,8 @@
             <p class="m-0 frisk_modal">Wiki</p>
         </div>
     </div>
-</div>
+</div> -->
 
-<div id="stickies-container"></div>
 
 
 
@@ -112,7 +129,7 @@
         <h1 class="endgame_title my-3">Vous avez gagné !</h1>
         <p class="endgame_text my-3">Vous êtes venu à bout de cet Escape Game</p>
         <div class="endgame_buttons d-flex justify-content-center align-items-center gap-5 my-3">
-            <a href="/acscape/index" class="endgame_button endgame_button-quit">Liste des jeux</a>
+            <a href="/index" class="endgame_button endgame_button-quit">Liste des jeux</a>
         </div>
 
     </div>
@@ -130,3 +147,16 @@
         </div>
     </div>
 </div>
+
+<div class="sticky-form">
+    <div>
+        <label for="stickytitle" class="dnone">Titre de votre Post-it</label>
+        <input type="text" name="stickytitle" id="stickytitle" class="dnone" />
+        <label for="stickytext" class="dnone">Ecrire quelque chose</label>
+        <textarea name="stickytext" id="stickytext" cols="24" rows="10" class="dnone"></textarea>
+    </div>
+
+    <button class="button" id="createstickyOpac">Post it !</button>
+</div>
+
+<div id="stickies-container"></div>

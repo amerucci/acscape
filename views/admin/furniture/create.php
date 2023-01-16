@@ -1,12 +1,6 @@
 <?php $title = "Creation d'un meuble"; ?>
-<?php if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
-return header('Location: /acscape/login?error=session_expired');
-} ?>
-<!-- <?php var_dump((int) $params['users'][0]->id); ?>
-<?php var_dump($_SESSION['user_id']); ?>
-<?php var_dump($_SESSION['user_id'] == (int) $params['users'][0]->id); ?> -->
 <?php if ($_SESSION['user_id'] != (int) $params['users'][0]->id) {
-return header('Location: /acscape/login?error=error');
+return header('Location: /login?error=error');
 } ?>
 
 
@@ -46,7 +40,7 @@ return header('Location: /acscape/login?error=error');
                 <div class="form-group form_name d-flex justify-content-center align-items-center flex-column w-100">
                     <label for="title">Solution pour le dévérouillage</label>
                     <input type="text" name="unlock_word" id="unlock_word" class="form-control"
-                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce" required>
+                        placeholder="inscrivez ici le mot ou le nombre qui dévérrouillera cette pièce">
                 </div>
                 <div class="form-group d-flex justify-content-center align-items-center flex-column form_clue w-100">
                     <label for="clue">Indice</label>
@@ -116,21 +110,40 @@ return header('Location: /acscape/login?error=error');
         }
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const description = document.getElementById('description');
+        const reward = document.getElementById('reward');
+        const clue = document.getElementById('clue');
+        const unlock_word = document.getElementById('unlock_word');
+    });
+
     function padlock() {
 
         let padlock = document.getElementById('padlock');
         let padlockParams = document.querySelector('.padlock_params');
         if (padlock.value === 'yes') {
             padlockParams.classList.remove('dnone');
+            reward.setAttribute('required', 'required');
+            clue.setAttribute('required', 'required');
+            unlock_word.setAttribute('required', 'required');
+        } else {
+            reward.value = description.value
         }
 
         padlock.addEventListener('change', function () {
             if (padlock.value === 'yes') {
                 padlockParams.classList.remove('dnone');
+                reward.value = '';
+                reward.setAttribute('required', 'required');
+                clue.setAttribute('required', 'required');
+                unlock_word.setAttribute('required', 'required');
             } else {
                 padlockParams.classList.add('dnone');
+                reward.removeAttribute('required');
+                clue.removeAttribute('required');
+                unlock_word.removeAttribute('required');
             }
         });
-    }
+    };
     padlock();
 </script>

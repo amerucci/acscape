@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 400">
+    <path
+        d="M86.99549413979594 48.430483566082785C86.24810975055442 94.4693438871277 -7.473859853937782 279.2226906481954 82.51118780434672 324.6636454923523C172.4962354626312 370.10460033650924 535.8743978466645 363.3781522774272 626.905780089503 321.0762126310242C717.9371623323415 278.7742729846212 719.1329592988942 116.14348608886925 628.699481261378 70.85200761393435C538.2660032238617 25.56052913899945 175.0373400972341 52.91478608683474 84.30491186440531 49.327341781414816 "
+        fill="none" stroke-width="2" stroke="hsl(340, 45%, 50%)" stroke-linecap="round" stroke-dasharray="0 1"></path>
+    <defs>
+        <linearGradient id="SvgjsLinearGradient1002">
+            <stop stop-color="hsl(0, 0%, 16%)" offset="0"></stop>
+            <stop stop-color="hsl(0, 93%, 42%)" offset="1"></stop>
+        </linearGradient>
+    </defs>
+    <style>
+        path {
+            stroke-dasharray: 100 0;
+            stroke-dashoffset: 10;
+            animation: dash 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dasharray: 10 200;
+                stroke-dashoffset: -10;
+            }
+        }
+    </style>
+</svg>

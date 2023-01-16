@@ -45,7 +45,6 @@ abstract class Controller {
 
     protected function json(string $path, array $data)
     {
-        
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
         require VIEWS . $path . '.php';
         header('Content-Type: application/json');
@@ -63,9 +62,12 @@ abstract class Controller {
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
             return true;
         } else {
-            return header('Location: /acscape/login');
+            return header('Location: login');
         }
-    }
+        if ($_COOKIE['csrf_token'] != $_SESSION['csrf']) {
+            return header('Location: /login?error=session_expired');
+            } 
 
+    }
 
 }

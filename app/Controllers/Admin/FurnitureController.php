@@ -40,7 +40,7 @@ class FurnitureController extends Controller {
             $furniture = new Furniture($this->getDB());
             $result = $furniture->create([
                 'title' => $_POST['title'],
-                'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture'],
+                'picture' => isset($_FILES['picture']['name']) ? time().'_'.$_FILES['picture']['name'] : $_POST['picture']=null,
                 'description' => $_POST['description'],
                 'action' => $_POST['action'],
                 'clue' => $_POST['clue'],
@@ -52,7 +52,6 @@ class FurnitureController extends Controller {
                 'user_id' => $_POST['user_id'],
                 'script_id' => $_POST['script_id'],
                 'room_id' => $_POST['room_id'],
-                // 'object_id' => $_POST['object_id'],
     
             ]);
     
@@ -79,7 +78,7 @@ class FurnitureController extends Controller {
                 if ($_POST['object_id'] == 0){
                     $_POST['object_id'] = null;
                 }
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
         }
     
@@ -135,7 +134,7 @@ class FurnitureController extends Controller {
                         echo "Votre fichier n'est pas une image";
                     }
                 }
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
 
         }
@@ -148,7 +147,7 @@ class FurnitureController extends Controller {
             $result = $furniture->destroy($id);
     
             if ($result) {
-                return header('Location: /acscape/admin/game');
+                return header('Location: /admin/game');
             }
         }
 

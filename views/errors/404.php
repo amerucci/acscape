@@ -13,7 +13,7 @@
 
     <div id="error">
         <h1>La page demandée est introuvable :(</h1>
-        <a href="/acscape">Retourner à l'accueil</a>
+        <a href="/">Retourner à l'accueil</a>
     </div>
 
 </body>

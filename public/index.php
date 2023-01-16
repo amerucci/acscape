@@ -18,9 +18,8 @@ $router = new Router($_GET['url']);
 
 // public route
 $router->get('/', 'App\Controllers\BlogController@welcome');
-$router->get('/welcomeresponsive', 'App\Controllers\BlogController@welcome2');
 $router->get('/index', 'App\Controllers\BlogController@index');
-$router->get('/show', 'App\Controllers\BlogController@show');
+$router->get('/show/:id', 'App\Controllers\BlogController@show');
 
 // user login, register, logout route
 $router->get('/login', 'App\Controllers\UserController@login');
@@ -34,9 +33,9 @@ $router->get('/reset', 'App\Controllers\UserController@reset');
 $router->post('/reset', 'App\Controllers\UserController@resetPost');
 
 // in game route
-$router->get('/ingame', 'App\Controllers\InGameController@index');
+$router->get('/ingame/:id', 'App\Controllers\InGameController@index');
 $router->get('/ingame/show', 'App\Controllers\InGameController@show');
-$router->get('/ingame/data', 'App\Controllers\InGameController@jsonGame');
+$router->get('/json/data', 'App\Controllers\InGameController@jsonGame');
 
 
 // **********************************************************************************************************

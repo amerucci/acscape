@@ -14,11 +14,11 @@ class GameController extends Controller {
             $this->isAdmin();            
             if (isset($_SESSION['script_id'])) {
                 $room = new Room( $this->getDB());
-                $rooms = $room->allByScriptId($_SESSION['script_id']);
+                $rooms = $room->allByScriptIdAdmin($_SESSION['script_id']);
                 $furniture = new Furniture( $this->getDB());
-                $furnitures = $furniture->allByScriptId($_SESSION['script_id']);
+                $furnitures = $furniture->allByScriptIdAdmin($_SESSION['script_id']);
                 $object = new Objects( $this->getDB());
-                $objects = $object->allByScriptId($_SESSION['script_id']);
+                $objects = $object->allByScriptIdAdmin($_SESSION['script_id']);
                 $this->view('admin.game.index', compact('rooms', 'furnitures', 'objects'));            
             } else {
                 return header('Location: /acscape');

@@ -1,7 +1,6 @@
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'admin') == true) : ?>
 <?php if (!isset($_COOKIE['csrf_token'])) {
-// Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
-return header('Location: /acscape/login?error=session_expired');
+return header('Location: /login?error=session_expired');
 } ?>
 
 <?php endif; ?>
@@ -14,126 +13,136 @@ return header('Location: /acscape/login?error=session_expired');
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Content-Language" content="fr">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.css' ?>">
+    <meta name="Description"
+        content="Découvrez notre sélection d'escape games uniques et immersifs. Créez votre propre aventure et challengez vos amis ou votre famille.">
+    <meta name="Copyright" content="ACS">
+    <meta name="Author" content="gamerBike">
+    <meta name="Revisit-After" content="15 days">
+    <meta name="Robots" content="all">
+    <meta name="Rating" content="general">
+    <meta name="Distribution" content="global">
+    <meta name="Category" content="games">
+    <link rel='icon' href='/assets/favico.jpg' />
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'app.min.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'login.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'navbar.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'footer.css' ?>">
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'index.css' ?>">
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'show.css' ?>">
+    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'style.css' ?>">
+    <?php if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'ingame.css' ?>">
+    <?php endif; ?>
+    <?php if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false) : ?>
     <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'admin.css' ?>">
-    <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'welcomeRes.css' ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/style.min.css" />
+    <?php endif; ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <!-- custom cursor -> https://github.com/guillaume-rygn/MS-Cursor -->
     <!-- caroussel -> https://splidejs.com/ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <script async src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     <title><?= $title ?></title>
 </head>
 
 <body>
 
-
-
-    <nav class="navbar navbar-expand-lg  gx-0">
-        <div class="container-fluid gx-0">
-            <div class="logoNav">
-                <a href="/acscape"><svg width="215" height="80" viewBox="0 0 215 80" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <rect width="215" height="80" fill="#D31E44" />
-                        <path
-                            d="M75.62 45L81.74 31H86.38L92.5 45H87.62L83.1 33.24H84.94L80.42 45H75.62ZM79.26 42.56L80.46 39.16H86.9L88.1 42.56H79.26ZM101.698 45.32C100.578 45.32 99.538 45.1467 98.578 44.8C97.6313 44.44 96.8046 43.9333 96.098 43.28C95.4046 42.6267 94.8646 41.8533 94.478 40.96C94.0913 40.0667 93.898 39.08 93.898 38C93.898 36.92 94.0913 35.9333 94.478 35.04C94.8646 34.1467 95.4046 33.3733 96.098 32.72C96.8046 32.0667 97.6313 31.5667 98.578 31.22C99.538 30.86 100.578 30.68 101.698 30.68C103.071 30.68 104.285 30.92 105.338 31.4C106.405 31.88 107.285 32.5733 107.978 33.48L104.998 36.14C104.585 35.62 104.125 35.22 103.618 34.94C103.125 34.6467 102.565 34.5 101.938 34.5C101.445 34.5 100.998 34.58 100.598 34.74C100.198 34.9 99.8513 35.1333 99.558 35.44C99.278 35.7467 99.058 36.12 98.898 36.56C98.738 36.9867 98.658 37.4667 98.658 38C98.658 38.5333 98.738 39.02 98.898 39.46C99.058 39.8867 99.278 40.2533 99.558 40.56C99.8513 40.8667 100.198 41.1 100.598 41.26C100.998 41.42 101.445 41.5 101.938 41.5C102.565 41.5 103.125 41.36 103.618 41.08C104.125 40.7867 104.585 40.38 104.998 39.86L107.978 42.52C107.285 43.4133 106.405 44.1067 105.338 44.6C104.285 45.08 103.071 45.32 101.698 45.32ZM115.765 45.32C114.592 45.32 113.459 45.1867 112.365 44.92C111.272 44.6533 110.372 44.3067 109.665 43.88L111.185 40.44C111.852 40.8267 112.592 41.14 113.405 41.38C114.232 41.6067 115.032 41.72 115.805 41.72C116.259 41.72 116.612 41.6933 116.865 41.64C117.132 41.5733 117.325 41.4867 117.445 41.38C117.565 41.26 117.625 41.12 117.625 40.96C117.625 40.7067 117.485 40.5067 117.205 40.36C116.925 40.2133 116.552 40.0933 116.085 40C115.632 39.8933 115.132 39.7867 114.585 39.68C114.039 39.56 113.485 39.4067 112.925 39.22C112.379 39.0333 111.872 38.7867 111.405 38.48C110.952 38.1733 110.585 37.7733 110.305 37.28C110.025 36.7733 109.885 36.1467 109.885 35.4C109.885 34.5333 110.125 33.7467 110.605 33.04C111.099 32.32 111.825 31.7467 112.785 31.32C113.759 30.8933 114.965 30.68 116.405 30.68C117.352 30.68 118.285 30.78 119.205 30.98C120.125 31.18 120.952 31.4867 121.685 31.9L120.265 35.32C119.572 34.9733 118.899 34.7133 118.245 34.54C117.605 34.3667 116.979 34.28 116.365 34.28C115.912 34.28 115.552 34.32 115.285 34.4C115.019 34.48 114.825 34.5867 114.705 34.72C114.599 34.8533 114.545 35 114.545 35.16C114.545 35.4 114.685 35.5933 114.965 35.74C115.245 35.8733 115.612 35.9867 116.065 36.08C116.532 36.1733 117.039 36.2733 117.585 36.38C118.145 36.4867 118.699 36.6333 119.245 36.82C119.792 37.0067 120.292 37.2533 120.745 37.56C121.212 37.8667 121.585 38.2667 121.865 38.76C122.145 39.2533 122.285 39.8667 122.285 40.6C122.285 41.4533 122.039 42.24 121.545 42.96C121.065 43.6667 120.345 44.24 119.385 44.68C118.425 45.1067 117.219 45.32 115.765 45.32ZM132.33 45.32C131.21 45.32 130.17 45.1467 129.21 44.8C128.263 44.44 127.437 43.9333 126.73 43.28C126.037 42.6267 125.497 41.8533 125.11 40.96C124.723 40.0667 124.53 39.08 124.53 38C124.53 36.92 124.723 35.9333 125.11 35.04C125.497 34.1467 126.037 33.3733 126.73 32.72C127.437 32.0667 128.263 31.5667 129.21 31.22C130.17 30.86 131.21 30.68 132.33 30.68C133.703 30.68 134.917 30.92 135.97 31.4C137.037 31.88 137.917 32.5733 138.61 33.48L135.63 36.14C135.217 35.62 134.757 35.22 134.25 34.94C133.757 34.6467 133.197 34.5 132.57 34.5C132.077 34.5 131.63 34.58 131.23 34.74C130.83 34.9 130.483 35.1333 130.19 35.44C129.91 35.7467 129.69 36.12 129.53 36.56C129.37 36.9867 129.29 37.4667 129.29 38C129.29 38.5333 129.37 39.02 129.53 39.46C129.69 39.8867 129.91 40.2533 130.19 40.56C130.483 40.8667 130.83 41.1 131.23 41.26C131.63 41.42 132.077 41.5 132.57 41.5C133.197 41.5 133.757 41.36 134.25 41.08C134.757 40.7867 135.217 40.38 135.63 39.86L138.61 42.52C137.917 43.4133 137.037 44.1067 135.97 44.6C134.917 45.08 133.703 45.32 132.33 45.32ZM139.657 45L145.777 31H150.417L156.537 45H151.657L147.137 33.24H148.977L144.457 45H139.657ZM143.297 42.56L144.497 39.16H150.937L152.137 42.56H143.297ZM158.691 45V31H165.431C166.737 31 167.864 31.2133 168.811 31.64C169.771 32.0667 170.511 32.68 171.031 33.48C171.551 34.2667 171.811 35.2 171.811 36.28C171.811 37.36 171.551 38.2933 171.031 39.08C170.511 39.8667 169.771 40.48 168.811 40.92C167.864 41.3467 166.737 41.56 165.431 41.56H161.311L163.411 39.54V45H158.691ZM163.411 40.06L161.311 37.92H165.131C165.784 37.92 166.264 37.7733 166.571 37.48C166.891 37.1867 167.051 36.7867 167.051 36.28C167.051 35.7733 166.891 35.3733 166.571 35.08C166.264 34.7867 165.784 34.64 165.131 34.64H161.311L163.411 32.5V40.06ZM179.079 36.2H185.319V39.6H179.079V36.2ZM179.399 41.44H186.399V45H174.759V31H186.139V34.56H179.399V41.44Z"
-                            fill="white" />
-                        <rect x="34" y="21" width="30" height="34" stroke="white" stroke-width="4" />
-                        <circle cx="49" cy="35" r="5" fill="white" />
-                        <rect x="47" y="38" width="4" height="9" fill="white" />
-                    </svg></a>
+    <nav class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-logo">
+                <?php if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+                <img src="/assets/front/nav/logo.svg" alt="">
+                <?php else : ?>
+                <a href="/"><img src="/assets/front/nav/logo.svg" alt=""></a>
+                <?php endif; ?>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2 w-100 px-3">
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
 
-                    <?php
-                        if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                    <li class="nav-item in_game_nav"> Le développeur perdu</li>
-                    <li class="nav-item in_game_nav room_active"></li>
-                    <?php else : ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/acscape">accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/acscape/index">nos escape games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">contact</a>
-                    </li>
+        <div class="nav-links">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 px-3">
+
+                <?php
+                 if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+                <li class="nav-item in_game_nav"><?= $gameTitle ?></li>
+                <li class="nav-item in_game_nav room_active"></li>
+                <?php else : ?>
+                <li class="nav-item d-flex gap-5 flex-column text-center flex-lg-row">
+                    <a class="nav-link" href="/">accueil</a>
+                    <a class="nav-link" href="/index">nos escape games</a>
                     <?php if (isset($_SESSION['user_id'])) : ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Création de jeu
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/acscape/admin/posts">Créer</a></li>
-                            <li><a class="dropdown-item" href="/acscape/admin/script">Liste de vos jeux</a></li>
-                        </ul>
-                    </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        création de jeu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/admin/posts">Créer</a></li>
+                        <li><a class="dropdown-item" href="/admin/script">Liste de vos jeux</a></li>
+                    </ul>
                     <?php endif; ?>
-                    </li>
-                    <?php endif; ?>
-                    <!-- </ul> -->
-
-
-
-
-                    <li class="navLog">
-                        <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-                        <div class="countdown_container d-flex gap-3">
-                            <div class="penality d-flex align-items-center"></div>
-                            <div class="penalityClue d-flex align-items-center"></div>
-                            <div class="m-0 d-flex justify-content-center align-items-center" id='countdown'></div>
-                        </div>
+                </li>
+                </li>
+                <?php endif; ?>
+                <li class="navLog">
+                    <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
+                    <div class="countdown_container d-flex gap-3">
+                        <div class="penality d-flex align-items-center"></div>
+                        <div class="penalityClue d-flex align-items-center"></div>
+                        <div class="m-0 d-flex justify-content-center align-items-center" id='countdown'></div>
+                    </div>
+                    <?php else : ?>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                    <a alt="" href="/login">
                         <?php else : ?>
-                        <?php if (!isset($_SESSION['user_id'])): ?>
-                        <a alt="" href="login">
-                            <?php else : ?>
-                            <a alt="" href="/acscape/logout">
-                                <?php endif ?>
-                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10 5.29688C9.38194 5.29687 8.77775 5.48015 8.26384 5.82353C7.74994 6.16691 7.3494 6.65497 7.11288 7.22599C6.87635 7.79701 6.81447 8.42534 6.93505 9.03153C7.05563 9.63772 7.35325 10.1945 7.79029 10.6316C8.22733 11.0686 8.78415 11.3663 9.39034 11.4868C9.99654 11.6074 10.6249 11.5455 11.1959 11.309C11.7669 11.0725 12.255 10.6719 12.5983 10.158C12.9417 9.64413 13.125 9.03994 13.125 8.42188C13.125 7.59307 12.7958 6.79822 12.2097 6.21217C11.6237 5.62612 10.8288 5.29688 10 5.29688Z"
-                                        fill="white" />
-                                    <path
-                                        d="M10 1.54688C8.26942 1.54687 6.57769 2.06005 5.13876 3.02152C3.69983 3.98298 2.57832 5.34954 1.91606 6.9484C1.25379 8.54725 1.08051 10.3066 1.41813 12.0039C1.75575 13.7012 2.58911 15.2603 3.81282 16.4841C5.03653 17.7078 6.59563 18.5411 8.29296 18.8787C9.9903 19.2164 11.7496 19.0431 13.3485 18.3808C14.9473 17.7186 16.3139 16.597 17.2754 15.1581C18.2368 13.7192 18.75 12.0275 18.75 10.2969C18.7474 7.97704 17.8246 5.75298 16.1843 4.11261C14.5439 2.47224 12.3198 1.54952 10 1.54688ZM14.995 15.8756C14.9825 15.0558 14.6485 14.2737 14.0649 13.6979C13.4814 13.122 12.6949 12.7984 11.875 12.7969H8.125C7.30512 12.7984 6.51865 13.122 5.93506 13.6979C5.35147 14.2737 5.01746 15.0558 5.005 15.8756C3.87161 14.8636 3.07234 13.5312 2.71303 12.0548C2.35372 10.5784 2.45132 9.02771 2.9929 7.60804C3.53449 6.18836 4.49452 4.96667 5.74586 4.10473C6.99721 3.24279 8.48084 2.78127 10.0003 2.78127C11.5198 2.78127 13.0034 3.24279 14.2548 4.10473C15.5061 4.96667 16.4661 6.18836 17.0077 7.60804C17.5493 9.02771 17.6469 10.5784 17.2876 12.0548C16.9283 13.5312 16.129 14.8636 14.9956 15.8756H14.995Z"
-                                        fill="white" />
-                                </svg>
-                                <?php if (isset($_SESSION['user_id'])): ?>
-                                DECONNEXION
-                                <?php else : ?>
-                                SE CONNECTER
-                                <?php endif ?>
-                            </a>
+                        <a alt="" href="/logout">
                             <?php endif ?>
-                    </li>
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 5.29688C9.38194 5.29687 8.77775 5.48015 8.26384 5.82353C7.74994 6.16691 7.3494 6.65497 7.11288 7.22599C6.87635 7.79701 6.81447 8.42534 6.93505 9.03153C7.05563 9.63772 7.35325 10.1945 7.79029 10.6316C8.22733 11.0686 8.78415 11.3663 9.39034 11.4868C9.99654 11.6074 10.6249 11.5455 11.1959 11.309C11.7669 11.0725 12.255 10.6719 12.5983 10.158C12.9417 9.64413 13.125 9.03994 13.125 8.42188C13.125 7.59307 12.7958 6.79822 12.2097 6.21217C11.6237 5.62612 10.8288 5.29688 10 5.29688Z"
+                                    fill="white" />
+                                <path
+                                    d="M10 1.54688C8.26942 1.54687 6.57769 2.06005 5.13876 3.02152C3.69983 3.98298 2.57832 5.34954 1.91606 6.9484C1.25379 8.54725 1.08051 10.3066 1.41813 12.0039C1.75575 13.7012 2.58911 15.2603 3.81282 16.4841C5.03653 17.7078 6.59563 18.5411 8.29296 18.8787C9.9903 19.2164 11.7496 19.0431 13.3485 18.3808C14.9473 17.7186 16.3139 16.597 17.2754 15.1581C18.2368 13.7192 18.75 12.0275 18.75 10.2969C18.7474 7.97704 17.8246 5.75298 16.1843 4.11261C14.5439 2.47224 12.3198 1.54952 10 1.54688ZM14.995 15.8756C14.9825 15.0558 14.6485 14.2737 14.0649 13.6979C13.4814 13.122 12.6949 12.7984 11.875 12.7969H8.125C7.30512 12.7984 6.51865 13.122 5.93506 13.6979C5.35147 14.2737 5.01746 15.0558 5.005 15.8756C3.87161 14.8636 3.07234 13.5312 2.71303 12.0548C2.35372 10.5784 2.45132 9.02771 2.9929 7.60804C3.53449 6.18836 4.49452 4.96667 5.74586 4.10473C6.99721 3.24279 8.48084 2.78127 10.0003 2.78127C11.5198 2.78127 13.0034 3.24279 14.2548 4.10473C15.5061 4.96667 16.4661 6.18836 17.0077 7.60804C17.5493 9.02771 17.6469 10.5784 17.2876 12.0548C16.9283 13.5312 16.129 14.8636 14.9956 15.8756H14.995Z"
+                                    fill="white" />
+                            </svg>
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                            DECONNEXION
+                            <?php else : ?>
+                            SE CONNECTER
+                            <?php endif ?>
+                        </a>
+                        <?php endif ?>
+                </li>
 
-                </ul>
-            </div>
+            </ul>
         </div>
     </nav>
 
-    <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
+    <div id='loader' class="fade loadingspinner d-flex flex-column justify-content-center align-items-center dnone">
+        <div class="container_square">
+            <div id="square1"></div>
+            <div id="square2"></div>
+            <div id="square3"></div>
+            <div id="square4"></div>
+            <div id="square5"></div>
+        </div>
+        <img class="logoLoader" src="/assets/front/nav/logo.svg" alt="">
+        <p class="textLoading">chargement</p>
+    </div>
 
+    <div class="container-fluid gx-0 back_dark flex-grow-1 position-relative ingame_container_background">
         <?= $content ?>
     </div>
 
-    <footer class="container-fluid gx-0">
+    <footer class="container-fluid gx-0 mt-3">
         <div class="footer_acs d-flex justify-content-center flex-column align-items-center py-2">
             <svg class="my-1" width="161" height="42" viewBox="0 0 161 42" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -162,22 +171,29 @@ return header('Location: /acscape/login?error=session_expired');
 
 </body>
 
-<script src="\acscape\public\app\app.js"></script>
+<script async src="\public\app\app.js"></script>
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') !== false) : ?>
-<script src="public\app\inGame.js"></script>
+<script src="\public\app\inGame.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
 <?php endif; ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
 
 <?php  if (strpos($_SERVER['REQUEST_URI'], 'ingame') == false) : ?>
-<script src="public\app\splide.min.js"></script>
+<script src="\public\app\splide.min.js"></script>
 <?php endif; ?>
-<script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script>
+
+<script>
+
+</script>
+
+
+
+<!-- <script src='https://cdn.jsdelivr.net/npm/ms-cursor@1.0.1/index.min.js'></script> -->
 
 
 </html>

@@ -32,7 +32,11 @@ class User extends Model {
 
     public function isExistUsername(string $username)
     {
-        return $this->query("SELECT EXISTS (SELECT 1  {$this->table} WHERE username = :username, true", ['username' => $username]);
+      if ($this->query("SELECT * FROM {$this->table} WHERE username = ?", [$username], true)) {
+        return true;
+      } else {
+        return header('Location: login?error=error');
+      }
     }
 
     public function getTokenUserByMail()

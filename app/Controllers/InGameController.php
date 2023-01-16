@@ -2,24 +2,26 @@
 
 namespace App\Controllers;
 
-use App\models\room;
-use App\models\furniture;
+use App\Models\Room;
+use App\Models\Script;
+use App\Models\Furniture;
 
 class InGameController extends Controller {
 
-    public function index()
+    public function index($id)
     {
+        if (!isset($_SESSION['scriptId'])) {
+            session_destroy();
+            require VIEWS . 'errors/404.php';
+        }
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(57);
+        $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(57);
+        $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
+        $script = new Script($this->getDB());
+        $script = $script->allByScriptId($_SESSION['scriptId']);
 
-        $data =  [
-            'room' => $room,
-            'furniture' => $furniture]; 
-
-        $json = json_encode($data);
-        $this-> view('ingame.index', compact('json'));        
+        $this-> view('ingame.index', compact('room', 'furniture', 'script'));        
     }
 
     public function show()
@@ -29,19 +31,19 @@ class InGameController extends Controller {
 
     public function jsonGame()
     {
-        
         $room = new Room($this->getDB());
-        $room = $room->allByScriptIdByNroom(57);
+        $room = $room->allByScriptIdByNroom($_SESSION['scriptId']);
         $furniture = new Furniture($this->getDB());
-        $furniture = $furniture->allByFurnitureId(57);
+        $furniture = $furniture->allByFurnitureId($_SESSION['scriptId']);
+        $script = new Script($this->getDB());
+        $script = $script->allByScriptId($_SESSION['scriptId']);
 
         $data =  [
             'room' => $room,
-            'furniture' => $furniture];
+            'furniture' => $furniture,
+            'script' => $script];
 
-        return $this->json('ingame.data', compact('data'));
-       
-
+        return $this->json('json.data', compact('data'));
     }
 
 }

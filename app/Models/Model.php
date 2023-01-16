@@ -4,7 +4,6 @@ namespace App\Models;
 
 use PDO;
 use Database\DBConnection;
-
 abstract class Model {
 
     protected $db;
@@ -21,6 +20,10 @@ abstract class Model {
     }
 
     public function allByScriptId(int $id)
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE id = $id  ORDER BY id ASC");
+    }
+    public function allByScriptIdAdmin(int $id)
     {
         return $this->query("SELECT * FROM {$this->table} WHERE script_id = $id  ORDER BY id ASC");
     }

@@ -64,7 +64,7 @@ class ObjectsController extends Controller {
                             echo "Votre fichier n'est pas une image";
                         }
                     }
-                    return header('Location: /acscape/admin/game');
+                    return header('Location: /admin/game');
                 }
             }
         

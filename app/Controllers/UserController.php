@@ -2,36 +2,28 @@
 
 namespace App\Controllers;
 
-use App\models\User;
+use App\Models\User;
 use App\Validation\Validator;
-use App\models\PassRecover;
+use App\Models\PassRecover;
 
 class UserController extends Controller {
 
     public function login()
     {
         $csrf_token = $this->generateCsrfToken();
-        // setcookie('csrf_token', $csrf_token, time() + 7200 );
         setcookie('csrf_token', $csrf_token, [
             'expires' => time() + 7200,
-            'samesite' => 'None',
-            'secure' => true
+            'samesite' => 'strict',
+            // 'secure' => true
             ]);
-   
         return $this->view('auth.login',compact('csrf_token'));
-       
     }
 
     public function loginPost()
     {
 
-        // if (!isset($_COOKIE['csrf_token'])) {
-        //     // Si le jeton CSRF n'est pas présent, cela signifie que le cookie a expiré
-        //     return header('Location: /acscape/login?error=session_expired');
-        // }
-
         if (!$this->validateCsrfToken($_POST['csrf_token'])) {
-            return header('Location: login?error=invalid_csrf_token');
+            return header('Location: /login?error=invalid_csrf_token');
         }
 
         $validator = new Validator($_POST);
@@ -43,7 +35,7 @@ class UserController extends Controller {
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: acscape/login');
+            header('Location: /login');
             exit;
         }
 
@@ -53,19 +45,17 @@ class UserController extends Controller {
             $_SESSION['auth'] = (int) $user->role;
             $_SESSION['user_id'] = (int) $user->id;
             $_SESSION['token'] = $user->token;
-            return header('Location: /acscape/index');
+            return header('Location: index');
         } else {
-            return header('Location: login?error=error');
+            return header('Location: /login?error=error');
         }
-
-
     }
 
     public function logout()
     {
         session_destroy();
 
-        return header('Location: /acscape');
+        return header('Location: /');
     }
 
     public function register()
@@ -75,7 +65,6 @@ class UserController extends Controller {
 
     public function registerPost()
     {
-
         $token = bin2hex(random_bytes(32));
 
         $validator = new Validator($_POST);
@@ -89,14 +78,11 @@ class UserController extends Controller {
          $_SESSION['errors'][] = $errors;
          header('Location: login');
          exit;
-            }
+        }
     
-    
-
-     
             $user = new User ($this->getDB());
             $email = $user->getByUserMail($_POST['email']);
-            $username = $user->getByUsername($_POST['username']);
+            $username = $user->isExistUsername($_POST['username']);
             if ($email) {
                 $_SESSION['errorMail'][] = 'Cet email est déjà utilisé';
                 header('Location: login?error=email');
@@ -108,14 +94,6 @@ class UserController extends Controller {
                 exit;
             }
 
-
-            // if ($errors) {
-            //     $_SESSION['errors'][] = $errors;
-            //     header('Location: login');
-            //     exit;
-            //        }
-
-
         $user->create([
         'username' => $_POST['username'],
         'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
@@ -124,16 +102,6 @@ class UserController extends Controller {
         'token' => $token
             ]);
     
-    
-            // if ($username) {
-            //     $_SESSION['errors'][] = 'Ce nom d\'utilisateur est déjà utilisé';
-            //     header('Location: register');
-            //     exit;
-            // }
-    
-          
-
-
         return header('Location: login');
     }
 
@@ -168,7 +136,7 @@ class UserController extends Controller {
                 'token_user' => $token_user,
                 'token' => $token
             ]);
-            $link = "http://localhost/acscape/reset?token=".$token."&u=".$token_user;
+            $link = "http://localhost/reset?token=".$token."&u=".$token_user;
             $to = $_POST['email'];
             $subject = "Réinitialisation de votre mot de passe";
             $message = "Bonjour, vous avez demandé à réinitialiser votre mot de passe. Pour ce faire, veuillez cliquer sur le lien suivant : ".$link;

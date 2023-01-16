@@ -4,16 +4,14 @@
 
 
 
-<div class="background_login_register"></div>
-<div class="imageHeaderTop">
-    <img class='imageHeaderTop_img' src="assets/front/login/login_register_top2.png" alt="">
-</div>
 
-<div class='login_register'>
+<span class="void"></span>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+    <div class="background_login_register"></div>
 
-    <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
+    <div class='login_register w-100'>
 
-    <div class="login-box">
+        <h1 class='titleLogin'>se connecter<span>&#x25CF;</span></h1>
 
         <?php if (isset($_GET['error']) && $_GET['error'] === 'error'): ?>
         <div class="alert alert-danger">
@@ -47,35 +45,45 @@
         <?php endforeach ?>
 
         <?php endif ?>
+        <div class="login-box w-100">
 
-        <div class="onglet_login_register">
-            <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
+
+            <div class="onglet_login_register">
+                <div class="onglet_login_register_item onglet_login_register_item_active" id="onglet_login">Se connecter
+                </div>
+                <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
             </div>
-            <div class="onglet_login_register_item" id="onglet_register">Se créer un compte</div>
+
+            <form action="login" method="POST" id="formLogin" autocomplete="off">
+                <div class="user-box">
+                    <input type="text" name="username" id="username" required="" autocomplete="off"
+                        class="no-autofill-bkg">
+                    <label>Nom d'utilisateur</label>
+                </div>
+                <div class="user-box position-relative">
+                    <input type="password" name="password" required="" autocomplete="off" class="password">
+                    <label>Mot de passe</label>
+                    <iconify-icon class="pass_to_text" icon="mdi:form-textbox-password" width="30" height="30">
+                    </iconify-icon>
+                </div>
+                <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
+                <div class="d-flex flex-column gap-3 boutonSendAndForgot">
+                    <button type="submit" class="btn_login_register">Se connecter</button>
+                    <a class="forgot" href="/forgot">mot de passe oublié</a>
+                </div>
+            </form>
+
         </div>
-
-        <form action="login" method="POST" id="formLogin" autocomplete="off">
-            <div class="user-box">
-                <input type="text" name="username" id="username" required="" autocomplete="off" class="no-autofill-bkg">
-                <label>Nom d'utilisateur</label>
-            </div>
-            <div class="user-box position-relative">
-                <input type="password" name="password" required="" autocomplete="off" class="password">
-                <label>Mot de passe</label>
-                <iconify-icon class="pass_to_text" icon="mdi:form-textbox-password" width="30" height="30">
-                </iconify-icon>
-            </div>
-            <input type="hidden" name="csrf_token" value="<?= $params["csrf_token"]?>">
-            <button type="submit" class="btn_login_register">Se connecter</button>
-            <a class="forgot" href="/acscape/forgot">mot de passe oublié</a>
-        </form>
-
     </div>
 </div>
 
 
 
+
 <script>
+    // document.querySelector('.navbar').classList.add("navbarLogin")
+
+
     const onglet_login = document.getElementById('onglet_login');
     const onglet_register = document.getElementById('onglet_register');
     const formLogin = document.getElementById('formLogin');
@@ -141,31 +149,47 @@
         }
     });
 
-    setTimeout(function () {
-        const alerteDanger = document.querySelectorAll('.alert-danger');
-        for (let i = 0; i < alerteDanger.length; i++) {
-            alerteDanger[i].remove();
-            window.history.replaceState({}, document.title, "/" + "acscape/login");
-        }
-    }, 2000);
 
-    // Fonction de vérification de mot de passe
-    function isPasswordValid(password) {
-        return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
+    const alerteDanger = document.querySelectorAll('.alert-danger');
+    const crossClose =
+        `<iconify-icon class="closeAlert" icon="maki:cross" style="color: #d31e44;" width="30" height="30"></iconify-icon>`;
+    for (let i = 0; i < alerteDanger.length; i++) {
+        alerteDanger[i].innerHTML += crossClose;
     }
+    let closeAlert;
+    if (document.querySelector('.closeAlert')) {
+        closeAlert = document.querySelector('.closeAlert');
+        closeAlert.addEventListener('click', function () {
+            alerteDanger[0].remove();
+            window.history.replaceState({}, document.title, "/" + "login");
+        });
+    }
+
 
     document.querySelector('.password').addEventListener('keyup', function () {
         if (passwordRegist.getAttribute('data-action') === 'passwordRegister') {
             const password = this.value;
-            console.log(password);
-            const isValid = isPasswordValid(password);
-            if (isValid) {
+            let errors = [];
+
+            labelpassword.textContent = 'le mot de passe doit contenir:';
+            if (password.length < 8) {
+                errors.push('au moins 8 caractères');
+            }
+            if (!/[A-Z]/.test(password)) {
+                errors.push('au moins une majuscule');
+            }
+            if (!/[a-z]/.test(password)) {
+                errors.push('au moins une minuscule');
+            }
+            if (!/[0-9]/.test(password)) {
+                errors.push('au moins un chiffre');
+            }
+            if (errors.length === 0) {
                 labelpassword.textContent = 'Mot de passe valide';
                 labelpassword.style.color = "rgba(108, 108, 108, 1)";
                 btn_login_register[0].disabled = false;
             } else {
-                labelpassword.textContent =
-                    'le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre';
+                labelpassword.textContent += " " + errors.join(', ');
                 labelpassword.style.color = 'red';
                 btn_login_register[0].disabled = true;
             }

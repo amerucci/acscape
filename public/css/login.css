@@ -1,8 +1,12 @@
 .background_login_register {
     background-color: rgba(27, 27, 27, 1);
+    background-image: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%, #1B1B1B 100%), url(../../assets/front/login/login_register_top2.png);
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    transform: translateY(-5%);
 }
 
 .imageHeaderTop {
@@ -10,6 +14,13 @@
     top: 0;
     width: 100%;
 }
+
+.closeAlert {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
 
 .imageHeaderTop_img {
     width: 100%;
@@ -33,6 +44,7 @@
 .titleLogin {
     color: white;
     font-size: clamp(1.875rem, 1.2171rem + 3.5088vw, 4.375rem);
+    font-weight: 700;
 }
 
 .titleLogin span {
@@ -49,10 +61,9 @@
 
 .login-box {
     max-width: 730px;
-    width: 100%;
-    min-width: 316px;
-    height: 400px;
-    /* padding: 40px; */
+    width: 92%;
+    min-width: 310px;
+    min-height: 432px;
     background: rgba(36, 36, 36, 1);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
@@ -106,8 +117,8 @@
 
 
 .btn_login_register {
-    position: absolute;
-    right: 5%;
+    /* position: absolute; */
+    /* right: 5%; */
     height: 57px;
     width: 130px;
     background-color: rgba(211, 30, 68, 1);
@@ -121,14 +132,14 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    transition: background-color 0.5s, color 0.2s;
+    transition: all 0.5s, color 0.2s;
 }
 
 
 .btn_login_register:hover {
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(211, 30, 68, 1);
+    font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .onglet_login_register {
@@ -176,23 +187,97 @@
 /****************/
 
 .alert-danger {
-    --bs-alert-bg: transparent;
+    /* --bs-alert-bg: transparent; */
     color: #D31E44;
     font-weight: bold;
+    width: 35%;
+    background-color: #242424;
 }
 
 .forgot {
     display: block;
-    position: absolute;
-    bottom: 20%;
-    left: 8%;
+    /* position: absolute; */
+    /* bottom: -28%;
+    right: 1%; */
     text-decoration: none;
-    color: rgba(108, 108, 108, 1);
+    color: rgba(211, 30, 68, 1);
     font-family: "montserrat", sans-serif;
+    transition: scale 0.2s ease-in-out;
+    padding: 2%;
+}
+
+.forgot:hover {
+    color: rgba(211, 30, 68, 1);
+    scale: 1.1;
+    transition: scale 0.2 ease-in-out;
 }
 
 .pass_to_text {
     position: absolute;
     right: 0px;
     top: 10px;
+}
+
+.btn-send-forgot {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #D31E44;
+    padding: 3%;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-send-forgot:hover {
+    background-color: #fff;
+    color: #D31E44;
+    transition: 0.2s ease-in-out;
+}
+
+#email {
+    color: white;
+}
+
+.boutonSendAndForgot {
+    height: 161px;
+    align-items: end;
+}
+
+.void {
+    width: 100%;
+    height: 80px;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .navbarLogin {
+        position: relative !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .btn_login_register {
+        bottom: -15%;
+    }
+
+    .titleLogin {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .alert-danger {
+        width: 75%;
+    }
+
+}
+
+@media (max-width: 456px) {
+    /* .forgot {
+        bottom: -49%;
+        left: 26%;
+    } */
+
+    .alert-danger {
+        width: 90%;
+    }
 }

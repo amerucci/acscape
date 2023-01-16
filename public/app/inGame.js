@@ -1,4 +1,56 @@
+window.addEventListener('load', function () {
+    let navbtn_inGame;
+    if (document.querySelector('.nav-btn-InGame')) {
+        navbtn_inGame = document.querySelector('.nav-btn-InGame');
+        navbtn_inGame.innerHTML = `<iconify-icon icon="maki:cross" style="color: #d31e44;" width="30" height="30"></iconify-icon>`;
+        navbtn_inGame.addEventListener('click', () => {
+            //   create modal with bootstrap 5
+            const modal = document.createElement('div');
+            modal.classList.add('modal', 'fade');
+            modal.id = 'modal';
+            modal.setAttribute('tabindex', '-1');
+            modal.setAttribute('aria-labelledby', 'exampleModalLabel');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.innerHTML = ` <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Quitter la partie ?</h5>
+        </div>
+        <div class="modal-body">
+            <p>Vous êtes sur le point de quitter la partie en cours. Êtes-vous sûr de vouloir quitter ?</p>
+        </div>
+        <div class="modal-footer ms-auto p-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-danger" id="leaveGame">Quitter</button>
+        </div>
+    </div>
+</div>`;
+            document.body.appendChild(modal);
+            const myModal = new bootstrap.Modal(modal);
+            myModal.show();
+            const leaveGame = document.querySelector('#leaveGame');
+            leaveGame.addEventListener('click', () => {
+                window.location.href = '/';
+            });
+
+            // remove modal
+            modal.addEventListener('hidden.bs.modal', () => {
+                modal.remove();
+            });
+        })
+    }
+
+    document.querySelector('.nav-logo > img:nth-child(1)').addEventListener('click', () => {
+        navbtn_inGame.click();
+    });
+
+});
+
+const endgame_text = document.querySelector('.endgame_text');
 let ingame_background = document.querySelector('.ingame_container_background')
+const roomModal = document.querySelector('#roomsModal');
+const friskModal = document.querySelector('#friskModal');
+
 
 let modal_title = document.querySelector('.modal-title');
 const penality = document.querySelector('.penality');
@@ -12,20 +64,16 @@ function function_penality_info() {
 }
 
 
-let navbar = document.querySelector('.navbar');
-navbar.classList.remove('navbar-expand-lg');
-navbar.classList.add('navbar-expand');
-window.addEventListener('resize', function (event) {
-    if (window.innerWidth < 992) {
-        navbar.classList.add('flex-wrap');
-        navbar.classList.remove('navbar-expand-lg');
-        navbar.classList.add('navbar-expand');
-    } else {
-        navbar.classList.remove('flex-wrap');
-        navbar.classList.remove('navbar-expand');
-        navbar.classList.add('navbar-expand-lg');
-    }
-});
+// let navbar = document.querySelector('.navbar');
+// if (window.innerWidth < 992) {
+//     navbar.classList.add('flex-wrap');
+//     navbar.classList.remove('navbar-expand-lg');
+//     navbar.classList.add('navbar-expand');
+// } else {
+//     navbar.classList.remove('flex-wrap');
+//     navbar.classList.remove('navbar-expand');
+//     navbar.classList.add('navbar-expand-lg');
+// }
 
 function modalFixed() {
     const the_rooms = document.querySelector('.the_rooms');
@@ -55,32 +103,7 @@ function modalFixed() {
 modalFixed();
 
 
-let countdown = 60 * 60; // 60 minutes (temps exprimé en secondes)
-// let countdown = 10;
-function updateCountdown() {
-    countdown--;
-
-    let minutes = Math.floor(countdown / 60);
-    let seconds = countdown % 60;
-
-    // Formater les minutes et les secondes avec des zéros au début (pour obtenir un format 00:00)
-    minutes = minutes.toString().padStart(2, "0");
-    seconds = seconds.toString().padStart(2, "0");
-
-    if (countdownElement = document.getElementById("countdown") != null) {
-        countdownElement = document.getElementById("countdown");
-
-        if (countdown < 0) {
-            const endgame_lose = document.querySelector('.endgame_lose');
-            endgame_lose.classList.remove('dnone');
-            return;
-        }
-    }
-
-    countdownElement.innerHTML = minutes + ":" + seconds;
-}
-setInterval(updateCountdown, 1000);
-
+let countdown;
 let interval = 10;
 let intervalId;
 let roomsLock;
@@ -125,7 +148,8 @@ function intervalFunction(callback) {
 
 async function getData() {
     try {
-        const response = await fetch('/acscape/ingame/data');
+        const response = await fetch('/json/data');
+        console.log(response);
         if (response.ok) {
             const data = await response.json();
             dataGlobal = data.data; // les données global formaté pour éviter le dataGlobal[0]....
@@ -159,6 +183,7 @@ let room_open;
 let backdrop;
 let modals = document.querySelectorAll('.modal');
 let input_container;
+const tools = document.querySelector('.tools');
 
 let switch_container;
 let switch_try;
@@ -210,14 +235,25 @@ function removeToptoBottom() {
     }, 2000);
 }
 
+function lowerCase() {
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function () {
+            input.value = input.value.replace(/[éè]/g, "e").replace(/[àâ]/g, "a").replace(/[ùû]/g, "u").toLowerCase();
+        });
+    });
+}
 
 main()
     .then(data => {
 
+        dataGlobal.room[0].padlock = "no"; // dévérouillage de la room 1
         dataGlobalUnlock.push(dataGlobal); // copie de dataGlobal dans dataGlobalUnlock pour pouvoir modifier les valeurs de dataGlobalUnlock sans modifier dataGlobal
 
-
-
+        for (let i = 0; i < dataGlobalUnlock.length; i++) {
+            for (let j = 0; j < dataGlobalUnlock[i].room.length; j++) {
+                dataGlobalUnlock[i].room[j]['unlock_word'] = dataGlobalUnlock[i].room[j]['unlock_word'].toLowerCase();
+            }
+        }
 
 
 
@@ -227,26 +263,23 @@ main()
             arrayMax.push(dataGlobal.room[i].n_room);
             max = Math.max(...arrayMax);
 
-
+            countdown = dataGlobal.script[0].duration * 60; // 60 minutes (temps exprimé en secondes)
 
             li_room = document.createElement('li');
             li_room.classList.add('rooms_list_item', `nb-${i}`);
             // li_room.innerHTML = dataGlobalUnlock[0].room[i].title;
             roomsList.appendChild(li_room);
 
-
-
-
             let roomsArray = [];
             for (let j = 3; j < roomsList.childNodes.length; j++) {
                 roomsArray.push(roomsList.childNodes[j]);
+
             }
 
-            roomsArray[i].style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+            roomsArray[i].style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
             roomsArray[i].style.backgroundSize = 'contain';
             roomsArray[i].style.backgroundRepeat = 'no-repeat';
             roomsArray[i].style.backgroundPosition = 'center';
-
 
             let padlock = document.createElement('iconify-icon');
             padlock.setAttribute('icon', 'uis:padlock');
@@ -260,7 +293,7 @@ main()
             padlock_open.setAttribute('height', '60');
             padlock_open.classList.add('padlock_open');
 
-            // roomsArray[i].appendChild(padlock);
+
 
             function padlock_img() {
                 if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
@@ -273,9 +306,13 @@ main()
                     roomsArray[i].style.color = 'black';
                     padlock.remove();
                     roomsArray[i].appendChild(padlock_open);
+
                 }
             }
             padlock_img();
+
+
+
 
 
             roomsArray[i].addEventListener('click', function (roomClick) { // ouverture de la modal room ouverte(padlock='no') ou fermé(padlock='yes') et l'ensemble des fonctions permettant les actions sur les salles
@@ -284,12 +321,17 @@ main()
                 padlock_img();
 
 
-                if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
 
-                    ingame_background.style.backgroundImage = `url(/acscape/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
-                    ingame_background.style.backgroundSize = 'contain';
+
+                if (dataGlobalUnlock[0].room[i]['padlock'] == "no") {
+                    roomModal.classList.remove('show');
+                    document.querySelector('body').style.backgroundImage = `url(/assets/pictures/rooms/${dataGlobalUnlock[0].room[i].picture})`;
+                    document.querySelector('body').style.backgroundSize = `cover`;
+                    // ingame_background.style.backgroundSize = '30%, 30%';
+                    ingame_background.classList.add('ingame_background_responsive');
                     ingame_background.style.backgroundRepeat = 'no-repeat';
                     ingame_background.style.backgroundPosition = 'center';
+                    tools.classList.add('backdrop_for_img')
                     if (ingame_background.style.backgroundImage) {
                         document.querySelector('body').style.backdropFilter = 'blur(5px)';
                     } else {
@@ -299,6 +341,7 @@ main()
                     navInGameTitle.innerHTML = dataGlobalUnlock[0].room[i].title;
 
                     const rooms_list_item = document.querySelectorAll('.rooms_list_item');
+
                     rooms_list_item.forEach(element => {
                         element.classList.remove('activeR');
                     });
@@ -330,7 +373,7 @@ main()
                                                         </div>
                                                             <div class="modal-body">
                                                                 <div class="d-flex justify-content-center align-items-center gap-2 flex-column">
-                                                                <h5 class="msg_open">Salle dévérouillée voyons ce qu'elle contient.</h5>
+                                                                <h5 class="msg_open">Salle dévérouillée</h5>
                                                                 <p class="reward_container">${dataGlobal.room[i].reward}</p>
                                                                 </div>
                                                             </div>
@@ -342,7 +385,8 @@ main()
 
                     let msg_open = document.querySelector('.msg_open');
                     if (dataGlobal.room[i].n_room == "1") {
-                        msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                        // msg_open.innerHTML = "Cette salle est déjà ouverte, mais pouvez la fouiller pour partir à la recherches d'indices. <br> Peut-être que vous trouverez quelque chose qui vous aidera à ouvrir la salle suivante.";
+                        msg_open.textContent = dataGlobal.room[i].description;
                         document.querySelector('.reward_container').style = "display: none";
                     }
 
@@ -355,13 +399,15 @@ main()
 
                     modal.addEventListener('hidden.bs.modal', function () {
                         modal.remove();
+                        roomModal.classList.add('show');
                     });
-
                 }
 
                 if (dataGlobal.room[i]['padlock'] == "yes" && roomsArray[i].classList.contains('room_unlock_open') == false) {
 
 
+
+                    roomModal.classList.remove('show');
                     const modal = document.createElement('div');
                     modal.classList.add('modal', 'fade', 'modal-lg');
                     modal.setAttribute('id', 'roomsLock');
@@ -383,6 +429,7 @@ main()
                                             </span>
                                     </div>
                                     <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
+                                    <img src="/assets/pictures/rooms/${dataGlobal.room[i]['picture']}" class="img_room" alt="" width="373" height="100%">
                                     <p class="description_room">${dataGlobal.room[i]['description']}</p>
                                     </div>
                                         <div class="modal-body d-flex flex-column flex-md-row w-100">
@@ -390,14 +437,14 @@ main()
                                                 <div class="d-flex flex-column clue_show input_container fade show w-50 gap-1">
                                                     <div class="w-100">
                                                       <div class="d-flex">
-                                                          <input type="text" class="form-control" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
-                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                          <input type="text" class="form-control w-100" id="rooms_unlock_key" placeholder="Entrer la clé pour ${dataGlobal.room[i]['title']}">
+                                                          <button type="button" class="btn btn-primary btn-lg btn-block" id="rooms_unlock_btn"><iconify-icon class="key_btn white" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                           </div>
                                                           <div class="d-flex align-items-center gap-5"></div>
                                                     </div>
                                                         <div class="d-flex flex-column switch_container fade show">
                                                             <div class="progress w-100 h-100">
-                                                                <div class="progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                                                <div class=" text-center progress-bar progress-bar-striped progress-bar-animated room_control_key" role="progressbar" aria-label="Animated striped" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                                             </div>
                                                             <p class="text-center penality_info my-2"></p>
                                                         </div>
@@ -446,10 +493,16 @@ main()
 
                     modal.addEventListener('hidden.bs.modal', function (modalRemove) {
                         modal.remove();
+                        roomModal.classList.add('show');
                         penalityClue.innerHTML = "";
                         clearInterval(intervalId);
                     })
 
+
+                    const zoomImg = document.querySelector(' .desc_container>img');
+                    zoomImg.addEventListener('click', function () {
+                        zoomImg.classList.toggle('zoom');
+                    });
 
                     // ************  ROOMS Clues ************
 
@@ -460,14 +513,8 @@ main()
                     })
 
 
-
-
-
                     // variable t pour calculer les pénalités si ouverte une fois ou plus, en combinaison d'un ajout de propriété dans l'objet.
                     let tl = interval;
-
-
-
 
                     clue_btn_content = document.querySelector('#clue_btn_content');
                     switch_container = document.querySelector('.switch_container');
@@ -496,10 +543,11 @@ main()
                     roomsClueId = [...uniqueIdsClue];
 
 
-                    if (clue_show_content1.innerHTML == "null") {
-                        clue_show1.classList.add('dnone');
+                    if (clue_show_content1.innerHTML = dataGlobal.room[i]['clue'] == "") {
                         clue_show2.classList.add('dnone');
                         clue_show3.classList.add('dnone');
+                        clue_show1.disabled = true;
+                        clue_show1.textContent = "Pas d'indice pour cette salle";
                     }
                     if (clue_show_content2.innerHTML = dataGlobal.room[i]['clue2'] == null) {
                         clue_show2.classList.add('dnone');
@@ -521,6 +569,7 @@ main()
 
 
                     clue_show1.addEventListener('click', function () {
+
 
                         clue_show_content1.classList.toggle('dnone');
                         this.classList.toggle('rotate_5deg');
@@ -679,12 +728,24 @@ main()
                     backdrop = document.querySelector('.closeLock');
                     penality_info = document.querySelector('.penality_info');
                     room_control_key.innerHTML = `<span class="h-100 d-flex justify-content-center align-items-center tryNumber">${room_try}</span>`;
-
+                    lowerCase();
                     rooms_unlock_btn.addEventListener('click', function () {
                         if (rooms_unlock_key.value == '') {
                             e.preventDefault;
                         }
                         if (rooms_unlock_key.value == dataGlobal.room[i]['unlock_word']) {
+                            if (dataGlobal.room[i].n_room == max) {
+                                backdrop.click();
+                                document.querySelector(".close").click();
+                                console.log(document.querySelector("#roomsModal").classList.remove('show'));
+                                endgame_win.classList.remove('dnone');
+                                endgame_text.textContent = dataGlobal.script[0].winner_msg;
+                                setInterval(function () {
+                                    buttonConfetti.click();
+                                }, 1000)
+                                return;
+                            }
+
                             rooms_unlock_btn.disabled = true;
                             reward.innerHTML = `${dataGlobal.room[i]['reward']}`;
                             dataGlobal.room[i]['padlock'] = "no";
@@ -699,6 +760,8 @@ main()
                             }
                             backdrop.click();
                             roomsArray[i].click();
+                            document.querySelector(".close").click();
+
 
                         } else {
                             room_try--;
@@ -738,18 +801,21 @@ main()
                             }
                         }
                     });
+
                 }
 
-                if (dataGlobal.room[i].n_room == max && roomsArray[i].classList.contains('room_unlock_open')) {
-                    endgame_win.classList.remove('dnone');
-
-                    setInterval(function () {
-                        buttonConfetti.click();
-                    }, 200)
-                }
+                // if (dataGlobal.room[i].n_room == max && roomsArray[i].classList.contains('room_unlock_open')) {
+                //     document.querySelector(".closeOpen").click();
+                //     endgame_win.classList.remove('dnone');
+                //     endgame_text.textContent = dataGlobal.script[0].winner_msg;
+                //     setInterval(function () {
+                //         buttonConfetti.click();
+                //     }, 1000)
+                // }
 
 
             })
+
 
         }
 
@@ -760,6 +826,7 @@ main()
 
 
             dataGlobal.furniture.forEach(furniture => {
+                furniture.unlock_word = furniture.unlock_word.toLowerCase();
                 if (furniture.room_id === roomID) {
 
 
@@ -804,7 +871,7 @@ main()
 
                         furnitureLi.addEventListener('click', function (event) {
 
-
+                            friskModal.classList.remove('show')
 
                             const modal = document.createElement('div');
                             modal.classList.add('modal', 'fade', 'modal-lg');
@@ -825,6 +892,7 @@ main()
                                         </span>
                                 </div>
                                  <div class="d-flex  clue_show desc_container fade show w-100 gap-1">
+                                 <img src="/assets/pictures/furnitures/${furniture['picture']}" class="img_furniture" alt="" width="373" height="100%">
                                      <p class="description_room">${furniture['description']}</p>
                                  </div>
                                     <div class="modal-body d-flex flex-column flex-md-row">
@@ -832,17 +900,17 @@ main()
                                         <div class="d-flex flex-column clue_show w-50 gap-1 input_container ">
                                           <div class="w-100">
                                               <div class="d-flex">
-                                                  <input type="text" class="form-control" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
-                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon class="key_btn" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
+                                                  <input type="text" class="form-control w-100" id="furniture_key_unlock" placeholder="Entrer la clé pour ${furniture.title}">
+                                                  <button type="button" class="btn btn-primary btn-lg btn-block" id="furniture_key_unlock_btn"><iconify-icon class="key_btn white" icon="fluent-emoji-high-contrast:old-key"></iconify-icon></button>
                                                   </div>
                                                   <div class="d-flex align-items-center gap-5"></div>
                                               <p class="furniture_reward dnone"></p>
                                           </div>    
                                           <div class="d-flex flex-column switch_container fade show">
                                           <div class="progress w-100 h-100">
-                                              <div class="progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                              <div class="text-center progress-bar progress-bar-striped progress-bar-animated furniture_unlock_statut" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                           </div>
-                                          <p class="text-center penality_info"></p>
+                                          <p class="text-center penality_info mt-2"></p>
                                       </div>
                                         </div>
                                           <div class="d-flex flex-column w-50 align-items-center gap-3 clue_container">
@@ -872,7 +940,15 @@ main()
                             furniture_modal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
+                                friskModal.classList.add('show');
+                                penalityClue.innerHTML = "";
+                                clearInterval(intervalId);
                             })
+
+                            const zoomImgFurniture = document.querySelector(' .img_furniture');
+                            zoomImgFurniture.addEventListener('click', function () {
+                                this.classList.toggle('zoom');
+                            });
 
                             const furnitureModalLockLabel = document.getElementById('furnitureModalLockLabel');
                             switch_try = document.querySelector('.switch_try');
@@ -1082,6 +1158,7 @@ main()
                             const progress_bar = document.querySelector('.progress-bar');
                             penality_info = document.querySelector('.penality_info');
                             backdrop = document.querySelector('.closeLock');
+                            lowerCase();
                             furniture_key_unlock_btn.addEventListener('click', function () {
 
                                 if (furniture_key_unlock.value == '') {
@@ -1104,7 +1181,6 @@ main()
                                     }
                                     backdrop.click();
                                     let close = document.querySelector('.close');
-
                                     close.click();
                                     frisk_btn.click();
                                     furnitureLi.classList.add('furniture_unlock');
@@ -1225,6 +1301,7 @@ main()
                             myModal.show();
                             modal.addEventListener('hidden.bs.modal', function () {
                                 modal.remove();
+
                             });
 
 
@@ -1274,36 +1351,36 @@ function copyFurniture(title, reward) {
 }
 
 
-const wiki = document.querySelector('.wiki');
-wiki.addEventListener('click', function () {
-    // create modal bootstrap5 for iframe
-    const modal = document.createElement('div');
-    modal.classList.add('modal', 'fade');
-    modal.id = 'wikiModal';
-    modal.setAttribute('tabindex', '-1');
-    modal.setAttribute('aria-labelledby', 'wikiModal');
-    modal.setAttribute('aria-hidden', 'false');
-    modal.setAttribute("pointer-events", "auto")
-    modal.innerHTML = `
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="wikiModal">Wiki</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body wiki_modal">
-               <iframe src="https://fr.m.wikipedia.org" width="100%" height="100%"></iframe>
-            </div>
-        </div>
-    </div>
-    `;
-    document.body.appendChild(modal);
-    const modalBootstrap = new bootstrap.Modal(modal);
-    modalBootstrap.show();
-    modal.addEventListener('hidden.bs.modal', function () {
-        modal.remove();
-    });
-})
+// const wiki = document.querySelector('.wiki');
+// wiki.addEventListener('click', function () {
+//     // create modal bootstrap5 for iframe
+//     const modal = document.createElement('div');
+//     modal.classList.add('modal', 'fade');
+//     modal.id = 'wikiModal';
+//     modal.setAttribute('tabindex', '-1');
+//     modal.setAttribute('aria-labelledby', 'wikiModal');
+//     modal.setAttribute('aria-hidden', 'false');
+//     modal.setAttribute("pointer-events", "auto")
+//     modal.innerHTML = `
+//     <div class="modal-dialog modal-dialog-centered modal-xl">
+//         <div class="modal-content">
+//             <div class="modal-header">
+//                 <h5 class="modal-title" id="wikiModal">Wiki</h5>
+//                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//             </div>
+//             <div class="modal-body wiki_modal">
+//                <iframe src="https://fr.m.wikipedia.org" width="100%" height="100%"></iframe>
+//             </div>
+//         </div>
+//     </div>
+//     `;
+//     document.body.appendChild(modal);
+//     const modalBootstrap = new bootstrap.Modal(modal);
+//     modalBootstrap.show();
+//     modal.addEventListener('hidden.bs.modal', function () {
+//         modal.remove();
+//     });
+// })
 
 // sticky
 document.addEventListener('DOMContentLoaded', () => {
@@ -1356,7 +1433,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const html = `<textarea class="textarea_title_sticky w-100" maxlength="18" placeholder="Titre"></textarea><span class="dashedLine"></span><textarea class="w-100 textareaSticky" placeholder="contenue" cols="24" rows="8"></textarea><canvas class="drawing-canvas dnone mx-auto"></canvas><span class="deletesticky">&times;</span>`
         newSticky.classList.add('drag', 'sticky');
         newSticky.innerHTML = html;
-        newSticky.style.backgroundColor = randomColor();
+        // newSticky.style.backgroundColor = randomColor();
+        newSticky.style.backgroundColor = "rgb(255, 255, 255)";
+
         stickyArea.append(newSticky);
         positionSticky(newSticky);
         if (document.querySelectorAll('.sticky').length > 0) {
@@ -1499,7 +1578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mouseup', () => (isDragging = false));
 
     createStickyButton.addEventListener('click', createSticky);
-    createCanvas_btn.addEventListener('click', createCanvas);
+    // createCanvas_btn.addEventListener('click', createCanvas);
 
     applyDeleteListener();
     applyDeleteCanvas();
@@ -1509,16 +1588,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Toolbox
-const toolBox_btn = document.querySelector('#toolBox_btn');
-const toolbox_content = document.querySelector('#toolbox_content');
-const espaceVoid = document.querySelector('#espaceVoid')
+// // Toolbox
+// const toolBox_btn = document.querySelector('#toolBox_btn');
+// const toolbox_content = document.querySelector('#toolbox_content');
+// const espaceVoid = document.querySelector('#espaceVoid')
 
-toolBox_btn.addEventListener('click', () => {
-    espaceVoid.classList.toggle('dnone');
-    toolbox_content.classList.toggle('dnone');
+// toolBox_btn.addEventListener('click', () => {
+//     espaceVoid.classList.toggle('dnone');
+//     toolbox_content.classList.toggle('dnone');
 
-});
+// });
 
 party.confetti(runButton, {
     count: party.variation.range(200, 400),

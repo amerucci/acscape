@@ -10,15 +10,42 @@
     z-index: -1;
 }
 
+.ingame_container_background {
+    z-index: 55;
+}
+
+.modal {
+    z-index: 9999;
+}
 
 
 .in_game_nav {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
+    font-size: clamp(1rem, 0.8958rem + 0.5556vw, 1.5625rem);
     padding-right: 5%;
+    color: white;
+    width: 100% !important;
 }
+
+/* li.in_game_nav:nth-child(1) {
+    transform: translateY(-15%);
+} */
+
+.navnavLog-InGame {
+    background: none;
+    width: 10%;
+    justify-content: flex-end;
+}
+
+li.in_game_nav:nth-child(2) {
+    /* width: 52% !important; */
+    text-align: left !important;
+}
+
+
+
 
 .the_rooms,
 .inventories,
@@ -39,6 +66,12 @@
     bottom: 4%;
     left: 50%;
     transform: translate(-50%);
+}
+
+.backdrop_for_img {
+    background: #0009;
+    padding: 0.5%;
+    backdrop-filter: blur(5px);
 }
 
 .close,
@@ -68,6 +101,8 @@ modal {
     font-weight: 700;
     font-size: clamp(1rem, 0.6991rem + 1.6049vw, 2.625rem);
     transform: translate(0%, 8%);
+    color: white;
+    font-weight: bold;
 }
 
 .countdown_container {
@@ -77,20 +112,20 @@ modal {
 .endgame_lose,
 .endgame_win {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
     background-color: rgb(19, 19, 19);
-    width: 90%;
-    height: 75%;
-    z-index: 999999;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999999;
 }
 
 .endgame_title {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 42px;
+    font-size: clamp(1.125rem, 0.9004rem + 1.4371vw, 2.625rem);
     color: #ffffff;
 }
 
@@ -158,7 +193,13 @@ modal {
     font-weight: 400;
     font-size: 16px;
     color: #717171;
+    white-space: pre-line;
 
+}
+
+.msg_open,
+.furniture_reward {
+    white-space: pre-line;
 }
 
 .rooms_list_item,
@@ -170,7 +211,7 @@ modal {
     flex-wrap: wrap;
     padding: 10px 0;
     min-height: 200px;
-    min-width: 30%;
+    min-width: 25%;
     font-family: 'Montserrat';
     font-size: 1.3rem;
     position: relative;
@@ -336,7 +377,7 @@ modal {
     background-size: cover;
     background-position: center;
     width: 100%;
-    min-height: 100%;
+    min-height: 120px;
     color: white;
     font-family: 'montserrat';
     padding: 5%;
@@ -436,7 +477,8 @@ modal {
 
 .sticky {
     font-family: "Virgil", sans-serif;
-    background: linear-gradient(to left bottom, #d4fc78, #99e5a2);
+    /* background: linear-gradient(to left bottom, #d4fc78, #99e5a2); */
+    background: whitesmoke;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     color: #00243f;
     /* 0 0 150px rgba(0, 0, 0, 0.2); */
@@ -480,7 +522,7 @@ modal {
 }
 
 .sticky .deletesticky {
-    color: #0085e8;
+    color: var(--red);
     cursor: pointer;
     font-size: 2rem;
     position: absolute;
@@ -489,14 +531,13 @@ modal {
 }
 
 .sticky-form {
-    /* top: 5rem;
+    /* top: 5rem; */
     position: absolute;
-    right: 5rem; */
+    right: 6%;
     /* z-index: 5555; */
     /* width: 120px; */
-    width: 100%;
-    padding-top: 1%;
-    border-top: 1px dashed;
+    /* padding-top: 1%;
+    border-top: 1px dashed; */
 }
 
 .sticky-form label,
@@ -580,6 +621,7 @@ button.button {
 .toolbox {
     position: absolute;
     right: 3%;
+    top: 10.5%;
 }
 
 .button_toolBox {
@@ -604,7 +646,7 @@ button.button {
     padding-bottom: 0;
     padding-top: 5%;
     width: 100%;
-    border-top: dashed 1px;
+    /* border-top: dashed 1px; */
 }
 
 .sticky-draw {
@@ -658,6 +700,7 @@ iframe {
 
 .progress-bar {
     background-color: #d31e44;
+    transition: all 0.5s ease-in-out;
 }
 
 .penality_info {
@@ -673,6 +716,7 @@ iframe {
     padding: 3%;
     max-height: 230px;
     min-height: 100px;
+    white-space: pre-line;
 
 }
 
@@ -734,22 +778,76 @@ iframe {
 }
 
 .reward_container {
-    background: url(../../assets/front/ingame/paper.jpg);
-    height: 300px;
+    /* background: url(../../assets/front/ingame/paper.jpg); */
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2%;
-    border-radius: 48% 39% 38% 47% / 48% 37% 44% 45%;
     color: black;
     font-family: 'montserrat';
     font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
+    white-space: pre-line;
+}
+
+.zoom {
+    height: 105% !important;
+    width: 100% !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999999999999;
+    object-fit: contain;
+    backdrop-filter: blur(5px) saturate(100%) brightness(20%);
+    transition: backdrop-filter 0.2s ease-in-out;
+}
+
+#leaveGame {
+    background: var(--red);
+    color: white;
 }
 
 
+
 @media (max-width: 1000px) {
+
+    .li.in_game_nav:nth-child(1),
+    .li.in_game_nav:nth-child(2) {
+        width: 100%;
+    }
+
+    .nav-links-InGame {
+        height: 110px !important;
+        align-items: first baseline !important;
+        top: 40px !important;
+        background: transparent !important;
+    }
+
+    .navnavLog-InGame {
+        transform: translateY(0px) !important;
+        background-color: transparent !important;
+    }
+
+    .nav-btn-InGame {
+        top: 4px !important;
+    }
+
+    .nav-header-InGame {
+        height: 40px !important;
+    }
+
+    .nav-logo-InGame {
+        height: 37px;
+        width: 94px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .sticky-form {
+        display: none !important;
+    }
+
     footer[data-footer="none"] {
         display: none;
     }
@@ -764,6 +862,11 @@ iframe {
         z-index: 99;
     }
 
+    .penality,
+    .penalityClue {
+        display: none !important;
+    }
+
     .copy,
     .toolbox {
         display: none !important;
@@ -771,6 +874,8 @@ iframe {
 
     .navbar-navInGame {
         flex-direction: column !important;
+        align-items: flex-start !important;
+        transform: translateY(0) !important;
     }
 
 
@@ -783,6 +888,7 @@ iframe {
         border-bottom: 1px solid #d5c9c9;
     }
 
+
     .clue_container {
         width: 100% !important;
     }
@@ -793,8 +899,34 @@ iframe {
     }
 
     .navbar-nav {
-        width: 100%;
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 2%;
+        padding-left: 5px !important;
+        padding-top: 5px !important;
     }
+
+    .navnavLog-InGame {
+        width: auto;
+        justify-content: center;
+    }
+
+
+    /* .ingame_container_background {
+        background-size: 60% 60% !important;
+        background-position-y: top 12% !important;
+    } */
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .img_room,
+    .img_furniture {
+        width: 126px;
+    }
+
+
 
 
 
